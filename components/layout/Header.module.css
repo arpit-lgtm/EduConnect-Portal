@@ -23,6 +23,13 @@
   position: relative;
 }
 
+@media (max-width: 768px) {
+  .container {
+    padding: 0 15px;
+    gap: 15px;
+  }
+}
+
 /* Logo - EXTREME LEFT */
 .logo {
   display: block;
@@ -40,6 +47,13 @@
   width: 100% !important;
   height: 100% !important;
   max-width: none !important;
+}
+
+@media (max-width: 768px) {
+  .logo {
+    height: 45px;
+    width: 150px;
+  }
 }
 
 /* Navigation - CENTER */
@@ -206,6 +220,7 @@
 @media (max-width: 768px) {
   .menuButton {
     display: block;
+    z-index: 1001;
   }
 
   .navigation {
@@ -216,9 +231,13 @@
     max-width: 300px;
     height: 100vh;
     background: #fff;
-    padding: 60px 20px;
-    transition: 0.3s;
+    padding: 80px 20px 20px;
+    transition: right 0.3s ease;
     z-index: 1000;
+    overflow-y: auto;
+    box-shadow: -2px 0 8px rgba(0,0,0,0.1);
+    transform: none;
+    left: auto;
   }
 
   .navigation.active {
@@ -227,7 +246,18 @@
 
   .navList {
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
+    align-items: flex-start;
+  }
+
+  .navItem {
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .navItem a {
+    display: block;
+    padding: 8px 0;
   }
 
   .submenu {
@@ -236,5 +266,19 @@
     opacity: 1;
     visibility: visible;
     padding-left: 20px;
+    margin-top: 10px;
+  }
+
+  .socialLinks {
+    gap: 10px;
+  }
+
+  .socialIcon img {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  .headerActions {
+    gap: 10px;
   }
 }
