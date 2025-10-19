@@ -156,14 +156,14 @@ const HeroCarousel = () => {
                             ) : slide.hasImage ? (
                                 <div className={styles.imageSlideContent}>
                                     <div className={styles.imageSlideWrapper}>
+                                        <div className={styles.imageSlideOverlayLeft}>
+                                            <h2 className={styles.imageSlideTitle}>{slide.title}</h2>
+                                        </div>
                                         <img 
                                             src={slide.image} 
                                             alt={slide.title}
                                             className={styles.fullHeightImage}
                                         />
-                                        <div className={styles.imageSlideOverlayLeft}>
-                                            <h2 className={styles.imageSlideTitle}>{slide.title}</h2>
-                                        </div>
                                         <div className={styles.imageSlideOverlayRight}>
                                             <p className={styles.imageSlideSubtitle}>{slide.subtitle}</p>
                                         </div>
