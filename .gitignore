@@ -1,7 +1,5 @@
+﻿.next/
 node_modules/
-*.log
-.env
-dist/
-build/
+package-lock.json
 .DS_Store
-Thumbs.db
+*.log

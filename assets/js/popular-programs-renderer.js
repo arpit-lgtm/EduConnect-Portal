@@ -208,8 +208,8 @@ class PopularProgramsRenderer {
         // Store the selected course for later use
         window.selectedCourseForQuestionnaire = courseName;
         
-        // Show the enhanced AI questionnaire modal
-        this.showEnhancedQuestionnaireModal(courseName);
+        // Open questionnaire in a new tab instead of modal
+        this.openQuestionnaireInNewTab(courseName);
     }
 
     /**
@@ -374,6 +374,21 @@ class PopularProgramsRenderer {
                 }, 100);
             }
         }, 10);
+    }
+
+    /**
+     * Open Enhanced AI Questionnaire in a New Tab
+     */
+    openQuestionnaireInNewTab(courseName) {
+        console.log('🚀 Opening questionnaire in new tab for:', courseName);
+        
+        // Construct the URL with course parameter
+        const questionnaireUrl = `questionnaire.html?course=${encodeURIComponent(courseName)}`;
+        
+        // Open in new tab
+        window.open(questionnaireUrl, '_blank');
+        
+        console.log('✅ Questionnaire tab opened:', questionnaireUrl);
     }
 
     /**
@@ -2463,7 +2478,7 @@ window.closePersonalizedModal = function() {
 window.retakeQuestionnaire = function(courseName) {
     closePersonalizedModal();
     setTimeout(() => {
-        popularProgramsRenderer.showEnhancedQuestionnaireModal(courseName);
+        popularProgramsRenderer.openQuestionnaireInNewTab(courseName);
     }, 500);
 };
 
@@ -2528,8 +2543,14 @@ function closeContactFormModal() {
 
 // Global function to show contact form for expert consultation
 function showExpertConsultationForm() {
-    if (window.popularProgramsRenderer) {
-        window.popularProgramsRenderer.showContactFormModal('expert');
+    // Use the enhanced contact modal from questionnaire system
+    if (typeof contactUniversity === 'function') {
+        contactUniversity('Expert Consultation');
+    } else {
+        // Fallback to original method if questionnaire not available
+        if (window.popularProgramsRenderer) {
+            window.popularProgramsRenderer.showContactFormModal('expert');
+        }
     }
 }
 

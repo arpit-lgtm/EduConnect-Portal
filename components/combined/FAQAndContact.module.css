@@ -1,0 +1,52 @@
+.combinedSection {
+  background: #ffffff;
+  padding: 2rem 0 1rem;
+  position: relative;
+}
+
+.container {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 35% 65%;
+  gap: 0;
+  align-items: stretch;
+}
+
+.leftColumn {
+  height: 100%;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.rightColumn {
+  height: 100%;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Remove padding from child components since parent handles it */
+.leftColumn :global(.faqSection),
+.rightColumn :global(.talkToExpertsSection) {
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+}

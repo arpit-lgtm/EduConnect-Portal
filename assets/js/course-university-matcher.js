@@ -777,7 +777,6 @@ class CourseUniversityMatcher {
                 { name: '1 Year MBA', displayName: 'Master of Business Administration (1 YEAR)', icon: '1_Year_MBA_Online.svg', keywords: ['1 year mba', 'mba'] },
                 { name: 'Distance MBA', displayName: 'Master of Business Administration (DISTANCE)', icon: 'Distance_MBA.svg', keywords: ['distance mba', 'mba'] },
                 { name: 'Executive MBA', displayName: 'Master of Business Administration (EXECUTIVE)', icon: 'Executive_MBA_for_Working_Professionals.svg', keywords: ['executive mba', 'emba'] },
-                { name: 'Global MBA', displayName: 'Master of Business Administration (GLOBAL)', icon: 'Online_Global_MBA.svg', keywords: ['global mba', 'international mba'] },
                 { name: 'Online MCA', displayName: 'Master of Computer Applications (ONLINE)', icon: 'Online_MCA.svg', keywords: ['mca', 'computer applications'] },
                 { name: 'M.Tech', displayName: 'Master of Technology (WORKING PROFESSIONALS)', icon: 'M.Tech_for_Working_Professionals.svg', keywords: ['m.tech', 'mtech', 'technology'] },
                 { name: 'M.Sc', displayName: 'Master of Science (EMERGING TECHNOLOGY)', icon: 'Online_MSC_emerging_technology.svg', keywords: ['m.sc', 'msc', 'science'] }

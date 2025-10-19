@@ -2099,18 +2099,6 @@ const coursesDatabase = [
         careerOptions: ["Manager", "Business Analyst", "Consultant", "Entrepreneur"],
     },
     {
-        id: "online-global-mba",
-        name: "Online Global Mba",
-        category: "Management",
-        level: "Postgraduate",
-        duration: "2 years",
-        eligibility: "Graduation (Any Stream)",
-        mode: ["Online", "Distance", "Regular"],
-        fees: { min: 100000, max: 500000 },
-        specializations: ["General Management", "Strategic Management", "Operations", "Leadership"],
-        careerOptions: ["Manager", "Business Analyst", "Consultant", "Entrepreneur"],
-    },
-    {
         id: "online-global-mca",
         name: "Online Global Mca",
         category: "Computer Applications",

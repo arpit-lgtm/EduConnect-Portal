@@ -1,0 +1,347 @@
+.talkToExpertsSection {
+    background: #f8f9fa;
+    padding: 4rem 0;
+    position: relative;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.title {
+    color: #1f2937;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.subtitle {
+    color: #6b7280;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.mainContent {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+.contactCards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.cardRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.contactCard {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    border: 1px solid #e9ecef;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.contactCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #3b82f6, #2563eb);
+}
+
+.contactCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.15);
+}
+
+.whatsappCard::before {
+    background: linear-gradient(90deg, #25d366, #128c7e);
+}
+
+.cardIcon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.contactCard:hover .cardIcon {
+    transform: scale(1.1);
+}
+
+.whatsappCard .cardIcon {
+    background: linear-gradient(135deg, #25d366, #128c7e);
+}
+
+.cardIcon i {
+    color: white;
+    font-size: 1.8rem;
+}
+
+.cardContent h5 {
+    color: #1f2937;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.cardContent p {
+    color: #6b7280;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+}
+
+.contactLinks {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.contactBtn {
+    background: #3b82f6;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.contactBtn:hover {
+    background: #2563eb;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+    color: white;
+}
+
+.whatsappBtn {
+    background: #25d366;
+}
+
+.whatsappBtn:hover {
+    background: #128c7e;
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+}
+
+.officeAddress {
+    color: #4b5563;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+/* Form Section */
+.formSection {
+    position: sticky;
+    top: 2rem;
+}
+
+.quickContactForm {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e9ecef;
+}
+
+.formHeader {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.formHeader h4 {
+    color: #1f2937;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.formHeader p {
+    color: #6b7280;
+    font-size: 0.95rem;
+}
+
+.contactForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.formGroup {
+    position: relative;
+}
+
+.formInput,
+.formSelect {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.formInput:focus,
+.formSelect:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.formSelect {
+    cursor: pointer;
+}
+
+.formSelect option {
+    padding: 0.5rem;
+}
+
+.submitBtn {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.submitBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+}
+
+.submitText {
+    font-size: 0.75rem;
+    font-weight: 400;
+    opacity: 0.9;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .mainContent {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .formSection {
+        position: static;
+    }
+
+    .quickContactForm {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .talkToExpertsSection {
+        padding: 3rem 0;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+    }
+
+    .cardRow {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .contactCard {
+        padding: 1.5rem 1rem;
+    }
+
+    .cardIcon {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 1rem;
+    }
+
+    .cardIcon i {
+        font-size: 1.5rem;
+    }
+
+    .cardContent h5 {
+        font-size: 1.1rem;
+    }
+
+    .contactBtn {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+    }
+
+    .quickContactForm {
+        padding: 1.5rem;
+    }
+
+    .formHeader h4 {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 0.75rem;
+    }
+
+    .contactCard {
+        padding: 1.25rem 0.75rem;
+    }
+
+    .title {
+        font-size: 1.75rem;
+    }
+
+    .quickContactForm {
+        padding: 1.25rem;
+    }
+}

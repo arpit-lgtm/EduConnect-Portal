@@ -1,0 +1,720 @@
+.heroCarousel {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background: #f0f8ff;
+    overflow: hidden;
+}
+
+.carouselContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.carouselTrack {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carouselSlide {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slideContent {
+    text-align: center;
+    color: #1a1a1a;
+    padding: 20px;
+    max-width: 800px;
+}
+
+.logoContainer {
+    margin-bottom: 2rem;
+}
+
+.carouselLogo {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #0074d7;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: none;
+}
+
+.carouselTitle {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    animation: fadeInUp 0.5s ease-out;
+    color: #1a1a1a;
+}
+
+.carouselSubtitle {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.8;
+    animation: fadeInUp 0.5s ease-out 0.2s;
+    color: #4a4a4a;
+}
+
+.carouselButton {
+    display: inline-block;
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #0074d7;
+    background: white;
+    border: none;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    animation: fadeInUp 0.5s ease-out 0.4s;
+    cursor: pointer;
+}
+
+.carouselButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.carouselControl {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background: rgba(0, 116, 215, 0.2);
+    border: 2px solid #0074d7;
+    border-radius: 50%;
+    color: #0074d7;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    padding: 12px;
+}
+
+.carouselControl svg {
+    width: 100%;
+    height: 100%;
+}
+
+.carouselControl:hover {
+    background: #0074d7;
+    color: white;
+}
+
+.prev {
+    left: 20px;
+}
+
+.next {
+    right: 20px;
+}
+
+.carouselIndicators {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 8px 16px;
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(0, 116, 215, 0.3);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicator.active {
+    background: #0074d7;
+    transform: scale(1.2);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Collage Slide Styles */
+.collageSlideContent {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.collageGrid6 {
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.collageGrid2 {
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.collageGrid5 {
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.collageGrid1 {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.collageImage {
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+    height: 100%;
+}
+
+.collageImage:hover {
+    transform: scale(1.02);
+    z-index: 10;
+}
+
+.collageImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Specific positioning for image 8 (2nd image in 7-8 slide) */
+.collageGrid2 .collageImage:nth-child(2) img {
+    object-position: center 35%;
+}
+
+/* Specific positioning for image 9 (compress to show everyone) */
+.collageGrid1 .collageImage img {
+    object-fit: contain;
+    object-position: center;
+}
+
+/* Specific positioning for collage-5 images (9, 10, 11, 12, 13) */
+/* All images use cover to fill space uniformly */
+.collageGrid5 .collageImage img {
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Image 11 (3rd/middle image) - adjust crop to show more people */
+.collageGrid5 .collageImage:nth-child(3) img {
+    object-fit: cover;
+    object-position: 50% center;
+}
+
+@media (max-width: 768px) {
+    .heroCarousel {
+        height: 500px;
+    }
+
+    .fullHeightImage {
+        max-height: none;
+    }
+
+    .collageGrid6,
+    .collageGrid5,
+    .collageGrid2,
+    .collageGrid1 {
+        flex-direction: row;
+    }
+
+    .collageSlideContent {
+        padding: 0;
+    }
+
+    .imageSlideTitle {
+        font-size: 2.2rem;
+    }
+
+    .imageSlideSubtitle {
+        font-size: 1.4rem;
+    }
+
+    .imageSlideOverlayLeft,
+    .imageSlideOverlayRight {
+        padding: 0.75rem;
+        max-width: 280px;
+    }
+
+    .imageSlideOverlayLeft {
+        left: 10%;
+    }
+
+    .imageSlideOverlayRight {
+        right: 10%;
+    }
+
+    .carouselTitle {
+        font-size: 2rem;
+    }
+
+    .carouselSubtitle {
+        font-size: 1.25rem;
+    }
+
+    .carouselButton {
+        padding: 0.875rem 1.75rem;
+        font-size: 1rem;
+    }
+
+    .carouselControl {
+        width: 40px;
+        height: 40px;
+        font-size: 1.25rem;
+    }
+
+    .indicator {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .heroCarousel {
+        height: 400px;
+    }
+
+    .fullHeightImage {
+        max-height: none;
+    }
+
+    .collageGrid6,
+    .collageGrid5,
+    .collageGrid2,
+    .collageGrid1 {
+        flex-direction: row;
+    }
+
+    .collageSlideContent {
+        padding: 0;
+    }
+
+    .imageSlideTitle {
+        font-size: 1.6rem;
+    }
+
+    .imageSlideSubtitle {
+        font-size: 1.1rem;
+    }
+
+    .imageSlideOverlayLeft,
+    .imageSlideOverlayRight {
+        padding: 0.5rem;
+        max-width: 200px;
+    }
+
+    .imageSlideOverlayLeft {
+        left: 8%;
+    }
+
+    .imageSlideOverlayRight {
+        right: 8%;
+    }
+
+    .carouselTitle {
+        font-size: 1.75rem;
+    }
+
+    .carouselSubtitle {
+        font-size: 1rem;
+    }
+
+    .carouselControl {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+}
+
+/* Image Slide Styles (Boy Image) */
+.imageSlideContent {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.imageSlideWrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.fullHeightImage {
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    object-fit: cover;
+    object-position: center;
+    transform: scale(0.9);
+    /* Smooth edge fade to blend seamlessly with light blue background */
+    mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        rgba(0, 0, 0, 0.3) 5%,
+        black 15%,
+        black 85%,
+        rgba(0, 0, 0, 0.3) 95%,
+        transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        rgba(0, 0, 0, 0.3) 5%,
+        black 15%,
+        black 85%,
+        rgba(0, 0, 0, 0.3) 95%,
+        transparent 100%
+    );
+}
+
+.imageSlideOverlayLeft {
+    position: absolute;
+    top: 50%;
+    left: 15%;
+    transform: translateY(-50%);
+    background: transparent;
+    padding: 1rem;
+    text-align: left;
+    max-width: 350px;
+}
+
+.imageSlideOverlayRight {
+    position: absolute;
+    top: 50%;
+    right: 15%;
+    transform: translateY(-50%);
+    background: transparent;
+    padding: 1rem;
+    text-align: right;
+    max-width: 350px;
+}
+
+.imageSlideTitle {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 0;
+    color: #000000;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8),
+                 0 0 10px rgba(255, 255, 255, 0.6);
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.imageSlideSubtitle {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin: 0;
+    color: #000000;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8),
+                 0 0 10px rgba(255, 255, 255, 0.6);
+    animation: fadeInUp 0.6s ease-out 0.2s backwards;
+}
+
+/* Animated Slide Styles */
+.animatedSlideContent {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #1a1a1a;
+    padding-bottom: 60px;
+}
+
+.animationPhase {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+    padding-bottom: 40px;
+}
+
+.phaseActive {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    animation: zoomInBounce 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.phaseHidden {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+    pointer-events: none;
+}
+
+.imageContainer {
+    margin-bottom: 1rem;
+    animation: floatIn 1s ease-out;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.animatedImage {
+    max-width: 320px;
+    max-height: 240px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 0;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+    animation: subtlePulse 2s ease-in-out infinite;
+    background: transparent;
+    padding: 0;
+}
+
+.animatedText {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #0074d7;
+    text-shadow: 2px 2px 4px rgba(0, 116, 215, 0.2);
+    margin: 0;
+    animation: textGlow 1s ease-in-out;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, #0074d7 0%, #00a8e8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.finalTaglineContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    animation: finalReveal 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    padding-bottom: 20px;
+}
+
+.finalTagline {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #0074d7;
+    text-shadow: 2px 2px 4px rgba(0, 116, 215, 0.2);
+    margin: 0;
+    letter-spacing: 3px;
+    animation: shimmer 3s ease-in-out infinite;
+    background: linear-gradient(90deg, #0074d7 0%, #ffa500 50%, #0074d7 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.finalSubtagline {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #4a4a4a;
+    margin: 0;
+    text-shadow: none;
+    animation: fadeInUp 0.8s ease-out 0.3s backwards;
+}
+
+/* Keyframe Animations */
+@keyframes zoomInBounce {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.05);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes floatIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    50% {
+        transform: translateY(5px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes subtlePulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.03);
+    }
+}
+
+@keyframes textGlow {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.9);
+        filter: blur(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+@keyframes finalReveal {
+    0% {
+        opacity: 0;
+        transform: scale(0.7) rotateX(45deg);
+    }
+    60% {
+        transform: scale(1.08) rotateX(-5deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotateX(0);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 0% center;
+    }
+    100% {
+        background-position: 200% center;
+    }
+}
+
+/* Responsive styles for animated slide */
+@media (max-width: 768px) {
+    .animatedImage {
+        max-width: 240px;
+        max-height: 180px;
+    }
+
+    .imageContainer {
+        padding: 0;
+        border-radius: 0;
+        background: transparent;
+    }
+
+    .animatedText {
+        font-size: 2.5rem;
+    }
+
+    .finalTagline {
+        font-size: 2.5rem;
+    }
+
+    .finalSubtagline {
+        font-size: 1.2rem;
+    }
+
+    .animationPhase {
+        padding-bottom: 50px;
+        top: 55%;
+    }
+}
+
+@media (max-width: 480px) {
+    .animatedImage {
+        max-width: 180px;
+        max-height: 140px;
+        border-radius: 0;
+        padding: 0;
+        background: transparent;
+    }
+
+    .imageContainer {
+        padding: 0;
+        border-radius: 0;
+        background: transparent;
+    }
+
+    .animatedText {
+        font-size: 1.8rem;
+        letter-spacing: 1px;
+    }
+
+    .finalTagline {
+        font-size: 1.8rem;
+        letter-spacing: 2px;
+    }
+
+    .finalSubtagline {
+        font-size: 1rem;
+    }
+
+    .imageContainer {
+        margin-bottom: 1rem;
+    }
+
+    .animationPhase {
+        padding-bottom: 60px;
+        top: 55%;
+    }
+
+    .finalTaglineContainer {
+        padding-bottom: 30px;
+    }
+}

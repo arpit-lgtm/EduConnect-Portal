@@ -1,0 +1,283 @@
+.expertsSection {
+    padding: 2rem 0 0.5rem;
+    background: #ffffff;
+    position: relative;
+}
+
+.container {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 0 20px;
+}
+
+.title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 1rem;
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: #64748b;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.carouselWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.navButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #0074d7;
+    background: white;
+    color: #0074d7;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navButton:hover {
+    background: #0074d7;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 116, 215, 0.3);
+}
+
+.navLeft {
+    left: -10px;
+}
+
+.navRight {
+    right: -10px;
+}
+
+.scrollContainer {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 1rem;
+    scroll-behavior: smooth;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.scrollContainer::-webkit-scrollbar {
+    display: none;
+}
+
+.expertsTrack {
+    display: flex;
+    gap: 1.5rem;
+    width: max-content;
+    padding-left: 0;
+}
+
+.expertCard {
+    min-width: 240px;
+    max-width: 240px;
+    background: white;
+    border-radius: 12px;
+    padding: 1.25rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    position: relative;
+    transition: all 0.3s ease;
+    border: 1px solid #e2e8f0;
+}
+
+.expertCard:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 116, 215, 0.15);
+}
+
+.expertImage {
+    width: 100%;
+    height: 200px;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 3px solid #f1f5f9;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.expertImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+}
+
+.ratingBadge {
+    position: absolute;
+    top: 210px;
+    right: 15px;
+    background: white;
+    color: #1e293b;
+    padding: 0.3rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    z-index: 2;
+}
+
+.starIcon {
+    color: #ffc107;
+    font-size: 1.125rem;
+}
+
+.expertInfo {
+    margin-top: 0.5rem;
+}
+
+.expertName {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 0.375rem;
+}
+
+.expertTitle {
+    font-size: 0.875rem;
+    color: #0074d7;
+    font-weight: 600;
+    margin-bottom: 0.375rem;
+}
+
+.expertExperience {
+    font-size: 0.875rem;
+    color: #94a3b8;
+    margin-bottom: 1rem;
+}
+
+.consultButton {
+    width: 100%;
+    padding: 0.625rem 1rem;
+    background: linear-gradient(135deg, #0074d7, #0062b8);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 116, 215, 0.2);
+}
+
+.consultButton:hover {
+    background: linear-gradient(135deg, #0062b8, #005099);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 116, 215, 0.3);
+}
+
+.viewAllContainer {
+    text-align: center;
+    margin-top: 2rem;
+    padding: 0 20px;
+}
+
+.viewAllButton {
+    display: inline-block;
+    padding: 0.875rem 2.5rem;
+    background: linear-gradient(135deg, #0074d7, #0062b8);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 116, 215, 0.3);
+}
+
+.viewAllButton:hover {
+    background: linear-gradient(135deg, #0062b8, #005099);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 116, 215, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .expertCard {
+        min-width: 220px;
+        max-width: 220px;
+    }
+
+    .expertImage {
+        height: 180px;
+    }
+
+    .ratingBadge {
+        top: 190px;
+    }
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+    }
+
+    .expertsTrack {
+        gap: 1rem;
+    }
+
+    .expertCard {
+        min-width: 200px;
+        max-width: 200px;
+        padding: 1rem;
+    }
+
+    .expertImage {
+        height: 160px;
+    }
+
+    .ratingBadge {
+        top: 170px;
+    }
+}
+
+@media (max-width: 480px) {
+    .expertCard {
+        min-width: 180px;
+        max-width: 180px;
+    }
+
+    .expertImage {
+        height: 140px;
+    }
+
+    .ratingBadge {
+        top: 150px;
+    }
+}

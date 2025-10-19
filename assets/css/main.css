@@ -3168,3 +3168,221 @@ body {
         margin-bottom: 1rem;
     }
 }
+
+/* Educativo.in Style Footer */
+/* CTA Section */
+.footer-cta-section {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    padding: 4rem 0;
+    margin-top: 3rem;
+}
+
+.cta-title {
+    color: white;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.cta-description {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.cta-buttons {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.btn-cta-primary {
+    background: #ff6b35;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.btn-cta-primary:hover {
+    background: #e55a2b;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+}
+
+.social-media-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+}
+
+/* Updated Footer Section for Educativo Style */
+.footer-section {
+    background: #f8f9fa !important;
+    color: #333 !important;
+    padding: 3rem 0 1rem !important;
+    border-top: none !important;
+    margin-top: 0 !important;
+}
+
+.footer-section .footer-heading {
+    color: #333 !important;
+    font-size: 1.2rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 1.5rem !important;
+    position: relative !important;
+    padding-bottom: 0.5rem !important;
+}
+
+.footer-section .footer-heading::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 50px !important;
+    height: 3px !important;
+    background: linear-gradient(90deg, #ff6b35, #1e3c72) !important;
+}
+
+.footer-section .footer-links a {
+    color: #666 !important;
+    font-size: 0.95rem !important;
+}
+
+.footer-section .footer-links a:hover {
+    color: #1e3c72 !important;
+}
+
+/* News Section */
+.news-item {
+    margin-bottom: 1.5rem;
+}
+
+.news-link {
+    color: #666;
+    text-decoration: none;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    display: block;
+}
+
+.news-link:hover {
+    color: #1e3c72;
+    text-decoration: none;
+}
+
+/* Newsletter Form */
+.newsletter-form-wrapper {
+    margin-top: 2rem;
+}
+
+.footer-section .newsletter-input {
+    border: 2px solid #ddd !important;
+    border-radius: 5px !important;
+    background: white !important;
+    color: #333 !important;
+    padding: 12px 15px !important;
+    font-size: 0.9rem !important;
+    border-right: none !important;
+}
+
+.footer-section .newsletter-input:focus {
+    border-color: #1e3c72 !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+.footer-section .btn-newsletter {
+    background: #1e3c72 !important;
+    color: white !important;
+    border: 2px solid #1e3c72 !important;
+    border-radius: 5px !important;
+    padding: 12px 20px !important;
+    font-weight: 600 !important;
+    font-size: 0.9rem !important;
+    border-left: none !important;
+}
+
+.footer-section .btn-newsletter:hover {
+    background: #2a5298 !important;
+    border-color: #2a5298 !important;
+    color: white !important;
+}
+
+.newsletter-agreement {
+    margin-top: 1rem;
+}
+
+.agreement-label {
+    display: flex;
+    align-items: flex-start;
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.4;
+    cursor: pointer;
+}
+
+.agreement-checkbox {
+    margin-right: 8px;
+    margin-top: 3px;
+    accent-color: #1e3c72;
+}
+
+/* Footer Bottom Update */
+.footer-section .footer-bottom {
+    border-top: 1px solid #ddd !important;
+    padding-top: 1.5rem !important;
+    padding-bottom: 1rem !important;
+    margin-top: 2rem !important;
+}
+
+.footer-section .copyright {
+    color: #666 !important;
+    font-size: 0.9rem !important;
+    margin: 0 !important;
+    text-align: center !important;
+}
+
+/* Responsive Design for Educativo Footer */
+@media (max-width: 768px) {
+    .cta-title {
+        font-size: 2rem;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+    
+    .footer-section {
+        padding: 2rem 0 1rem !important;
+    }
+    
+    .footer-section-content {
+        margin-bottom: 2rem;
+    }
+}

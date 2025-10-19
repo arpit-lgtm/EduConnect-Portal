@@ -1,0 +1,340 @@
+/* Talk to Our Experts Section */
+.talkToExpertsSection {
+    background-color: #ffffff;
+    padding: 0 0 1rem;
+    position: relative;
+}
+
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.headerSection {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-top: 0;
+}
+
+.mainHeading {
+    color: #1f2937;
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+}
+
+.sectionSubtitle {
+    color: #6b7280;
+    font-size: 1rem;
+    line-height: 1.5;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.contentGrid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 2rem;
+    align-items: stretch;
+}
+
+/* Contact Cards Column */
+.contactCardsColumn {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.cardsGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+
+.cardsGrid:last-child {
+    margin-bottom: 0;
+    flex: 1;
+}
+
+.secondRow {
+    margin-top: 0.5rem;
+}
+
+/* Contact Cards */
+.contactCard {
+    background: white;
+    border-radius: 12px;
+    padding: 1rem 0.75rem;
+    text-align: center;
+    border: 1px solid #e9ecef;
+    transition: all 0.3s ease;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.contactCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #0074d7, #0062b8);
+}
+
+.contactCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 116, 215, 0.15);
+}
+
+.contactCardIcon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #0074d7, #0062b8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 0.75rem;
+    transition: transform 0.3s ease;
+}
+
+.contactCard:hover .contactCardIcon {
+    transform: scale(1.1);
+}
+
+.contactCardIcon svg {
+    color: white;
+    font-size: 1.25rem;
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.contactCardContent h5 {
+    color: #1f2937;
+    font-size: 0.875rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+}
+
+.contactDescription {
+    color: #6b7280;
+    font-size: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.contactLinks {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.contactBtn {
+    background: #0074d7;
+    color: white;
+    padding: 7px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.contactBtn:hover {
+    background: #0062b8;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 116, 215, 0.3);
+}
+
+.whatsappCard .contactCardIcon {
+    background: linear-gradient(135deg, #25d366, #128c7e);
+}
+
+.whatsappBtn {
+    background: #25d366;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.whatsappBtn:hover {
+    background: #128c7e;
+}
+
+.whatsappBtn svg {
+    font-size: 1rem;
+    width: 1rem;
+    height: 1rem;
+}
+
+.officeAddress {
+    color: #1f2937;
+    font-weight: 500;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* Quick Contact Form */
+.formColumn {
+    position: sticky;
+    top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.quickContactForm {
+    background: white;
+    border-radius: 15px;
+    padding: 1.75rem;
+    flex: 1;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e9ecef;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.formHeader {
+    text-align: center;
+    margin-bottom: 1.25rem;
+}
+
+.formHeader h4 {
+    color: #1f2937;
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.formHeader p {
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+
+.contactForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex: 1;
+}
+
+.formGroup {
+    margin-bottom: 0;
+}
+
+.formControl {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.formControl:focus {
+    outline: none;
+    border-color: #0074d7;
+    box-shadow: 0 0 0 3px rgba(0, 116, 215, 0.1);
+}
+
+.submitBtn {
+    background: linear-gradient(135deg, #0074d7, #0062b8);
+    color: white;
+    padding: 0.875rem 1rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.submitBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 116, 215, 0.3);
+}
+
+.submitBtn svg {
+    font-size: 0.875rem;
+    width: 0.875rem;
+    height: 0.875rem;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .contentGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .formColumn {
+        position: static;
+    }
+
+    .cardsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .talkToExpertsSection {
+        padding: 3rem 0;
+    }
+
+    .mainHeading {
+        font-size: 2rem;
+    }
+
+    .sectionSubtitle {
+        font-size: 1rem;
+    }
+
+    .cardsGrid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .contactCard {
+        padding: 1.5rem 1rem;
+    }
+
+    .contactCardIcon {
+        width: 60px;
+        height: 60px;
+    }
+
+    .contactCardIcon svg {
+        font-size: 1.25rem;
+        width: 1.25rem;
+        height: 1.25rem;
+    }
+
+    .quickContactForm {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .mainHeading {
+        font-size: 1.75rem;
+    }
+
+    .contactCardContent h5 {
+        font-size: 1.1rem;
+    }
+
+    .formHeader h4 {
+        font-size: 1.25rem;
+    }
+}

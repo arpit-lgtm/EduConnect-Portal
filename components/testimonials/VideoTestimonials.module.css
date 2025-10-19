@@ -1,0 +1,531 @@
+.testimonialsSection {
+  background: #ffffff;
+  padding: 2rem 0 0.5rem;
+  position: relative;
+}
+
+.container {
+  max-width: 100%;
+  margin: 0;
+  padding: 0 2rem;
+  position: relative;
+}
+
+.carouselWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.navButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background: rgba(0, 116, 215, 0.2);
+  border: 2px solid #0074d7;
+  border-radius: 50%;
+  color: #0074d7;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  padding: 8px;
+}
+
+.navButton:hover {
+  background: #0074d7;
+  color: white;
+}
+
+.navLeft {
+  left: -10px;
+}
+
+.navRight {
+  right: -10px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-size: 0.9375rem;
+  color: #64748b;
+  margin: 0;
+}
+
+.videosGrid {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 0.5rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 1rem;
+  align-items: flex-start;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.videosGrid::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.videoCard {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  /* ALL cards IDENTICAL size - uniform layout like CollegeVidya */
+  width: 260px;
+  min-width: 260px;
+}
+
+.portraitCard .thumbnailContainer,
+.landscapeCard .thumbnailContainer {
+  height: 340px; /* SAME height for ALL videos - uniform like CollegeVidya */
+}
+
+.videoCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 116, 215, 0.15);
+}
+
+.greyedOut {
+  opacity: 0.4;
+  filter: grayscale(70%);
+  pointer-events: none;
+}
+
+.greyedOut:hover {
+  transform: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.thumbnailContainer {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.placeholderThumbnail {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #0074d7 0%, #0062b8 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.placeholderThumbnail.loading {
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+}
+
+.placeholderThumbnail.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  margin: -20px 0 0 -20px;
+  border: 3px solid #0074d7;
+  border-top: 3px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.thumbnailText {
+  text-align: center;
+  color: #475569;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 1;
+  position: relative;
+}
+
+.universityLogo {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0074d7;
+  margin-bottom: 0.25rem;
+}
+
+.loadingText {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #64748b;
+}
+
+.thumbnailText small {
+  font-size: 0.875rem;
+  opacity: 0.9;
+}
+
+.videoCard:hover .thumbnail,
+.videoCard:hover .placeholderThumbnail {
+  transform: scale(1.05);
+}
+
+.playButton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  background: rgba(0, 116, 215, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.videoCard:hover .playButton {
+  background: rgba(0, 116, 215, 1);
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.viewsCounter {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.viewsIcon {
+  font-size: 0.75rem;
+}
+
+.videoInfo {
+  padding: 1.25rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 140px;
+  max-height: 140px;
+}
+
+.videoTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-align: center;
+}
+
+.videoDescription {
+  font-size: 0.875rem;
+  color: #64748b;
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-align: center;
+}
+
+.universityInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+.universityName {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #0074d7;
+  text-align: center;
+}
+
+.programType {
+  font-size: 0.8125rem;
+  color: #64748b;
+  text-align: center;
+}
+
+.viewMoreContainer {
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
+}
+
+.viewMoreButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #0074d7 0%, #0062b8 100%);
+  color: #ffffff;
+  padding: 0.875rem 2rem;
+  border-radius: 8px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(0, 116, 215, 0.2);
+}
+
+.viewMoreButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 116, 215, 0.3);
+  background: linear-gradient(135deg, #0062b8 0%, #0074d7 100%);
+}
+
+.arrowIcon {
+  font-size: 1.125rem;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.viewMoreButton:hover .arrowIcon {
+  transform: translateX(4px);
+}
+
+/* Video Modal Styles */
+.videoModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 2rem;
+}
+
+.modalContent {
+  background: #000000;
+  border-radius: 8px;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.closeButton {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #000000;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: background 0.3s ease;
+  font-weight: bold;
+}
+
+.closeButton:hover {
+  background: rgba(255, 255, 255, 1);
+}
+
+.modalVideo {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 4px;
+}
+
+.portraitVideo {
+  max-width: 90vw;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+}
+
+.landscapeVideo {
+  max-width: 90vw;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .landscapeCard {
+    width: 280px;
+    min-width: 280px;
+  }
+
+  .portraitCard {
+    width: 280px;
+    min-width: 280px;
+  }
+
+  .portraitCard .thumbnailContainer {
+    height: 180px;
+  }
+
+  .landscapeCard .thumbnailContainer {
+    height: 180px;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .testimonialsSection {
+    padding: 2rem 0 3rem;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+
+  .videosGrid {
+    gap: 1rem;
+  }
+
+  .landscapeCard {
+    width: 260px;
+    min-width: 260px;
+  }
+
+  .portraitCard {
+    width: 260px;
+    min-width: 260px;
+  }
+
+  .portraitCard .thumbnailContainer {
+    height: 160px;
+  }
+
+  .landscapeCard .thumbnailContainer {
+    height: 160px;
+  }
+
+  .playButton {
+    width: 50px;
+    height: 50px;
+  }
+
+  .modalContent {
+    margin: 1rem;
+    max-width: calc(100vw - 2rem);
+    max-height: calc(100vh - 2rem);
+  }
+
+  .portraitVideo {
+    max-width: calc(100vw - 2rem);
+    max-height: calc(100vh - 2rem);
+  }
+
+  .landscapeVideo {
+    max-width: calc(100vw - 2rem);
+    max-height: calc(100vh - 2rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.25rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .landscapeCard {
+    width: 240px;
+    min-width: 240px;
+  }
+
+  .portraitCard {
+    width: 240px;
+    min-width: 240px;
+  }
+
+  .portraitCard .thumbnailContainer {
+    height: 140px;
+  }
+
+  .landscapeCard .thumbnailContainer {
+    height: 140px;
+  }
+
+  .videoInfo {
+    padding: 1rem;
+  }
+
+  .videoTitle {
+    font-size: 0.9375rem;
+  }
+
+  .viewMoreButton {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .portraitVideo {
+    max-width: calc(100vw - 2rem);
+    max-height: calc(100vh - 2rem);
+  }
+}

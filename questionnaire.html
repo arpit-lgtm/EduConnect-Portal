@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Course Guidance Assessment - Find the perfect universities for your educational journey with EduConnect's AI-powered questionnaire.">
+    <meta name="keywords" content="course guidance, university selection, educational assessment, AI recommendations, career counseling">
+    <title>Course Guidance Assessment - EduConnect</title>
+    
+    <!-- Bootstrap CSS - CDN with fallback -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" 
+          onerror="this.href='data:text/css;base64,LypCYXNpYyBCb290c3RyYXAgRmFsbGJhY2sgKi8gLmNvbnRhaW5lcnt3aWR0aDoxMDAlO21heC13aWR0aDoxMjAwcHg7bWFyZ2luOjAgYXV0bztwYWRkaW5nOjAgMTVweH0ucm93e2Rpc3BsYXk6ZmxleDtmbGV4LXdyYXA6d3JhcDttYXJnaW46MCAtMTVweH0uY29sLTEye2ZsZXg6MCAwIDEwMCU7bWF4LXdpZHRoOjEwMCU7cGFkZGluZzowIDE1cHh9LmNvbC1tZC02e2ZsZXg6MCAwIDUwJTttYXgtd2lkdGg6NTAlO3BhZGRpbmc6MCAxNXB4fS5jb2wtbGctNHtmbGV4OjAgMCAzMy4zMyU7bWF4LXdpZHRoOjMzLjMzJTtwYWRkaW5nOjAgMTVweH0uYnRue2Rpc3BsYXk6aW5saW5lLWJsb2NrO3BhZGRpbmc6OHB4IDE2cHg7Ym9yZGVyOjFweCBzb2xpZCB0cmFuc3BhcmVudDtib3JkZXItcmFkaXVzOjRweDtiYWNrZ3JvdW5kOiMwMDdiZmY7Y29sb3I6d2hpdGU7dGV4dC1kZWNvcmF0aW9uOm5vbmV9LmNhcmR7YmFja2dyb3VuZDp3aGl0ZTtib3JkZXI6MXB4IHNvbGlkICNkZGQ7Ym9yZGVyLXJhZGl1czo4cHg7bWFyZ2luLWJvdHRvbToxcmVtfS5jYXJkLWJvZHl7cGFkZGluZzoxLjI1cmVtfUBtZWRpYShtYXgtd2lkdGg6NzY4cHgpey5jb2wtbWQtNiwuY29sLWxnLTR7ZmxleDowIDAgMTAwJTttYXgtd2lkdGg6MTAwJX19';">
+    <!-- Font Awesome - CDN with fallback -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          onerror="console.warn('Font Awesome CDN failed - using emoji fallbacks');">
+    <!-- Google Fonts - CDN with fallback -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"
+          onerror="console.warn('Google Fonts CDN failed - using system fonts');">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/ai-recommendation.css">
+    <link rel="stylesheet" href="assets/css/popular-programs.css">
+    <link rel="stylesheet" href="assets/css/course-comparison-system.css">
+    <link rel="stylesheet" href="assets/css/enhanced-ai-questionnaire.css">
+    
+    <style>
+        body { 
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: white;
+            min-height: 100vh;
+        }
+        
+        .questionnaire-page-container {
+            background: white;
+            margin: 2rem 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .questionnaire-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .questionnaire-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .questionnaire-header p {
+            font-size: 1.2rem;
+            margin-bottom: 0;
+            opacity: 0.9;
+        }
+        
+        .questionnaire-content {
+            padding: 2rem;
+            min-height: 60vh;
+        }
+        
+        .loading-message {
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .loading-spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 1rem;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .back-to-home {
+            position: fixed;
+            top: 100px;
+            left: 20px;
+            z-index: 1000;
+            background: white;
+            border: 2px solid #667eea;
+            color: #667eea;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+        }
+        
+        .back-to-home:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        @media (max-width: 768px) {
+            .back-to-home {
+                position: relative;
+                top: auto;
+                left: auto;
+                display: block;
+                text-align: center;
+                margin: 1rem auto 2rem;
+                width: fit-content;
+            }
+            
+            .questionnaire-header h1 {
+                font-size: 2rem;
+            }
+            
+            .questionnaire-content {
+                padding: 1rem;
+            }
+        }
+    </style>
+    
+    <!-- Page Load Debug -->
+    <script>
+        console.log('🎓 EduConnect Questionnaire - Page loading started');
+        console.log('📍 URL:', window.location.href);
+        console.log('⏰ Time:', new Date().toLocaleString());
+        
+        // Get course name from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const courseName = urlParams.get('course') || 'Your Selected Course';
+        window.selectedCourseForQuestionnaire = courseName;
+        
+        console.log('📚 Selected Course:', courseName);
+    </script>
+</head>
+
+<body>
+    <!-- Back to Home Button -->
+    <a href="index.html" class="back-to-home d-none d-md-block">
+        <i class="fas fa-arrow-left me-2"></i>Back to Home
+    </a>
+
+    <!-- Include Header -->
+    <div id="header-container"></div>
+    
+    <!-- Mobile Back to Home Button -->
+    <div class="container d-md-none">
+        <a href="index.html" class="back-to-home">
+            <i class="fas fa-arrow-left me-2"></i>Back to Home
+        </a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="questionnaire-page-container">
+            <!-- Questionnaire Header -->
+            <div class="questionnaire-header">
+                <h1>🎓 Course Guidance Assessment</h1>
+                <p>Find the perfect universities for your educational journey with our AI-powered guidance system</p>
+                
+                <!-- Selected Course Display - Integrated into header -->
+                <div id="selected-course-display" style="
+                    margin-top: 1.5rem;
+                    text-align: center;
+                    display: none;
+                ">
+                    <div style="
+                        font-size: 1rem;
+                        color: rgba(255, 255, 255, 0.9);
+                        font-weight: 500;
+                        margin-bottom: 0.5rem;
+                    ">Selected Course:</div>
+                    <div id="selected-course-name" style="
+                        font-size: 1.8rem;
+                        color: #ffffff;
+                        font-weight: 800;
+                        text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+                        letter-spacing: 0.5px;
+                    "></div>
+                </div>
+            </div>
+            
+            <!-- Questionnaire Content -->
+            <div class="questionnaire-content">
+                <!-- Loading Message -->
+                <div class="loading-message" id="loading-message">
+                    <div class="loading-spinner"></div>
+                    <div>Loading AI-powered questionnaire...</div>
+                    <small>Please wait while we prepare your personalized assessment</small>
+                </div>
+                
+                <!-- Questionnaire Container -->
+                <div id="questionnaire-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include Footer -->
+    <div id="footer-container"></div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+            onerror="console.warn('Bootstrap JS CDN failed')"></script>
+    
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            onerror="console.warn('jQuery CDN failed')"></script>
+
+    <!-- Database Files -->
+    <script src="assets/js/comprehensive-university-database.js"></script>
+    <script src="assets/js/comprehensive-courses-database.js"></script>
+    
+    <!-- Core JavaScript Files -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/ai-recommendation.js"></script>
+    <script src="assets/js/university-comparison-system.js"></script>
+    <script src="assets/js/enhanced-ai-questionnaire-comprehensive.js"></script>
+    <script src="assets/js/course-university-matcher.js"></script>
+    <script src="assets/js/course-comparison-system.js"></script>
+    <script src="assets/js/components.js"></script>
+
+    <script>
+        // Include header and footer
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🔄 Loading header and footer...');
+            
+            // Load header
+            fetch('includes/header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-container').innerHTML = data;
+                    console.log('✅ Header loaded successfully');
+                })
+                .catch(error => {
+                    console.error('❌ Error loading header:', error);
+                    document.getElementById('header-container').innerHTML = `
+                        <header class="header-section">
+                            <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+                                <div class="container-fluid">
+                                    <a class="navbar-brand d-flex align-items-center me-auto" href="index.html">
+                                        <img src="assets/images/educonnect logo.png" alt="Educonnect" height="60" class="logo-image">
+                                    </a>
+                                </div>
+                            </nav>
+                        </header>
+                    `;
+                });
+            
+            // Load footer
+            fetch('includes/footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-container').innerHTML = data;
+                    console.log('✅ Footer loaded successfully');
+                })
+                .catch(error => {
+                    console.error('❌ Error loading footer:', error);
+                    // Provide a basic footer fallback
+                    document.getElementById('footer-container').innerHTML = `
+                        <footer class="footer-section">
+                            <div class="container">
+                                <div class="text-center p-4">
+                                    <p>© 2025 EduConnect. All rights reserved.</p>
+                                </div>
+                            </div>
+                        </footer>
+                    `;
+                });
+            
+            // Initialize questionnaire after a brief delay to ensure all scripts are loaded
+            setTimeout(function() {
+                console.log('🤖 Initializing questionnaire...');
+                initializeQuestionnaireOnPage();
+            }, 1000);
+        });
+        
+        function initializeQuestionnaireOnPage() {
+            try {
+                // Hide loading message
+                const loadingMessage = document.getElementById('loading-message');
+                if (loadingMessage) {
+                    loadingMessage.style.display = 'none';
+                }
+                
+                // Check if the enhanced questionnaire is available
+                if (typeof initializeEnhancedQuestionnaire === 'function') {
+                    console.log('✅ Enhanced questionnaire function found');
+                    
+                    // Initialize the questionnaire in the container
+                    const container = document.getElementById('questionnaire-container');
+                    if (container) {
+                        console.log('🎯 Initializing questionnaire in container...');
+                        initializeEnhancedQuestionnaire('questionnaire-container');
+                    } else {
+                        console.error('❌ Questionnaire container not found');
+                    }
+                } else {
+                    console.error('❌ Enhanced questionnaire function not found');
+                    // Show error message
+                    const container = document.getElementById('questionnaire-container');
+                    if (container) {
+                        container.innerHTML = `
+                            <div class="alert alert-warning text-center">
+                                <h4>⚠️ Questionnaire Loading</h4>
+                                <p>The questionnaire system is still loading. Please refresh the page in a moment.</p>
+                                <button class="btn btn-primary" onclick="location.reload()">
+                                    <i class="fas fa-refresh me-2"></i>Refresh Page
+                                </button>
+                            </div>
+                        `;
+                    }
+                }
+            } catch (error) {
+                console.error('❌ Error initializing questionnaire:', error);
+                const container = document.getElementById('questionnaire-container');
+                if (container) {
+                    container.innerHTML = `
+                        <div class="alert alert-danger text-center">
+                            <h4>❌ Error Loading Questionnaire</h4>
+                            <p>There was an error loading the questionnaire. Please try again.</p>
+                            <button class="btn btn-primary" onclick="location.reload()">
+                                <i class="fas fa-refresh me-2"></i>Try Again
+                            </button>
+                        </div>
+                    `;
+                }
+            }
+        }
+        
+        // Global function to close questionnaire (for compatibility)
+        function closeQuestionnaireModal() {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
