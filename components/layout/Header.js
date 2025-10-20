@@ -13,6 +13,7 @@ const Header = () => {
       submenu: [
         { title: 'Featured Universities', href: '/top-universities' },
         { title: 'University Rankings', href: '/rankings' },
+        { title: 'Universities Finder - AI DRIVEN !', href: '/university-matcher' },
         { title: 'Find Your Match', href: '/university-finder' },
         { title: 'All Universities', href: '/universities-list' }
       ]
@@ -107,16 +108,20 @@ const Header = () => {
                   )}
                 </li>
               ))}
-              <li className={styles.navItem}>
-                <Link href="/login" className={styles.loginButton}>
-                  Login
-                </Link>
-              </li>
             </ul>
           </nav>
 
-          {/* Social Links on Extreme Right */}
+          {/* Header Actions with University Finder and Social Links */}
           <div className={styles.headerActions}>
+            {/* University Finder Button */}
+            <Link href="/university-matcher" className={styles.universityFinderBtn}>
+              <span className={styles.finderIcon}>🤖</span>
+              <div className={styles.finderText}>
+                <strong>University finder - AI DRIVEN !</strong>
+                <small>Find your perfect university in 2 minutes!</small>
+              </div>
+            </Link>
+
             <div className={styles.socialLinks}>
               <a href="https://facebook.com/educativo.in" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="Facebook">
                 <Image src="/images/facebook.png" alt="Facebook" width={32} height={32} />

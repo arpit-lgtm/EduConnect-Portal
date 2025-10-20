@@ -1,6 +1,6 @@
 .header {
   width: 100%;
-  background: #fff;
+  background: #fff !important;
   box-shadow: 0 1px 3px rgba(0,0,0,0.08);
   position: sticky;
   top: 0;
@@ -9,7 +9,7 @@
 
 .mainHeader {
   padding: 5px 0;
-  background: #fff;
+  background: #fff !important;
 }
 
 .container {
@@ -87,7 +87,13 @@
   color: #333;
   text-decoration: none;
   font-weight: 500;
+  font-size: 18px; /* Increased by 2 notches */
   white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+.navItem a:hover {
+  color: #0074d7;
 }
 
 /* Header Actions - EXTREME RIGHT */
@@ -98,6 +104,52 @@
   flex-shrink: 0;
   margin-left: auto;
   margin-right: 0 !important;
+}
+
+/* University Finder Button */
+.universityFinderBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  color: #0074d7;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 2px solid #0074d7;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.universityFinderBtn:hover {
+  background: #0074d7;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.finderIcon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.finderText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.finderText strong {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.finderText small {
+  font-size: 14px;
+  opacity: 0.8;
+  line-height: 1.2;
 }
 
 .searchButton {
@@ -157,6 +209,7 @@
   border-radius: 4px;
   text-decoration: none;
   font-weight: 500;
+  font-size: 18px; /* Increased by 2 notches */
   transition: 0.3s;
   white-space: nowrap;
   display: inline-block;
@@ -192,6 +245,7 @@
   padding: 8px 20px;
   color: #666;
   font-weight: normal;
+  font-size: 16px; /* Increased by 2 notches */
 }
 
 .submenu li a:hover {
@@ -280,5 +334,24 @@
 
   .headerActions {
     gap: 10px;
+  }
+
+  /* Mobile University Finder Button */
+  .universityFinderBtn {
+    padding: 6px 12px;
+    gap: 6px;
+    border-radius: 6px;
+  }
+
+  .finderText strong {
+    font-size: 14px;
+  }
+
+  .finderText small {
+    font-size: 12px;
+  }
+
+  .finderIcon {
+    font-size: 16px;
   }
 }
