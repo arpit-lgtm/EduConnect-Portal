@@ -1,0 +1,949 @@
+/* University Matcher Styles */
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  padding: 2rem 0;
+  background: #f0f8ff;
+  min-height: calc(100vh - 160px);
+}
+
+.matcherContainer {
+  max-width: 95%;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: #2c5aa0;
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  color: #666;
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.4;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.progressSection {
+  margin-bottom: 2rem;
+}
+
+.progressBar {
+  width: 100%;
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #4CAF50, #45a049);
+  transition: width 0.3s ease;
+  border-radius: 4px;
+}
+
+.progressText {
+  text-align: center;
+  color: white;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* Removed stepContainer - cards display directly */
+
+.stepContent {
+  margin-bottom: 2rem;
+  padding: 1rem 0;
+}
+
+.stepContent h2 {
+  font-size: 1.4rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.stepContent p {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* College Vidya Style Degree Selection */
+.subText {
+  background: linear-gradient(135deg, #e3f2fd 0%, #f0f8ff 100%);
+  padding: 1rem;
+  border-radius: 8px;
+  border-left: 4px solid #1abc9c;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.highlight {
+  color: #1abc9c;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.degreeOptions {
+  display: grid !important;
+  grid-template-columns: repeat(8, 1fr) !important;
+  gap: 0.8rem !important;
+  margin-bottom: 2rem;
+  max-width: 100%;
+  width: 100%;
+  justify-items: center;
+}
+
+/* Center-aligned grid variations */
+.centerGrid1 {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 0.8rem !important;
+  margin-bottom: 2rem;
+  max-width: 100%;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.centerGrid2 {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 0.8rem !important;
+  margin-bottom: 2rem;
+  max-width: 100%;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.centerGrid3 {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 0.8rem !important;
+  margin-bottom: 2rem;
+  max-width: 100%;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.centerGrid4 {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 0.8rem !important;
+  margin-bottom: 2rem;
+  max-width: 100%;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.centerGrid5 {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 0.8rem !important;
+  margin-bottom: 2rem;
+  max-width: 100%;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.centerGrid6 {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 0.8rem !important;
+  margin-bottom: 2rem;
+  max-width: 100%;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.centerGrid7 {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 0.8rem !important;
+  margin-bottom: 2rem;
+  max-width: 100%;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.centerGrid8 {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 0.8rem !important;
+  margin-bottom: 2rem;
+  max-width: 100%;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.centerGridWrap {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 0.8rem !important;
+  margin-bottom: 2rem;
+  max-width: 100%;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.degreeCard {
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 0.8rem 0.4rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  min-height: 80px;
+  width: 140px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.degreeCard:hover {
+  border-color: #0056d2;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 86, 210, 0.15);
+}
+
+.degreeCard.selected {
+  border-color: #0056d2;
+  background: linear-gradient(135deg, #e3f2fd 0%, #f0f8ff 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 86, 210, 0.2);
+}
+
+.degreeIcon {
+  font-size: 1.8rem;
+  margin-bottom: 0.3rem;
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: none;
+}
+
+.degreeLabel {
+  font-weight: bold;
+  font-size: 0.95rem;
+  color: #333;
+  margin-bottom: 0.2rem;
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: none;
+  line-height: 1.1;
+}
+
+.degreeDesc {
+  font-size: 0.8rem;
+  color: #666;
+  line-height: 1.2;
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: none;
+}
+
+/* Question Card Styles */
+.questionCard {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e1e5e9;
+}
+
+.questionCard h2,
+.questionCard h3 {
+  color: #333;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+.questionCard p {
+  color: #666;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Course Options Grid */
+.courseOptions {
+  display: grid !important;
+  grid-template-columns: repeat(8, 1fr) !important;
+  gap: 0.8rem !important;
+  margin-top: 1.5rem;
+  max-width: 100%;
+  width: 100%;
+  justify-items: center;
+}
+
+.courseCard {
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 0.8rem 0.4rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  user-select: none;
+  min-height: 80px;
+  width: 140px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.courseCard:hover {
+  border-color: #0056d2;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 86, 210, 0.15);
+}
+
+.courseCard.selected {
+  border-color: #0056d2;
+  background: linear-gradient(135deg, #e3f2fd 0%, #f0f8ff 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 86, 210, 0.2);
+}
+
+.courseIcon {
+  font-size: 1.8rem;
+  margin-bottom: 0.3rem;
+}
+
+.courseName {
+  font-weight: bold;
+  font-size: 0.95rem;
+  color: #333;
+  margin-bottom: 0.2rem;
+  line-height: 1.1;
+}
+
+.courseFees {
+  font-size: 0.8rem;
+  color: #0056d2;
+  font-weight: 600;
+}
+
+/* Specialization/Option Cards */
+.specializationOptions,
+.optionGrid {
+  display: grid !important;
+  grid-template-columns: repeat(8, 1fr) !important;
+  gap: 0.8rem !important;
+  margin-top: 1.5rem;
+  max-width: 100%;
+  width: 100%;
+  justify-items: center;
+}
+
+.optionCard {
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 0.8rem 0.4rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  user-select: none;
+  min-height: 80px;
+  width: 140px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.optionCard:hover {
+  border-color: #0056d2;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 86, 210, 0.15);
+}
+
+.optionCard.selected {
+  border-color: #0056d2;
+  background: linear-gradient(135deg, #e3f2fd 0%, #f0f8ff 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 86, 210, 0.2);
+}
+
+.optionIcon {
+  font-size: 1.8rem;
+  margin-bottom: 0.3rem;
+}
+
+.optionLabel {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #333;
+  line-height: 1.1;
+}
+
+/* Compact Card Styles for Smaller Layout */
+.compactGrid {
+  display: grid !important;
+  grid-template-columns: repeat(8, 1fr) !important;
+  gap: 0.6rem !important;
+  margin-top: 1rem;
+  max-width: 100%;
+  width: 100%;
+  justify-items: center;
+}
+
+.compactCard {
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 0.6rem 0.3rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  user-select: none;
+  min-height: 70px;
+  width: 140px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.compactCard:hover {
+  border-color: #0056d2;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 86, 210, 0.15);
+}
+
+.compactCard.selected {
+  border-color: #0056d2;
+  background: linear-gradient(135deg, #e3f2fd 0%, #f0f8ff 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 86, 210, 0.2);
+}
+
+.compactIcon {
+  font-size: 1.4rem;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+.compactLabel {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #333;
+  line-height: 1.1;
+  text-align: center;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.formGroup label {
+  display: block;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.formGroup input,
+.formGroup select,
+.formGroup textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: #fafafa;
+}
+
+.formGroup select {
+  cursor: pointer;
+  caret-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.formGroup select:focus {
+  caret-color: transparent;
+}
+
+.formGroup select option {
+  caret-color: transparent;
+}
+
+.formGroup input:focus,
+.formGroup select:focus,
+.formGroup textarea:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  background-color: white;
+}
+
+.formGroup input::placeholder,
+.formGroup textarea::placeholder {
+  color: #999;
+}
+
+.checkboxGroup {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #fafafa;
+}
+
+.checkboxLabel:hover {
+  border-color: #667eea;
+  background-color: #f0f4ff;
+}
+
+.checkboxLabel input[type="checkbox"] {
+  width: auto;
+  margin-right: 0.75rem;
+  transform: scale(1.2);
+}
+
+.checkboxLabel input[type="checkbox"]:checked + .checkboxText {
+  color: #667eea;
+  font-weight: 600;
+}
+
+.checkboxText {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.reviewSection {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.reviewGroup {
+  padding: 1.5rem;
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  border-left: 4px solid #667eea;
+}
+
+.reviewGroup h3 {
+  color: #333;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.reviewGroup p {
+  margin-bottom: 0.5rem;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.reviewGroup strong {
+  color: #333;
+}
+
+.finalStep {
+  text-align: center;
+}
+
+.summaryCard {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 2rem;
+  border-radius: 15px;
+  margin-bottom: 2rem;
+}
+
+.summaryCard h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.summaryStats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.statLabel {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-bottom: 0.5rem;
+}
+
+.statValue {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.processingInfo {
+  background-color: #f8f9fa;
+  padding: 2rem;
+  border-radius: 15px;
+  margin-bottom: 2rem;
+}
+
+.processingInfo h4 {
+  color: #333;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.processingInfo ul {
+  text-align: left;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.processingInfo li {
+  margin-bottom: 0.5rem;
+  color: #555;
+  font-size: 1rem;
+}
+
+.loadingState {
+  margin-top: 2rem;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loadingState h3 {
+  color: #333;
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.loadingState p {
+  color: #666;
+  font-size: 1rem;
+}
+
+.navigationButtons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.prevButton,
+.nextButton,
+.submitButton {
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.prevButton {
+  background-color: #6c757d;
+  color: white;
+}
+
+.prevButton:hover {
+  background-color: #5a6268;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.nextButton {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  margin-left: auto;
+}
+
+.nextButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.submitButton {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: white;
+  margin-left: auto;
+  font-size: 1.2rem;
+  padding: 1.2rem 2.5rem;
+}
+
+.submitButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+}
+
+.submitButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Responsive Design */
+@media (max-width: 1400px) {
+  .degreeOptions,
+  .courseOptions,
+  .specializationOptions,
+  .optionGrid {
+    grid-template-columns: repeat(8, 1fr) !important;
+    gap: 0.7rem !important;
+  }
+  
+  .compactGrid {
+    grid-template-columns: repeat(8, 1fr) !important;
+    gap: 0.5rem !important;
+  }
+}
+
+@media (max-width: 1200px) {
+  .degreeOptions,
+  .courseOptions,
+  .specializationOptions,
+  .optionGrid {
+    grid-template-columns: repeat(6, 1fr) !important;
+    gap: 0.6rem !important;
+  }
+  
+  .compactGrid {
+    grid-template-columns: repeat(6, 1fr) !important;
+    gap: 0.5rem !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .degreeOptions,
+  .courseOptions,
+  .specializationOptions,
+  .optionGrid {
+    grid-template-columns: repeat(5, 1fr) !important;
+    gap: 0.6rem !important;
+  }
+  
+  .compactGrid {
+    grid-template-columns: repeat(5, 1fr) !important;
+    gap: 0.5rem !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .degreeOptions,
+  .courseOptions,
+  .specializationOptions,
+  .optionGrid {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 0.5rem !important;
+  }
+  
+  .compactGrid {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 0.5rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: 1rem 0;
+  }
+
+  .matcherContainer {
+    padding: 0 0.5rem;
+  }
+
+  .header h1 {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .stepContainer {
+    padding: 2rem 1.5rem;
+    border-radius: 15px;
+  }
+
+  .stepContent h2 {
+    font-size: 1.5rem;
+  }
+
+  .degreeOptions,
+  .courseOptions,
+  .specializationOptions,
+  .optionGrid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.75rem !important;
+  }
+
+  .compactGrid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.75rem !important;
+  }
+
+  .checkboxGroup {
+    grid-template-columns: 1fr;
+  }
+
+  .reviewSection {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .summaryStats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .navigationButtons {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .nextButton,
+  .submitButton {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .prevButton {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .header h1 {
+    font-size: 1.8rem;
+  }
+
+  .stepContainer {
+    padding: 1.5rem 1rem;
+  }
+
+  .summaryStats {
+    grid-template-columns: 1fr;
+  }
+
+  .formGroup input,
+  .formGroup select,
+  .formGroup textarea {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+
+  /* Responsive card layouts */
+  .courseOptions,
+  .specializationOptions,
+  .optionGrid {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+  }
+
+  .questionCard {
+    padding: 1.5rem;
+  }
+
+  .courseCard,
+  .optionCard {
+    padding: 1rem;
+  }
+
+  /* Compact responsive styles */
+  .compactGrid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .compactCard {
+    padding: 0.75rem 0.5rem;
+    min-height: 85px;
+  }
+
+  .compactIcon {
+    font-size: 1.5rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .compactLabel {
+    font-size: 0.8rem;
+    line-height: 1.2;
+  }
+}
