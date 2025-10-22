@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import '../styles/globals.css';
 import '../utils/fontawesome';
-import EduAI from '../components/eduai/EduAI';
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -10,7 +9,6 @@ function MyApp({ Component, pageProps }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Component {...pageProps} />
-      <EduAI />
     </>
   )
 }
