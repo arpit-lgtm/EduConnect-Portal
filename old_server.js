@@ -14,14 +14,18 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// API route to serve university data
-app.get('/api/universities', (req, res) => {
-    res.sendFile(path.join(__dirname, 'comprehensive-university-database.js'));
+// API route to serve unified database (universities + courses)
+app.get('/api/unified-database', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/assets/js/comprehensive-unified-database-COMPLETE.js'));
 });
 
-// API route to serve courses data
+// Legacy routes (redirect to unified database)
+app.get('/api/universities', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/assets/js/comprehensive-unified-database-COMPLETE.js'));
+});
+
 app.get('/api/courses', (req, res) => {
-    res.sendFile(path.join(__dirname, 'comprehensive-courses-database.js'));
+    res.sendFile(path.join(__dirname, 'public/assets/js/comprehensive-unified-database-COMPLETE.js'));
 });
 
 // Start the server

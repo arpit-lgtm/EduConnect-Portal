@@ -18,8 +18,8 @@
   padding: 0 20px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 30px;
+  justify-content: flex-start;
+  gap: 0;
   position: relative;
 }
 
@@ -56,22 +56,21 @@
   }
 }
 
-/* Navigation - CENTER */
+/* Navigation - LEFT SIDE (After Logo) */
 .navigation {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 20px;
   flex: 1;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  margin-left: 40px;
+  position: relative;
 }
 
 .navList {
   list-style: none;
   display: flex;
-  gap: 30px;
+  gap: 25px;
   margin: 0;
   padding: 0;
   white-space: nowrap;
@@ -87,7 +86,7 @@
   color: #333;
   text-decoration: none;
   font-weight: 500;
-  font-size: 18px; /* Increased by 2 notches */
+  font-size: 16px;
   white-space: nowrap;
   transition: all 0.3s ease;
 }
@@ -138,18 +137,22 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
+  text-align: center;
+  align-items: center;
 }
 
 .finderText strong {
   font-size: 17px;
   font-weight: 600;
   line-height: 1.2;
+  text-align: center;
 }
 
 .finderText small {
   font-size: 14px;
   opacity: 0.8;
   line-height: 1.2;
+  text-align: center;
 }
 
 .searchButton {

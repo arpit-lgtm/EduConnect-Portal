@@ -75,33 +75,42 @@ const UniversityMatcher = () => {
   useEffect(() => {
     const loadData = async () => {
       try {
-        // Load courses data from public folder
-        const coursesResponse = await fetch('/assets/js/comprehensive-courses-database.js');
-        const coursesText = await coursesResponse.text();
-        
-        // Match the correct variable name: coursesDatabase
-        const coursesMatch = coursesText.match(/const\s+coursesDatabase\s*=\s*(\[[\s\S]*?\]);/);
-        if (coursesMatch) {
-          const coursesData = eval(coursesMatch[1]);
-          setCourses(coursesData);
-          console.log('✅ Loaded', coursesData.length, 'courses');
-        } else {
-          console.error('❌ Could not parse courses database');
+        // Check if data already loaded in window
+        if (window.universityDatabase && window.coursesDatabase) {
+          console.log('✅ Data already loaded in window scope');
+          setCourses(window.coursesDatabase);
+          setUniversities(window.universityDatabase);
+          return;
         }
 
-        // Load universities data from public folder
-        const universitiesResponse = await fetch('/assets/js/comprehensive-university-database.js');
-        const universitiesText = await universitiesResponse.text();
+        // Load unified database from public folder
+        const unifiedResponse = await fetch('/assets/js/comprehensive-unified-database-COMPLETE.js');
+        const unifiedText = await unifiedResponse.text();
         
-        // Match the correct variable name: universityDatabase
-        const universitiesMatch = universitiesText.match(/const\s+universityDatabase\s*=\s*(\[[\s\S]*?\]);/);
-        if (universitiesMatch) {
-          const universitiesData = eval(universitiesMatch[1]);
-          setUniversities(universitiesData);
-          console.log('✅ Loaded', universitiesData.length, 'universities');
+        // Replace const with var to avoid redeclaration errors
+        const modifiedText = unifiedText
+          .replace(/const universityDatabase/g, 'var universityDatabase')
+          .replace(/const coursesDatabase/g, 'var coursesDatabase');
+        
+        // Execute in global scope using Function constructor
+        const executeGlobal = new Function(modifiedText);
+        executeGlobal.call(window);
+        
+        // Now access the databases from window scope
+        if (window.coursesDatabase && Array.isArray(window.coursesDatabase)) {
+          setCourses(window.coursesDatabase);
+          console.log('✅ Loaded', window.coursesDatabase.length, 'courses from unified database');
         } else {
-          console.error('❌ Could not parse universities database');
+          console.error('❌ coursesDatabase not found in window scope');
         }
+
+        if (window.universityDatabase && Array.isArray(window.universityDatabase)) {
+          setUniversities(window.universityDatabase);
+          console.log('✅ Loaded', window.universityDatabase.length, 'universities from unified database');
+        } else {
+          console.error('❌ universityDatabase not found in window scope');
+        }
+        
       } catch (error) {
         console.error('❌ Error loading data:', error);
       }
@@ -153,6 +162,56 @@ const UniversityMatcher = () => {
       ...prev,
       [field]: value
     }));
+    
+    // Auto-advance to next step when degree type is selected
+    if (field === 'degreeType' && currentStep === 1) {
+      // Filter courses immediately before advancing
+      if (courses.length > 0) {
+        const filtered = courses.filter(course => {
+          const level = course.level;
+          
+          if (value === 'PG Courses') {
+            return level === 'Postgraduate';
+          } else if (value === 'UG Courses') {
+            return level === 'Undergraduate';
+          } else if (value === 'Doctorate/Ph.D.') {
+            return level === 'Doctorate' || (level === 'Graduate' && (
+              course.name.toLowerCase().includes('phd') || 
+              course.name.toLowerCase().includes('ph.d') || 
+              course.name.toLowerCase().includes('doctorate') || 
+              course.name.toLowerCase().includes('doctoral')
+            ));
+          } else if (value === 'Executive Education') {
+            return level === 'Postgraduate' && course.name.toLowerCase().includes('executive');
+          } else if (value === 'Job Guarantee') {
+            return course.name.toLowerCase().includes('job') || course.name.toLowerCase().includes('placement');
+          } else if (value === 'Study Abroad') {
+            return course.name.toLowerCase().includes('international') || course.name.toLowerCase().includes('global');
+          } else if (value === 'Advanced Diploma') {
+            return level === 'Graduate' || course.name.toLowerCase().includes('diploma');
+          } else if (value === 'Skilling & Certificate') {
+            return level === 'Graduate' || course.name.toLowerCase().includes('certificate') || course.name.toLowerCase().includes('certification');
+          }
+          
+          return level === 'Graduate'; // Default fallback
+        });
+        
+        console.log(`🔍 Degree type selected: ${value}`);
+        console.log(`📚 Total courses available: ${courses.length}`);
+        console.log(`✅ Filtered ${filtered.length} courses for degree type: ${value}`);
+        
+        // Set filtered courses FIRST, then advance
+        setFilteredCourses(filtered);
+        
+        // Wait longer to ensure state update completes
+        setTimeout(() => {
+          console.log(`🚀 Advancing to step 2 with ${filtered.length} courses`);
+          setCurrentStep(2);
+        }, 500); // Increased delay for state to update
+      } else {
+        console.warn('⚠️ No courses loaded yet, cannot filter');
+      }
+    }
   };
 
   const handleServiceChange = (service, checked) => {
@@ -165,7 +224,7 @@ const UniversityMatcher = () => {
   };
 
   const nextStep = () => {
-    if (currentStep < 8) {
+    if (currentStep < 9) {
       setCurrentStep(currentStep + 1);
     }
   };
@@ -190,7 +249,7 @@ const UniversityMatcher = () => {
   };
 
   const getProgressPercentage = () => {
-    return Math.round((currentStep / 8) * 100);
+    return Math.round((currentStep / 9) * 100);
   };
 
   const renderStep = () => {
@@ -198,7 +257,7 @@ const UniversityMatcher = () => {
       case 1:
         return (
           <div className={styles.stepContent}>
-            <h2>🎓 Which degree are you interested in?</h2>
+            <h2>🎓 What level of education are you planning to pursue?</h2>
             
             <div className={getGridClass(8, styles.degreeOptions)}>
               {[
@@ -206,7 +265,6 @@ const UniversityMatcher = () => {
                 { value: 'Executive Education', label: 'Executive Education', icon: '💼', desc: 'Professional Development Programs' },
                 { value: 'Doctorate/Ph.D.', label: 'Doctorate/Ph.D.', icon: '🎖️', desc: 'Research & Doctoral Programs' },
                 { value: 'UG Courses', label: 'UG Courses', icon: '📚', desc: 'Bachelor\'s Degree Programs' },
-                { value: 'Job Guarantee', label: 'Job Guarantee', icon: '💯', desc: 'Placement Assured Programs' },
                 { value: 'Study Abroad', label: 'Study Abroad', icon: '🌍', desc: 'International Education' },
                 { value: 'Advanced Diploma', label: 'Advanced Diploma', icon: '📜', desc: 'Specialized Diploma Courses' },
                 { value: 'Skilling & Certificate', label: 'Skilling & Certificate', icon: '⚡', desc: 'Professional Certification Courses' }
@@ -226,83 +284,102 @@ const UniversityMatcher = () => {
         );
 
       case 2:
+        // Debug logging for step 2
+        console.log('📍 Rendering Step 2');
+        console.log('   - Degree Type:', formData.degreeType);
+        console.log('   - Filtered Courses Count:', filteredCourses.length);
+        console.log('   - Total Courses Count:', courses.length);
+        
         return (
           <div className={styles.stepContent}>
-            <h2>📚 What do you want to study?</h2>
+            <h2>📚 Which course would you like to explore?</h2>
+            <p className={styles.stepSubtitle}>
+              Selected Degree: <strong>{formData.degreeType}</strong> 
+              {filteredCourses.length > 0 && ` (${filteredCourses.length} courses available)`}
+            </p>
             
-            <div className={getGridClass(filteredCourses.length, styles.courseOptions)}>
+            <div className={getGridClass(filteredCourses.length, styles.degreeOptions)}>
                 {filteredCourses.length > 0 ? 
                   filteredCourses.map(course => (
                     <div 
                       key={course.id}
-                      className={`${styles.courseCard} ${formData.preferredCourse === course.id ? styles.selected : ''}`}
-                      onClick={() => handleInputChange('preferredCourse', course.id)}
+                      className={`${styles.degreeCard} ${formData.preferredCourse === course.name ? styles.selected : ''}`}
+                      onClick={() => handleInputChange('preferredCourse', course.name)}
                     >
-                      <div className={styles.courseIcon}>📚</div>
-                      <div className={styles.courseName}>{course.name}</div>
-                      {course.fees && (
-                        <div className={styles.courseFees}>
-                          ₹{course.fees.min?.toLocaleString()} - ₹{course.fees.max?.toLocaleString()}
-                        </div>
-                      )}
+                      <div className={styles.degreeIcon}>{course.icon || '📚'}</div>
+                      <div className={styles.degreeLabel}>{course.name}</div>
+                      <div className={styles.degreeDesc}>{course.category || 'Professional Course'}</div>
                     </div>
                   )) :
-                  <p>Please select a degree type first</p>
+                  <div className={styles.noCourses}>
+                    <p>⚠️ No courses found for {formData.degreeType || 'selected degree type'}</p>
+                    <p style={{fontSize: '14px', marginTop: '10px', opacity: 0.7}}>
+                      Total courses in database: {courses.length}
+                    </p>
+                    <button 
+                      onClick={() => setCurrentStep(1)} 
+                      className={styles.backButton}
+                      style={{marginTop: '20px'}}
+                    >
+                      ← Go Back and Select Again
+                    </button>
+                  </div>
                 }
               </div>
-
-            {formData.preferredCourse && (
-              <div className={styles.stepContent}>
-                <h3>🎯 Specialization/Stream</h3>
-                <div className={(() => {
-                  const selectedCourse = filteredCourses.find(c => c.id === formData.preferredCourse);
-                  if (selectedCourse && selectedCourse.specializations) {
-                    return getGridClass(selectedCourse.specializations.length, styles.specializationOptions);
-                  }
-                  return getGridClass(6, styles.specializationOptions); // Default fallback has 6 options
-                })()}>
-                  {(() => {
-                    const selectedCourse = filteredCourses.find(c => c.id === formData.preferredCourse);
-                    if (selectedCourse && selectedCourse.specializations) {
-                      return selectedCourse.specializations.map((spec, index) => (
-                        <div 
-                          key={index}
-                          className={`${styles.optionCard} ${formData.specialization === spec ? styles.selected : ''}`}
-                          onClick={() => handleInputChange('specialization', spec)}
-                        >
-                          <div className={styles.optionIcon}>⚡</div>
-                          <div className={styles.optionLabel}>{spec}</div>
-                        </div>
-                      ));
-                    }
-                    return [
-                      { value: 'finance', label: 'Finance & Banking', icon: '💰' },
-                      { value: 'marketing', label: 'Marketing & Sales', icon: '📊' },
-                      { value: 'hr', label: 'Human Resources', icon: '👥' },
-                      { value: 'operations', label: 'Operations Management', icon: '⚙️' },
-                      { value: 'strategy', label: 'Strategy & Consulting', icon: '🎯' },
-                      { value: 'analytics', label: 'Data Analytics', icon: '📈' }
-                    ].map(option => (
-                      <div 
-                        key={option.value}
-                        className={`${styles.optionCard} ${formData.specialization === option.value ? styles.selected : ''}`}
-                        onClick={() => handleInputChange('specialization', option.value)}
-                      >
-                        <div className={styles.optionIcon}>{option.icon}</div>
-                        <div className={styles.optionLabel}>{option.label}</div>
-                      </div>
-                    ));
-                  })()}
-                </div>
-              </div>
-            )}
           </div>
         );
 
       case 3:
         return (
           <div className={styles.stepContent}>
-            <h2>👤 Tell us about your current status</h2>
+            <h3>🎯 Choose Your Specialization</h3>
+            <div className={(() => {
+              const selectedCourse = filteredCourses.find(c => c.name === formData.preferredCourse);
+              if (selectedCourse && selectedCourse.specializations) {
+                return getGridClass(selectedCourse.specializations.length, styles.specializationOptions);
+              }
+              return getGridClass(6, styles.specializationOptions); // Default fallback has 6 options
+            })()}>
+              {(() => {
+                const selectedCourse = filteredCourses.find(c => c.name === formData.preferredCourse);
+                if (selectedCourse && selectedCourse.specializations) {
+                  return selectedCourse.specializations.map((spec, index) => (
+                    <div 
+                      key={index}
+                      className={`${styles.optionCard} ${formData.specialization === spec ? styles.selected : ''}`}
+                      onClick={() => handleInputChange('specialization', spec)}
+                    >
+                      <div className={styles.optionIcon}>⚡</div>
+                      <div className={styles.optionLabel}>{spec}</div>
+                    </div>
+                  ));
+                }
+                return [
+                  { value: 'finance', label: 'Finance & Banking', icon: '💰' },
+                  { value: 'marketing', label: 'Marketing & Sales', icon: '📊' },
+                  { value: 'hr', label: 'Human Resources', icon: '👥' },
+                  { value: 'operations', label: 'Operations Management', icon: '⚙️' },
+                  { value: 'strategy', label: 'Strategy & Consulting', icon: '🎯' },
+                  { value: 'analytics', label: 'Data Analytics', icon: '📈' }
+                ].map(option => (
+                  <div 
+                    key={option.value}
+                    className={`${styles.optionCard} ${formData.specialization === option.value ? styles.selected : ''}`}
+                    onClick={() => handleInputChange('specialization', option.value)}
+                  >
+                    <div className={styles.optionIcon}>{option.icon}</div>
+                    <div className={styles.optionLabel}>{option.label}</div>
+                  </div>
+                ));
+              })()}
+            </div>
+          </div>
+        );
+
+      case 4:
+        return (
+          <div className={styles.stepContent}>
+            <h2>👤 What best describes your current professional status?</h2>
             
             <div className={(() => {
               let options = [];
@@ -319,7 +396,7 @@ const UniversityMatcher = () => {
                   { value: 'student-graduation', label: 'Final Year Graduate', icon: '🎓' },
                   { value: 'fresher', label: 'Recent Graduate (Fresher)', icon: '🌟' },
                   { value: 'working-professional', label: 'Working Professional', icon: '💼' },
-                  { value: 'entrepreneur', label: 'Entrepreneur/Business Owner', icon: '🚀' },
+                  { value: 'entrepreneur', label: 'Entrepreneur', icon: '🚀' },
                   { value: 'career-break', label: 'Career Break', icon: '⏸️' }
                 ];
               } else if (formData.degreeType === 'Doctorate/Ph.D.') {
@@ -354,7 +431,7 @@ const UniversityMatcher = () => {
                       { value: 'student-graduation', label: 'Final Year Graduate', icon: '🎓' },
                       { value: 'fresher', label: 'Recent Graduate (Fresher)', icon: '🌟' },
                       { value: 'working-professional', label: 'Working Professional', icon: '💼' },
-                      { value: 'entrepreneur', label: 'Entrepreneur/Business Owner', icon: '🚀' },
+                      { value: 'entrepreneur', label: 'Entrepreneur', icon: '🚀' },
                       { value: 'career-break', label: 'Career Break', icon: '⏸️' }
                     ];
                   } else if (formData.degreeType === 'Doctorate/Ph.D.') {
@@ -387,7 +464,7 @@ const UniversityMatcher = () => {
 
             {formData.currentEducation && (
               <div className={styles.stepContent}>
-                <h3>💼 Work Experience</h3>
+                <h3>💼 How many years of work experience do you have?</h3>
                 <div className={getGridClass(6, styles.optionGrid)}>
                   {[
                     { value: 'none', label: 'No Work Experience', icon: '🆕' },
@@ -412,10 +489,10 @@ const UniversityMatcher = () => {
           </div>
         );
 
-      case 4:
+      case 5:
         return (
           <div className={styles.stepContent}>
-            <h2>💻 How do you prefer to study?</h2>
+            <h2>💻 What's your preferred mode of learning?</h2>
             
             {(() => {
                 const selectedCourse = filteredCourses.find(c => c.id === formData.preferredCourse);
@@ -423,7 +500,7 @@ const UniversityMatcher = () => {
                 
                 return (
                   <>
-                    <h3>📚 Preferred Study Mode</h3>
+                    <h3>📚 Select Your Study Mode</h3>
                     <div className={getGridClass(5, styles.compactGrid)}>
                       {[
                         { value: 'online', label: 'Online Learning', icon: '💻', available: availableModes.includes('Online') },
@@ -447,8 +524,8 @@ const UniversityMatcher = () => {
               })()}
 
             {formData.studyMode && (
-              <div className={styles.stepContent}>
-                <h3>🎯 Learning Format</h3>
+              <>
+                <h3>🎯 Which learning format suits you best?</h3>
                 <div className={getGridClass(5, styles.compactGrid)}>
                   {[
                     { value: 'live-classes', label: 'Live Classes', icon: '🎥' },
@@ -467,17 +544,17 @@ const UniversityMatcher = () => {
                     </div>
                   ))}
                 </div>
-              </div>
+              </>
             )}
           </div>
         );
 
-      case 5:
+      case 6:
         return (
           <div className={styles.stepContent}>
-            <h2>📍 Where do you want to study?</h2>
+            <h2>📍 Which location would you prefer for your studies?</h2>
             
-            <h3>🗺️ Preferred State/Region</h3>
+            <h3>🗺️ Select Your Preferred State or Region</h3>
             <div className={getGridClass(28, styles.compactGrid)}>
                 {[
                   { value: 'delhi', label: 'Delhi NCR', icon: '🏛️' },
@@ -522,11 +599,11 @@ const UniversityMatcher = () => {
           </div>
         );
 
-      case 6:
+      case 7:
         return (
           <div className={styles.stepContent}>
-            <h2>💰 What's your budget?</h2>
-            <p>Help us find courses that fit your financial plan</p>
+            <h2>💰 What's your investment budget for this course?</h2>
+            <p>Help us recommend programs that align with your financial goals</p>
             
             {(() => {
               const selectedCourse = filteredCourses.find(c => c.id === formData.preferredCourse);
@@ -551,26 +628,24 @@ const UniversityMatcher = () => {
               
               return (
                 <>
-                  <div className={styles.stepContent}>
-                    <h3>💰 Total Course Budget</h3>
-                    <div className={getGridClass(showRanges.length, styles.compactGrid)}>
-                      {showRanges.map(range => (
-                        <div 
-                          key={range.value}
-                          className={`${styles.compactCard} ${formData.budgetRange === range.value ? styles.selected : ''}`}
-                          onClick={() => handleInputChange('budgetRange', range.value)}
-                        >
-                          <div className={styles.compactIcon}>💰</div>
-                          <div className={styles.compactLabel}>{range.label}</div>
-                        </div>
-                      ))}
+                  <h3>💰 Select Your Total Course Budget</h3>
+                  <div className={getGridClass(showRanges.length, styles.compactGrid)}>
+                    {showRanges.map(range => (
                       <div 
-                        className={`${styles.compactCard} ${formData.budgetRange === 'no-constraint' ? styles.selected : ''}`}
-                        onClick={() => handleInputChange('budgetRange', 'no-constraint')}
+                        key={range.value}
+                        className={`${styles.compactCard} ${formData.budgetRange === range.value ? styles.selected : ''}`}
+                        onClick={() => handleInputChange('budgetRange', range.value)}
                       >
-                        <div className={styles.compactIcon}>♾️</div>
-                        <div className={styles.compactLabel}>No Budget Constraint</div>
+                        <div className={styles.compactIcon}>💰</div>
+                        <div className={styles.compactLabel}>{range.label}</div>
                       </div>
+                    ))}
+                    <div 
+                      className={`${styles.compactCard} ${formData.budgetRange === 'no-constraint' ? styles.selected : ''}`}
+                      onClick={() => handleInputChange('budgetRange', 'no-constraint')}
+                    >
+                      <div className={styles.compactIcon}>♾️</div>
+                      <div className={styles.compactLabel}>No Budget Constraint</div>
                     </div>
                   </div>
                 </>
@@ -578,9 +653,8 @@ const UniversityMatcher = () => {
             })()}
             
 
-            <div className={styles.stepContent}>
-              <h3>💳 Fee Payment Preference</h3>
-              <div className={getGridClass(5, styles.compactGrid)}>
+            <h3>💳 How would you like to pay your fees?</h3>
+            <div className={getGridClass(5, styles.compactGrid)}>
                 {[
                   { value: 'lumpsum', label: 'One-time Payment', icon: '💰' },
                   { value: 'semester', label: 'Semester-wise', icon: '📅' },
@@ -598,144 +672,131 @@ const UniversityMatcher = () => {
                   </div>
                 ))}
               </div>
-            </div>
-
-
-          </div>
-        );
-
-      case 7:
-        return (
-          <div className={styles.stepContent}>
-            <div className={styles.stepContent}>
-              <h3>🎯 Primary Career Objective</h3>
-              <div className={getGridClass(9, styles.compactGrid)}>
-                {[
-                  { value: 'promotion', label: 'Get Promoted', icon: '📈' },
-                  { value: 'career-switch', label: 'Switch Career', icon: '🔄' },
-                  { value: 'salary-hike', label: 'Salary Increase', icon: '💰' },
-                  { value: 'leadership', label: 'Leadership Role', icon: '👑' },
-                  { value: 'entrepreneurship', label: 'Start Business', icon: '🚀' },
-                  { value: 'skill-upgrade', label: 'Skill Upgrade', icon: '🛠️' },
-                  { value: 'international', label: 'Work Abroad', icon: '🌍' },
-                  { value: 'consulting', label: 'Consulting', icon: '💼' },
-                  { value: 'knowledge', label: 'Knowledge Growth', icon: '🧠' }
-                ].map(option => (
-                  <div 
-                    key={option.value}
-                    className={`${styles.compactCard} ${formData.careerObjective === option.value ? styles.selected : ''}`}
-                    onClick={() => handleInputChange('careerObjective', option.value)}
-                  >
-                    <div className={styles.compactIcon}>{option.icon}</div>
-                    <div className={styles.compactLabel}>{option.label}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className={styles.stepContent}>
-              <h3>🏢 Target Industry/Sector</h3>
-              <div className={getGridClass(12, styles.compactGrid)}>
-                {[
-                  { value: 'it-software', label: 'IT & Software', icon: '💻' },
-                  { value: 'banking-finance', label: 'Banking & Finance', icon: '🏦' },
-                  { value: 'consulting', label: 'Consulting', icon: '💼' },
-                  { value: 'healthcare', label: 'Healthcare', icon: '🏥' },
-                  { value: 'manufacturing', label: 'Manufacturing', icon: '🏭' },
-                  { value: 'retail-ecommerce', label: 'Retail & E-commerce', icon: '🛒' },
-                  { value: 'education', label: 'Education', icon: '📚' },
-                  { value: 'media', label: 'Media & Entertainment', icon: '🎬' },
-                  { value: 'government', label: 'Government', icon: '🏛️' },
-                  { value: 'ngo', label: 'NGO/Social', icon: '🤝' },
-                  { value: 'startup', label: 'Startup', icon: '🚀' },
-                  { value: 'others', label: 'Others', icon: '🔧' }
-                ].map(option => (
-                  <div 
-                    key={option.value}
-                    className={`${styles.compactCard} ${formData.targetIndustry === option.value ? styles.selected : ''}`}
-                    onClick={() => handleInputChange('targetIndustry', option.value)}
-                  >
-                    <div className={styles.compactIcon}>{option.icon}</div>
-                    <div className={styles.compactLabel}>{option.label}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className={styles.stepContent}>
-              <h3>💵 Expected Salary Post Course</h3>
-              <div className={getGridClass(8, styles.compactGrid)}>
-                {[
-                  { value: 'below-5l', label: 'Below ₹5 LPA', icon: '💰' },
-                  { value: '5l-8l', label: '₹5 - ₹8 LPA', icon: '💰' },
-                  { value: '8l-12l', label: '₹8 - ₹12 LPA', icon: '💰' },
-                  { value: '12l-18l', label: '₹12 - ₹18 LPA', icon: '💰' },
-                  { value: '18l-25l', label: '₹18 - ₹25 LPA', icon: '💰' },
-                  { value: '25l-35l', label: '₹25 - ₹35 LPA', icon: '💰' },
-                  { value: 'above-35l', label: 'Above ₹35 LPA', icon: '💰' },
-                  { value: 'not-important', label: 'Not Primary Concern', icon: '🤷‍♂️' }
-                ].map(option => (
-                  <div 
-                    key={option.value}
-                    className={`${styles.compactCard} ${formData.salaryExpectation === option.value ? styles.selected : ''}`}
-                    onClick={() => handleInputChange('salaryExpectation', option.value)}
-                  >
-                    <div className={styles.compactIcon}>{option.icon}</div>
-                    <div className={styles.compactLabel}>{option.label}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
         );
 
       case 8:
         return (
           <div className={styles.stepContent}>
-            <div className={styles.stepContent}>
-              <h3>⏰ When do you want to start?</h3>
-              <div className={getGridClass(6, styles.compactGrid)}>
-                {[
-                  { value: 'immediately', label: 'Immediately', icon: '🚀' },
-                  { value: '1-month', label: 'Within 1 month', icon: '📅' },
-                  { value: '2-3-months', label: '2-3 months', icon: '🗓️' },
-                  { value: '4-6-months', label: '4-6 months', icon: '📆' },
-                  { value: 'next-academic', label: 'Next Academic', icon: '🎓' },
-                  { value: 'flexible', label: 'Flexible Timeline', icon: '🔄' }
-                ].map(option => (
-                  <div 
-                    key={option.value}
-                    className={`${styles.compactCard} ${formData.whenToStart === option.value ? styles.selected : ''}`}
-                    onClick={() => handleInputChange('whenToStart', option.value)}
-                  >
-                    <div className={styles.compactIcon}>{option.icon}</div>
-                    <div className={styles.compactLabel}>{option.label}</div>
-                  </div>
-                ))}
-              </div>
+            <h3>🎯 What's your primary career goal after completing this course?</h3>
+            <div className={getGridClass(9, styles.compactGrid)}>
+              {[
+                { value: 'promotion', label: 'Get Promoted', icon: '📈' },
+                { value: 'career-switch', label: 'Switch Career', icon: '🔄' },
+                { value: 'salary-hike', label: 'Salary Increase', icon: '💰' },
+                { value: 'leadership', label: 'Leadership Role', icon: '👑' },
+                { value: 'entrepreneurship', label: 'Start Business', icon: '🚀' },
+                { value: 'skill-upgrade', label: 'Skill Upgrade', icon: '🛠️' },
+                { value: 'international', label: 'Work Abroad', icon: '🌍' },
+                { value: 'consulting', label: 'Consulting', icon: '💼' },
+                { value: 'knowledge', label: 'Knowledge Growth', icon: '🧠' }
+              ].map(option => (
+                <div 
+                  key={option.value}
+                  className={`${styles.compactCard} ${formData.careerObjective === option.value ? styles.selected : ''}`}
+                  onClick={() => handleInputChange('careerObjective', option.value)}
+                >
+                  <div className={styles.compactIcon}>{option.icon}</div>
+                  <div className={styles.compactLabel}>{option.label}</div>
+                </div>
+              ))}
             </div>
 
-            <div className={styles.stepContent}>
-              <h3>📚 Study Time Available</h3>
-              <div className={getGridClass(6, styles.compactGrid)}>
-                {[
-                  { value: 'full-time', label: 'Full-time (40+ hrs)', icon: '⏰' },
-                  { value: 'part-time-high', label: 'Part-time High (20-40 hrs)', icon: '🕐' },
-                  { value: 'part-time-medium', label: 'Part-time Medium (10-20 hrs)', icon: '🕑' },
-                  { value: 'part-time-low', label: 'Part-time Low (5-10 hrs)', icon: '🕒' },
-                  { value: 'weekend-only', label: 'Weekend Only', icon: '🌅' },
-                  { value: 'flexible', label: 'Flexible Schedule', icon: '🔄' }
-                ].map(option => (
-                  <div 
-                    key={option.value}
-                    className={`${styles.compactCard} ${formData.studyTimeAvailable === option.value ? styles.selected : ''}`}
-                    onClick={() => handleInputChange('studyTimeAvailable', option.value)}
-                  >
-                    <div className={styles.compactIcon}>{option.icon}</div>
-                    <div className={styles.compactLabel}>{option.label}</div>
-                  </div>
-                ))}
-              </div>
+            <h3>🏢 Which industry or sector are you targeting?</h3>
+            <div className={getGridClass(12, styles.compactGrid)}>
+              {[
+                { value: 'it-software', label: 'IT & Software', icon: '💻' },
+                { value: 'banking-finance', label: 'Banking & Finance', icon: '🏦' },
+                { value: 'consulting', label: 'Consulting', icon: '💼' },
+                { value: 'healthcare', label: 'Healthcare', icon: '🏥' },
+                { value: 'manufacturing', label: 'Manufacturing', icon: '🏭' },
+                { value: 'retail-ecommerce', label: 'Retail & E-commerce', icon: '🛒' },
+                { value: 'education', label: 'Education', icon: '📚' },
+                { value: 'media', label: 'Media & Entertainment', icon: '🎬' },
+                { value: 'government', label: 'Government', icon: '🏛️' },
+                { value: 'ngo', label: 'NGO/Social', icon: '🤝' },
+                { value: 'startup', label: 'Startup', icon: '🚀' },
+                { value: 'others', label: 'Others', icon: '🔧' }
+              ].map(option => (
+                <div 
+                  key={option.value}
+                  className={`${styles.compactCard} ${formData.targetIndustry === option.value ? styles.selected : ''}`}
+                  onClick={() => handleInputChange('targetIndustry', option.value)}
+                >
+                  <div className={styles.compactIcon}>{option.icon}</div>
+                  <div className={styles.compactLabel}>{option.label}</div>
+                </div>
+              ))}
+            </div>
+
+            <h3>💵 What's your expected salary range after course completion?</h3>
+            <div className={getGridClass(8, styles.compactGrid)}>
+              {[
+                { value: 'below-5l', label: 'Below ₹5 LPA', icon: '💰' },
+                { value: '5l-8l', label: '₹5 - ₹8 LPA', icon: '💰' },
+                { value: '8l-12l', label: '₹8 - ₹12 LPA', icon: '💰' },
+                { value: '12l-18l', label: '₹12 - ₹18 LPA', icon: '💰' },
+                { value: '18l-25l', label: '₹18 - ₹25 LPA', icon: '💰' },
+                { value: '25l-35l', label: '₹25 - ₹35 LPA', icon: '💰' },
+                { value: 'above-35l', label: 'Above ₹35 LPA', icon: '💰' },
+                { value: 'not-important', label: 'Not Primary Concern', icon: '🤷‍♂️' }
+              ].map(option => (
+                <div 
+                  key={option.value}
+                  className={`${styles.compactCard} ${formData.salaryExpectation === option.value ? styles.selected : ''}`}
+                  onClick={() => handleInputChange('salaryExpectation', option.value)}
+                >
+                  <div className={styles.compactIcon}>{option.icon}</div>
+                  <div className={styles.compactLabel}>{option.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+
+      case 9:
+        return (
+          <div className={styles.stepContent}>
+            <h3>⏰ When are you planning to begin your course?</h3>
+            <div className={getGridClass(6, styles.compactGrid)}>
+              {[
+                { value: 'immediately', label: 'Immediately', icon: '🚀' },
+                { value: '1-month', label: 'Within 1 month', icon: '📅' },
+                { value: '2-3-months', label: '2-3 months', icon: '🗓️' },
+                { value: '4-6-months', label: '4-6 months', icon: '📆' },
+                { value: 'next-academic', label: 'Next Academic', icon: '🎓' },
+                { value: 'flexible', label: 'Flexible Timeline', icon: '🔄' }
+              ].map(option => (
+                <div 
+                  key={option.value}
+                  className={`${styles.compactCard} ${formData.whenToStart === option.value ? styles.selected : ''}`}
+                  onClick={() => handleInputChange('whenToStart', option.value)}
+                >
+                  <div className={styles.compactIcon}>{option.icon}</div>
+                  <div className={styles.compactLabel}>{option.label}</div>
+                </div>
+              ))}
+            </div>
+
+            <h3>📚 How many hours per week can you dedicate to studying?</h3>
+            <div className={getGridClass(6, styles.compactGrid)}>
+              {[
+                { value: 'full-time', label: 'Full-time (40+ hrs)', icon: '⏰' },
+                { value: 'part-time-high', label: 'Part-time High (20-40 hrs)', icon: '🕐' },
+                { value: 'part-time-medium', label: 'Part-time Medium (10-20 hrs)', icon: '🕑' },
+                { value: 'part-time-low', label: 'Part-time Low (5-10 hrs)', icon: '🕒' },
+                { value: 'weekend-only', label: 'Weekend Only', icon: '🌅' },
+                { value: 'flexible', label: 'Flexible Schedule', icon: '🔄' }
+              ].map(option => (
+                <div 
+                  key={option.value}
+                  className={`${styles.compactCard} ${formData.studyTimeAvailable === option.value ? styles.selected : ''}`}
+                  onClick={() => handleInputChange('studyTimeAvailable', option.value)}
+                >
+                  <div className={styles.compactIcon}>{option.icon}</div>
+                  <div className={styles.compactLabel}>{option.label}</div>
+                </div>
+              ))}
             </div>
 
             <div className={styles.finalStep}>
@@ -767,10 +828,7 @@ const UniversityMatcher = () => {
 
       <main className={styles.main}>
         <div className={styles.matcherContainer}>
-          {/* Step Content - Direct without container */}
-          {renderStep()}
-
-          {/* Navigation Buttons */}
+          {/* Navigation Buttons - Moved to Top */}
           <div className={styles.navigationButtons}>
             {currentStep > 1 && (
               <button 
@@ -782,7 +840,7 @@ const UniversityMatcher = () => {
               </button>
             )}
             
-            {currentStep < 8 ? (
+            {currentStep < 9 ? (
               <button 
                 type="button" 
                 onClick={nextStep}
@@ -801,6 +859,9 @@ const UniversityMatcher = () => {
               </button>
             )}
           </div>
+
+          {/* Step Content */}
+          {renderStep()}
         </div>
       </main>
 

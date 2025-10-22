@@ -3,3 +3,7 @@ node_modules/
 package-lock.json
 .DS_Store
 *.log
+
+# Environment variables (API keys)
+.env.local
+.env*.local

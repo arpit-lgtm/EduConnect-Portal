@@ -13,7 +13,7 @@ const Header = () => {
       submenu: [
         { title: 'Featured Universities', href: '/top-universities' },
         { title: 'University Rankings', href: '/rankings' },
-        { title: 'Universities Finder - AI DRIVEN !', href: '/university-matcher' },
+        { title: 'MBA NINJA - AI DRIVEN', href: '/university-matcher' },
         { title: 'Find Your Match', href: '/university-finder' },
         { title: 'All Universities', href: '/universities-list' }
       ]
@@ -117,8 +117,8 @@ const Header = () => {
             <Link href="/university-matcher" className={styles.universityFinderBtn}>
               <span className={styles.finderIcon}>🤖</span>
               <div className={styles.finderText}>
-                <strong>University finder - AI DRIVEN !</strong>
-                <small>Find your perfect university in 2 minutes!</small>
+                <strong>MBA NINJA - AI DRIVEN</strong>
+                <small>Find your perfect university in less than a MINUTE!</small>
               </div>
             </Link>
 

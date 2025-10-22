@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Link from 'next/link';
 import styles from './Universities.module.css';
 
 export default function Universities() {
@@ -11,441 +10,441 @@ export default function Universities() {
       name: 'Amity University',
       logo: '/images/universities/Amity University.png',
       courses: '78 Courses',
-      link: '/university/amity-university-online'
+      link: 'https://www.amityonline.com'
     },
     {
       id: 2,
       name: 'Jain University',
       logo: '/images/universities/Jain University.png',
       courses: '69 Courses',
-      link: '/university/jain-university-online'
+      link: 'https://www.jainuniversity.ac.in'
     },
     {
       id: 3,
       name: 'DY Patil University',
       logo: '/images/universities/DPU.png',
       courses: '38 Courses',
-      link: '/university/dy-patil-university-online'
+      link: 'https://www.dpu.edu.in'
     },
     {
       id: 4,
       name: 'Golden Gate University',
       logo: '/images/universities/Golden Gate University.png',
       courses: '35 Courses',
-      link: '/university/golden-gate-university'
+      link: 'https://www.ggu.edu'
     },
     {
       id: 5,
       name: 'MAHE Manipal Online',
       logo: '/images/universities/Mahe Manipal.png',
       courses: '37 Courses',
-      link: '/university/mahe-manipal-online'
+      link: 'https://online.manipal.edu'
     },
     {
       id: 6,
       name: 'IIM Nagpur',
       logo: '/images/universities/IIM Nagpur.png',
       courses: '9 Courses',
-      link: '/university/iim-nagpur'
+      link: 'https://www.iimnagpur.ac.in'
     },
     {
       id: 7,
       name: 'Chandigarh University',
       logo: '/images/universities/Chandigarh University.png',
       courses: '52 Courses',
-      link: '/university/chandigarh-university-online'
+      link: 'https://www.cuchd.in'
     },
     {
       id: 8,
       name: 'LPU University',
       logo: '/images/universities/LPU University.png',
       courses: '65 Courses',
-      link: '/university/lpu-university-online'
+      link: 'https://www.lpu.in'
     },
     {
       id: 9,
       name: 'Manipal University',
       logo: '/images/universities/Manipal University.png',
       courses: '43 Courses',
-      link: '/university/manipal-university-online'
+      link: 'https://www.manipal.edu'
     },
     {
       id: 10,
       name: 'Uttaranchal University',
       logo: '/images/universities/Uttaranchal University.png',
       courses: '45 Courses',
-      link: '/university/uttaranchal-university-online'
+      link: 'https://www.uumail.in'
     },
     {
       id: 11,
       name: 'Sikkim Manipal University',
       logo: '/images/universities/Sikkim Manipal University.png',
       courses: '28 Courses',
-      link: '/university/sikkim-manipal-university-online'
+      link: 'https://www.smude.edu.in'
     },
     {
       id: 12,
       name: 'Shoolini University',
       logo: '/images/universities/Shoolini University.png',
       courses: '32 Courses',
-      link: '/university/shoolini-university-online'
+      link: 'https://www.shooliniuniversity.com'
     },
     {
       id: 13,
       name: 'IIM Kozhikode',
       logo: '/images/universities/IIM Kozhikode.png',
       courses: '8 Courses',
-      link: '/university/iim-kozhikode'
+      link: 'https://www.iimk.ac.in'
     },
     {
       id: 14,
       name: 'Deakin University',
       logo: '/images/universities/Deakin University.png',
       courses: '12 Courses',
-      link: '/university/deakin-university'
+      link: 'https://www.deakin.edu.au'
     },
     {
       id: 15,
       name: 'IIM Raipur',
       logo: '/images/universities/IIM Raipur.png',
       courses: '6 Courses',
-      link: '/university/iim-raipur'
+      link: 'https://www.iimraipur.ac.in'
     },
     {
       id: 16,
       name: 'IIM Visakhapatnam',
       logo: '/images/universities/IIM Visakhapatnam.png',
       courses: '5 Courses',
-      link: '/university/iim-visakhapatnam'
+      link: 'https://www.iimv.ac.in'
     },
     {
       id: 17,
       name: 'Cornell University',
       logo: '/images/universities/Cornell University.png',
       courses: '15 Courses',
-      link: '/university/cornell-university'
+      link: 'https://www.cornell.edu'
     },
     {
       id: 18,
       name: 'Duke Corporate Education',
       logo: '/images/universities/Duke Corporate Education.png',
       courses: '10 Courses',
-      link: '/university/duke-corporate-education'
+      link: 'https://www.dukece.com'
     },
     {
       id: 19,
       name: 'The Wharton School',
       logo: '/images/universities/The Wharton School.png',
       courses: '8 Courses',
-      link: '/university/wharton-school'
+      link: 'https://www.wharton.upenn.edu'
     },
     {
       id: 20,
       name: 'BITS Pilani',
       logo: '/images/universities/BITS Pilani.png',
       courses: '18 Courses',
-      link: '/university/bits-pilani'
+      link: 'https://www.bits-pilani.ac.in'
     },
     {
       id: 21,
       name: 'Symbiosis SCDL',
       logo: '/images/universities/Symbiosis SCDL.png',
       courses: '42 Courses',
-      link: '/university/symbiosis-scdl-online'
+      link: 'https://www.scdl.net'
     },
     {
       id: 22,
       name: 'MICA',
       logo: '/images/universities/MICA.png',
       courses: '12 Courses',
-      link: '/university/mica'
+      link: 'https://www.mica.ac.in'
     },
     {
       id: 23,
       name: 'IIM Indore',
       logo: '/images/universities/IIM Indore.png',
       courses: '7 Courses',
-      link: '/university/iim-indore'
+      link: 'https://www.iimidr.ac.in'
     },
     {
       id: 24,
       name: 'IIIT Bangalore',
       logo: '/images/universities/IIIT Bangalore.png',
       courses: '14 Courses',
-      link: '/university/iiit-bangalore'
+      link: 'https://www.iiitb.ac.in'
     },
     {
       id: 25,
       name: 'Sharda University',
       logo: '/images/universities/Sharda University.png',
       courses: '28 Courses',
-      link: '/university/sharda-university-online'
+      link: 'https://www.sharda.ac.in'
     },
     {
       id: 26,
       name: 'GLA University',
       logo: '/images/universities/GLA University.png',
       courses: '34 Courses',
-      link: '/university/gla-university-online'
+      link: 'https://www.gla.ac.in'
     },
     {
       id: 27,
       name: "Lingaya's University",
       logo: "/images/universities/Lingaya's University.png",
       courses: '28 Courses',
-      link: '/university/lingayas-university-online'
+      link: 'https://www.lingayasvidyapeeth.edu.in'
     },
     {
       id: 28,
       name: 'O P Jindal University',
       logo: '/images/universities/O P Jindal University.png',
       courses: '22 Courses',
-      link: '/university/op-jindal-university'
+      link: 'https://www.jgu.edu.in'
     },
     {
       id: 29,
       name: 'KIIT University',
       logo: '/images/universities/KIIT University.png',
       courses: '38 Courses',
-      link: '/university/kiit-university-online'
+      link: 'https://www.kiit.ac.in'
     },
     {
       id: 30,
       name: 'SRM University',
       logo: '/images/universities/SRM University.png',
       courses: '26 Courses',
-      link: '/university/srm-university-online'
+      link: 'https://www.srmist.edu.in'
     },
     {
       id: 31,
       name: 'Amrita University',
       logo: '/images/universities/Amrita University.png',
       courses: '20 Courses',
-      link: '/university/amrita-university-online'
+      link: 'https://www.amrita.edu'
     },
     {
       id: 32,
       name: 'IIM Sirmaur',
       logo: '/images/universities/IIM Sirmaur.png',
       courses: '5 Courses',
-      link: '/university/iim-sirmaur'
+      link: 'https://www.iimsirmaur.ac.in'
     },
     {
       id: 33,
       name: 'IIM Amritsar',
       logo: '/images/universities/IIM Amritsar.png',
       courses: '4 Courses',
-      link: '/university/iim-amritsar'
+      link: 'https://www.iimamritsar.ac.in'
     },
     {
       id: 34,
       name: 'Woolf University',
       logo: '/images/universities/Woolf University.png',
       courses: '8 Courses',
-      link: '/university/woolf-university'
+      link: 'https://www.woolf.university'
     },
     {
       id: 35,
       name: 'LIBA',
       logo: '/images/universities/LIBA.png',
       courses: '10 Courses',
-      link: '/university/liba'
+      link: 'https://www.liba.edu'
     },
     {
       id: 36,
       name: 'GIM',
       logo: '/images/universities/GIM.png',
       courses: '12 Courses',
-      link: '/university/gim'
+      link: 'https://www.gim.ac.in'
     },
     {
       id: 37,
       name: 'University of Maryland',
       logo: '/images/universities/University of Maryland.png',
       courses: '16 Courses',
-      link: '/university/university-of-maryland'
+      link: 'https://www.umd.edu'
     },
     {
       id: 38,
       name: 'Michigan State University',
       logo: '/images/universities/Michigan State University.png',
       courses: '14 Courses',
-      link: '/university/michigan-state-university'
+      link: 'https://www.msu.edu'
     },
     {
       id: 39,
       name: 'MIT University',
       logo: '/images/universities/MIT University.png',
       courses: '38 Courses',
-      link: '/university/mit-university-online'
+      link: 'https://www.mit.edu'
     },
     {
       id: 40,
       name: "Vignan's University",
       logo: "/images/universities/Vignan's University.png",
       courses: '25 Courses',
-      link: '/university/vignans-university-online'
+      link: 'https://www.vignansuniversity.ac.in'
     },
     {
       id: 41,
       name: 'Chitkara University',
       logo: '/images/universities/Chitkara University.png',
       courses: '30 Courses',
-      link: '/university/chitkara-university-online'
+      link: 'https://www.chitkara.edu.in'
     },
     {
       id: 42,
       name: 'Manav Racha University',
       logo: '/images/universities/Manav Racha University.png',
       courses: '31 Courses',
-      link: '/university/manav-rachna-university-online'
+      link: 'https://www.mru.edu.in'
     },
     {
       id: 43,
       name: 'Vivekananda Global University',
       logo: '/images/universities/Vivekananda Global University.png',
       courses: '18 Courses',
-      link: '/university/vivekananda-global-university'
+      link: 'https://www.vgu.ac.in'
     },
     {
       id: 44,
       name: 'Presidency University',
       logo: '/images/universities/Presidency University.png',
       courses: '22 Courses',
-      link: '/university/presidency-university-online'
+      link: 'https://www.presidencyuniversity.in'
     },
     {
       id: 45,
       name: 'Kalinga University',
       logo: '/images/universities/Kalinga University.png',
       courses: '24 Courses',
-      link: '/university/kalinga-university-online'
+      link: 'https://www.kalingauniversity.com'
     },
     {
       id: 46,
       name: 'Mody University',
       logo: '/images/universities/Mody University.png',
       courses: '20 Courses',
-      link: '/university/mody-university-online'
+      link: 'https://www.modyuniversity.ac.in'
     },
     {
       id: 47,
       name: 'Graphic Era University',
       logo: '/images/universities/Graphic Era University.png',
       courses: '26 Courses',
-      link: '/university/graphic-era-university-online'
+      link: 'https://www.geu.ac.in'
     },
     {
       id: 48,
       name: 'Guru Kashi University',
       logo: '/images/universities/Guru Kashi University.png',
       courses: '18 Courses',
-      link: '/university/guru-kashi-university-online'
+      link: 'https://www.gurukashiuniversity.in'
     },
     {
       id: 49,
       name: 'Shri Venkateshwara University',
       logo: '/images/universities/Shri Venkateshwara University.png',
       courses: '22 Courses',
-      link: '/university/shri-venkateshwara-university-online'
+      link: 'https://www.svu.ac.in'
     },
     {
       id: 50,
       name: 'Chaudhary Charan Singh University',
       logo: '/images/universities/Chaudhary Charan Singh University.png',
       courses: '16 Courses',
-      link: '/university/chaudhary-charan-singh-university'
+      link: 'https://www.ccsuniversity.ac.in'
     },
     {
       id: 51,
       name: 'Galgotia University',
       logo: '/images/universities/Galgotia University.png',
       courses: '28 Courses',
-      link: '/university/galgotia-university-online'
+      link: 'https://www.galgotiasuniversity.edu.in'
     },
     {
       id: 52,
       name: 'BIMTECH Online',
       logo: '/images/universities/BIMTECH Online.png',
       courses: '14 Courses',
-      link: '/university/bimtech-online'
+      link: 'https://www.bimtech.ac.in'
     },
     {
       id: 53,
       name: 'IMT Ghaziabad',
       logo: '/images/universities/IMT Ghaziabad.png',
       courses: '11 Courses',
-      link: '/university/imt-ghaziabad'
+      link: 'https://www.imt.edu'
     },
     {
       id: 54,
       name: 'Queen Margaret University',
       logo: '/images/universities/Queen Margaret University.png',
       courses: '9 Courses',
-      link: '/university/queen-margaret-university'
+      link: 'https://www.qmu.ac.uk'
     },
     {
       id: 55,
       name: 'University of Toledo',
       logo: '/images/universities/University of Toledo.png',
       courses: '12 Courses',
-      link: '/university/university-of-toledo'
+      link: 'https://www.utoledo.edu'
     },
     {
       id: 56,
       name: 'Edgewood University',
       logo: '/images/universities/Edgewood University.png',
       courses: '8 Courses',
-      link: '/university/edgewood-university'
+      link: 'https://www.edgewood.edu'
     },
     {
       id: 57,
       name: 'Atlas Skilltech University',
       logo: '/images/universities/Atlas Skilltech University.png',
       courses: '15 Courses',
-      link: '/university/atlas-skilltech-university'
+      link: 'https://www.atlasuniversity.edu.in'
     },
     {
       id: 58,
       name: 'Birchwood University',
       logo: '/images/universities/Birchwood University Online.png',
       courses: '10 Courses',
-      link: '/university/birchwood-university-online'
+      link: 'https://www.birchwooduniversity.com'
     },
     {
       id: 59,
       name: 'SSBM',
       logo: '/images/universities/SSBM.png',
       courses: '7 Courses',
-      link: '/university/ssbm'
+      link: 'https://www.ssbm.ch'
     },
     {
       id: 60,
       name: 'ESGCI School of Business',
       logo: '/images/universities/ESGCI School of Business.png',
       courses: '9 Courses',
-      link: '/university/esgci-school-of-business'
+      link: 'https://www.esgci.com'
     },
     {
       id: 61,
       name: 'Harappa School of Leadership',
       logo: '/images/universities/Harappa School of Leadership.png',
       courses: '6 Courses',
-      link: '/university/harappa-school-of-leadership'
+      link: 'https://harappa.education'
     },
     {
       id: 62,
       name: 'University of Applied Management',
       logo: '/images/universities/University of Applied Management.png',
       courses: '11 Courses',
-      link: '/university/university-of-applied-management'
+      link: 'https://www.fham.de'
     },
     {
       id: 63,
       name: 'Sanskriti University Engineering',
       logo: '/images/universities/Sanskriti University Engineering.png',
       courses: '13 Courses',
-      link: '/university/sanskriti-university-engineering'
+      link: 'https://www.sanskriti.edu.in'
     }
   ];
 
@@ -460,10 +459,12 @@ export default function Universities() {
         
         <div className={styles.universitiesGrid}>
           {displayedUniversities.map(university => (
-            <Link 
+            <a 
               href={university.link} 
               key={university.id}
               className={styles.universityCard}
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <div className={styles.logoContainer}>
                 <img 
@@ -476,7 +477,7 @@ export default function Universities() {
                 <p className={styles.coursesCount}>{university.courses}</p>
                 <h3 className={styles.universityName}>{university.name}</h3>
               </div>
-            </Link>
+            </a>
           ))}
         </div>
 

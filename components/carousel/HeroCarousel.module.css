@@ -484,47 +484,45 @@
     object-fit: cover;
     object-position: center;
     transform: scale(0.9);
-    /* Smooth edge fade to blend seamlessly with light blue background */
+    /* Smooth edge fade to blend seamlessly with light blue background - adjusted to preserve text visibility */
     mask-image: linear-gradient(
         to right,
-        transparent 0%,
-        rgba(0, 0, 0, 0.3) 5%,
-        black 15%,
-        black 85%,
-        rgba(0, 0, 0, 0.3) 95%,
-        transparent 100%
+        black 0%,
+        black 10%,
+        black 90%,
+        black 100%
     );
     -webkit-mask-image: linear-gradient(
         to right,
-        transparent 0%,
-        rgba(0, 0, 0, 0.3) 5%,
-        black 15%,
-        black 85%,
-        rgba(0, 0, 0, 0.3) 95%,
-        transparent 100%
+        black 0%,
+        black 10%,
+        black 90%,
+        black 100%
     );
 }
 
 .imageSlideOverlayLeft {
     position: absolute;
     top: 50%;
-    left: 15%;
+    left: 5%;
     transform: translateY(-50%);
     background: transparent;
     padding: 1rem;
     text-align: left;
     max-width: 350px;
+    z-index: 10;
 }
 
 .imageSlideOverlayRight {
     position: absolute;
     top: 50%;
-    right: 15%;
+    right: 5%;
     transform: translateY(-50%);
     background: transparent;
     padding: 1rem;
     text-align: right;
     max-width: 350px;
+    z-index: 10;
 }
 
 .imageSlideTitle {
