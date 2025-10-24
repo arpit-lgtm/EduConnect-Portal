@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import styles from '../styles/CourseDetails.module.css';
-import coursesData from './courseData';
+import coursesData from '../lib/courseData';
 
 export default function CourseDetails() {
   const router = useRouter();
