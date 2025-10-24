@@ -9,12 +9,15 @@ const EduAI = () => {
   const [isTyping, setIsTyping] = useState(false);
   const [conversationContext, setConversationContext] = useState(null); // Track conversation context
   const [showCounselorForm, setShowCounselorForm] = useState(false);
+  const [questionCount, setQuestionCount] = useState(0); // Track number of questions answered
+  const MAX_QUESTIONS = 3; // Limit to 3 questions before suggesting counselor
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
     email: '',
     city: '',
-    state: ''
+    state: '',
+    course: ''
   });
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [videoExpanded, setVideoExpanded] = useState(false);
@@ -139,14 +142,34 @@ const EduAI = () => {
 
     // Regular knowledge base responses (same as before but with context tracking)
 
-    // About EduConnect Portal
-    if (question.includes('educonnect') || question.includes('what is this') || question.includes('about this website') || question.includes('about this platform')) {
-      return "🎓 **About EduConnect**\n\nEduConnect is India's leading education portal that helps students find their perfect university match!\n\n**What we do:**\n✓ Connect students with 175+ top universities\n✓ AI-powered university matching system\n✓ Compare courses, fees, and placements\n✓ Free expert counseling\n✓ End-to-end admission support\n\n**Our Mission:**\nMaking quality education accessible and helping every student find the right university for their career goals.\n\nPart of Educativo Group - India's trusted education partner!";
+    // Navigation & Website Help
+    if (question.includes('navigate') || question.includes('find') && question.includes('page') || question.includes('where is') || question.includes('how to reach') || question.includes('go to')) {
+      return "🧭 **Website Navigation Guide**\n\n**Main Sections:**\n\n1️⃣ **Home Page** - Overview & Features\n   • Hero carousel with programs\n   • Quick course categories\n   • Video testimonials\n\n2️⃣ **University Matcher** (AI-Powered)\n   • Click 'Find Your Match' button\n   • Answer 9 simple questions\n   • Get personalized recommendations\n\n3️⃣ **Browse Categories** - All Courses\n   • PG Programs (MBA, M.Tech, MCA)\n   • UG Programs (BBA, B.Tech, BCA)\n   • Executive Education\n   • Doctorate & Diploma\n\n4️⃣ **Course Details Page**\n   • Universities offering that course\n   • Fees, ratings, locations\n   • Video insights\n   • Loan partner information\n\n5️⃣ **Compare Universities**\n   • Select up to 5 universities\n   • Side-by-side comparison\n   • Detailed fee breakdown\n\n6️⃣ **Expert Counseling**\n   • Scroll to 'Talk to Our Experts'\n   • Fill form or call directly\n   • Free consultation\n\n**Quick Tips:**\n• Use search to find specific courses\n• Header is sticky for easy navigation\n• MBA NINJA button for AI assistance\n• AskEduAI (that's me!) on every page\n\nWhat specific page are you looking for?";
     }
 
-    // About Educativo (Parent Company)
-    if (question.includes('educativo') || question.includes('parent company') || question.includes('who owns') || question.includes('company behind')) {
-      return "🏢 **About Educativo**\n\nEducativo is India's premier education services company and the parent organization of EduConnect.\n\n**What Educativo Does:**\n✓ Education counseling & career guidance\n✓ University partnerships across India\n✓ Student admission services\n✓ Scholarship assistance\n✓ Study abroad programs\n\n**Our Reach:**\n• 10+ years in education sector\n• 175+ university partnerships\n• 50,000+ students helped\n• Pan-India presence\n\n**Vision:**\nTransforming education accessibility through technology and personalized guidance.";
+    // About EduConnect Portal - ENHANCED
+    if (question.includes('educonnect') || question.includes('what is this') || question.includes('about this website') || question.includes('about this platform') || question.includes('what does this site do')) {
+      return "🎓 **About EduConnect Portal**\n\nEduConnect is India's most advanced AI-powered education portal, helping students discover their perfect university match!\n\n**🎯 What We Do:**\n✓ Connect students with 175+ top universities (153 Indian + 22 International)\n✓ AI-powered University Matcher with 9-question assessment\n✓ Compare courses, fees, placements, and ratings\n✓ Free expert counseling from senior advisors\n✓ End-to-end admission support & guidance\n✓ EMI & Education loan assistance\n✓ Scholarship guidance & application help\n\n**📊 Our Database:**\n• 100+ Courses across 7 categories\n• Skilling, UG, PG, Executive, PhD, Study Abroad, Diploma\n• Real-time fee updates\n• Authentic placement data\n• NAAC, NIRF, accreditation info\n\n**🤝 Who We Are:**\n• Part of **Educativo.in** (www.educativo.in)\n• Under **Audentia Group** umbrella\n• Sister companies: Audentia Research, Audentia Financial Services\n• Founded with mission to democratize education access\n\n**💡 Why Students Trust Us:**\n✓ Unbiased recommendations\n✓ No hidden charges\n✓ 24/7 student support\n✓ Career placement assistance\n✓ Private student community access\n✓ Study materials & resources\n✓ Round-the-clock student care\n✓ Professional networking opportunities\n\n**🎯 Our Mission:**\nMaking quality education accessible to every Indian student through technology, transparency, and personalized guidance.\n\nHow can I help you with your education journey today?";
+    }
+
+    // About Educativo.in (Parent Company) - ENHANCED
+    if (question.includes('educativo') || question.includes('educativo.in') || question.includes('parent company') || question.includes('who owns') || question.includes('company behind') || question.includes('www.educativo')) {
+      return "🏢 **About Educativo.in**\n\n**Website:** www.educativo.in\n**Mission:** Transforming India's education landscape through innovation and accessibility\n\n**🎓 What Educativo Does:**\n✓ Premier education counseling & career guidance platform\n✓ Strategic university partnerships across India & abroad\n✓ Comprehensive student admission services\n✓ Scholarship research & application assistance\n✓ Study abroad program facilitation\n✓ Career pathway planning & mentorship\n✓ Education loan & financial aid guidance\n\n**📈 Our Impact:**\n• 10+ years of excellence in education sector\n• 175+ university partnerships (153 Indian, 22 International)\n• 50,000+ students successfully guided\n• Pan-India presence with regional expertise\n• 500+ education counselors & experts\n• 94% student satisfaction rating\n\n**🏛️ Part of Audentia Group:**\nEducativo is the flagship education division of **Audentia Group**, a diversified conglomerate focused on:\n• Education Services (**Educativo.in**)\n• Market Research (**Audentia Research**)\n• Financial Advisory (**Audentia Financial Services**)\n\n**🌟 Educativo's Platforms:**\n1. **EduConnect** - AI-powered university matcher (this portal!)\n2. **Career Guidance Center** - Professional counseling\n3. **Study Abroad Division** - International education\n4. **Scholarship Portal** - Financial aid assistance\n\n**🎯 Why Choose Educativo:**\n✓ Unbiased, student-first approach\n✓ Technology-driven solutions (AI matching)\n✓ Comprehensive support (pre to post-enrollment)\n✓ Strong university relationships\n✓ Industry connections for placements\n✓ Transparent fee structures\n✓ No hidden charges or commissions\n\n**📞 Corporate Presence:**\n• Mumbai (Head Office)\n• Delhi, Bangalore, Pune, Chennai (Regional offices)\n• 24/7 support infrastructure\n\n**Vision:** Becoming India's most trusted education partner, empowering every student to achieve their academic and career dreams.\n\nWant to know about our group companies?";
+    }
+
+    // About Audentia Group - NEW
+    if (question.includes('audentia group') || question.includes('audentia') && !question.includes('research') && !question.includes('financial')) {
+      return "🏛️ **About Audentia Group**\n\n**Group Philosophy:** Excellence through Innovation, Trust through Transparency\n\n**🌐 Audentia Group Overview:**\nAudentia Group is a diversified business conglomerate with strategic presence across three key sectors:\n\n**1️⃣ Education Services**\n   **Educativo.in** (www.educativo.in)\n   • India's leading education advisory platform\n   • 175+ university partnerships\n   • AI-powered student matching\n   • 50,000+ students guided\n   • EduConnect portal (you're here!)\n\n**2️⃣ Market Research & Analytics**\n   **Audentia Research**\n   • Business intelligence services\n   • Market research & consumer insights\n   • Data analytics & trend forecasting\n   • Industry reports & whitepapers\n   • Corporate advisory\n\n**3️⃣ Financial Advisory Services**\n   **Audentia Financial Services**\n   • Education loan facilitation\n   • Financial planning & advisory\n   • Investment guidance\n   • EMI structuring for education\n   • Scholarship financial assistance\n\n**🎯 Group Strengths:**\n✓ Multi-sector expertise & synergy\n✓ Technology-driven solutions\n✓ Pan-India operational network\n✓ 10+ years of industry trust\n✓ Strong ethical foundation\n✓ Customer-centric approach\n\n**🤝 How Subsidiaries Work Together:**\n• **Educativo** identifies student needs\n• **Audentia Research** provides market insights on education trends\n• **Audentia Financial** enables education financing\n• **Integrated approach** for holistic student support\n\n**💡 Group Vision:**\nEmpowering individuals and businesses through knowledge, research, and financial wisdom.\n\n**🌟 Core Values:**\n• Integrity & Transparency\n• Innovation & Excellence\n• Student/Client First\n• Data-Driven Decisions\n• Social Impact\n\nWant to know more about any specific subsidiary?";
+    }
+
+    // About Audentia Research - NEW
+    if (question.includes('audentia research') || question.includes('research division')) {
+      return "📊 **Audentia Research**\n\n**Division:** Market Research & Business Intelligence\n**Parent:** Audentia Group\n\n**🔍 What Audentia Research Does:**\n\n**Core Services:**\n✓ Market research & consumer behavior analysis\n✓ Industry trend forecasting\n✓ Competitive intelligence\n✓ Data analytics & visualization\n✓ Custom research studies\n✓ Business advisory & consulting\n\n**🎓 Education Sector Focus:**\n• University ranking methodologies\n• Student preference studies\n• Education market trends\n• Course demand analysis\n• Placement trend research\n• Fee benchmarking studies\n\n**💼 Corporate Services:**\n• Brand perception studies\n• Product launch research\n• Customer satisfaction surveys\n• Market sizing & forecasting\n• Strategic advisory\n\n**🤝 Integration with Educativo:**\n• Provides data for EduConnect's AI matching\n• University performance analytics\n• Student outcome tracking\n• Course popularity trends\n• Helps optimize student recommendations\n\n**📈 Research Capabilities:**\n• Quantitative & Qualitative research\n• Big data analytics\n• Predictive modeling\n• Industry reports\n\n**Why Audentia Research Matters to You:**\nTheir insights power EduConnect's smart recommendations, ensuring you get matched with universities based on real data, trends, and student success metrics!\n\nNeed information about our other group companies?";
+    }
+
+    // About Audentia Financial Services - NEW
+    if (question.includes('audentia financial') || question.includes('financial services') || question.includes('education loan') || question.includes('emi')) {
+      return "💰 **Audentia Financial Services**\n\n**Division:** Financial Advisory & Education Financing\n**Parent:** Audentia Group\n\n**🏦 What Audentia Financial Does:**\n\n**Core Services:**\n✓ Education loan facilitation & guidance\n✓ EMI structuring for course fees\n✓ Scholarship financial planning\n✓ Personal financial advisory\n✓ Investment guidance for education\n✓ Tax planning for education expenses\n\n**🎓 Education Financing Solutions:**\n\n**1. Education Loan Assistance**\n• Partner banks: HDFC Credila, Bajaj Finserv, ICICI, Axis\n• Loan amount: ₹50,000 to ₹50,00,000\n• Covers: Tuition + Living expenses\n• Interest rates: 8.5% - 12% per annum\n• Repayment: Up to 15 years\n• Processing: Fast-track approval (7-15 days)\n\n**2. EMI Payment Plans**\n• Zero-cost EMI options available\n• Semester-wise payment structuring\n• No collateral for loans up to ₹7.5 lakhs\n• Flexible tenure options\n\n**3. Scholarship Financial Advisory**\n• Help maximize scholarship benefits\n• Tax implications guidance\n• Fund management advice\n\n**💡 Financial Planning Services:**\n✓ Education cost estimation\n✓ Family budget planning\n✓ Investment advice for education goals\n✓ Document preparation for loans\n✓ Loan comparison & selection\n\n**🤝 Integration with Educativo:**\n• Seamless loan application through EduConnect\n• Pre-approved loan offers for partner universities\n• Fee structuring aligned with course costs\n• One-stop solution: Admission + Financing\n\n**📊 Success Metrics:**\n• 95% loan approval rate\n• Average processing time: 10 days\n• ₹500 Cr+ education financing facilitated\n• 10,000+ students financed\n\n**🎯 Why Choose Audentia Financial:**\n✓ Education financing experts\n✓ Better rates through partnerships\n✓ Hassle-free documentation\n✓ Quick approvals\n✓ No hidden charges\n✓ Post-disbursement support\n\n**Contact for Loan Help:**\nOur education loan specialists can help you understand financing options for any course or university!\n\nWant to know about loan options for a specific course?";
     }
 
     // Contact & Support
@@ -360,15 +383,44 @@ const EduAI = () => {
       return;
     }
 
+    // Check if question limit reached
+    if (questionCount >= MAX_QUESTIONS) {
+      setIsTyping(true);
+      setTimeout(() => {
+        const botMessage = {
+          type: 'bot',
+          text: "I've answered your questions to the best of my ability! 😊\n\nFor more detailed information and personalized guidance, I'd recommend connecting with one of our expert counselors. They can provide in-depth answers specific to your situation.\n\nWould you like to connect with a counselor?",
+          timestamp: new Date(),
+          showConnectButton: true
+        };
+        setMessages(prev => [...prev, botMessage]);
+        setIsTyping(false);
+      }, 800);
+      return;
+    }
+
     setIsTyping(true);
 
     // Simulate AI thinking delay
     setTimeout(async () => {
       const response = await getSmartAIResponse(currentInput, lastBotMessage);
+      
+      // Increment question count
+      setQuestionCount(prev => prev + 1);
+      
+      // Check if this is the last question
+      const isLastQuestion = questionCount + 1 >= MAX_QUESTIONS;
+      
+      let finalResponse = response;
+      if (isLastQuestion) {
+        finalResponse += "\n\n💡 **That's your 3rd question!** For more detailed guidance, I'd recommend connecting with one of our expert counselors who can provide personalized assistance.";
+      }
+      
       const botMessage = {
         type: 'bot',
-        text: response,
-        timestamp: new Date()
+        text: finalResponse,
+        timestamp: new Date(),
+        showConnectButton: isLastQuestion
       };
       setMessages(prev => [...prev, botMessage]);
       setIsTyping(false);
@@ -390,7 +442,8 @@ const EduAI = () => {
       setConversationContext(null);
       setShowCounselorForm(false);
       setFormSubmitted(false);
-      setFormData({ name: '', phone: '', email: '', city: '', state: '' });
+      setQuestionCount(0); // Reset question counter
+      setFormData({ name: '', phone: '', email: '', city: '', state: '', course: '' });
     }, 300);
   };
 
@@ -399,7 +452,8 @@ const EduAI = () => {
     setConversationContext(null);
     setShowCounselorForm(false);
     setFormSubmitted(false);
-    setFormData({ name: '', phone: '', email: '', city: '', state: '' });
+    setQuestionCount(0); // Reset question counter
+    setFormData({ name: '', phone: '', email: '', city: '', state: '', course: '' });
     setInputValue('');
   };
 
@@ -423,16 +477,17 @@ const EduAI = () => {
     // Add confirmation message
     const confirmationMessage = {
       type: 'bot',
-      text: `✅ **Thank you, ${formData.name}!**\n\nYour details have been submitted successfully. One of our expert counselors will connect with you shortly on **${formData.phone}**.\n\nWe're excited to help you with your education journey! 🎓`,
+      text: `✅ **Thank you for sharing your details, ${formData.name}!**\n\nOne of our counselors will connect with you shortly regarding **${formData.course}**.\n\nWe'll reach out to you on:\n📞 ${formData.phone}\n📧 ${formData.email}\n\nLooking forward to helping you with your education journey! 🎓`,
       timestamp: new Date()
     };
     setMessages(prev => [...prev, confirmationMessage]);
     
-    // Reset form after 2 seconds
+    // Reset form after 3 seconds
     setTimeout(() => {
       setShowCounselorForm(false);
-      setFormData({ name: '', phone: '', email: '', city: '', state: '' });
-    }, 2000);
+      setFormSubmitted(false);
+      setFormData({ name: '', phone: '', email: '', city: '', state: '', course: '' });
+    }, 3000);
   };
 
   // Quick suggestion buttons - More comprehensive
@@ -614,6 +669,22 @@ const EduAI = () => {
                             </span>
                           ))}
                         </div>
+                        
+                        {/* Show Connect button if AI suggests connecting with counselor */}
+                        {message.type === 'bot' && 
+                         (message.text.toLowerCase().includes('connect with') || 
+                          message.text.toLowerCase().includes('talk to') ||
+                          message.text.toLowerCase().includes('counselor') ||
+                          message.text.toLowerCase().includes('counsellor')) && 
+                         !showCounselorForm && (
+                          <button 
+                            className={styles.connectButton}
+                            onClick={() => setShowCounselorForm(true)}
+                          >
+                            📞 Connect with Counselor
+                          </button>
+                        )}
+                        
                         <div className={styles.messageTime}>
                           {message.timestamp.toLocaleTimeString('en-US', { 
                             hour: '2-digit', 
@@ -684,6 +755,19 @@ const EduAI = () => {
                       />
                     </div>
                     
+                    <div className={styles.formGroup}>
+                      <label htmlFor="course">Course Interested In *</label>
+                      <input
+                        type="text"
+                        id="course"
+                        name="course"
+                        value={formData.course}
+                        onChange={handleFormChange}
+                        placeholder="e.g., MBA, B.Tech, MCA"
+                        required
+                      />
+                    </div>
+                    
                     <div className={styles.formRow}>
                       <div className={styles.formGroup}>
                         <label htmlFor="city">City *</label>
@@ -721,48 +805,28 @@ const EduAI = () => {
 
               {/* Input Area */}
               <div className={styles.chatInputContainer}>
-                {messages.length > 0 && (
-                  <div className={styles.quickActions}>
-                    <button
-                      className={styles.quickActionButton}
-                      onClick={() => handleSuggestionClick('Show me universities in Maharashtra')}
-                    >
-                      🏙️ Maharashtra Unis
-                    </button>
-                    <button
-                      className={styles.quickActionButton}
-                      onClick={() => handleSuggestionClick('What are MBA fees?')}
-                    >
-                      💰 MBA Fees
-                    </button>
-                    <button
-                      className={styles.quickActionButton}
-                      onClick={() => handleSuggestionClick('Tell me about online courses')}
-                    >
-                      💻 Online Courses
-                    </button>
-                  </div>
-                )}
-                
                 <div className={styles.chatInputWrapper}>
                   <textarea
                     ref={inputRef}
                     className={styles.chatInput}
-                    placeholder="Ask me anything about universities, courses, fees..."
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
-                    onKeyPress={handleKeyPress}
-                    rows="1"
-                    disabled={isTyping}
+                    onKeyPress={(e) => {
+                      if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        handleSendMessage();
+                      }
+                    }}
+                    placeholder="Ask about courses, fees, universities..."
+                    rows={1}
                   />
                   <button 
                     className={styles.sendButton}
                     onClick={handleSendMessage}
-                    disabled={!inputValue.trim() || isTyping}
-                    aria-label="Send message"
+                    disabled={isTyping || !inputValue.trim()}
                   >
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 8L11 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
                     </svg>
                   </button>
                 </div>

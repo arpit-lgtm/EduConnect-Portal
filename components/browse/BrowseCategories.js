@@ -5,6 +5,114 @@ import styles from './BrowseCategories.module.css';
 const BrowseCategories = () => {
     const [activeTab, setActiveTab] = useState('all');
 
+    // Mapping from course display names to courseData.js keys
+    const courseNameToId = {
+        'Online MBA': 'Executive-MBA',
+        '1 Year MBA Online': 'Executive-MBA',
+        'Distance MBA': 'Executive-MBA',
+        'Executive MBA for Working Professionals': 'Executive-MBA',
+        'Online Global MBA': 'MBA-International-Business',
+        'Online MCA': 'MCA-Advanced',
+        'M.Tech': 'MTech-CSE',
+        'Online M.Sc': 'MSc-CS',
+        'MS Degree Online': 'MSc-CS',
+        'Online MA': 'MA-English',
+        'Online M.Com': 'MCom-Advanced',
+        'Online Master of Design': 'M-Design',
+        'Dual MBA Online': 'Executive-MBA',
+        'Online MBA after Diploma': 'Executive-MBA',
+        'Online Master of Education (M.Ed)': 'M-Ed',
+        'Online Global MCA': 'MCA-Advanced',
+        'Online PGDM': 'PGDM',
+        'Online PG Diploma & Certificate': 'PG-Diploma-Management',
+        'Distance MCA': 'MCA-Advanced',
+        'Distance M.Com': 'MCom-Advanced',
+        'Distance M.Sc': 'MSc-CS',
+        'Distance MA': 'MA-English',
+        'Online MBA Plus': 'Executive-MBA',
+        'MBA in Business Analytics': 'MBA-Business-Analytics',
+        'M.A. in Public Policy': 'MA-PublicPolicy',
+        'M.A. in International Relations, Security, and Strategy': 'MA-PublicPolicy',
+        'Online Master of Social Work': 'MA-Sociology',
+        'Online MBA & Doctorate': 'Executive-MBA',
+        'Online M.Ed & Ed.D': 'M-Ed',
+        'Online Master of Management Studies': 'Executive-MBA',
+        'Blended MBA': 'Executive-MBA',
+        'Online BBA': 'BBA',
+        'Online BCA': 'BCA',
+        'Online B.Com': 'BCom',
+        'Online BA': 'BA-Economics',
+        'Distance BBA': 'BBA',
+        'Distance BCA': 'BCA',
+        'Distance B.Com': 'BCom',
+        'Distance BA': 'BA-Economics',
+        'Online B.Sc': 'BSc-CS',
+        'Bachelor of Design': 'B-Design',
+        // Study Abroad mappings
+        'Study in USA': 'MBA-USA',
+        'Study in UK': 'MSc-UK',
+        'Study in Canada': 'MS-Canada',
+        'Study in Australia': 'MBA-Australia',
+        'Study in Germany': 'MS-Germany',
+        'Study in Ireland': 'MSc-UK', // Using UK as fallback for Ireland
+        'Study in Singapore': 'MSc-Singapore',
+        'Global MBA Programs': 'MIM-Europe',
+        // Executive Education mappings
+        'IIM Online Courses': 'Mini-MBA',
+        'IIIT Online Courses': 'AI-ML-Exec',
+        'Data Science & Analytics': 'Data-Analytics-Exec',
+        'Executive M.Tech for Working Professionals': 'MTech-CSE',
+        'AI and Machine Learning': 'AI-ML-Exec',
+        'Generative AI': 'AI-ML-Exec',
+        'UI UX Certificate Program': 'Design-Thinking-Exec',
+        'Leadership & Management': 'Exec-Leadership',
+        'Finance': 'Finance-Management-Exec',
+        'Marketing': 'Marketing-Analytics-Exec',
+        'Human Resource (HR)': 'HR-Analytics-Exec',
+        'Healthcare': 'Healthcare-Management-Exec',
+        'Operations': 'Operations-Excellence-Exec',
+        'Business Analytics': 'Business-Analytics-Exec',
+        'Software & Technology': 'Cloud-Computing-Exec',
+        'PG Diploma Applied Statistics': 'Data-Analytics-Exec',
+        'IIT Courses Online': 'AI-ML-Exec',
+        'Blockchain': 'Blockchain-Exec',
+        'Cloud Computing': 'Cloud-Computing-Exec',
+        'PG Program In Technology Management': 'Strategic-Management-Exec',
+        'Big Data Engineering': 'Data-Analytics-Exec',
+        'DevOps': 'Cloud-Computing-Exec',
+        'Quantum Computing': 'AI-ML-Exec',
+        'Digital Transformation and Innovation': 'Digital-Transformation-Exec',
+        'Public Policy Management': 'Strategic-Management-Exec',
+        'Cyber Security': 'Cyber-Security-Exec',
+        'Executive Program in Retail Management': 'Strategic-Management-Exec',
+        'Online Executive Program in Emerging Technologies': 'Digital-Transformation-Exec',
+        'Online Executive PG Diploma in Sports Management': 'Strategic-Management-Exec',
+        // PhD mappings
+        'Online PhD Programs': 'PhD-Management',
+        'Doctor of Business Administration': 'PhD-Management',
+        'PhD in Management': 'PhD-Management',
+        'PhD in Computer Science': 'PhD-Technology',
+        'Integrated MBA & Doctorate': 'PhD-Management',
+        // Advanced Diploma mappings
+        'Advanced Diploma in Management': 'Mini-MBA',
+        'PG Diploma in Digital Marketing': 'Digital-Marketing-Exec',
+        'PG Diploma in Data Science': 'Data-Analytics-Exec',
+        'PG Diploma in Finance': 'Finance-Management-Exec',
+        'PG Diploma in HR Management': 'HR-Analytics-Exec',
+        'Advanced Diploma in IT': 'Cloud-Computing-Exec',
+        // Skilling & Certificate mappings
+        'Digital Marketing Certificate': 'Digital-Marketing',
+        'Financial Modeling': 'Financial-Analysis',
+        'Project Management': 'Project-Management',
+        'Python Programming': 'Full-Stack-Development',
+        'Full Stack Development': 'Full-Stack-Development',
+        'Graphic Design': 'UI-UX-Design',
+        'Content Writing': 'Content-Writing',
+        'SEO & SEM': 'Digital-Marketing',
+        'Social Media Marketing': 'Digital-Marketing',
+        'Excel Advanced': 'Financial-Analysis'
+    };
+
     const tabs = [
         'PG Courses',
         'Executive Education',
@@ -169,18 +277,30 @@ const BrowseCategories = () => {
                     <div className={styles.contentColumn}>
                         <div className={styles.courseGrid}>
                             {getDisplayCourses().map((course, index) => (
-                                <Link href={course.link} key={index} className={styles.courseCard}>
+                                <div key={index} className={styles.courseCard}>
                                     <div className={styles.courseHeader}>
                                         <h3 className={styles.courseName}>{course.name}</h3>
                                         {course.badge && <span className={styles.badge}>{course.badge}</span>}
                                     </div>
                                     <p className={styles.specializations}>{course.specializations}</p>
-                                    <div className={styles.compareInfo}>
+                                    <div 
+                                        className={styles.compareInfo}
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            const courseId = courseNameToId[course.name] || 'Executive-MBA';
+                                            const displayName = encodeURIComponent(course.name);
+                                            window.open(
+                                                `/course-details?courseId=${courseId}&displayName=${displayName}`,
+                                                '_blank'
+                                            );
+                                        }}
+                                        style={{ cursor: 'pointer' }}
+                                    >
                                         <span className={styles.compareText}>Compare</span>
                                         <span className={styles.compareCount}>{course.compareCount}</span>
                                         <span className={styles.nowText}>Now</span>
                                     </div>
-                                </Link>
+                                </div>
                             ))}
                             
                             {/* View All Button as Grid Item */}

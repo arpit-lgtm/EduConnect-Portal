@@ -336,12 +336,12 @@ function initializeCoursePage() {
     const urlParams = new URLSearchParams(window.location.search);
     const courseSlug = urlParams.get('course');
     
-    if (!courseSlug || !courseData[courseSlug]) {
+    if (!courseSlug || !coursesData[courseSlug]) {
         console.error('Course not found');
         return;
     }
     
-    const course = courseData[courseSlug];
+    const course = coursesData[courseSlug];
     
     // Update page title and meta
     document.title = `${course.title} - EduConnect`;
@@ -523,7 +523,7 @@ if (typeof module !== 'undefined' && module.exports) {
         showNotification,
         LoadingManager,
         API,
-        courseData,
+        coursesData,
         initializeCoursePage,
         initializeMainPage
     };

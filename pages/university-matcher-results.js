@@ -267,12 +267,46 @@ const UniversityMatcherResults = () => {
         score += 15; // Bonus for matching location
       }
 
-      // Match study mode
-      if (formData.studyMode && uni.programs && Array.isArray(uni.programs)) {
-        const hasMatchingMode = uni.programs.some(program => 
-          program.mode && program.mode.toLowerCase().includes(formData.studyMode.toLowerCase())
-        );
-        if (hasMatchingMode) score += 20;
+      // Match study mode (check both uni.mode array and uni.programs)
+      if (formData.studyMode) {
+        let hasMatchingMode = false;
+        
+        // Normalize study mode for comparison (remove hyphens, extra spaces, etc.)
+        const normalizeMode = (str) => str.toLowerCase().trim().replace(/-/g, ' ').replace(/\s+/g, ' ');
+        const targetMode = normalizeMode(formData.studyMode);
+        
+        // Check direct mode property (most common in database)
+        if (uni.mode && Array.isArray(uni.mode)) {
+          hasMatchingMode = uni.mode.some(mode => {
+            const uniMode = normalizeMode(mode);
+            // Check if either contains the other (more flexible matching)
+            const modeMatch = uniMode.includes(targetMode) || 
+                             targetMode.includes(uniMode) ||
+                             uniMode.split(' ').some(word => targetMode.includes(word)) ||
+                             targetMode.split(' ').some(word => uniMode.includes(word));
+            return modeMatch;
+          });
+        }
+        
+        // Fallback: Check programs array if mode not found
+        if (!hasMatchingMode && uni.programs && Array.isArray(uni.programs)) {
+          hasMatchingMode = uni.programs.some(program => {
+            if (program.mode) {
+              const progMode = normalizeMode(program.mode);
+              return progMode.includes(targetMode) || 
+                     targetMode.includes(progMode) ||
+                     progMode.split(' ').some(word => targetMode.includes(word)) ||
+                     targetMode.split(' ').some(word => progMode.includes(word));
+            }
+            return false;
+          });
+        }
+        
+        if (hasMatchingMode) {
+          score += 20;
+        } else {
+          return null; // Filter out if study mode doesn't match
+        }
       }
 
       // Match degree type

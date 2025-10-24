@@ -17,16 +17,16 @@ const ExpertGuidance = () => {
     };
 
     const experts = [
+        { name: 'Abdul Sayed', title: 'Vice President, Business', experience: '10+ Years', rating: '5.0', image: '/images/counsellors/Abdul Sayed.png' },
         { name: 'Imran Ansari', title: 'Manager, Sales', experience: '7+ Years', rating: '4.9', image: '/images/counsellors/Imran Ansari.jpeg' },
         { name: 'Asif Shaikh', title: 'Team Leader', experience: '5+ Years', rating: '4.8', image: '/images/counsellors/Asif Shaikh.jpeg' },
-        { name: 'Komal Wadekar', title: 'Team Leader', experience: '5+ Years', rating: '4.8', image: '/images/counsellors/Komal Wadekar.jpg' },
+        { name: 'Komal Wadekar', title: 'Team Leader', experience: '5+ Years', rating: '4.8', image: '/images/counsellors/Komal Wadekar.jpeg' },
         { name: 'Athar Khan', title: 'Team Leader', experience: '4+ Years', rating: '4.8', image: '/images/counsellors/Athar Khan.jpeg' },
-        { name: 'Aditya Sable', title: 'Senior Business Development Executive', experience: '3+ Years', rating: '4.7', image: '/images/counsellors/Aditya Sable.jpeg' },
         { name: 'Akash Dubey', title: 'Business Development Executive', experience: '2+ Years', rating: '4.6', image: '/images/counsellors/Akash Dubey.jpeg' },
-        { name: 'Monika Barman', title: 'Business Development Executive', experience: '2+ Years', rating: '4.6', image: '/images/counsellors/Monika Barman.png' },
+        { name: 'Monika Barman', title: 'Business Development Executive', experience: '2+ Years', rating: '4.6', image: '/images/counsellors/Monika Barman.jpeg' },
         { name: 'Priya Prajapati', title: 'Career Counsellor', experience: '2+ Years', rating: '4.6', image: '/images/counsellors/Priya Prajapati.jpeg' },
         { name: 'Indu Mehta', title: 'Career Counsellor', experience: '2+ Years', rating: '4.6', image: '/images/counsellors/Indu Mehta.jpeg' },
-        { name: 'Prutha Ghag', title: 'Business Development Executive', experience: '1+ Years', rating: '4.5', image: '/images/counsellors/Prutha Ghag.jpeg' },
+        { name: 'Prutha Ghag', title: 'Business Development Executive', experience: '1+ Years', rating: '4.5', image: '/images/counsellors/Prutha Garg.jpeg' },
         { name: 'Rahul Bane', title: 'Business Development Executive', experience: '1+ Years', rating: '4.5', image: '/images/counsellors/Rahul Bane.jpeg' },
         { name: 'Sarvesh Poojari', title: 'Business Development Executive', experience: '1+ Years', rating: '4.5', image: '/images/counsellors/Sarvesh Poojari.jpeg' },
         { name: 'Aishwarya Pavaskar', title: 'Business Development Executive', experience: '1+ Years', rating: '4.5', image: '/images/counsellors/Aishwarya Pavaskar.jpeg' }

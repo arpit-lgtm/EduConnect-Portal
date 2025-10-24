@@ -10,7 +10,6 @@ import VideoTestimonials from '../components/testimonials/VideoTestimonials';
 import FAQ from '../components/faq/FAQ';
 import dynamic from 'next/dynamic';
 import Footer from '../components/layout/Footer';
-import EduAI from '../components/eduai/EduAI';
 
 // Import TalkToExperts dynamically to avoid SSR hydration issues
 const TalkToExperts = dynamic(() => import('../components/contact/TalkToExperts'), {
@@ -40,9 +39,6 @@ export default function Home() {
       </main>
       
       <Footer />
-      
-      {/* AskEduAI Button & Video - Only on Home Page */}
-      <EduAI />
     </div>
   );
 }

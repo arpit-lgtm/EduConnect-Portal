@@ -8,6 +8,9 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* CENTER ALIGN THE MODULE */
 }
 
 .header {
@@ -36,6 +39,8 @@
     grid-template-columns: 2fr 1fr;
     gap: 3rem;
     align-items: start;
+    width: 100%; /* Ensure content uses full container width */
+    max-width: 1200px; /* Match container max-width */
 }
 
 .contactCards {

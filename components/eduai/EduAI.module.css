@@ -744,6 +744,34 @@
   box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
 }
 
+/* Connect Button - Shows when AI suggests counselor */
+.connectButton {
+  margin-top: 8px;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.connectButton:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+}
+
+.connectButton:active {
+  transform: translateY(0);
+}
+
 /* Question Section */
 .questionSection {
   display: flex;

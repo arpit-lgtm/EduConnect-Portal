@@ -56,6 +56,23 @@
   }
 }
 
+/* Course Title in Header - CENTER */
+.courseTitle {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 20px;
+}
+
+.courseTitle h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+  text-align: center;
+}
+
 /* Navigation - LEFT SIDE (After Logo) */
 .navigation {
   display: flex;
@@ -110,22 +127,35 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  background: #ffffff;
-  color: #0074d7;
+  background: linear-gradient(135deg, #0074d7, #00a8ff, #0074d7, #005bb0);
+  background-size: 400% 400%;
+  color: #ffffff;
   text-decoration: none;
   padding: 8px 16px;
   border-radius: 8px;
-  border: 2px solid #0074d7;
+  border: 2px solid transparent;
   transition: all 0.3s ease;
   white-space: nowrap;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  animation: colorShift 8s ease-in-out infinite;
+}
+
+@keyframes colorShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .universityFinderBtn:hover {
-  background: #0074d7;
-  color: #ffffff;
   transform: translateY(-1px);
   box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  animation-duration: 4s;
 }
 
 .finderIcon {

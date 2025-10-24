@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import styles from './Header.module.css';
 
-const Header = () => {
+const Header = ({ courseTitle = null }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navigationLinks = [
@@ -87,29 +87,35 @@ const Header = () => {
             />
           </Link>
 
-          {/* Navigation in center */}
-          <nav className={`${styles.navigation} ${isMenuOpen ? styles.active : ''}`}>
-            <ul className={styles.navList}>
-              {navigationLinks.map((link, index) => (
-                <li key={index} className={styles.navItem}>
-                  <Link href={link.href}>
-                    {link.title}
-                  </Link>
-                  {link.submenu && (
-                    <ul className={styles.submenu}>
-                      {link.submenu.map((sublink, subIndex) => (
-                        <li key={subIndex}>
-                          <Link href={sublink.href}>
-                            {sublink.title}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </nav>
+          {/* Navigation in center OR Course Title */}
+          {courseTitle ? (
+            <div className={styles.courseTitle}>
+              <h1>{courseTitle}</h1>
+            </div>
+          ) : (
+            <nav className={`${styles.navigation} ${isMenuOpen ? styles.active : ''}`}>
+              <ul className={styles.navList}>
+                {navigationLinks.map((link, index) => (
+                  <li key={index} className={styles.navItem}>
+                    <Link href={link.href}>
+                      {link.title}
+                    </Link>
+                    {link.submenu && (
+                      <ul className={styles.submenu}>
+                        {link.submenu.map((sublink, subIndex) => (
+                          <li key={subIndex}>
+                            <Link href={sublink.href}>
+                              {sublink.title}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          )}
 
           {/* Header Actions with University Finder and Social Links */}
           <div className={styles.headerActions}>

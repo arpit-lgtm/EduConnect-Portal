@@ -1,0 +1,547 @@
+/* Compare Universities Page Styles */
+.comparePage {
+  min-height: 100vh;
+  background: #f8f9fa;
+  padding: 100px 0 50px;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.loading,
+.error {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+}
+
+.error h2 {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Page Header */
+.pageHeader {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.pageTitle {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #2c3e50;
+  margin: 0 0 10px 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.pageSubtitle {
+  font-size: 1.1rem;
+  color: #666;
+  margin: 0;
+}
+
+/* Comparison Section */
+.comparisonSection {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 30px;
+  margin-bottom: 40px;
+  overflow: hidden;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+  overflow-y: visible;
+}
+
+.comparisonTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 800px;
+}
+
+.comparisonTable thead th {
+  position: sticky;
+  top: 80px;
+  z-index: 10;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.labelColumn {
+  width: 250px;
+  min-width: 250px;
+  text-align: left;
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-top-left-radius: 12px;
+  position: sticky;
+  left: 0;
+  z-index: 11;
+}
+
+.parametersHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.parametersHeader span:first-child {
+  font-size: 1.5rem;
+}
+
+.universityColumn {
+  width: 300px;
+  min-width: 300px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-bottom: 3px solid #667eea;
+}
+
+.universityColumn:last-child {
+  border-top-right-radius: 12px;
+}
+
+.universityHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.universityLogo {
+  width: 100px;
+  height: 100px;
+  background: white;
+  border-radius: 12px;
+  padding: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.universityLogo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.logoFallback {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-size: 1.8rem;
+  font-weight: bold;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+.universityName {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0;
+  text-align: center;
+  line-height: 1.3;
+}
+
+/* Table Body */
+.comparisonTable tbody tr {
+  transition: background 0.2s ease;
+}
+
+.comparisonTable tbody tr:hover {
+  background: #f0f3ff;
+}
+
+.evenRow {
+  background: #fafbfc;
+}
+
+.oddRow {
+  background: white;
+}
+
+.parameterLabel {
+  padding: 18px 20px;
+  font-size: 0.95rem;
+  color: #2c3e50;
+  border-left: 4px solid #667eea;
+  background: #f8f9fa;
+  font-weight: 600;
+  position: sticky;
+  left: 0;
+  z-index: 5;
+}
+
+.evenRow .parameterLabel {
+  background: #f0f2f5;
+}
+
+.parameterValue {
+  padding: 18px 20px;
+  font-size: 0.9rem;
+  color: #555;
+  text-align: center;
+  vertical-align: middle;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.rating {
+  color: #ffa726;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.fees {
+  color: #27ae60;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.ranking {
+  font-weight: 600;
+}
+
+.ranked {
+  color: #667eea;
+  background: #f0f3ff;
+  padding: 4px 12px;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+.notRanked {
+  color: #999;
+  font-style: italic;
+}
+
+/* Loan Section */
+.loanSection {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  padding: 40px;
+  margin-bottom: 40px;
+  color: white;
+}
+
+.loanHeader {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.loanTitle {
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0 0 10px 0;
+}
+
+.loanSubtitle {
+  font-size: 1.1rem;
+  opacity: 0.95;
+  margin: 0;
+}
+
+.loanPartnersGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.loanPartnerCard {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.loanPartnerCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.loanPartnerLogo {
+  width: 120px;
+  height: 80px;
+  margin: 0 auto 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loanPartnerLogo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.loanLogoFallback {
+  width: 100%;
+  height: 100%;
+  background: #f8f9fa;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  color: #666;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 10px;
+}
+
+.partnerName {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0 0 15px 0;
+}
+
+.applyBtn {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.applyBtn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.loanActions {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.compareEmiBtn,
+.zeroCostBtn {
+  padding: 15px 40px;
+  border: 2px solid white;
+  background: transparent;
+  color: white;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.compareEmiBtn:hover,
+.zeroCostBtn:hover {
+  background: white;
+  color: #667eea;
+}
+
+/* Action Buttons */
+.actionButtons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 20px 0;
+}
+
+.printBtn,
+.backBtn {
+  padding: 15px 35px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.printBtn {
+  background: #27ae60;
+  color: white;
+}
+
+.printBtn:hover {
+  background: #229954;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+}
+
+.backBtn {
+  background: #e0e0e0;
+  color: #2c3e50;
+}
+
+.backBtn:hover {
+  background: #d0d0d0;
+  transform: translateY(-2px);
+}
+
+/* Print Styles */
+@media print {
+  .comparePage {
+    padding: 20px 0;
+  }
+
+  .actionButtons,
+  .applyBtn,
+  .loanActions {
+    display: none;
+  }
+
+  .comparisonTable thead th {
+    position: static;
+  }
+
+  .pageTitle {
+    -webkit-text-fill-color: #667eea;
+    color: #667eea;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .loanPartnersGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .comparePage {
+    padding: 80px 0 30px;
+  }
+
+  .pageTitle {
+    font-size: 1.8rem;
+  }
+
+  .pageSubtitle {
+    font-size: 1rem;
+  }
+
+  .comparisonSection {
+    padding: 15px;
+  }
+
+  .labelColumn {
+    width: 180px;
+    min-width: 180px;
+    padding: 15px;
+  }
+
+  .parametersHeader {
+    font-size: 0.9rem;
+  }
+
+  .universityColumn {
+    width: 220px;
+    min-width: 220px;
+    padding: 15px;
+  }
+
+  .universityLogo {
+    width: 70px;
+    height: 70px;
+  }
+
+  .universityName {
+    font-size: 0.85rem;
+  }
+
+  .parameterLabel,
+  .parameterValue {
+    padding: 12px 15px;
+    font-size: 0.85rem;
+  }
+
+  .loanSection {
+    padding: 30px 20px;
+  }
+
+  .loanTitle {
+    font-size: 1.5rem;
+  }
+
+  .loanSubtitle {
+    font-size: 0.95rem;
+  }
+
+  .loanPartnersGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .actionButtons {
+    flex-direction: column;
+  }
+
+  .printBtn,
+  .backBtn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .pageTitle {
+    font-size: 1.5rem;
+  }
+
+  .labelColumn {
+    width: 150px;
+    min-width: 150px;
+    padding: 12px;
+    font-size: 0.8rem;
+  }
+
+  .universityColumn {
+    width: 180px;
+    min-width: 180px;
+    padding: 12px;
+  }
+
+  .universityLogo {
+    width: 60px;
+    height: 60px;
+  }
+
+  .universityName {
+    font-size: 0.75rem;
+  }
+
+  .parameterLabel,
+  .parameterValue {
+    padding: 10px;
+    font-size: 0.75rem;
+  }
+
+  .loanTitle {
+    font-size: 1.3rem;
+  }
+}

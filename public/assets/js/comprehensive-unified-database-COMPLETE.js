@@ -4546,6 +4546,7 @@ lastUpdated: "2025-10-09 19:04:10",
 dataCompleteness: "100% - All universities have complete details",
 features: ["Fees", "Specializations", "Placements", "Ratings", "Approvals", "Accreditation"]
 };
+
 // Export for use
 if (typeof module !== 'undefined' && module.exports) {
 module.exports = {
@@ -7878,15 +7879,14 @@ const coursesDatabaseMetadata = {
     categories: courseCategories.length
 };
 
-// Export for use
+// Export for use - MERGE with the university database export above
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = {
-        coursesDatabase: coursesDatabase,
-        courseCategories: courseCategories,
-        courseLevels: courseLevels,
-        studyModes: studyModes,
-        coursesDatabaseMetadata: coursesDatabaseMetadata
-    };
+    // Add courses database to existing exports
+    module.exports.coursesDatabase = coursesDatabase;
+    module.exports.courseCategories = courseCategories;
+    module.exports.courseLevels = courseLevels;
+    module.exports.studyModes = studyModes;
+    module.exports.coursesDatabaseMetadata = coursesDatabaseMetadata;
 }
 
 console.log('Complete Courses Database loaded: ' + coursesDatabase.length + ' courses');
