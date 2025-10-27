@@ -1,288 +1,530 @@
-﻿import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import styles from '../styles/CompareUniversities.module.css';
+import universityLogoMap from '../utils/universityLogoMap';
 
 export default function CompareUniversities() {
   const router = useRouter();
   const [universities, setUniversities] = useState([]);
+  const [courseName, setCourseName] = useState('');
   const [loading, setLoading] = useState(true);
+  const [dataReady, setDataReady] = useState(false);
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      // Get university names from URL query params
-      const { unis } = router.query;
-      
-      if (unis) {
-        const universityNames = Array.isArray(unis) 
-          ? unis.map(name => decodeURIComponent(name))
-          : [decodeURIComponent(unis)];
-        loadUniversityData(universityNames);
-      } else if (router.isReady) {
-        // Router is ready but no universities in URL
-        setLoading(false);
+  // Map display course names to database keys
+  const getCourseKey = (displayName) => {
+    if (!displayName) return null;
+    
+    console.log('🔍 getCourseKey called with:', displayName);
+    
+    const normalizedName = displayName.toLowerCase().trim();
+    
+    // Direct mappings for common course variations
+    const courseMap = {
+      'master of commerce': 'M.Com',
+      'm.com': 'M.Com',
+      'mcom': 'M.Com',
+      'master of business administration': 'MBA',
+      'mba': 'MBA',
+      'master of computer applications': 'MCA',
+      'mca': 'MCA',
+      'bachelor of business administration': 'BBA',
+      'bba': 'BBA',
+      'bachelor of computer applications': 'BCA',
+      'bca': 'BCA',
+      'bachelor of commerce': 'B.Com',
+      'b.com': 'B.Com',
+      'bcom': 'B.Com',
+      'bachelor of arts': 'BA',
+      'ba': 'BA',
+      'master of arts': 'MA',
+      'ma': 'MA',
+      'bachelor of technology': 'B.Tech',
+      'b.tech': 'B.Tech',
+      'btech': 'B.Tech',
+      'master of technology': 'M.Tech',
+      'm.tech': 'M.Tech',
+      'mtech': 'M.Tech',
+      'bachelor of science': 'B.Sc',
+      'b.sc': 'B.Sc',
+      'bsc': 'B.Sc',
+      'master of science': 'M.Sc',
+      'm.sc': 'M.Sc',
+      'msc': 'M.Sc',
+      'bachelor of education': 'B.Ed',
+      'b.ed': 'B.Ed',
+      'bed': 'B.Ed',
+      'master of education': 'M.Ed',
+      'm.ed': 'M.Ed',
+      'med': 'M.Ed',
+      'doctor of philosophy': 'PhD',
+      'phd': 'PhD',
+      'ph.d': 'PhD',
+      'post graduate diploma in management': 'PGDM',
+      'pgdm': 'PGDM',
+      'executive mba': 'Executive MBA',
+      'executive education': 'Executive Education',
+      'executive program': 'Executive MBA',
+      'executive': 'Executive MBA'
+    };
+    
+    // Try exact match first
+    if (courseMap[normalizedName]) {
+      console.log('✅ Exact match found:', courseMap[normalizedName]);
+      return courseMap[normalizedName];
+    }
+    
+    // Handle "X in Y" pattern - extract the base degree
+    // Example: "M.Com in Advanced Accounting" -> "M.Com"
+    // Example: "Executive Program in HR Analytics" -> "Executive MBA"
+    const inPattern = displayName.match(/^([A-Za-z\s]+)(?:\s+in\s+|$)/i);
+    if (inPattern) {
+      const baseDegree = inPattern[1].toLowerCase().trim();
+      if (courseMap[baseDegree]) {
+        console.log('✅ "in" pattern match:', courseMap[baseDegree]);
+        return courseMap[baseDegree];
       }
     }
-  }, [router.query, router.isReady]);
+    
+    // Try to extract degree abbreviation from start of string
+    // Match patterns like "MBA", "M.Com", "B.Tech" at the beginning
+    const degreePattern = displayName.match(/^([A-Z]\.?[A-Za-z\.]+)/);
+    if (degreePattern) {
+      const degree = degreePattern[1].toLowerCase().replace(/\s+/g, '').trim();
+      if (courseMap[degree]) {
+        console.log('✅ Degree pattern match:', courseMap[degree]);
+        return courseMap[degree];
+      }
+    }
+    
+    // Check if the display name contains any of the keys
+    for (const [key, value] of Object.entries(courseMap)) {
+      if (normalizedName.includes(key)) {
+        console.log('✅ Contains match:', value);
+        return value;
+      }
+    }
+    
+    // Try to extract abbreviation from display name
+    const words = displayName.split(' ');
+    const abbreviation = words.map(w => w[0]).join('').toUpperCase();
+    
+    // Check if abbreviation exists in university courses
+    if (universities.length > 0 && universities[0].courses) {
+      const matchingCourse = universities[0].courses.find(c => 
+        c.toUpperCase() === abbreviation || c.toUpperCase().replace(/\./g, '') === abbreviation
+      );
+      if (matchingCourse) {
+        console.log('✅ Abbreviation match:', matchingCourse);
+        return matchingCourse;
+      }
+    }
+    
+    console.log('⚠️ No match found, returning original:', displayName);
+    // Fallback: return original name
+    return displayName;
+  };
 
-  const loadUniversityData = async (universityNames) => {
+  // Extract duration for the selected course from multi-course duration string
+  const extractDurationForCourse = (durationString, courseKey) => {
+    if (!durationString || durationString === 'N/A') return 'N/A';
+    if (!courseKey) return durationString;
+    
+    // Determine course level from courseKey
+    let level = null;
+    
+    // PG courses
+    if (['MBA', 'MCA', 'M.Com', 'MA', 'M.Tech', 'M.Sc', 'M.Ed', 'LLM', 'MJMC', 'PG Diploma', 'PGDM', 'Executive MBA'].includes(courseKey)) {
+      level = 'PG';
+    } 
+    // UG courses
+    else if (['BBA', 'BCA', 'B.Com', 'BA', 'B.Tech', 'B.Sc', 'B.Ed', 'LLB', 'BJMC'].includes(courseKey)) {
+      level = 'UG';
+    } 
+    // PhD
+    else if (courseKey === 'PhD' || courseKey === 'Ph.D') {
+      level = 'PhD';
+    }
+    // Advanced Diploma
+    else if (courseKey === 'Adv Diploma') {
+      level = 'Adv Diploma';
+    }
+    // Skilling Certificate
+    else if (courseKey === 'Certificate' || courseKey.toLowerCase().includes('skilling')) {
+      level = 'Skilling Cert';
+    }
+    // Diploma
+    else if (courseKey === 'Diploma') {
+      level = 'Diploma';
+    }
+    
+    // If no level determined, return original string
+    if (!level) return durationString;
+    
+    // Extract matching portion: "PG:2 years" from "PG:2 years / UG:3 years / ..."
+    const regex = new RegExp(`${level}:([^/]+)`, 'i');
+    const match = durationString.match(regex);
+    
+    if (match && match[1]) {
+      return match[1].trim();
+    }
+    
+    // Fallback: return original string if no match found
+    return durationString;
+  };
+
+  useEffect(() => {
+    // Get data from session storage
+    const selectedUnivs = sessionStorage.getItem('compareUniversities');
+    const course = sessionStorage.getItem('compareCourse');
+    
+    console.log('🔍 RAW sessionStorage values:', { 
+      selectedUnivs: selectedUnivs ? 'exists' : 'null', 
+      course: course,
+      courseType: typeof course,
+      courseLength: course?.length
+    });
+    
+    if (selectedUnivs) {
+      const parsedUnivs = JSON.parse(selectedUnivs);
+      console.log('🔍 Universities from sessionStorage:', parsedUnivs);
+      console.log('🔍 First university data:', parsedUnivs[0]);
+      console.log('🔍 Fields check:', {
+        hasStudentsRating: !!parsedUnivs[0]?.studentsRating,
+        hasDuration: !!parsedUnivs[0]?.duration,
+        hasEligibility: !!parsedUnivs[0]?.eligibility,
+        hasFees: !!parsedUnivs[0]?.fees,
+        hasOnlineClasses: parsedUnivs[0]?.onlineClasses !== undefined
+      });
+      setUniversities(parsedUnivs);
+    }
+    
+    if (course && course.trim() !== '') {
+      console.log('🔍 Course name from sessionStorage:', course);
+      setCourseName(course);
+      setLoading(false); // Only stop loading when we have course name
+      // Set dataReady only after courseName state has been updated
+      setTimeout(() => setDataReady(true), 0);
+    } else {
+      console.error('❌ NO COURSE NAME IN SESSION STORAGE!');
+      setLoading(false); // Still need to stop loading to show error
+    }
+  }, []);
+  
+  // Debug: Log courseName whenever it changes
+  useEffect(() => {
+    console.log('🔍 courseName state updated:', courseName, '(length:', courseName?.length, ')');
+    // Force component to wait until courseName is set
+    if (courseName && courseName.trim() !== '') {
+      console.log('✅ courseName is now set, component will re-render with correct data');
+    }
+  }, [courseName]);
+
+  // Comparison criteria with renamed labels
+  const comparisonCriteria = [
+    { key: 'nirfRanking', label: 'NIRF Ranking' },
+    { key: 'wesApproval', label: 'WES International Approval' },
+    { key: 'approvals', label: 'Accreditations' },
+    { key: 'eligibility', label: 'Eligibility Criteria' },
+    { key: 'duration', label: 'Program Duration' },
+    { key: 'educationMode', label: 'Learning Mode' },
+    { key: 'onlineClasses', label: 'Live Sessions' },
+    { key: 'studentsRating', label: 'Student Ratings' },
+    { key: 'establishedYear', label: 'Year of Establishment' },
+    { key: 'semesterFees', label: 'Semester Fees' }
+  ];
+
+  const getUniversityLogo = (name) => {
     try {
-      // Try to load university data from localStorage first
-      let foundUniversities = [];
+      // Check exact mapping first
+      if (universityLogoMap[name]) {
+        return `/images/universities/${universityLogoMap[name]}`;
+      }
       
-      if (typeof window !== 'undefined') {
-        const storedData = localStorage.getItem('compareUniversities');
-        if (storedData) {
-          try {
-            const parsedData = JSON.parse(storedData);
-            foundUniversities = parsedData.map(uniStr => {
-              const uni = JSON.parse(uniStr);
-              return {
-                ...uni,
-                programName: 'Online MBA',
-                studentRatings: '4.0',
-                totalFees: '₹1,50,000',
-                accreditation: 'UGC Approved',
-                approvals: 'UGC, AICTE',
-                nirfRanking: 'Not Ranked'
-              };
-            });
-          } catch (e) {
-            console.error('Error parsing stored university data:', e);
-          }
+      // Try to find partial match (case-insensitive)
+      const nameLower = name.toLowerCase();
+      for (const [dbName, logoFile] of Object.entries(universityLogoMap)) {
+        if (dbName.toLowerCase() === nameLower) {
+          return `/images/universities/${logoFile}`;
         }
       }
-
-      // If no stored data or parsing failed, fall back to database
-      if (!foundUniversities.length) {
-        const module = await import('../public/assets/js/comprehensive-unified-database-COMPLETE.js');
-        const database = module.default || module;
-
-        foundUniversities = universityNames.map(name => {
-          const uni = database.find(u => u.name === name);
-          if (uni) {
-            return {
-              ...uni,
-              logo: `/images/universities/${uni.name.replace(/ /g, '-')}.png`,
-              programName: 'Online MBA',
-              studentRatings: '4.0',
-              totalFees: '₹1,50,000',
-              accreditation: 'UGC Approved',
-              approvals: 'UGC, AICTE',
-              nirfRanking: 'Not Ranked',
-              educationMode: 'Online, Distance',
-              examinationMode: 'Online Proctored',
-              onlineClasses: 'Yes',
-              industryReadyCurriculum: 'Yes',
-              establishmentYear: '2000'
-            };
-          }
-          return {
-            name,
-            logo: `/images/universities/${name.replace(/ /g, '-')}.png`,
-            programName: 'Online MBA',
-            studentRatings: '4.0',
-            totalFees: '₹1,50,000',
-            accreditation: 'UGC Approved',
-            approvals: 'UGC, AICTE',
-            nirfRanking: 'Not Ranked',
-            educationMode: 'Online, Distance',
-            examinationMode: 'Online Proctored',
-            onlineClasses: 'Yes',
-            industryReadyCurriculum: 'Yes',
-            establishmentYear: '2000'
-          };
-        });
+      
+      // Try fuzzy match - extract key words and compare
+      const skipWords = ['university', 'online', 'distance', 'education', 'the', 'of'];
+      const nameWords = name.toLowerCase()
+        .replace(/[()]/g, '')
+        .split(/\s+/)
+        .filter(w => w.length > 2 && !skipWords.includes(w));
+      
+      for (const [dbName, logoFile] of Object.entries(universityLogoMap)) {
+        const dbWords = dbName.toLowerCase()
+          .replace(/[()]/g, '')
+          .split(/\s+/)
+          .filter(w => w.length > 2 && !skipWords.includes(w));
+        
+        // Check if at least 60% of words match
+        const matches = nameWords.filter(nw => 
+          dbWords.some(dw => dw.includes(nw) || nw.includes(dw))
+        );
+        
+        if (matches.length >= Math.ceil(nameWords.length * 0.6)) {
+          console.log(`📸 Logo match found: "${name}" → "${dbName}" → ${logoFile}`);
+          return `/images/universities/${logoFile}`;
+        }
       }
-
-      setUniversities(foundUniversities.filter(Boolean));
-      setLoading(false);
+      
+      console.warn(`⚠️ No logo found for: ${name}`);
+      return null;
     } catch (error) {
-      console.error('Error loading university data:', error);
-      setLoading(false);
+      console.error('Error getting university logo:', error);
+      return null;
     }
   };
 
-  const comparisonParameters = [
-    { label: 'Program Name', key: 'programName' },
-    { label: 'Student Ratings', key: 'studentRatings' },
-    { label: 'Total Fees', key: 'totalFees' },
-    { label: 'Accreditation', key: 'accreditation' },
-    { label: 'Approvals', key: 'approvals' },
-    { label: 'NIRF Ranking', key: 'nirfRanking' },
-    { label: 'Education Mode', key: 'educationMode' },
-    { label: 'Examination Mode', key: 'examinationMode' },
-    { label: 'Online Classes', key: 'onlineClasses' },
-    { label: 'Industry Ready Curriculum', key: 'industryReadyCurriculum' },
-    { label: 'Establishment Year', key: 'establishmentYear' }
-  ];
+  const getInitials = (name) => {
+    return name
+      .split(' ')
+      .filter(word => word.length > 0)
+      .slice(0, 2)
+      .map(word => word[0])
+      .join('')
+      .toUpperCase();
+  };
 
-  const loanPartners = [
-    { name: 'FIBE', logo: '/images/fibe.png' },
-    { name: 'LiquiLoans', logo: '/images/liquiloans.png' },
-    { name: 'Propelld', logo: '/images/propelld.png' },
-    { name: 'Avanse', logo: '/images/avanse.png' }
-  ];
+  const formatData = (uni, key) => {
+    // Debug: Log courseName to verify it's available
+    if (key === 'duration' || key === 'semesterFees') {
+      console.log(`🔍 formatData called for ${key}:`, { 
+        courseName, 
+        courseNameLength: courseName?.length,
+        isEmpty: courseName === '',
+        key, 
+        uniName: uni.name 
+      });
+    }
+    
+    switch(key) {
+      case 'nirfRanking':
+        return uni.nirfRanking ? `Rank ${uni.nirfRanking}` : 'Not Ranked';
+      
+      case 'approvals':
+        return uni.approvals && uni.approvals.length > 0 
+          ? uni.approvals.filter(a => a && a.trim() !== '').join(', ') 
+          : 'N/A';
+      
+      case 'wesApproval':
+        // Check if WES is in the approvals array
+        const hasWES = uni.approvals && uni.approvals.some(approval => 
+          approval.toUpperCase().includes('WES')
+        );
+        return hasWES ? 'Yes' : 'No';
+      
+      case 'eligibility':
+        return uni.eligibility || 'Contact University';
+      
+      case 'duration':
+        console.log('🔍 Duration check:', { 
+          uniName: uni.name, 
+          duration: uni.duration,
+          courseNameFromState: courseName,
+          courseNameType: typeof courseName,
+          courseNameLength: courseName?.length,
+          isEmptyString: courseName === '',
+          isFalsy: !courseName
+        });
+        
+        // CRITICAL CHECK: If courseName is empty, return raw duration
+        if (!courseName || courseName === '') {
+          console.error('❌ DURATION: courseName is empty! Returning raw duration');
+          return uni.duration || 'N/A';
+        }
+        
+        const courseKey = getCourseKey(courseName);
+        console.log('🔍 Course key extracted:', { courseName, courseKey });
+        
+        const extractedDuration = extractDurationForCourse(uni.duration, courseKey);
+        console.log('🔍 Duration extracted:', { courseKey, extractedDuration, originalDuration: uni.duration });
+        return extractedDuration;
+      
+      case 'educationMode':
+        // Use the mode array from database
+        return uni.mode && uni.mode.length > 0 
+          ? uni.mode.join(' + ') 
+          : 'Online';
+      
+      case 'onlineClasses':
+        console.log('🔍 Online Classes check:', { uniName: uni.name, onlineClasses: uni.onlineClasses });
+        // It's a boolean in the database
+        return uni.onlineClasses === true ? 'Yes' : 'No';
+      
+      case 'studentsRating':
+        console.log('🔍 Students Rating check:', { uniName: uni.name, studentsRating: uni.studentsRating });
+        return uni.studentsRating || 'N/A';
+      
+      case 'semesterFees':
+        console.log('🔍 Semester Fees START:', {
+          hasFeesObject: !!uni.fees,
+          courseName,
+          courseNameEmpty: courseName === '',
+          courseNameLength: courseName?.length
+        });
+        
+        // Calculate exact semester fees from total fees
+        if (!courseName || courseName === '') {
+          console.error('❌ SEMESTER FEES: courseName is empty!');
+          return 'N/A';
+        }
+        
+        if (uni.fees && courseName) {
+          // Get the proper course key from the database
+          const courseKey = getCourseKey(courseName);
+          const courseFee = uni.fees[courseKey];
+          console.log('🔍 Semester Fees check:', { 
+            uniName: uni.name, 
+            courseName, 
+            courseKey, 
+            courseFee, 
+            feesObjectKeys: Object.keys(uni.fees || {}),
+            allFees: uni.fees 
+          });
+          
+          if (courseFee && typeof courseFee === 'number') {
+            const semesterFee = Math.round(courseFee / 4); // 2 years = 4 semesters
+            return `₹${semesterFee.toLocaleString('en-IN')}`;
+          }
+        }
+        console.log('🔍 Semester Fees - No data:', { 
+          hasFeesObject: !!uni.fees, 
+          courseName,
+          courseKey: getCourseKey(courseName)
+        });
+        return 'N/A';
+      
+      case 'establishedYear':
+        return uni.establishedYear || uni.establishmentDate || 'N/A';
+      
+      default:
+        return 'N/A';
+    }
+  };
 
   if (loading) {
     return (
-      <>
+      <div className={styles.pageContainer}>
         <Header />
         <div className={styles.loading}>Loading comparison...</div>
         <Footer />
-      </>
+      </div>
+    );
+  }
+
+  // Wait for courseName to be loaded from sessionStorage
+  if (!courseName || courseName.trim() === '' || !dataReady) {
+    return (
+      <div className={styles.pageContainer}>
+        <Header />
+        <div className={styles.loading}>Loading course data...</div>
+        <Footer />
+      </div>
     );
   }
 
   if (universities.length === 0) {
     return (
-      <>
+      <div className={styles.pageContainer}>
         <Header />
-        <div className={styles.error}>
-          <h2>No universities selected for comparison</h2>
-          <button onClick={() => router.back()} className={styles.backBtn}>
+        <div className={styles.noData}>
+          <h2>No Universities Selected</h2>
+          <p>Please select universities to compare.</p>
+          <button onClick={() => router.back()} className={styles.backButton}>
             Go Back
           </button>
         </div>
         <Footer />
-      </>
+      </div>
     );
   }
 
   return (
-    <>
-      <Header />
+    <div className={styles.pageContainer}>
+      <Header courseTitle={courseName} />
       
-      <main className={styles.comparePage}>
-        <div className={styles.container}>
-          {/* Page Title */}
-          <div className={styles.pageHeader}>
-            <h1 className={styles.pageTitle}>University Comparison</h1>
-            <p className={styles.pageSubtitle}>
-              Comparing {universities.length} {universities.length === 1 ? 'University' : 'Universities'}
-            </p>
-          </div>
-
-          {/* Comparison Table */}
-          <div className={styles.comparisonSection}>
-            <div className={styles.tableWrapper}>
-              <table className={styles.comparisonTable}>
-                <thead>
-                  <tr>
-                    <th className={styles.labelColumn}>
-                      <div className={styles.parametersHeader}>
-                        <span>📊</span>
-                        <span>Comparison Parameters</span>
-                      </div>
-                    </th>
-                    {universities.map((uni, index) => (
-                      <th key={index} className={styles.universityColumn}>
-                        <div className={styles.universityHeader}>
-                          <div className={styles.universityLogo}>
-                            <img 
-                              src={uni.logo} 
-                              alt={uni.name}
-                              className={styles.logoImage}
-                              onError={(e) => {
-                                e.target.style.display = 'none';
-                                e.target.nextElementSibling.style.display = 'flex';
-                              }}
-                            />
-                            <div className={styles.logoFallback} style={{ display: 'none' }}>
-                              {uni.name.split(' ').slice(0, 2).map(word => word[0]).join('')}
-                            </div>
-                          </div>
-                          <h3 className={styles.universityName}>{uni.name}</h3>
-                        </div>
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {comparisonParameters.map((param, index) => (
-                    <tr key={index} className={index % 2 === 0 ? styles.evenRow : styles.oddRow}>
-                      <td className={styles.parameterLabel}>
-                        <strong>{param.label}</strong>
-                      </td>
-                      {universities.map((uni, uniIndex) => (
-                        <td key={uniIndex} className={styles.parameterValue}>
-                          {param.key === 'studentRatings' ? (
-                            <span className={styles.rating}>
-                              ⭐ {uni[param.key]} / 5.0
-                            </span>
-                          ) : param.key === 'totalFees' ? (
-                            <span className={styles.fees}>{uni[param.key]}</span>
-                          ) : param.key === 'nirfRanking' ? (
-                            <span className={styles.ranking}>
-                              {uni[param.key] === 'Not Ranked' ? (
-                                <span className={styles.notRanked}>{uni[param.key]}</span>
-                              ) : (
-                                <span className={styles.ranked}>#{uni[param.key]}</span>
-                              )}
-                            </span>
-                          ) : (
-                            uni[param.key]
-                          )}
-                        </td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+      <main className={styles.mainContent}>
+        {/* Full Page Comparison Container */}
+        <div className={styles.comparisonContainer}>
+          
+          {/* Header Row - University Logos and Names (NO BLUE BACKGROUND) */}
+          <div className={styles.headerRow}>
+            <div className={styles.labelColumn}>
+              <div className={styles.labelHeader}>Comparison Criteria</div>
             </div>
-          </div>
-
-          {/* Loan/EMI Partners Section */}
-          <div className={styles.loanSection}>
-            <div className={styles.loanHeader}>
-              <h2 className={styles.loanTitle}>💰 Our Loan/EMI Partners</h2>
-              <p className={styles.loanSubtitle}>
-                Get easy financing options for your education with our trusted partners
-              </p>
-            </div>
-
-            <div className={styles.loanPartnersGrid}>
-              {loanPartners.map((partner, index) => (
-                <div key={index} className={styles.loanPartnerCard}>
-                  <div className={styles.loanPartnerLogo}>
+            
+            {universities.map((uni, index) => (
+              <div key={index} className={styles.universityColumn}>
+                <div className={styles.universityLogoContainer}>
+                  {getUniversityLogo(uni.name) ? (
                     <img 
-                      src={partner.logo} 
-                      alt={partner.name}
+                      src={getUniversityLogo(uni.name)} 
+                      alt={uni.name}
+                      className={styles.universityLogo}
                       onError={(e) => {
                         e.target.style.display = 'none';
-                        e.target.nextElementSibling.style.display = 'flex';
+                        e.target.nextSibling.style.display = 'flex';
                       }}
                     />
-                    <div className={styles.loanLogoFallback} style={{ display: 'none' }}>
-                      {partner.name}
-                    </div>
+                  ) : null}
+                  <div className={styles.universityInitials} style={{ display: 'none' }}>
+                    {getInitials(uni.name)}
                   </div>
-                  <p className={styles.partnerName}>{partner.name}</p>
-                  <button className={styles.applyBtn}>Apply Now</button>
+                </div>
+                <div className={styles.universityName}>{uni.name}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Comparison Rows */}
+          {comparisonCriteria.map((criterion, idx) => (
+            <div key={idx} className={styles.comparisonRow}>
+              <div className={styles.labelColumn}>
+                <div className={styles.criterionLabel}>{criterion.label}</div>
+              </div>
+              
+              {universities.map((uni, uniIdx) => (
+                <div key={uniIdx} className={styles.universityColumn}>
+                  <div className={styles.dataCell}>
+                    {formatData(uni, criterion.key)}
+                  </div>
                 </div>
               ))}
             </div>
+          ))}
 
-            <div className={styles.loanActions}>
-              <button className={styles.compareEmiBtn}>Compare All EMI Options</button>
-              <button className={styles.zeroCostBtn}>Apply for Zero Cost EMI</button>
+        </div>
+
+        {/* Loan/EMI Partners Section */}
+        <div className={styles.loanPartnersSection}>
+          <h3 className={styles.loanPartnersTitle}>Our Loan/EMI Partners</h3>
+          <p className={styles.loanPartnersSubtitle}>Flexible financing options for your education</p>
+          <div className={styles.loanPartnersGrid}>
+            <div className={styles.loanPartnerCard}>
+              <img src="/images/fibe.png" alt="Fibe" className={styles.loanPartnerLogo} />
+            </div>
+            <div className={styles.loanPartnerCard}>
+              <img src="/images/liquiloans.png" alt="LiquiLoans" className={`${styles.loanPartnerLogo} ${styles.zoomedLogo}`} />
+            </div>
+            <div className={styles.loanPartnerCard}>
+              <img src="/images/avanse.png" alt="Avanse" className={styles.loanPartnerLogo} />
+            </div>
+            <div className={styles.loanPartnerCard}>
+              <img src="/images/propelld.png" alt="Propelld" className={`${styles.loanPartnerLogo} ${styles.zoomedLogo}`} />
             </div>
           </div>
-
-          {/* Action Buttons */}
-          <div className={styles.actionButtons}>
-            <button onClick={() => window.print()} className={styles.printBtn}>
-              🖨️ Print Comparison
-            </button>
-            <button onClick={() => router.back()} className={styles.backBtn}>
-              ← Back to Course Details
-            </button>
-          </div>
         </div>
+
       </main>
 
       <Footer />
-    </>
+    </div>
   );
 }

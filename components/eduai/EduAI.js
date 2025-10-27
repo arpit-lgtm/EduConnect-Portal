@@ -10,7 +10,7 @@ const EduAI = () => {
   const [conversationContext, setConversationContext] = useState(null); // Track conversation context
   const [showCounselorForm, setShowCounselorForm] = useState(false);
   const [questionCount, setQuestionCount] = useState(0); // Track number of questions answered
-  const MAX_QUESTIONS = 3; // Limit to 3 questions before suggesting counselor
+  const MAX_QUESTIONS = 5; // Limit to 5 questions before suggesting counselor
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -149,17 +149,22 @@ const EduAI = () => {
 
     // About EduConnect Portal - ENHANCED
     if (question.includes('educonnect') || question.includes('what is this') || question.includes('about this website') || question.includes('about this platform') || question.includes('what does this site do')) {
-      return "🎓 **About EduConnect Portal**\n\nEduConnect is India's most advanced AI-powered education portal, helping students discover their perfect university match!\n\n**🎯 What We Do:**\n✓ Connect students with 175+ top universities (153 Indian + 22 International)\n✓ AI-powered University Matcher with 9-question assessment\n✓ Compare courses, fees, placements, and ratings\n✓ Free expert counseling from senior advisors\n✓ End-to-end admission support & guidance\n✓ EMI & Education loan assistance\n✓ Scholarship guidance & application help\n\n**📊 Our Database:**\n• 100+ Courses across 7 categories\n• Skilling, UG, PG, Executive, PhD, Study Abroad, Diploma\n• Real-time fee updates\n• Authentic placement data\n• NAAC, NIRF, accreditation info\n\n**🤝 Who We Are:**\n• Part of **Educativo.in** (www.educativo.in)\n• Under **Audentia Group** umbrella\n• Sister companies: Audentia Research, Audentia Financial Services\n• Founded with mission to democratize education access\n\n**💡 Why Students Trust Us:**\n✓ Unbiased recommendations\n✓ No hidden charges\n✓ 24/7 student support\n✓ Career placement assistance\n✓ Private student community access\n✓ Study materials & resources\n✓ Round-the-clock student care\n✓ Professional networking opportunities\n\n**🎯 Our Mission:**\nMaking quality education accessible to every Indian student through technology, transparency, and personalized guidance.\n\nHow can I help you with your education journey today?";
+      return "Hey there! Welcome to **EduConnect**! 👋\n\nSo you're probably wondering what this whole thing is about, right? Let me break it down for you:\n\n**What's EduConnect?**\nThink of us as your personal university matchmaker! We're an AI-powered platform that helps you find the perfect university and course for YOUR goals and budget.\n\n**Here's what makes us cool:**\n\n🎯 **Smart Matching System**\nYou answer 9 simple questions, and boom - our AI finds universities that actually fit what you're looking for. No random suggestions!\n\n📊 **Massive Database**\nWe've got info on 175+ universities (153 in India, 22 abroad) and 100+ courses across everything - UG, PG, MBA, Engineering, whatever you need.\n\n💰 **Real Talk on Fees**\nWe show you actual fees, help you compare, and can even connect you with loan options if needed.\n\n👥 **Free Expert Help**\nNot sure about something? Our counselors are here to chat - completely free. No charges, no BS.\n\n**Who are we?**\nWe're part of Educativo.in (www.educativo.in), which is under the Audentia Group umbrella. Basically, we're backed by people who've been in the education business for 10+ years and helped over 50,000 students.\n\n**Why trust us?**\n• We're actually unbiased - we don't push specific universities\n• Everything is transparent - no hidden charges\n• We support you even after admission (yes, really!)\n• 24/7 student support because we know panic doesn't follow office hours 😅\n\n**Where we're based:**\nOur main office is in Mumbai, but we help students all across India!\n\nSo basically, whether you're confused about which MBA to pick, want to compare engineering colleges, or just need someone to explain this whole admission process - we've got you! 💪\n\nWhat would you like help with?";
     }
 
     // About Educativo.in (Parent Company) - ENHANCED
     if (question.includes('educativo') || question.includes('educativo.in') || question.includes('parent company') || question.includes('who owns') || question.includes('company behind') || question.includes('www.educativo')) {
-      return "🏢 **About Educativo.in**\n\n**Website:** www.educativo.in\n**Mission:** Transforming India's education landscape through innovation and accessibility\n\n**🎓 What Educativo Does:**\n✓ Premier education counseling & career guidance platform\n✓ Strategic university partnerships across India & abroad\n✓ Comprehensive student admission services\n✓ Scholarship research & application assistance\n✓ Study abroad program facilitation\n✓ Career pathway planning & mentorship\n✓ Education loan & financial aid guidance\n\n**📈 Our Impact:**\n• 10+ years of excellence in education sector\n• 175+ university partnerships (153 Indian, 22 International)\n• 50,000+ students successfully guided\n• Pan-India presence with regional expertise\n• 500+ education counselors & experts\n• 94% student satisfaction rating\n\n**🏛️ Part of Audentia Group:**\nEducativo is the flagship education division of **Audentia Group**, a diversified conglomerate focused on:\n• Education Services (**Educativo.in**)\n• Market Research (**Audentia Research**)\n• Financial Advisory (**Audentia Financial Services**)\n\n**🌟 Educativo's Platforms:**\n1. **EduConnect** - AI-powered university matcher (this portal!)\n2. **Career Guidance Center** - Professional counseling\n3. **Study Abroad Division** - International education\n4. **Scholarship Portal** - Financial aid assistance\n\n**🎯 Why Choose Educativo:**\n✓ Unbiased, student-first approach\n✓ Technology-driven solutions (AI matching)\n✓ Comprehensive support (pre to post-enrollment)\n✓ Strong university relationships\n✓ Industry connections for placements\n✓ Transparent fee structures\n✓ No hidden charges or commissions\n\n**📞 Corporate Presence:**\n• Mumbai (Head Office)\n• Delhi, Bangalore, Pune, Chennai (Regional offices)\n• 24/7 support infrastructure\n\n**Vision:** Becoming India's most trusted education partner, empowering every student to achieve their academic and career dreams.\n\nWant to know about our group companies?";
+      return "Hey! So you want to know about Educativo? Let me tell you!\n\nEducativo (www.educativo.in) is basically our parent company - the folks behind this whole EduConnect platform you're using right now. 😊\n\nWhat do they do?\nThey're all about making education accessible for everyone in India. Think of them as your education counselor, admission guide, and career advisor all rolled into one!\n\n• Help students find the right universities and courses\n• Guide you through the entire admission process\n• Connect you with 175+ universities (we've partnered with the best!)\n• Assist with education loans and scholarships\n• Even help with study abroad programs\n\nThe numbers speak:\nThey've been doing this for 10+ years and helped over 50,000 students find their perfect match. Pretty impressive, right?\n\nFun fact: Educativo is actually part of the Audentia Group, which also has:\n- Audentia Research (market research wizards)\n- Audentia Financial Services (tax & accounting experts)\n\nSo basically, whether you need university info, career guidance, or financial help for your education - they've got your back!\n\nWhere are they?\nTheir head office is in Mumbai. We work with students across India though - that's the beauty of online platforms! 🌏\n\nWant to know more about any specific service?";
     }
 
-    // About Audentia Group - NEW
-    if (question.includes('audentia group') || question.includes('audentia') && !question.includes('research') && !question.includes('financial')) {
-      return "🏛️ **About Audentia Group**\n\n**Group Philosophy:** Excellence through Innovation, Trust through Transparency\n\n**🌐 Audentia Group Overview:**\nAudentia Group is a diversified business conglomerate with strategic presence across three key sectors:\n\n**1️⃣ Education Services**\n   **Educativo.in** (www.educativo.in)\n   • India's leading education advisory platform\n   • 175+ university partnerships\n   • AI-powered student matching\n   • 50,000+ students guided\n   • EduConnect portal (you're here!)\n\n**2️⃣ Market Research & Analytics**\n   **Audentia Research**\n   • Business intelligence services\n   • Market research & consumer insights\n   • Data analytics & trend forecasting\n   • Industry reports & whitepapers\n   • Corporate advisory\n\n**3️⃣ Financial Advisory Services**\n   **Audentia Financial Services**\n   • Education loan facilitation\n   • Financial planning & advisory\n   • Investment guidance\n   • EMI structuring for education\n   • Scholarship financial assistance\n\n**🎯 Group Strengths:**\n✓ Multi-sector expertise & synergy\n✓ Technology-driven solutions\n✓ Pan-India operational network\n✓ 10+ years of industry trust\n✓ Strong ethical foundation\n✓ Customer-centric approach\n\n**🤝 How Subsidiaries Work Together:**\n• **Educativo** identifies student needs\n• **Audentia Research** provides market insights on education trends\n• **Audentia Financial** enables education financing\n• **Integrated approach** for holistic student support\n\n**💡 Group Vision:**\nEmpowering individuals and businesses through knowledge, research, and financial wisdom.\n\n**🌟 Core Values:**\n• Integrity & Transparency\n• Innovation & Excellence\n• Student/Client First\n• Data-Driven Decisions\n• Social Impact\n\nWant to know more about any specific subsidiary?";
+    // About Audentia Group - ENHANCED with better keyword matching
+    if (question.includes('audentia group') || 
+        (question.includes('audentia') && !question.includes('research') && !question.includes('financial')) ||
+        question.includes('what is audentia') ||
+        question.includes('tell me about audentia') ||
+        question.includes('know about audentia') ||
+        question.includes('audentia company')) {
+      return "Oh, Audentia Group! That's the big family we're part of. 🏢\n\nSo here's the story - Audentia Group is basically a group of companies that work together in different fields. Their headquarters is in Mumbai.\n\nThe family has three main businesses:\n\n1. Educativo.in (that's us! 🎓)\nThe education division - helping students like you find universities, get admissions, career guidance, the whole package. Check out www.educativo.in\n\n2. Audentia Research (the data nerds 📊)\nThese guys do market research and analytics. They study education trends, student preferences, university rankings - basically all the data that helps us give you better recommendations!\n\n3. Audentia Financial Services (tax & accounting experts �)\nThey help businesses and individuals with tax consultation, GST compliance, accounting, financial auditing, and business incorporation. Professional CA & tax experts!\n\nWhy does this matter to you?\nBecause we're all working together! When you use EduConnect:\n- You get smart recommendations powered by Audentia Research's data\n- You get end-to-end support from the Educativo team\n- If you need education loans, our counselors connect you with partner banks\n\nIt's like having an entire ecosystem supporting your education journey! Pretty cool, right? 😊\n\nTheir vibe:\n\"Excellence through Innovation, Trust through Transparency\" - basically, they believe in using technology to help people while being completely honest about everything.\n\nWant to know more about any specific part?";
     }
 
     // About Audentia Research - NEW
@@ -167,9 +172,9 @@ const EduAI = () => {
       return "📊 **Audentia Research**\n\n**Division:** Market Research & Business Intelligence\n**Parent:** Audentia Group\n\n**🔍 What Audentia Research Does:**\n\n**Core Services:**\n✓ Market research & consumer behavior analysis\n✓ Industry trend forecasting\n✓ Competitive intelligence\n✓ Data analytics & visualization\n✓ Custom research studies\n✓ Business advisory & consulting\n\n**🎓 Education Sector Focus:**\n• University ranking methodologies\n• Student preference studies\n• Education market trends\n• Course demand analysis\n• Placement trend research\n• Fee benchmarking studies\n\n**💼 Corporate Services:**\n• Brand perception studies\n• Product launch research\n• Customer satisfaction surveys\n• Market sizing & forecasting\n• Strategic advisory\n\n**🤝 Integration with Educativo:**\n• Provides data for EduConnect's AI matching\n• University performance analytics\n• Student outcome tracking\n• Course popularity trends\n• Helps optimize student recommendations\n\n**📈 Research Capabilities:**\n• Quantitative & Qualitative research\n• Big data analytics\n• Predictive modeling\n• Industry reports\n\n**Why Audentia Research Matters to You:**\nTheir insights power EduConnect's smart recommendations, ensuring you get matched with universities based on real data, trends, and student success metrics!\n\nNeed information about our other group companies?";
     }
 
-    // About Audentia Financial Services - NEW
-    if (question.includes('audentia financial') || question.includes('financial services') || question.includes('education loan') || question.includes('emi')) {
-      return "💰 **Audentia Financial Services**\n\n**Division:** Financial Advisory & Education Financing\n**Parent:** Audentia Group\n\n**🏦 What Audentia Financial Does:**\n\n**Core Services:**\n✓ Education loan facilitation & guidance\n✓ EMI structuring for course fees\n✓ Scholarship financial planning\n✓ Personal financial advisory\n✓ Investment guidance for education\n✓ Tax planning for education expenses\n\n**🎓 Education Financing Solutions:**\n\n**1. Education Loan Assistance**\n• Partner banks: HDFC Credila, Bajaj Finserv, ICICI, Axis\n• Loan amount: ₹50,000 to ₹50,00,000\n• Covers: Tuition + Living expenses\n• Interest rates: 8.5% - 12% per annum\n• Repayment: Up to 15 years\n• Processing: Fast-track approval (7-15 days)\n\n**2. EMI Payment Plans**\n• Zero-cost EMI options available\n• Semester-wise payment structuring\n• No collateral for loans up to ₹7.5 lakhs\n• Flexible tenure options\n\n**3. Scholarship Financial Advisory**\n• Help maximize scholarship benefits\n• Tax implications guidance\n• Fund management advice\n\n**💡 Financial Planning Services:**\n✓ Education cost estimation\n✓ Family budget planning\n✓ Investment advice for education goals\n✓ Document preparation for loans\n✓ Loan comparison & selection\n\n**🤝 Integration with Educativo:**\n• Seamless loan application through EduConnect\n• Pre-approved loan offers for partner universities\n• Fee structuring aligned with course costs\n• One-stop solution: Admission + Financing\n\n**📊 Success Metrics:**\n• 95% loan approval rate\n• Average processing time: 10 days\n• ₹500 Cr+ education financing facilitated\n• 10,000+ students financed\n\n**🎯 Why Choose Audentia Financial:**\n✓ Education financing experts\n✓ Better rates through partnerships\n✓ Hassle-free documentation\n✓ Quick approvals\n✓ No hidden charges\n✓ Post-disbursement support\n\n**Contact for Loan Help:**\nOur education loan specialists can help you understand financing options for any course or university!\n\nWant to know about loan options for a specific course?";
+    // About Audentia Financial Services - Tax & Accounting Firm
+    if (question.includes('audentia financial') || question.includes('financial services') || question.includes('tax') || question.includes('accounting')) {
+      return "� Audentia Financial Services\n\nDivision: Tax & Accounting Services\nParent: Audentia Group\n\n� What Audentia Financial Does:\n\nAudentia Financial Services is a professional TAX AND ACCOUNTING firm, NOT a lending institution. They specialize in:\n\nCore Services:\n✓ Tax consultation & filing (Individual & Corporate)\n✓ Accounting & bookkeeping services\n✓ GST compliance & returns\n✓ Income tax planning & advisory\n✓ Financial auditing\n✓ Business incorporation & compliance\n✓ TDS/TCS consultation\n\n📊 Who They Serve:\n• Small & medium businesses\n• Startups & entrepreneurs\n• Individual taxpayers\n• Corporate entities\n• Educational institutions (for financial compliance)\n\n🎯 Why Businesses Choose Them:\n✓ Expert CA & tax professionals\n✓ Timely tax filing & compliance\n✓ Cost-effective accounting solutions\n✓ Audit-ready documentation\n✓ GST & regulatory expertise\n✓ Transparent fee structure\n\n📍 Office:\n• Mumbai (Main office)\n• Serving clients pan-India\n\n💡 Fun Fact:\nWhile Audentia Financial handles tax and accounting, if you need help with EDUCATION LOANS for your courses, our counselors at Educativo can connect you with partner banks like HDFC Credila, Bajaj Finserv, and others!\n\nNeed tax or accounting help? Or looking for education financing instead?";
     }
 
     // Contact & Support
@@ -313,14 +318,32 @@ const EduAI = () => {
   // AI-Powered Smart Response (Hybrid Mode)
   const getSmartAIResponse = async (userQuestion, lastBotMessage) => {
     const aiEnabled = isAIEnabled();
-    const responseStrategy = shouldUseAI(userQuestion);
+    const question = userQuestion.toLowerCase().trim();
+    
+    // PRIORITY 1: Check if question is about our company, Audentia, or Educativo
+    // These should ALWAYS use knowledge base (never AI)
+    const companyKeywords = [
+      'audentia', 'educativo', 'educonnect', 'parent company', 'who owns',
+      'company behind', 'your company', 'this website', 'this platform',
+      'www.educativo', 'educativo.in', 'audentia group', 'audentia research',
+      'audentia financial', 'financial services', 'research division',
+      'about this site', 'what is this', 'who are you', 'your parent'
+    ];
+    
+    const isCompanyQuestion = companyKeywords.some(keyword => question.includes(keyword));
+    
+    if (isCompanyQuestion) {
+      console.log('Company-related question detected, using knowledge base');
+      return await getKnowledgeBaseResponse(userQuestion, lastBotMessage);
+    }
 
-    // If AI is disabled or strategy says use knowledge base
+    // PRIORITY 2: If AI is disabled, always use knowledge base
+    const responseStrategy = shouldUseAI(userQuestion);
     if (!aiEnabled || responseStrategy === 'knowledge-base') {
       return await getKnowledgeBaseResponse(userQuestion, lastBotMessage);
     }
 
-    // Try AI response first
+    // PRIORITY 3: Try AI response for general education questions
     try {
       const conversationHistory = formatConversationHistory(messages);
       const aiResponse = await getAIResponse(userQuestion, conversationHistory, {
@@ -389,7 +412,7 @@ const EduAI = () => {
       setTimeout(() => {
         const botMessage = {
           type: 'bot',
-          text: "I've answered your questions to the best of my ability! 😊\n\nFor more detailed information and personalized guidance, I'd recommend connecting with one of our expert counselors. They can provide in-depth answers specific to your situation.\n\nWould you like to connect with a counselor?",
+          text: "🎓 **You've reached your question limit!**\n\nI've helped you with 5 questions. To get more detailed information and personalized guidance for your education journey, please connect with one of our expert counselors.\n\n👨‍🎓 **Our counselors can help with:**\n• Detailed course comparisons\n• Admission process guidance\n• Fee structure & EMI options\n• Career planning & specialization advice\n• Scholarship opportunities\n\n**Ready to talk to an expert?**",
           timestamp: new Date(),
           showConnectButton: true
         };
@@ -413,7 +436,7 @@ const EduAI = () => {
       
       let finalResponse = response;
       if (isLastQuestion) {
-        finalResponse += "\n\n💡 **That's your 3rd question!** For more detailed guidance, I'd recommend connecting with one of our expert counselors who can provide personalized assistance.";
+        finalResponse += "\n\n💡 **That was your 5th question!** You've used all your free questions. For more detailed guidance, please connect with one of our expert counselors for personalized assistance.";
       }
       
       const botMessage = {
@@ -509,18 +532,49 @@ const EduAI = () => {
 
   return (
     <>
-      {/* AskEduAI Button - Clean Professional Design */}
+      {/* AskEduAI Button - Robot Icon with Colorful Glow */}
       <button 
         className={styles.askEduAIButton}
         onClick={() => setIsOpen(true)}
-        aria-label="Ask EduAI"
+        aria-label="Ask EduAI - Your AI Education Assistant"
+        title="AskEduAI"
       >
-        <div className={styles.buttonIcon}>
-          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+        <div className={styles.robotIconContainer}>
+          {/* Robot Head SVG Icon */}
+          <svg className={styles.robotIcon} viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            {/* Antenna */}
+            <circle cx="32" cy="6" r="3" fill="white" className={styles.antenna}/>
+            <line x1="32" y1="9" x2="32" y2="16" stroke="white" strokeWidth="2" className={styles.antennaLine}/>
+            
+            {/* Robot Head */}
+            <rect x="16" y="16" width="32" height="28" rx="4" fill="white" className={styles.robotHead}/>
+            
+            {/* Eyes */}
+            <circle cx="24" cy="28" r="4" fill="#1a1a2e" className={styles.eye}/>
+            <circle cx="40" cy="28" r="4" fill="#1a1a2e" className={styles.eye}/>
+            <circle cx="24" cy="28" r="2" fill="#667eea" className={styles.eyePupil}/>
+            <circle cx="40" cy="28" r="2" fill="#667eea" className={styles.eyePupil}/>
+            
+            {/* Mouth/Display */}
+            <rect x="22" y="36" width="20" height="4" rx="2" fill="#667eea" opacity="0.8" className={styles.mouth}/>
+            
+            {/* Side details */}
+            <circle cx="18" cy="24" r="2" fill="#667eea" opacity="0.6"/>
+            <circle cx="46" cy="24" r="2" fill="#667eea" opacity="0.6"/>
+            
+            {/* Ears/Sensors */}
+            <rect x="12" y="24" width="4" height="8" rx="2" fill="white" opacity="0.8"/>
+            <rect x="48" y="24" width="4" height="8" rx="2" fill="white" opacity="0.8"/>
+            
+            {/* Neck */}
+            <rect x="28" y="44" width="8" height="4" fill="white" opacity="0.9"/>
           </svg>
+          
+          {/* Glowing particles around robot */}
+          <div className={styles.glowParticle1}></div>
+          <div className={styles.glowParticle2}></div>
+          <div className={styles.glowParticle3}></div>
         </div>
-        <span className={styles.askButtonText}>Ask EduAI</span>
       </button>
 
       {/* Video Widget - Bottom Right with Ask Button */}

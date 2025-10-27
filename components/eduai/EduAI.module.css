@@ -1,111 +1,241 @@
-/* AskEduAI Button - Clean Professional Design */
+/* AskEduAI Button - Robot Icon with Colorful Glow */
 .askEduAIButton {
-  position: fixed;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 999;
-  display: flex;
+  position: fixed !important;
+  right: 30px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  border: 3px solid #fff !important;
+  border-radius: 50% !important;
+  cursor: pointer !important;
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.2) !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 99999 !important;
+  display: flex !important;
   align-items: center;
-  gap: 12px;
-  padding: 14px 24px;
-  color: white;
-  font-weight: 600;
-  font-size: 15px;
+  justify-content: center;
+  width: 80px !important;
+  height: 80px !important;
+  padding: 0;
+  overflow: visible;
 }
 
-/* Glowing Orb Effect */
-.glowingOrb {
-  position: absolute;
-  top: 50%;
-  left: 20px;
-  transform: translate(-50%, -50%);
-  width: 80px;
-  height: 80px;
-  background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(102,126,234,0.4) 50%, transparent 70%);
-  border-radius: 50%;
-  animation: orbPulse 3s ease-in-out infinite;
-  pointer-events: none;
-  opacity: 0.6;
-}
-
-@keyframes orbPulse {
-  0%, 100% {
-    transform: translate(-50%, -50%) scale(0.8);
-    opacity: 0.4;
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1.2);
-    opacity: 0.7;
-  }
-}
-
-/* Animated Border Glow */
-.askEduAIButton::before {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  background: linear-gradient(45deg, #667eea, #764ba2, #667eea);
-  border-radius: 20px;
-  z-index: -1;
-  opacity: 0;
-  filter: blur(10px);
-  transition: opacity 0.5s;
-  animation: borderGlow 3s linear infinite;
-}
-
-@keyframes borderGlow {
-  0% {
-    filter: blur(10px) hue-rotate(0deg);
-  }
-  100% {
-    filter: blur(10px) hue-rotate(360deg);
-  }
-}
-
-.askEduAIButton:hover::before {
-  opacity: 1;
-}
+/* Colorful Glow Animation */
 
 .askEduAIButton:hover {
-  transform: translateY(-50%) translateX(-4px);
-  box-shadow: 0 6px 30px rgba(102, 126, 234, 0.5);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 
+    0 6px 30px rgba(0, 0, 0, 0.3);
 }
 
-/* AI Bot Icon with Pulse */
-.buttonIcon {
-  width: 40px;
-  height: 40px;
+/* Custom Tooltip - Simple Style */
+.askEduAIButton::after {
+  content: 'AskEduAI';
+  position: absolute;
+  right: 100%;
+  margin-right: 15px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(10px);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.askEduAIButton:hover::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+/* Robot Icon Container */
+.robotIconContainer {
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 50%;
-  padding: 8px;
-  animation: aiIconPulse 2s ease-in-out infinite;
   position: relative;
-  z-index: 2;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3),
-              inset 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
-@keyframes aiIconPulse {
-  0%, 100% {
-    transform: scale(1);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+/* Robot SVG Icon with Colorful Glow */
+.robotIcon {
+  width: 70px;
+  height: 70px;
+  color: white;
+  filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.9));
+  animation: robotIconGlow 4s ease-in-out infinite, robotFloat 3s ease-in-out infinite;
+  position: relative;
+  z-index: 2;
+  display: block;
+}
+
+/* Colorful Glow Animation for Robot Icon */
+@keyframes robotIconGlow {
+  0% {
+    filter: 
+      drop-shadow(0 0 25px rgba(102, 126, 234, 1))
+      drop-shadow(0 0 40px rgba(102, 126, 234, 0.8))
+      drop-shadow(0 0 60px rgba(102, 126, 234, 0.6));
+  }
+  25% {
+    filter: 
+      drop-shadow(0 0 25px rgba(255, 107, 107, 1))
+      drop-shadow(0 0 40px rgba(255, 107, 107, 0.8))
+      drop-shadow(0 0 60px rgba(255, 107, 107, 0.6));
   }
   50% {
-    transform: scale(1.08);
-    box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+    filter: 
+      drop-shadow(0 0 25px rgba(77, 219, 255, 1))
+      drop-shadow(0 0 40px rgba(77, 219, 255, 0.8))
+      drop-shadow(0 0 60px rgba(77, 219, 255, 0.6));
+  }
+  75% {
+    filter: 
+      drop-shadow(0 0 25px rgba(130, 255, 173, 1))
+      drop-shadow(0 0 40px rgba(130, 255, 173, 0.8))
+      drop-shadow(0 0 60px rgba(130, 255, 173, 0.6));
+  }
+  100% {
+    filter: 
+      drop-shadow(0 0 25px rgba(102, 126, 234, 1))
+      drop-shadow(0 0 40px rgba(102, 126, 234, 0.8))
+      drop-shadow(0 0 60px rgba(102, 126, 234, 0.6));
   }
 }
+
+@keyframes robotFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Robot parts animations */
+.antenna {
+  animation: antennaBlink 2s ease-in-out infinite;
+}
+
+@keyframes antennaBlink {
+  0%, 90%, 100% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 0.3;
+  }
+}
+
+.eye {
+  animation: eyeBlink 4s ease-in-out infinite;
+}
+
+@keyframes eyeBlink {
+  0%, 96%, 100% {
+    transform: scaleY(1);
+  }
+  98% {
+    transform: scaleY(0.1);
+  }
+}
+
+.eyePupil {
+  animation: pupilMove 3s ease-in-out infinite;
+}
+
+@keyframes pupilMove {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(1px);
+  }
+  75% {
+    transform: translateX(-1px);
+  }
+}
+
+/* Glowing Particles */
+.glowParticle1,
+.glowParticle2,
+.glowParticle3 {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.glowParticle1 {
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.9), transparent);
+  top: 10%;
+  right: 10%;
+  animation: particleFloat1 3s ease-in-out infinite;
+}
+
+.glowParticle2 {
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, rgba(102, 126, 234, 0.9), transparent);
+  bottom: 15%;
+  left: 15%;
+  animation: particleFloat2 4s ease-in-out infinite;
+}
+
+.glowParticle3 {
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(circle, rgba(118, 75, 162, 0.8), transparent);
+  top: 60%;
+  right: -5%;
+  animation: particleFloat3 3.5s ease-in-out infinite;
+}
+
+@keyframes particleFloat1 {
+  0%, 100% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(-10px, -15px);
+    opacity: 1;
+  }
+}
+
+@keyframes particleFloat2 {
+  0%, 100% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(15px, -10px);
+    opacity: 1;
+  }
+}
+
+@keyframes particleFloat3 {
+  0%, 100% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(10px, 15px);
+    opacity: 1;
+  }
+}
+
+/* OLD STYLES BELOW - Keep for video widget */
 
 .buttonIcon svg {
   width: 100%;

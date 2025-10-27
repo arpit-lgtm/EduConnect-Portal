@@ -4,6 +4,7 @@ import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import styles from '../styles/CourseDetails.module.css';
 import coursesData from '../lib/courseData';
+import universityLogoMap from '../utils/universityLogoMap';
 
 export default function CourseDetails() {
   const router = useRouter();
@@ -11,6 +12,7 @@ export default function CourseDetails() {
   const [universities, setUniversities] = useState([]);
   const [selectedForCompare, setSelectedForCompare] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentCourseInfo, setCurrentCourseInfo] = useState(null);
 
   useEffect(() => {
     async function fetchUniversities() {
@@ -71,6 +73,9 @@ export default function CourseDetails() {
         }
 
         console.log('Course info:', courseInfo);
+        
+        // Store course info in state for later use
+        setCurrentCourseInfo(courseInfo);
 
         // Get normalized course type from the title (handle M.Com, M.Tech patterns)
         // Instead of generic matching, use multiple keywords for better specificity
@@ -196,7 +201,8 @@ export default function CourseDetails() {
             approvals: uni.approvals || [],
             acceptanceRate: uni.acceptanceRate || '75%',
             placementRate: uni.placementRate || '85%',
-            fees: typeof uni.fees === 'object' && uni.fees[courseType]
+            fees: uni.fees || {}, // Keep the complete fees object for comparison page
+            feesRange: typeof uni.fees === 'object' && uni.fees[courseType]
               ? {
                   min: uni.fees[courseType],
                   max: Math.round(uni.fees[courseType] * 1.2)
@@ -212,7 +218,13 @@ export default function CourseDetails() {
                 },
             logo: `/images/universities/${uni.name.replace(/ /g, '-')}.png`,
             mode: uni.mode || ['Regular'],
-            establishedYear: uni.establishedYear
+            establishedYear: uni.establishedYear,
+            // Add missing comparison fields
+            studentsRating: uni.studentsRating || 'N/A',
+            onlineClasses: uni.onlineClasses !== undefined ? uni.onlineClasses : false,
+            duration: uni.duration || 'N/A',
+            eligibility: uni.eligibility || 'Contact University',
+            courses: uni.courses || []
           }));
 
         console.log('Matching universities before sorting:', matchingUniversities.length, isStudyAbroad ? `(${targetCountry} universities)` : '(Indian universities)');
@@ -255,10 +267,10 @@ export default function CourseDetails() {
             // Within same tier and specialization level: pure random
             return b._randomScore - a._randomScore;
           })
-          .slice(0, 5)
+          .slice(0, 8)
           .map(({ _specializationScore, _randomScore, ...uni }) => uni); // Remove temp scores
 
-        console.log('Top 5 universities for', actualCourseId, ':', matchingUniversities.map(u => u.name));
+        console.log('Top 8 universities for', actualCourseId, ':', matchingUniversities.map(u => u.name));
 
         setUniversities(matchingUniversities);
         setLoading(false);
@@ -276,58 +288,58 @@ export default function CourseDetails() {
       if (prev.includes(universityName)) {
         return prev.filter(name => name !== universityName);
       }
-      if (prev.length < 3) {
+      if (prev.length < 5) {
         return [...prev, universityName];
       }
-      alert('You can compare maximum 3 universities at a time');
+      alert('You can compare maximum 5 universities at a time');
       return prev;
     });
   };
 
   // Get university logo path
   const getUniversityLogo = (universityName) => {
-    const logoMap = {
-      'Amity University': 'Amity University.png',
-      'Amrita University': 'Amrita University.png',
-      'Atlas SkillTech University': 'Atlas Skilltech University.png',
-      'BIMTECH': 'BIMTECH University.png',
-      'Birchwood University': 'Birchwood University Online.png',
-      'BITS Pilani': 'BITS Pilani.png',
-      'Chandigarh University': 'Chandigarh University.png',
-      'Chitkara University': 'Chitkara University.png',
-      'D.Y. Patil University': 'DY Patil University.png',
-      'DPU': 'DPU.png',
-      'Galgotias University': 'Galgotia University.png',
-      'GLA University': 'GLA University.png',
-      'Graphic Era University': 'Graphic Era University.png',
-      'IIIT Bangalore': 'IIIT Bangalore.png',
-      'IIM Indore': 'IIM Indore.png',
-      'IIM Kozhikode': 'IIM Kozhikode.png',
-      'IIT Guwahati': 'IIT Guwahati.png',
-      'Jain University': 'Jain University.png',
-      'Kalinga University': 'Kalinga University.png',
-      'KIIT University': 'KIIT University.png',
-      'Lovely Professional University': 'LPU University.png',
-      'Manipal University': 'Manipal University.png',
-      'NMIMS': 'NMIMS University.png',
-      'O.P. Jindal University': 'O P Jindal University.png',
-      'Sharda University': 'Sharda University.png',
-      'Shoolini University': 'Shoolini University.png',
-      'Sikkim Manipal University': 'Sikkim Manipal University.png',
-      'SRM University': 'SRM University.png',
-      'Symbiosis': 'Symbiosis SCDL.png',
-      'UPES': 'UPES University.png',
-      'Uttaranchal University': 'Uttaranchal University.png',
-      'Vignan University': 'Vignans University.png',
-    };
-    
-    for (const [key, filename] of Object.entries(logoMap)) {
-      if (universityName.includes(key) || key.includes(universityName.split('(')[0].trim())) {
-        return `/images/universities/${filename}`;
+    try {
+      // Check exact mapping first
+      if (universityLogoMap[universityName]) {
+        return `/images/universities/${universityLogoMap[universityName]}`;
       }
+      
+      // Try to find partial match (case-insensitive)
+      const nameLower = universityName.toLowerCase();
+      for (const [dbName, logoFile] of Object.entries(universityLogoMap)) {
+        if (dbName.toLowerCase() === nameLower) {
+          return `/images/universities/${logoFile}`;
+        }
+      }
+      
+      // Try fuzzy match - extract key words and compare
+      const skipWords = ['university', 'online', 'distance', 'education', 'the', 'of'];
+      const nameWords = universityName.toLowerCase()
+        .replace(/[()]/g, '')
+        .split(/\s+/)
+        .filter(w => w.length > 2 && !skipWords.includes(w));
+      
+      for (const [dbName, logoFile] of Object.entries(universityLogoMap)) {
+        const dbWords = dbName.toLowerCase()
+          .replace(/[()]/g, '')
+          .split(/\s+/)
+          .filter(w => w.length > 2 && !skipWords.includes(w));
+        
+        // Check if at least 60% of words match
+        const matches = nameWords.filter(nw => 
+          dbWords.some(dw => dw.includes(nw) || nw.includes(dw))
+        );
+        
+        if (matches.length >= Math.ceil(nameWords.length * 0.6)) {
+          return `/images/universities/${logoFile}`;
+        }
+      }
+      
+      return null;
+    } catch (error) {
+      console.error('Error getting university logo:', error);
+      return null;
     }
-    
-    return null;
   };
 
   const getInitials = (name) => {
@@ -376,9 +388,9 @@ export default function CourseDetails() {
                     else return `₹${amount.toLocaleString()}`;
                   };
                   
-                  const feesText = uni.fees.min && uni.fees.max && uni.fees.min !== uni.fees.max
-                    ? `${formatFee(uni.fees.min)} - ${formatFee(uni.fees.max)}`
-                    : `${formatFee(uni.fees.min || uni.fees.max || 50000)}`;
+                  const feesText = uni.feesRange?.min && uni.feesRange?.max && uni.feesRange.min !== uni.feesRange.max
+                    ? `${formatFee(uni.feesRange.min)} - ${formatFee(uni.feesRange.max)}`
+                    : `${formatFee(uni.feesRange?.min || uni.feesRange?.max || 50000)}`;
 
                   return (
                     <div
@@ -402,31 +414,48 @@ export default function CourseDetails() {
                       {/* Card Layout: Logo on Left, Content on Right */}
                       <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'flex-start' }}>
                         
-                        {/* University Logo */}
-                        <div className={styles.universityLogo}>
-                          {getUniversityLogo(uni.name) ? (
-                            <img 
-                              src={getUniversityLogo(uni.name)} 
-                              alt={uni.name}
-                              style={{
-                                maxWidth: '100%',
-                                maxHeight: '100%',
-                                objectFit: 'contain'
+                        {/* Left Column: University Logo + CONTACT Button */}
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', alignItems: 'center' }}>
+                          {/* University Logo */}
+                          <div className={styles.universityLogo}>
+                            {getUniversityLogo(uni.name) ? (
+                              <img 
+                                src={getUniversityLogo(uni.name)} 
+                                alt={uni.name}
+                                style={{
+                                  maxWidth: '100%',
+                                  maxHeight: '100%',
+                                  objectFit: 'contain'
+                                }}
+                              />
+                            ) : (
+                              <div style={{
+                                fontSize: '2rem',
+                                color: 'white',
+                                fontWeight: '700',
+                                letterSpacing: '1px'
+                              }}>
+                                {getInitials(uni.name)}
+                              </div>
+                            )}
+                          </div>
+
+                          {/* CONTACT Button with Flashing Text - Below Logo */}
+                          <div className={styles.contactButtonContainer}>
+                            <button 
+                              className={styles.contactButton}
+                              onClick={() => {
+                                // Add contact action here
+                                window.location.href = '/contact';
                               }}
-                            />
-                          ) : (
-                            <div style={{
-                              fontSize: '2rem',
-                              color: 'white',
-                              fontWeight: '700',
-                              letterSpacing: '1px'
-                            }}>
-                              {getInitials(uni.name)}
-                            </div>
-                          )}
+                            >
+                              <span className={styles.contactText}>CONTACT US</span>
+                              <span className={styles.contactTextAlt}>KNOW MORE</span>
+                            </button>
+                          </div>
                         </div>
 
-                        {/* Right Content */}
+                        {/* Middle Content - University Info */}
                         <div style={{ flex: 1 }}>
                           {/* University Name */}
                           <h3 className={styles.universityName}>{uni.name}</h3>
@@ -488,7 +517,7 @@ export default function CourseDetails() {
                             <div className={styles.partition}>
                               <div className={styles.partitionLabel}>Accreditation</div>
                               <div className={styles.partitionContent}>
-                                {uni.accreditation ? (
+                                {uni.accreditation && !uni.accreditation.toLowerCase().includes('nirf') ? (
                                   <span className={styles.accreditationBadge}>{uni.accreditation}</span>
                                 ) : (
                                   <span className={styles.naText}>N/A</span>
@@ -509,7 +538,9 @@ export default function CourseDetails() {
 
                           </div>
                         </div>
+
                       </div>
+
                     </div>
                   );
                 })}
@@ -517,6 +548,38 @@ export default function CourseDetails() {
 
               {/* Right Sidebar: Video + Why Trust Us */}
               <div className={styles.rightSidebar}>
+                {/* Compare Button - Always Visible */}
+                <div className={styles.sidebarCompareContainer}>
+                  <button 
+                    className={`${styles.sidebarCompareButton} ${selectedForCompare.length === 0 ? styles.disabled : ''}`}
+                    disabled={selectedForCompare.length < 2}
+                    onClick={() => {
+                      if (selectedForCompare.length < 2) {
+                        alert('Please select at least 2 universities to compare');
+                        return;
+                      }
+                      
+                      // Get full university data for selected universities
+                      const selectedUniversitiesData = universities.filter(uni => 
+                        selectedForCompare.includes(uni.name)
+                      );
+                      
+                      // Store in session storage
+                      sessionStorage.setItem('compareUniversities', JSON.stringify(selectedUniversitiesData));
+                      sessionStorage.setItem('compareCourse', currentCourseInfo?.title || courseName || 'Course Comparison');
+                      
+                      // Navigate to comparison page
+                      router.push('/compare-universities');
+                    }}
+                  >
+                    <span className={styles.compareIcon}>⚖️</span>
+                    COMPARE
+                    {selectedForCompare.length > 0 && (
+                      <span className={styles.compareCount}>({selectedForCompare.length})</span>
+                    )}
+                  </button>
+                </div>
+
                 {/* Video Section - VERTICAL REEL STYLE */}
                 <div className={styles.videoSection}>
                   {/* Title removed - just video like a reel */}
@@ -525,11 +588,8 @@ export default function CourseDetails() {
                       className={styles.videoThumbnail}
                       poster="/images/boy.png"
                       controls
-                      autoPlay
                       loop
-                      muted
                       playsInline
-                      onClick={(e) => e.target.play()}
                     >
                       <source src="/videos/Global MBA-1.mp4" type="video/mp4" />
                       Your browser does not support the video tag.
@@ -539,7 +599,6 @@ export default function CourseDetails() {
                       onClick={(e) => {
                         const video = e.target.closest(`.${styles.videoThumbnailContainer}`).querySelector('video');
                         if (video) {
-                          video.muted = false;
                           video.play();
                           e.currentTarget.style.display = 'none';
                         }
