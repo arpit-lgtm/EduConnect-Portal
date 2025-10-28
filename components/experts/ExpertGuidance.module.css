@@ -133,7 +133,7 @@
 
 .ratingBadge {
     position: absolute;
-    top: 210px;
+    top: 170px;
     right: 15px;
     background: white;
     color: #1e293b;
@@ -235,7 +235,7 @@
     }
 
     .ratingBadge {
-        top: 190px;
+        top: 150px;
     }
 }
 
@@ -263,7 +263,7 @@
     }
 
     .ratingBadge {
-        top: 170px;
+        top: 130px;
     }
 }
 
@@ -278,6 +278,6 @@
     }
 
     .ratingBadge {
-        top: 150px;
+        top: 110px;
     }
 }

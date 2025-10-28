@@ -5,6 +5,7 @@ import HeroCarousel from '../components/carousel/HeroCarousel';
 import Stats from '../components/stats/Stats';
 import BrowseCategories from '../components/browse/BrowseCategories';
 import ExpertGuidance from '../components/experts/ExpertGuidance';
+import Leadership from '../components/leadership/Leadership';
 import Universities from '../components/universities/Universities';
 import VideoTestimonials from '../components/testimonials/VideoTestimonials';
 import FAQ from '../components/faq/FAQ';
@@ -34,6 +35,7 @@ export default function Home() {
         <VideoTestimonials />
         <Universities />
         <FAQ />
+        <Leadership />
         <ExpertGuidance />
         <TalkToExperts />
       </main>

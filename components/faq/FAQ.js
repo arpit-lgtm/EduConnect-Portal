@@ -94,7 +94,7 @@ const FAQ = () => {
                                     onClick={() => toggleAccordion(index)}
                                     aria-expanded={activeIndex === index}
                                 >
-                                    <span className={styles.questionNumber}>{faq.id}</span>
+                                    {/* <span className={styles.questionNumber}>{faq.id}</span> */}
                                     <span className={styles.questionText}>{faq.question}</span>
                                     <span className={styles.chevron}>
                                         {activeIndex === index ? '−' : '+'}

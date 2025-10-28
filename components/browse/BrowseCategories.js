@@ -3,7 +3,7 @@ import Link from 'next/link';
 import styles from './BrowseCategories.module.css';
 
 const BrowseCategories = () => {
-    const [activeTab, setActiveTab] = useState('all');
+    const [activeTab, setActiveTab] = useState('PG Courses');
 
     // Shuffle function to randomize array order
     const shuffleArray = (array) => {
@@ -267,11 +267,11 @@ const BrowseCategories = () => {
         let displayCourses;
 
         if (activeTab === 'all') {
-            // Return all courses from all categories, limited to first 15 for initial display (3 rows)
+            // Return all courses from all categories (no limit - display all)
             const allCourses = Object.entries(coursesState).flatMap(([category, courseList]) => 
                 courseList.map(course => ({ ...course, category }))
             );
-            displayCourses = allCourses.slice(0, 15);
+            displayCourses = allCourses;
         } else {
             displayCourses = (coursesState[activeTab] || []).map(course => ({ ...course, category: activeTab }));
         }
@@ -321,17 +321,6 @@ const BrowseCategories = () => {
                                     </div>
                                 </div>
                             ))}
-                            
-                            {/* View All Button as Grid Item */}
-                            <div className={styles.viewAllCard}>
-                                <Link href="/courses" className={styles.viewAllButton}>
-                                    <div className={styles.viewAllContent}>
-                                        <div className={styles.viewAllIcon}>→</div>
-                                        <h3 className={styles.viewAllText}>Explore All</h3>
-                                        <p className={styles.viewAllSubtext}>Explore More Courses</p>
-                                    </div>
-                                </Link>
-                            </div>
                         </div>
                     </div>
                 </div>

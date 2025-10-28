@@ -86,6 +86,24 @@ export default function CourseDetails() {
           ['MBA', 'MCA', 'BBA', 'BCA', 'MCOM', 'BCOM', 'MSC', 'BSC', 'MTECH', 'BTECH', 'MA', 'BA', 'PHD', 'PGDM', 'MS'].includes(word)
         ) || 'MBA';
 
+        // Determine course level (UG/PG) - CRITICAL for filtering
+        const ugCourses = ['BBA', 'BCA', 'BCOM', 'BSC', 'BTECH', 'BA'];
+        const pgCourses = ['MBA', 'MCA', 'MCOM', 'MSC', 'MTECH', 'MA', 'PHD', 'PGDM', 'MS'];
+        const isUGCourse = ugCourses.includes(courseType);
+        const isPGCourse = pgCourses.includes(courseType);
+
+        // Check if course is "Online" mode
+        const isOnlineCourse = courseInfo.title.toLowerCase().includes('online') || 
+                               courseInfo.category?.toLowerCase().includes('online');
+
+        console.log('Course Analysis:', {
+          courseType,
+          isUGCourse,
+          isPGCourse,
+          isOnlineCourse,
+          title: courseInfo.title
+        });
+
         // Extract specialization/focus keywords for better matching
         const specializationKeywords = [];
         const title = courseInfo.title.toUpperCase();
@@ -140,11 +158,31 @@ export default function CourseDetails() {
         // Filter universities based on Study Abroad or Indian courses
         const overseasKeywords = ['USA', 'UK', 'Canada', 'Australia', 'Singapore', 'England', 'California', 'Massachusetts', 'Florida', 'Wisconsin', 'Texas', 'Michigan', 'Minnesota', 'Boston', 'London', 'Melbourne', 'Toronto', 'Ontario', 'Victoria', 'Durham', 'Germany', 'Berlin', 'Munich', 'Dubai', 'UAE', 'France', 'Paris', 'Spain', 'Netherlands'];
         
+        // Define premium institutes (IIMs, IITs, IISc) - should be excluded from UG and Online courses
+        const premiumInstitutes = ['IIM', 'IIT', 'IISC', 'INDIAN INSTITUTE OF MANAGEMENT', 'INDIAN INSTITUTE OF TECHNOLOGY', 'INDIAN INSTITUTE OF SCIENCE'];
+        
+        const isPremiumInstitute = (uniName) => {
+          const nameUpper = uniName.toUpperCase();
+          return premiumInstitutes.some(prefix => nameUpper.includes(prefix));
+        };
+
         let matchingUniversities = uniDatabase
           .filter(uni => {
             const isOverseas = overseasKeywords.some(keyword => 
               uni.location?.includes(keyword)
             );
+
+            // RULE 1: For UG courses - EXCLUDE IIMs/IITs (they don't offer UG programs)
+            if (isUGCourse && isPremiumInstitute(uni.name)) {
+              console.log(`❌ Excluding ${uni.name} from UG course ${courseType}`);
+              return false;
+            }
+
+            // RULE 2: For Online courses - EXCLUDE IIMs/IITs (show tier-2 universities instead)
+            if (isOnlineCourse && isPremiumInstitute(uni.name)) {
+              console.log(`❌ Excluding ${uni.name} from Online course ${courseType}`);
+              return false;
+            }
 
             // For Study Abroad courses: ONLY show overseas universities from target country
             if (isStudyAbroad) {
@@ -252,8 +290,8 @@ export default function CourseDetails() {
           };
         });
         
-        // Sort and select top universities
-        matchingUniversities = matchingUniversities
+        // Sort all universities
+        const sortedUniversities = matchingUniversities
           .sort((a, b) => {
             // Primary sort: rating tier (group by 0.4 intervals for variety within quality tiers)
             const aTier = Math.floor(a.rating / 0.4);
@@ -267,12 +305,23 @@ export default function CourseDetails() {
             // Within same tier and specialization level: pure random
             return b._randomScore - a._randomScore;
           })
-          .slice(0, 8)
           .map(({ _specializationScore, _randomScore, ...uni }) => uni); // Remove temp scores
 
-        console.log('Top 8 universities for', actualCourseId, ':', matchingUniversities.map(u => u.name));
+        // Display top 7 on the course details page
+        const top7Universities = sortedUniversities.slice(0, 7);
+        
+        console.log('Total matching universities:', sortedUniversities.length);
+        console.log('Top 7 universities for display:', top7Universities.map(u => u.name));
 
-        setUniversities(matchingUniversities);
+        // Store top 7 for display
+        setUniversities(top7Universities);
+        
+        // Store ALL matching universities in sessionStorage for the comparison modal
+        // This ensures the modal shows all universities, not just the top 7
+        if (typeof window !== 'undefined') {
+          sessionStorage.setItem('allUniversitiesForCourse', JSON.stringify(sortedUniversities));
+        }
+        
         setLoading(false);
       } catch (error) {
         console.error('Error loading universities:', error);
@@ -284,16 +333,31 @@ export default function CourseDetails() {
   }, [courseId, courseName]);
 
   const handleCompareToggle = (universityName) => {
-    setSelectedForCompare(prev => {
-      if (prev.includes(universityName)) {
-        return prev.filter(name => name !== universityName);
-      }
-      if (prev.length < 5) {
-        return [...prev, universityName];
-      }
-      alert('You can compare maximum 5 universities at a time');
-      return prev;
-    });
+    // Get full university data for the selected university
+    const selectedUniversity = universities.find(uni => uni.name === universityName);
+    
+    if (!selectedUniversity) {
+      console.error('University not found:', universityName);
+      return;
+    }
+
+    // Store in session storage
+    sessionStorage.setItem('compareUniversities', JSON.stringify([selectedUniversity]));
+    sessionStorage.setItem('compareCourse', currentCourseInfo?.title || courseName || 'Course Comparison');
+    
+    // Get ALL universities from sessionStorage (not just the top 7 displayed)
+    const allUniversities = sessionStorage.getItem('allUniversitiesForCourse');
+    if (allUniversities) {
+      sessionStorage.setItem('availableUniversities', allUniversities);
+      console.log('📋 Loaded all universities for modal:', JSON.parse(allUniversities).length);
+    } else {
+      // Fallback to displayed universities if all universities not available
+      sessionStorage.setItem('availableUniversities', JSON.stringify(universities));
+      console.log('⚠️ Using displayed universities as fallback');
+    }
+    
+    // Open comparison page in new tab
+    window.open('/compare-universities', '_blank');
   };
 
   // Get university logo path
@@ -364,7 +428,7 @@ export default function CourseDetails() {
 
   return (
     <>
-      <Header courseTitle={courseTitle} />
+      <Header />
       <main className={styles.courseDetailsPage}>
         <div className={styles.universitiesSection}>
           <div className={styles.container}>
@@ -405,10 +469,10 @@ export default function CourseDetails() {
                         }}
                         className={styles.compareBtn}
                         style={{
-                          background: selectedForCompare.includes(uni.name) ? '#10b981' : '#0074d9'
+                          background: '#0074d9'
                         }}
                       >
-                        {selectedForCompare.includes(uni.name) ? '✓ Added to compare' : '+ Add to compare'}
+                        + Add to Compare
                       </button>
 
                       {/* Card Layout: Logo on Left, Content on Right */}
@@ -548,38 +612,6 @@ export default function CourseDetails() {
 
               {/* Right Sidebar: Video + Why Trust Us */}
               <div className={styles.rightSidebar}>
-                {/* Compare Button - Always Visible */}
-                <div className={styles.sidebarCompareContainer}>
-                  <button 
-                    className={`${styles.sidebarCompareButton} ${selectedForCompare.length === 0 ? styles.disabled : ''}`}
-                    disabled={selectedForCompare.length < 2}
-                    onClick={() => {
-                      if (selectedForCompare.length < 2) {
-                        alert('Please select at least 2 universities to compare');
-                        return;
-                      }
-                      
-                      // Get full university data for selected universities
-                      const selectedUniversitiesData = universities.filter(uni => 
-                        selectedForCompare.includes(uni.name)
-                      );
-                      
-                      // Store in session storage
-                      sessionStorage.setItem('compareUniversities', JSON.stringify(selectedUniversitiesData));
-                      sessionStorage.setItem('compareCourse', currentCourseInfo?.title || courseName || 'Course Comparison');
-                      
-                      // Navigate to comparison page
-                      router.push('/compare-universities');
-                    }}
-                  >
-                    <span className={styles.compareIcon}>⚖️</span>
-                    COMPARE
-                    {selectedForCompare.length > 0 && (
-                      <span className={styles.compareCount}>({selectedForCompare.length})</span>
-                    )}
-                  </button>
-                </div>
-
                 {/* Video Section - VERTICAL REEL STYLE */}
                 <div className={styles.videoSection}>
                   {/* Title removed - just video like a reel */}

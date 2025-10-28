@@ -11,6 +11,15 @@ export default function CompareUniversities() {
   const [courseName, setCourseName] = useState('');
   const [loading, setLoading] = useState(true);
   const [dataReady, setDataReady] = useState(false);
+  
+  // New state for interactive comparison
+  const [selectedUniversities, setSelectedUniversities] = useState([null, null, null, null, null]); // 5 slots
+  const [availableUniversities, setAvailableUniversities] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [currentSlotIndex, setCurrentSlotIndex] = useState(null);
+  const [showComparison, setShowComparison] = useState(false); // Hide comparison table by default
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedState, setSelectedState] = useState(''); // State filter
 
   // Map display course names to database keys
   const getCourseKey = (displayName) => {
@@ -178,37 +187,43 @@ export default function CompareUniversities() {
     // Get data from session storage
     const selectedUnivs = sessionStorage.getItem('compareUniversities');
     const course = sessionStorage.getItem('compareCourse');
+    const availableUnivs = sessionStorage.getItem('availableUniversities');
     
     console.log('🔍 RAW sessionStorage values:', { 
       selectedUnivs: selectedUnivs ? 'exists' : 'null', 
       course: course,
-      courseType: typeof course,
-      courseLength: course?.length
+      availableUnivs: availableUnivs ? 'exists' : 'null'
     });
     
+    // Load initially selected university (first one added)
     if (selectedUnivs) {
       const parsedUnivs = JSON.parse(selectedUnivs);
-      console.log('🔍 Universities from sessionStorage:', parsedUnivs);
-      console.log('🔍 First university data:', parsedUnivs[0]);
-      console.log('🔍 Fields check:', {
-        hasStudentsRating: !!parsedUnivs[0]?.studentsRating,
-        hasDuration: !!parsedUnivs[0]?.duration,
-        hasEligibility: !!parsedUnivs[0]?.eligibility,
-        hasFees: !!parsedUnivs[0]?.fees,
-        hasOnlineClasses: parsedUnivs[0]?.onlineClasses !== undefined
-      });
-      setUniversities(parsedUnivs);
+      console.log('🔍 Initial university from sessionStorage:', parsedUnivs);
+      
+      // Set first university in slot 0
+      const newSlots = [null, null, null, null, null];
+      if (parsedUnivs.length > 0) {
+        newSlots[0] = parsedUnivs[0];
+      }
+      setSelectedUniversities(newSlots);
+      setUniversities(parsedUnivs); // Keep for backward compatibility
+    }
+    
+    // Load all available universities for the modal
+    if (availableUnivs) {
+      const parsedAvailable = JSON.parse(availableUnivs);
+      console.log('🔍 Available universities loaded:', parsedAvailable.length);
+      setAvailableUniversities(parsedAvailable);
     }
     
     if (course && course.trim() !== '') {
       console.log('🔍 Course name from sessionStorage:', course);
       setCourseName(course);
-      setLoading(false); // Only stop loading when we have course name
-      // Set dataReady only after courseName state has been updated
+      setLoading(false);
       setTimeout(() => setDataReady(true), 0);
     } else {
       console.error('❌ NO COURSE NAME IN SESSION STORAGE!');
-      setLoading(false); // Still need to stop loading to show error
+      setLoading(false);
     }
   }, []);
   
@@ -291,6 +306,63 @@ export default function CompareUniversities() {
       .join('')
       .toUpperCase();
   };
+
+  // Handler to open modal and select university for a specific slot
+  const handleAddToSlot = (slotIndex) => {
+    setCurrentSlotIndex(slotIndex);
+    setShowModal(true);
+    setSearchTerm('');
+    setSelectedState(''); // Reset state filter
+  };
+
+  // Handler to select a university from modal
+  const handleSelectUniversity = (university) => {
+    // Check if university is already selected in another slot
+    const isDuplicate = selectedUniversities.some(uni => uni?.name === university.name);
+    if (isDuplicate) {
+      alert('This university is already selected for comparison');
+      return;
+    }
+
+    // Add to current slot
+    const newSlots = [...selectedUniversities];
+    newSlots[currentSlotIndex] = university;
+    setSelectedUniversities(newSlots);
+    
+    // Update universities array for backward compatibility
+    const filledUniversities = newSlots.filter(uni => uni !== null);
+    setUniversities(filledUniversities);
+    
+    // Close modal
+    setShowModal(false);
+    setCurrentSlotIndex(null);
+  };
+
+  // Handler to remove a university from a slot
+  const handleRemoveFromSlot = (slotIndex) => {
+    const newSlots = [...selectedUniversities];
+    newSlots[slotIndex] = null;
+    setSelectedUniversities(newSlots);
+    
+    // Update universities array
+    const filledUniversities = newSlots.filter(uni => uni !== null);
+    setUniversities(filledUniversities);
+  };
+
+  // Extract unique states from available universities
+  const uniqueStates = [...new Set(availableUniversities.map(uni => {
+    // Extract state from location string (e.g., "Mumbai, Maharashtra" -> "Maharashtra")
+    const location = uni.location || '';
+    const parts = location.split(',').map(p => p.trim());
+    return parts[parts.length - 1]; // Get last part (usually the state)
+  }).filter(Boolean))].sort();
+
+  // Filter available universities based on search and state - SHOW ALL UNIVERSITIES
+  const filteredUniversities = availableUniversities.filter(uni => {
+    const matchesSearch = uni.name.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesState = !selectedState || uni.location?.includes(selectedState);
+    return matchesSearch && matchesState;
+  });
 
   const formatData = (uni, key) => {
     // Debug: Log courseName to verify it's available
@@ -430,29 +502,140 @@ export default function CompareUniversities() {
     );
   }
 
-  if (universities.length === 0) {
-    return (
-      <div className={styles.pageContainer}>
-        <Header />
-        <div className={styles.noData}>
-          <h2>No Universities Selected</h2>
-          <p>Please select universities to compare.</p>
-          <button onClick={() => router.back()} className={styles.backButton}>
-            Go Back
-          </button>
-        </div>
-        <Footer />
-      </div>
-    );
-  }
-
   return (
     <div className={styles.pageContainer}>
-      <Header courseTitle={courseName} />
+      <Header />
       
       <main className={styles.mainContent}>
-        {/* Full Page Comparison Container */}
-        <div className={styles.comparisonContainer}>
+        {/* University Selection Slots */}
+        <div className={styles.selectionContainer}>
+          <h2 className={styles.selectionTitle}>{courseName}</h2>
+          <p className={styles.selectionSubtitle}>Select up to 5 universities to compare</p>
+          
+          {/* Compare Button - Moved to top */}
+          <div className={styles.compareButtonContainer}>
+            <button 
+              className={styles.mainCompareButton}
+              disabled={selectedUniversities.filter(uni => uni !== null).length < 2}
+              onClick={() => setShowComparison(true)}
+            >
+              Compare Universities ({selectedUniversities.filter(uni => uni !== null).length})
+            </button>
+          </div>
+          
+          <div className={styles.slotsContainer}>
+            {selectedUniversities.map((uni, index) => (
+              <div key={index} className={styles.slot}>
+                {uni ? (
+                  // Filled slot with university
+                  <div className={styles.filledSlot}>
+                    <button 
+                      className={styles.removeButton}
+                      onClick={() => handleRemoveFromSlot(index)}
+                      title="Remove university"
+                    >
+                      ✕
+                    </button>
+                    <div className={styles.slotLogoContainer}>
+                      {getUniversityLogo(uni.name) ? (
+                        <img 
+                          src={getUniversityLogo(uni.name)} 
+                          alt={uni.name}
+                          className={styles.slotLogo}
+                        />
+                      ) : (
+                        <div className={styles.slotInitials}>
+                          {getInitials(uni.name)}
+                        </div>
+                      )}
+                    </div>
+                    <div className={styles.slotName}>{uni.name}</div>
+                  </div>
+                ) : (
+                  // Empty slot with "Add to Compare" button
+                  <div className={styles.emptySlot} onClick={() => handleAddToSlot(index)}>
+                    <div className={styles.addIcon}>+</div>
+                    <div className={styles.addText}>Add to Compare</div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Modal for selecting universities */}
+        {showModal && (
+          <div className={styles.modalOverlay} onClick={() => setShowModal(false)}>
+            <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+              <div className={styles.modalHeader}>
+                <h3>Select University</h3>
+                <button className={styles.modalClose} onClick={() => setShowModal(false)}>✕</button>
+              </div>
+              
+              <div className={styles.modalSearch}>
+                <input 
+                  type="text"
+                  placeholder="Search universities..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className={styles.searchInput}
+                />
+                
+                <select 
+                  value={selectedState}
+                  onChange={(e) => setSelectedState(e.target.value)}
+                  className={styles.stateFilter}
+                >
+                  <option value="">All States</option>
+                  {uniqueStates.map((state, idx) => (
+                    <option key={idx} value={state}>{state}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div className={styles.modalList}>
+                {filteredUniversities.length > 0 ? (
+                  filteredUniversities.map((uni, index) => {
+                    const isSelected = selectedUniversities.some(selected => selected?.name === uni.name);
+                    return (
+                      <div 
+                        key={index} 
+                        className={`${styles.modalItem} ${isSelected ? styles.modalItemSelected : ''}`}
+                        onClick={() => handleSelectUniversity(uni)}
+                        style={{ cursor: isSelected ? 'not-allowed' : 'pointer' }}
+                      >
+                        <div className={styles.modalItemLogo}>
+                          {getUniversityLogo(uni.name) ? (
+                            <img 
+                              src={getUniversityLogo(uni.name)} 
+                              alt={uni.name}
+                              className={styles.modalItemLogoImg}
+                            />
+                          ) : (
+                            <div className={styles.modalItemInitials}>
+                              {getInitials(uni.name)}
+                            </div>
+                          )}
+                        </div>
+                        <div className={styles.modalItemInfo}>
+                          <div className={styles.modalItemName}>{uni.name}</div>
+                          <div className={styles.modalItemLocation}>{uni.location}</div>
+                        </div>
+                        {isSelected && <span className={styles.selectedBadge}>✓ Already Selected</span>}
+                      </div>
+                    );
+                  })
+                ) : (
+                  <div className={styles.noResults}>No universities found</div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Comparison Table - Only shown after clicking Compare button */}
+        {showComparison && universities.length >= 2 && (
+          <div className={styles.comparisonContainer}>
           
           {/* Header Row - University Logos and Names (NO BLUE BACKGROUND) */}
           <div className={styles.headerRow}>
@@ -462,22 +645,6 @@ export default function CompareUniversities() {
             
             {universities.map((uni, index) => (
               <div key={index} className={styles.universityColumn}>
-                <div className={styles.universityLogoContainer}>
-                  {getUniversityLogo(uni.name) ? (
-                    <img 
-                      src={getUniversityLogo(uni.name)} 
-                      alt={uni.name}
-                      className={styles.universityLogo}
-                      onError={(e) => {
-                        e.target.style.display = 'none';
-                        e.target.nextSibling.style.display = 'flex';
-                      }}
-                    />
-                  ) : null}
-                  <div className={styles.universityInitials} style={{ display: 'none' }}>
-                    {getInitials(uni.name)}
-                  </div>
-                </div>
                 <div className={styles.universityName}>{uni.name}</div>
               </div>
             ))}
@@ -501,6 +668,7 @@ export default function CompareUniversities() {
           ))}
 
         </div>
+        )}
 
         {/* Loan/EMI Partners Section */}
         <div className={styles.loanPartnersSection}>

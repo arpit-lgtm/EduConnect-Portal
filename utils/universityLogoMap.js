@@ -46,12 +46,14 @@ const universityLogoMap = {
   'Iisc Bangalore': 'Iisc Bangalore.png',
   'IISc Bangalore': 'Iisc Bangalore.png',
 
-  // DY Patil - Multiple variations map to one
-  'D.Y. Patil University Navi Mumbai (Online)': 'DY Patil University.png',
-  'D.Y. Patil University (Online)': 'DY Patil University.png',
-  'DY Patil University': 'DY Patil University.png',
-  'D.Y. Patil Vidyapeeth': 'DY Patil Vidyapeeth.png',
-  'DY Patil Vidyapeeth': 'DY Patil Vidyapeeth.png',
+  // DY Patil - Multiple variations (Mumbai vs Pune)
+  'D.Y. Patil University Navi Mumbai (Online)': 'DY Patil University Mumbai.png',
+  'D.Y. Patil University (Online)': 'DY Patil Vidyapeeth Pune.png', // This one is in Pune
+  'DY Patil University': 'DY Patil University Mumbai.png',
+  'D.Y. Patil Vidyapeeth': 'DY Patil Vidyapeeth Pune.png',
+  'DY Patil Vidyapeeth': 'DY Patil Vidyapeeth Pune.png',
+  'DY Patil University Pune': 'DY Patil Vidyapeeth Pune.png',
+  'DY Patil Pune': 'DY Patil Vidyapeeth Pune.png',
 
   // O P Jindal / JGU
   'O P Jindal Global University': 'O P Jindal University.png',
@@ -440,6 +442,7 @@ const universityLogoMap = {
   'Cornell University': 'Cornell University.png',
   'Edgewood University': 'Edgewood University.png',
   'Galgotia University': 'Galgotia University.png',
+  'Galgotias University': 'Galgotia University.png', // Database has "Galgotias" but logo is "Galgotia"
   'GIM': 'GIM.png',
   'GLA University': 'GLA University.png',
   'Golden Gate University': 'Golden Gate University.png',
@@ -467,4 +470,47 @@ const universityLogoMap = {
   'Vivekananda Global University': 'Vivekananda Global University.png'
 };
 
+// Helper function to get university logo with fuzzy matching
+function getUniversityLogo(universityName) {
+  // Direct match
+  if (universityLogoMap[universityName]) {
+    return universityLogoMap[universityName];
+  }
+
+  // Try to find partial match (case-insensitive)
+  const nameToMatch = universityName.toLowerCase();
+  for (const [key, value] of Object.entries(universityLogoMap)) {
+    if (key.toLowerCase() === nameToMatch) {
+      return value;
+    }
+  }
+
+  // Remove common suffixes like (Online), (Distance Education), etc.
+  const cleanName = universityName
+    .replace(/\s*\(Online\)\s*/gi, '')
+    .replace(/\s*\(Distance Education\)\s*/gi, '')
+    .replace(/\s*\(Distance\)\s*/gi, '')
+    .replace(/\s*\(Deemed\)\s*/gi, '')
+    .replace(/\s*\(Deemed University\)\s*/gi, '')
+    .trim();
+
+  // Try cleaned name in the map
+  if (universityLogoMap[cleanName]) {
+    return universityLogoMap[cleanName];
+  }
+
+  // Try partial match with cleaned name
+  const cleanNameLower = cleanName.toLowerCase();
+  for (const [key, value] of Object.entries(universityLogoMap)) {
+    if (key.toLowerCase() === cleanNameLower) {
+      return value;
+    }
+  }
+
+  // Fallback to cleaned filename
+  return `${cleanName}.png`;
+}
+
 module.exports = universityLogoMap;
+module.exports.getUniversityLogo = getUniversityLogo;
+module.exports.universityLogoMap = universityLogoMap;
