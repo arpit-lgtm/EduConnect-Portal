@@ -70,6 +70,9 @@ const UniversityMatcher = () => {
 
   // Filtered courses based on selected degree type
   const [filteredCourses, setFilteredCourses] = useState([]);
+  
+  // Error message state
+  const [errorMessage, setErrorMessage] = useState('');
 
   // Load data on component mount
   useEffect(() => {
@@ -158,6 +161,9 @@ const UniversityMatcher = () => {
   }, [formData.degreeType, courses]);
 
   const handleInputChange = (field, value) => {
+    // Clear error message when user makes a selection
+    setErrorMessage('');
+    
     setFormData(prev => ({
       ...prev,
       [field]: value
@@ -169,28 +175,31 @@ const UniversityMatcher = () => {
       if (courses.length > 0) {
         const filtered = courses.filter(course => {
           const level = course.level;
+          const courseName = course.name.toLowerCase();
+          
+          // Exclude PhD/Doctorate from UG courses
+          const isPhD = courseName.includes('phd') || 
+                       courseName.includes('ph.d') || 
+                       courseName.includes('doctorate') || 
+                       courseName.includes('doctoral');
           
           if (value === 'PG Courses') {
-            return level === 'Postgraduate';
+            return level === 'Postgraduate' && !isPhD;
           } else if (value === 'UG Courses') {
-            return level === 'Undergraduate';
+            // UG should ONLY be Undergraduate level, NO PhD
+            return level === 'Undergraduate' && !isPhD;
           } else if (value === 'Doctorate/Ph.D.') {
-            return level === 'Doctorate' || (level === 'Graduate' && (
-              course.name.toLowerCase().includes('phd') || 
-              course.name.toLowerCase().includes('ph.d') || 
-              course.name.toLowerCase().includes('doctorate') || 
-              course.name.toLowerCase().includes('doctoral')
-            ));
+            return level === 'Doctorate' || isPhD;
           } else if (value === 'Executive Education') {
-            return level === 'Postgraduate' && course.name.toLowerCase().includes('executive');
+            return level === 'Postgraduate' && courseName.includes('executive');
           } else if (value === 'Job Guarantee') {
-            return course.name.toLowerCase().includes('job') || course.name.toLowerCase().includes('placement');
+            return courseName.includes('job') || courseName.includes('placement');
           } else if (value === 'Study Abroad') {
-            return course.name.toLowerCase().includes('international') || course.name.toLowerCase().includes('global');
+            return courseName.includes('international') || courseName.includes('global');
           } else if (value === 'Advanced Diploma') {
-            return level === 'Graduate' || course.name.toLowerCase().includes('diploma');
+            return level === 'Graduate' || courseName.includes('diploma');
           } else if (value === 'Skilling & Certificate') {
-            return level === 'Graduate' || course.name.toLowerCase().includes('certificate') || course.name.toLowerCase().includes('certification');
+            return level === 'Graduate' || courseName.includes('certificate') || courseName.includes('certification');
           }
           
           return level === 'Graduate'; // Default fallback
@@ -224,6 +233,68 @@ const UniversityMatcher = () => {
   };
 
   const nextStep = () => {
+    // Validation: Check if required field for current step is filled
+    let isValid = true;
+    let error = '';
+    
+    switch(currentStep) {
+      case 1:
+        if (!formData.degreeType) {
+          isValid = false;
+          error = 'Please select a degree type to continue';
+        }
+        break;
+      case 2:
+        if (!formData.preferredCourse) {
+          isValid = false;
+          error = 'Please select a course to continue';
+        }
+        break;
+      case 3:
+        if (!formData.specialization) {
+          isValid = false;
+          error = 'Please select a specialization to continue';
+        }
+        break;
+      case 4:
+        if (!formData.currentEducation) {
+          isValid = false;
+          error = 'Please select your current education status';
+        }
+        break;
+      case 5:
+        if (!formData.studyMode) {
+          isValid = false;
+          error = 'Please select a study mode to continue';
+        }
+        break;
+      case 6:
+        if (!formData.preferredLocation) {
+          isValid = false;
+          error = 'Please select a location preference';
+        }
+        break;
+      case 7:
+        if (!formData.budgetRange) {
+          isValid = false;
+          error = 'Please select a budget range to continue';
+        }
+        break;
+      case 8:
+        if (!formData.careerObjective) {
+          isValid = false;
+          error = 'Please select a career goal to continue';
+        }
+        break;
+    }
+    
+    if (!isValid) {
+      setErrorMessage(error);
+      return;
+    }
+    
+    // Clear error and advance
+    setErrorMessage('');
     if (currentStep < 9) {
       setCurrentStep(currentStep + 1);
     }
@@ -252,11 +323,340 @@ const UniversityMatcher = () => {
     return Math.round((currentStep / 9) * 100);
   };
 
+  // Function to get course icon based on course name/category
+  const getCourseIcon = (course) => {
+    const courseName = (course.name || '').toLowerCase();
+    const category = (course.category || '').toLowerCase();
+    
+    // MBA & Management programs
+    if (courseName.includes('mba') || courseName.includes('pgdm') || courseName.includes('executive mba')) return '🎓';
+    
+    // Technology & Computer Science
+    if (courseName.includes('mca') || courseName.includes('m.tech') || courseName.includes('m.sc') && category.includes('technology')) return '💻';
+    if (courseName.includes('bca') || courseName.includes('b.tech') || courseName.includes('b.sc') && category.includes('technology')) return '💻';
+    
+    // Commerce programs
+    if (courseName.includes('m.com')) return '💰';
+    if (courseName.includes('b.com')) return '💼';
+    if (courseName.includes('bba')) return '📊';
+    
+    // Arts & Humanities
+    if (courseName.includes('ma ') || courseName.includes('m.a.') || category.includes('arts')) return '📚';
+    if (courseName.includes('ba ') || courseName.includes('b.a.')) return '📖';
+    
+    // Data Science & Analytics
+    if (courseName.includes('data science') || courseName.includes('analytics') || courseName.includes('big data')) return '📈';
+    
+    // AI & ML
+    if (courseName.includes('artificial intelligence') || courseName.includes('machine learning') || courseName.includes('ai')) return '🤖';
+    
+    // Design & Creative
+    if (courseName.includes('design') || category.includes('design')) return '🎨';
+    
+    // Law
+    if (courseName.includes('law') || courseName.includes('llb') || courseName.includes('llm')) return '⚖️';
+    
+    // Study Abroad
+    if (courseName.includes('abroad') || category.includes('international')) return '🌍';
+    
+    // Certificate & Diploma
+    if (courseName.includes('certificate') || courseName.includes('certification')) return '📜';
+    if (courseName.includes('diploma')) return '📋';
+    
+    // Healthcare & Medical
+    if (courseName.includes('health') || courseName.includes('medical') || courseName.includes('nursing')) return '⚕️';
+    
+    // Engineering
+    if (courseName.includes('engineering') || courseName.includes('b.e.') || courseName.includes('m.e.')) return '⚙️';
+    
+    // PhD & Research
+    if (courseName.includes('phd') || courseName.includes('ph.d') || courseName.includes('doctorate')) return '🎖️';
+    
+    // Default based on level
+    if (course.level === 'Postgraduate' || course.level === 'PG Courses') return '🎓';
+    if (course.level === 'Undergraduate' || course.level === 'UG Courses') return '📚';
+    
+    // Final fallback
+    return '📚';
+  };
+
+  // Comprehensive specialization mapping for each course when database has limited data
+  const courseSpecializationMap = {
+    // MBA Specializations (already in database, but keeping as backup)
+    'MBA': [
+      'Finance Management', 'Marketing Management', 'Human Resource Management',
+      'Operations Management', 'Business Analytics', 'Digital Marketing',
+      'International Business', 'Entrepreneurship', 'Supply Chain Management',
+      'Project Management', 'Healthcare Management', 'IT Management',
+      'Hospitality Management', 'Banking & Financial Services', 'Retail Management',
+      'Strategic Management', 'Data Science & Analytics', 'Financial Analytics',
+      'Leadership & Management', 'Innovation Management', 'E-Commerce'
+    ],
+    'Executive MBA': ['Executive Leadership', 'Strategic Management', 'Global Business', 'Innovation'],
+    'PGDM': ['Finance', 'Marketing', 'HR', 'Operations', 'Business Analytics', 'Digital Business'],
+    
+    // MCA Specializations
+    'MCA': [
+      'Data Science', 'Cyber Security', 'Artificial Intelligence', 'Machine Learning',
+      'Cloud Computing', 'Software Engineering', 'Mobile Application Development',
+      'Web Technologies', 'Blockchain Technology', 'IoT', 'Big Data Analytics',
+      'Computer Networks', 'Database Management', 'DevOps'
+    ],
+    'M.Tech': [
+      'Computer Science', 'Software Engineering', 'Data Science', 'Cyber Security',
+      'Artificial Intelligence', 'VLSI Design', 'Embedded Systems', 'Robotics',
+      'Cloud Computing', 'Network Security', 'Machine Learning'
+    ],
+    
+    // M.Sc Specializations
+    'M.Sc': [
+      'Physics', 'Chemistry', 'Mathematics', 'Statistics', 'Data Science',
+      'Biotechnology', 'Microbiology', 'Biochemistry', 'Environmental Science',
+      'Computer Science', 'Information Technology', 'Electronics', 'Botany',
+      'Zoology', 'Psychology', 'Nutrition & Dietetics'
+    ],
+    
+    // M.Com Specializations
+    'M.Com': [
+      'Accounting & Taxation', 'Banking & Finance', 'Financial Management',
+      'Business Economics', 'E-Commerce', 'International Finance',
+      'Corporate Accounting', 'Auditing', 'Cost Accounting', 'Investment Management'
+    ],
+    
+    // MA Specializations
+    'MA': [
+      'English Literature', 'Economics', 'Political Science', 'Sociology',
+      'Psychology', 'History', 'Public Administration', 'Journalism & Mass Communication',
+      'Education', 'Social Work', 'Philosophy', 'Geography', 'Hindi Literature'
+    ],
+    'M.A': [
+      'Economics', 'Political Science', 'Sociology', 'Psychology',
+      'History', 'Public Administration', 'Education', 'Social Work',
+      'Journalism and Mass Communication', 'Journalism & Mass Communication',
+      'Public Policy', 'Criminology and Police Administration',
+      'Political Science and Public Administration', 'English Literature'
+    ],
+    'MSW': ['Community Development', 'Medical & Psychiatry', 'HR Management', 'Rural Development'],
+    
+    // BBA Specializations
+    'BBA': [
+      'General Management', 'Finance', 'Marketing', 'Human Resources',
+      'International Business', 'Entrepreneurship', 'Digital Marketing',
+      'Business Analytics', 'Event Management', 'Retail Management',
+      'Banking & Insurance', 'Operations Management', 'Tourism & Hospitality'
+    ],
+    
+    // BCA Specializations
+    'BCA': [
+      'Data Science', 'Web Development', 'Software Development',
+      'Cyber Security', 'Mobile App Development', 'Cloud Computing',
+      'Artificial Intelligence', 'Machine Learning', 'Database Management',
+      'Network Administration', 'Digital Marketing', 'E-Commerce'
+    ],
+    'B.Tech': [
+      'Computer Science', 'Information Technology', 'Electronics & Communication',
+      'Mechanical Engineering', 'Civil Engineering', 'Electrical Engineering',
+      'Data Science', 'Artificial Intelligence', 'Cyber Security'
+    ],
+    
+    // B.Sc Specializations
+    'B.Sc': [
+      'Physics', 'Chemistry', 'Mathematics', 'Botany', 'Zoology',
+      'Biotechnology', 'Microbiology', 'Biochemistry', 'Computer Science',
+      'Information Technology', 'Electronics', 'Statistics', 'Data Science',
+      'Environmental Science', 'Nursing', 'Psychology', 'Nutrition & Dietetics',
+      'Agriculture', 'Forestry', 'Animation & Multimedia'
+    ],
+    
+    // B.Com Specializations
+    'B.Com': [
+      'Accounting & Finance', 'Banking & Insurance', 'Taxation',
+      'E-Commerce', 'Business Management', 'Financial Markets',
+      'International Business', 'Computer Applications', 'Corporate Accounting',
+      'Cost Accounting', 'Auditing'
+    ],
+    
+    // BA Specializations
+    'BA': [
+      'English Literature', 'Economics', 'Political Science', 'Sociology',
+      'Psychology', 'History', 'Geography', 'Philosophy', 'Journalism',
+      'Mass Communication', 'Education', 'Fine Arts',
+      'Public Administration', 'Social Work', 'Tourism & Travel Management'
+    ],
+    'B.A': [
+      'Economics', 'Political Science', 'Sociology', 'Psychology',
+      'History', 'Education', 'Journalism', 'Public Administration', 'English Literature'
+    ],
+    
+    // Law Specializations
+    'LLB': [
+      'Corporate Law', 'Criminal Law', 'Constitutional Law', 'Intellectual Property Law',
+      'Tax Law', 'Cyber Law', 'International Law', 'Human Rights Law'
+    ],
+    'LLM': [
+      'Corporate Law', 'Criminal Law', 'Constitutional Law', 'Intellectual Property Rights',
+      'International Law', 'Human Rights', 'Tax Law', 'Cyber Law'
+    ],
+    
+    // PhD Specializations
+    'PhD': [
+      'Management', 'Computer Science', 'Engineering', 'Commerce', 'Science',
+      'Arts', 'Law', 'Education', 'Social Sciences'
+    ],
+    
+    // Diploma & Certificate Specializations
+    'PGDM': ['Finance', 'Marketing', 'HR', 'Operations', 'Business Analytics'],
+    'Diploma': ['Engineering', 'Management', 'Computer Applications', 'Education'],
+    
+    // Other Professional Courses
+    'BHM': ['Hotel Management', 'Catering Technology', 'Hospitality Administration'],
+    'B.Ed': ['Education', 'Special Education', 'Physical Education'],
+    'M.Ed': ['Education', 'Educational Technology', 'Curriculum & Instruction']
+  };
+
+  // Helper function to extract base course name from full course name
+  const extractBaseCourse = (fullCourseName) => {
+    if (!fullCourseName) return '';
+    
+    // Common course abbreviations to look for
+    const courseAbbreviations = [
+      'MBA', 'MCA', 'M.Tech', 'M.Sc', 'M.Com', 'MA', 'M.A', 'MSW', 'PGDM',
+      'BBA', 'BCA', 'B.Tech', 'B.Sc', 'B.Com', 'BA', 'B.A', 'LLB', 'BHM',
+      'PhD', 'DBA', 'Executive MBA', 'E-MBA'
+    ];
+    
+    // Convert to uppercase for matching
+    const upperCourse = fullCourseName.toUpperCase();
+    
+    // Try to find exact match first
+    for (const abbr of courseAbbreviations) {
+      if (upperCourse.includes(abbr.toUpperCase())) {
+        return abbr;
+      }
+    }
+    
+    // If no match found, return the first word
+    return fullCourseName.split(' ')[0];
+  };
+
+  // Function to aggregate specializations from university database for a specific course
+  const getSpecializationsForCourse = (courseName) => {
+    console.log('🔍 getSpecializationsForCourse called with:', courseName);
+    console.log('📚 Universities available:', universities?.length || 0);
+    
+    if (!courseName) {
+      console.log('⚠️ Missing courseName');
+      return [];
+    }
+    
+    // Extract base course name (e.g., "1-Year MBA Online" → "MBA")
+    const baseCourse = extractBaseCourse(courseName);
+    console.log(`🎯 Base course extracted: "${baseCourse}" from "${courseName}"`);
+    
+    // Define specializations to filter out - course-specific filtering
+    const invalidSpecializationsByCourse = {
+      // Arts courses should not have Computer Applications or technical subjects
+      'BA': ['Computer Applications', 'Tamil', 'Hindi', 'Urdu', 'Sanskrit', 'English Language', 
+             'Applied Tamil', 'Functional Tamil', 'English & Communication',
+             'French', 'Spanish', 'German', 'Arabic', 'Persian', 'Bengali', 'Telugu',
+             'Kannada', 'Malayalam', 'Punjabi', 'Marathi', 'Gujarati', 'Odia',
+             'Social and Civic Studies', 'Yoga for Human Excellence'],
+      
+      // Commerce courses should not have Computer Applications or language subjects
+      'BCom': ['Computer Applications', 'Tamil', 'Hindi', 'Urdu', 'Sanskrit', 'English Language',
+               'Applied Tamil', 'Functional Tamil',
+               'French', 'Spanish', 'German', 'Arabic', 'Persian', 'Bengali', 'Telugu',
+               'Kannada', 'Malayalam', 'Punjabi', 'Marathi', 'Gujarati', 'Odia'],
+      
+      // BCA, MCA should ALLOW Computer Applications, only filter languages
+      'BCA': ['Tamil', 'Hindi', 'Urdu', 'Sanskrit', 'Applied Tamil', 'Functional Tamil',
+              'French', 'Spanish', 'German', 'Arabic', 'Persian', 'Bengali', 'Telugu',
+              'Kannada', 'Malayalam', 'Punjabi', 'Marathi', 'Gujarati', 'Odia'],
+      'MCA': ['Tamil', 'Hindi', 'Urdu', 'Sanskrit', 'Applied Tamil', 'Functional Tamil',
+              'French', 'Spanish', 'German', 'Arabic', 'Persian', 'Bengali', 'Telugu',
+              'Kannada', 'Malayalam', 'Punjabi', 'Marathi', 'Gujarati', 'Odia'],
+      
+      // Science courses - filter languages
+      'BSc': ['Tamil', 'Hindi', 'Urdu', 'Sanskrit', 'Applied Tamil', 'Functional Tamil',
+              'French', 'Spanish', 'German', 'Arabic', 'Persian', 'Bengali', 'Telugu',
+              'Kannada', 'Malayalam', 'Punjabi', 'Marathi', 'Gujarati', 'Odia'],
+      'MSc': ['Tamil', 'Hindi', 'Urdu', 'Sanskrit', 'Applied Tamil', 'Functional Tamil',
+              'French', 'Spanish', 'German', 'Arabic', 'Persian', 'Bengali', 'Telugu',
+              'Kannada', 'Malayalam', 'Punjabi', 'Marathi', 'Gujarati', 'Odia'],
+    };
+    
+    // Get the filter list for this specific course, or use empty array (allow all)
+    const invalidSpecializations = invalidSpecializationsByCourse[baseCourse] || [];
+    
+    const specializationsSet = new Set();
+    let universitiesWithCourse = 0;
+    
+    // Try to get specializations from university database first
+    if (universities && universities.length > 0) {
+      universities.forEach(uni => {
+        if (uni.courses && typeof uni.courses === 'object') {
+          // Check if this university offers the course
+          if (uni.courses[baseCourse]) {
+            universitiesWithCourse++;
+            
+            // Get specializations for this course at this university
+            const courseData = uni.courses[baseCourse];
+            if (courseData.specializations && Array.isArray(courseData.specializations)) {
+              courseData.specializations.forEach(spec => {
+                // Filter out General, empty strings, and invalid specializations
+                if (spec && spec.trim() !== '' && spec !== 'General' && !invalidSpecializations.includes(spec.trim())) {
+                  specializationsSet.add(spec.trim());
+                }
+              });
+            }
+          }
+        }
+      });
+    }
+    
+    // Convert Set to Array
+    let specializations = Array.from(specializationsSet).sort();
+    
+    console.log(`📊 Found ${universitiesWithCourse} universities offering ${baseCourse}`);
+    console.log(`📊 Specializations from database: ${specializations.length}`);
+    
+    // If we got very few specializations from database (less than 3), use our comprehensive fallback
+    if (specializations.length < 3) {
+      console.log(`⚠️ Insufficient specializations in database, using fallback mapping`);
+      
+      // Use the comprehensive mapping
+      if (courseSpecializationMap[baseCourse]) {
+        specializations = courseSpecializationMap[baseCourse];
+        console.log(`✅ Using ${specializations.length} fallback specializations for ${baseCourse}`);
+      } else {
+        // If no mapping found, provide generic specializations based on course type
+        console.log(`⚠️ No fallback mapping for ${baseCourse}, using generic`);
+        specializations = ['General', 'Core Subjects', 'Applied Studies', 'Research'];
+      }
+    }
+    
+    console.log('   First 20 specializations:', specializations.slice(0, 20).join(', '));
+    
+    return specializations;
+  };
+
   const renderStep = () => {
+    // Error message component to display above each step
+    const ErrorDisplay = () => {
+      if (!errorMessage) return null;
+      return (
+        <div className={styles.errorMessage}>
+          <span className={styles.errorIcon}>⚠️</span>
+          <span className={styles.errorText}>{errorMessage}</span>
+        </div>
+      );
+    };
+    
     switch(currentStep) {
       case 1:
         return (
           <div className={styles.stepContent}>
+            <ErrorDisplay />
             <h2>🎓 What level of education are you planning to pursue?</h2>
             
             <div className={getGridClass(8, styles.degreeOptions)}>
@@ -292,6 +692,7 @@ const UniversityMatcher = () => {
         
         return (
           <div className={styles.stepContent}>
+            <ErrorDisplay />
             <h2>📚 Which course would you like to explore?</h2>
             <p className={styles.stepSubtitle}>
               Selected Degree: <strong>{formData.degreeType}</strong> 
@@ -306,7 +707,7 @@ const UniversityMatcher = () => {
                       className={`${styles.degreeCard} ${formData.preferredCourse === course.name ? styles.selected : ''}`}
                       onClick={() => handleInputChange('preferredCourse', course.name)}
                     >
-                      <div className={styles.degreeIcon}>{course.icon || '📚'}</div>
+                      <div className={styles.degreeIcon}>{getCourseIcon(course)}</div>
                       <div className={styles.degreeLabel}>{course.name}</div>
                       <div className={styles.degreeDesc}>{course.category || 'Professional Course'}</div>
                     </div>
@@ -332,18 +733,23 @@ const UniversityMatcher = () => {
       case 3:
         return (
           <div className={styles.stepContent}>
+            <ErrorDisplay />
             <h3>🎯 Choose Your Specialization</h3>
+            <p className={styles.stepSubtitle}>
+              Selected Course: <strong>{formData.preferredCourse}</strong>
+            </p>
             <div className={(() => {
-              const selectedCourse = filteredCourses.find(c => c.name === formData.preferredCourse);
-              if (selectedCourse && selectedCourse.specializations) {
-                return getGridClass(selectedCourse.specializations.length, styles.specializationOptions);
+              const specializations = getSpecializationsForCourse(formData.preferredCourse);
+              if (specializations.length > 0) {
+                return getGridClass(specializations.length, styles.specializationOptions);
               }
               return getGridClass(6, styles.specializationOptions); // Default fallback has 6 options
             })()}>
               {(() => {
-                const selectedCourse = filteredCourses.find(c => c.name === formData.preferredCourse);
-                if (selectedCourse && selectedCourse.specializations) {
-                  return selectedCourse.specializations.map((spec, index) => (
+                const specializations = getSpecializationsForCourse(formData.preferredCourse);
+                
+                if (specializations.length > 0) {
+                  return specializations.map((spec, index) => (
                     <div 
                       key={index}
                       className={`${styles.optionCard} ${formData.specialization === spec ? styles.selected : ''}`}
@@ -354,6 +760,8 @@ const UniversityMatcher = () => {
                     </div>
                   ));
                 }
+                
+                // Fallback specializations if none found in database
                 return [
                   { value: 'finance', label: 'Finance & Banking', icon: '💰' },
                   { value: 'marketing', label: 'Marketing & Sales', icon: '📊' },
@@ -379,6 +787,7 @@ const UniversityMatcher = () => {
       case 4:
         return (
           <div className={styles.stepContent}>
+            <ErrorDisplay />
             <h2>👤 What best describes your current professional status?</h2>
             
             <div className={(() => {
@@ -492,6 +901,7 @@ const UniversityMatcher = () => {
       case 5:
         return (
           <div className={styles.stepContent}>
+            <ErrorDisplay />
             <h2>💻 What's your preferred mode of learning?</h2>
             
             {(() => {
@@ -552,6 +962,7 @@ const UniversityMatcher = () => {
       case 6:
         return (
           <div className={styles.stepContent}>
+            <ErrorDisplay />
             <h2>📍 Which location would you prefer for your studies?</h2>
             
             <h3>🗺️ Select Your Preferred State or Region</h3>
@@ -602,6 +1013,7 @@ const UniversityMatcher = () => {
       case 7:
         return (
           <div className={styles.stepContent}>
+            <ErrorDisplay />
             <h2>💰 What's your investment budget for this course?</h2>
             <p>Help us recommend programs that align with your financial goals</p>
             
@@ -678,6 +1090,7 @@ const UniversityMatcher = () => {
       case 8:
         return (
           <div className={styles.stepContent}>
+            <ErrorDisplay />
             <h3>🎯 What's your primary career goal after completing this course?</h3>
             <div className={getGridClass(9, styles.compactGrid)}>
               {[

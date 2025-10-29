@@ -120,13 +120,28 @@ export default function CompareUniversities() {
     const abbreviation = words.map(w => w[0]).join('').toUpperCase();
     
     // Check if abbreviation exists in university courses
-    if (universities.length > 0 && universities[0].courses) {
-      const matchingCourse = universities[0].courses.find(c => 
-        c.toUpperCase() === abbreviation || c.toUpperCase().replace(/\./g, '') === abbreviation
-      );
-      if (matchingCourse) {
-        console.log('✅ Abbreviation match:', matchingCourse);
-        return matchingCourse;
+    if (universities.length > 0) {
+      let coursesList = null;
+      
+      // Get courses list - check both formats
+      if (universities[0].coursesList && Array.isArray(universities[0].coursesList)) {
+        coursesList = universities[0].coursesList;
+      } else if (universities[0].courses) {
+        if (Array.isArray(universities[0].courses)) {
+          coursesList = universities[0].courses;
+        } else if (typeof universities[0].courses === 'object') {
+          coursesList = Object.keys(universities[0].courses);
+        }
+      }
+      
+      if (coursesList) {
+        const matchingCourse = coursesList.find(c => 
+          c.toUpperCase() === abbreviation || c.toUpperCase().replace(/\./g, '') === abbreviation
+        );
+        if (matchingCourse) {
+          console.log('✅ Abbreviation match:', matchingCourse);
+          return matchingCourse;
+        }
       }
     }
     

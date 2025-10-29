@@ -9,13 +9,13 @@ const Header = ({ courseTitle = null }) => {
   const navigationLinks = [
     {
       title: 'Explore',
-      href: '/universities',
+      href: '/',
       submenu: [
-        { title: 'Featured Universities', href: '/top-universities' },
-        { title: 'University Rankings', href: '/rankings' },
-        { title: 'MBA NINJA - AI DRIVEN', href: '/university-matcher' },
-        { title: 'Find Your Match', href: '/university-finder' },
-        { title: 'All Universities', href: '/universities-list' }
+        { title: 'Browse All Courses', href: '/browse-courses' },
+        { title: 'Top Universities', href: '/#universities' },
+        { title: 'Video Testimonials', href: '/#testimonials' },
+        { title: 'Expert Guidance', href: '/#expert-guidance' },
+        { title: 'Our Leadership', href: '/#leadership' }
       ]
     },
     {
@@ -104,7 +104,13 @@ const Header = ({ courseTitle = null }) => {
                       <ul className={styles.submenu}>
                         {link.submenu.map((sublink, subIndex) => (
                           <li key={subIndex}>
-                            <Link href={sublink.href}>
+                            <Link 
+                              href={sublink.href}
+                              {...(sublink.title === 'Browse All Courses' && { 
+                                target: '_blank', 
+                                rel: 'noopener noreferrer' 
+                              })}
+                            >
                               {sublink.title}
                             </Link>
                           </li>

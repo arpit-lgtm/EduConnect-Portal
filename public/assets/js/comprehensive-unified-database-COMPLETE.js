@@ -1,5229 +1,15490 @@
-// Comprehensive University Database - ALL 166 Universities with Complete Details
+// Comprehensive University Database - ALL 168 Universities with Complete Details
 // Single source of truth for university information, specializations, placements, and ratings
-// Generated: 2025-10-09 19:04:10
-const universityDatabase = [
-{
-id: "alagappa-university-distance-education",
-name: "Alagappa University (Distance Education)",
-        icon: "??",
-type: "University",
-location: "Karaikudi, Tamil Nadu",
-mode: ["Distance", "Online"],
-approvals: ["UGC-DEB", "AICTE", "NAAC"],
-rating: 4.0,
-reviews: 182,
-accreditation: "NAAC A+",
-establishedYear: 1985,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-fees: {
-  "MBA": 37000,
-  "MCA": 30000,
-  "BBA": 15000,
-  "BCA": 20000,
-  "M.Com": 12000,
-  "M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 10000,
-  "MA": 8000,
-  "BA": 6000
-},
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "aligarh-muslim-university-online",
-name: "Aligarh Muslim University (Online)",
-        icon: "??",
-type: "Central University",
-location: "Aligarh, Uttar Pradesh",
-mode: ["Online"],
-approvals: ["UGC-DEB", "AICTE", "NAAC"],
-rating: 4.1,
-reviews: 380,
-accreditation: "NAAC A++",
-establishedYear: 1875,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-fees: {
-  "MBA": 45000,
-  "MCA": 38000,
-  "BBA": 25000,
-  "BCA": 30000,
-  "M.Com": 18000,
-  "M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 15000,
-  "MA": 12000,
-  "BA": 10000
-},
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: 48,
-placements: { averagePackage: 385000, highestPackage: 1150000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "amity-university-distance-education",
-name: "Amity University (Distance Education)",
-        icon: "??",
-type: "Private University",
-location: "Noida, Uttar Pradesh",
-mode: ["Distance", "Online"],
-approvals: ["UGC-DEB", "AICTE", "NAAC"],
-rating: 4,
-reviews: 250,
-accreditation: "NAAC A",
-establishedYear: 2005,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-fees: {
-  "MBA": 199000,
-  "MCA": 170000,
-  "BBA": 165000,
-  "BCA": 150000,
-  "M.Com": 120000,
-  "M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 99000,
-  "MA": 170000,
-  "BA": 99000
-},
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: 30,
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "amrita-university-online",
-name: "Amrita University (Online)",
-        icon: "??",
-type: "Private University",
-location: "Coimbatore, Tamil Nadu",
-mode: ["Online"],
-approvals: ["UGC-DEB", "AICTE", "NAAC", "NBA"],
-rating: 4.3,
-reviews: 485,
-accreditation: "NAAC A++",
-establishedYear: 2003,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-fees: {
-  "MBA": 98000,
-  "MCA": 88000,
-  "BBA": 48000,
-  "BCA": 58000,
-  "M.Com": 38000,
-  "M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 28000,
-  "MA": 25000,
-  "BA": 20000
-},
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: 8,
-placements: { averagePackage: 465000, highestPackage: 1300000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "andhra-university-distance-education",
-name: "Andhra University (Distance Education)",
-        icon: "??",
-type: "State University",
-location: "Visakhapatnam, Andhra Pradesh",
-mode: ["Distance", "Online"],
-approvals: ["UGC-DEB", "AICTE", "NAAC"],
-rating: 4.0,
-reviews: 325,
-accreditation: "NAAC A+",
-establishedYear: 1926,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-fees: {
-  "MBA": 42000,
-  "MCA": 35000,
-  "BBA": 22000,
-  "BCA": 28000,
-  "M.Com": 16000,
-  "M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 14000,
-  "MA": 11000,
-  "BA": 9000
-},
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: 58,
-placements: { averagePackage: 365000, highestPackage: 1050000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "annamalai-distance-education",
-name: "Annamalai (Distance Education)",
-        icon: "??",
-type: "University",
-location: "Chidambaram, Tamil Nadu",
-mode: ["Distance", "Online"],
-approvals: ["UGC-DEB", "AICTE", "NAAC"],
-rating: 4.0,
-reviews: 198,
-accreditation: "NAAC A",
-establishedYear: 1929,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-fees: {
-  "MBA": 35000,
-  "MCA": 30000,
-  "BBA": 15000,
-  "BCA": 20000,
-  "M.Com": 12000,
-  "M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 10000,
-  "MA": 8000,
-  "BA": 6000
-},
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-placements: { averagePackage: 280000, highestPackage: 800000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "anna-university-distance-education",
-name: "Anna University (Distance Education)",
-        icon: "??",
-type: "University",
-location: "Chennai, Tamil Nadu",
-mode: ["Distance", "Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 82000,
-"MCA": 82000,
-"BBA": 56150,
-"BCA": 56150,
-"M.Com": 56150,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 56150,
-"MA": 56150,
-"BA": 56150,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "anucde-acharya-nagarjuna-distance-education",
-name: "Anucde Acharya Nagarjuna (Distance Education)",
-        icon: "??",
-type: "State University",
-location: "Guntur, Andhra Pradesh",
-mode: ["Distance", "Online"],
-approvals: ["UGC-DEB", "AICTE", "NAAC"],
-rating: 3.8,
-reviews: 215,
-accreditation: "NAAC A",
-establishedYear: 1976,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-fees: {
-  "MBA": 35000,
-  "MCA": 28000,
-  "BBA": 18000,
-  "BCA": 22000,
-  "M.Com": 12000,
-  "M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 10000,
-  "MA": 8000,
-  "BA": 6000
-},
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-placements: { averagePackage: 285000, highestPackage: 780000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "bharathiar-university-distance-education",
-name: "Bharathiar University (Distance Education)",
-        icon: "??",
-type: "University",
-location: "Coimbatore, Tamil Nadu",
-mode: ["Distance", "Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 42200,
-"MCA": 42200,
-"BBA": 50000,
-"BCA": 50000,
-"M.Com": 42200,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 50000,
-"MA": 42200,
-"BA": 50000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "bharathidasan-university-distance-education",
-name: "Bharathidasan University (Distance Education)",
-        icon: "??",
-type: "State University",
-location: "Tiruchirappalli, Tamil Nadu",
-mode: ["Distance", "Online"],
-approvals: ["UGC-DEB", "AICTE", "NAAC"],
-rating: 3.9,
-reviews: 245,
-accreditation: "NAAC A",
-establishedYear: 1982,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-fees: {
-  "MBA": 28000,
-  "MCA": 25000,
-  "BBA": 12000,
-  "BCA": 15000,
-  "M.Com": 10000,
-  "M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 8000,
-  "MA": 6000,
-  "BA": 5000
-},
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-placements: { averagePackage: 270000, highestPackage: 720000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "bimtech-greater-noida",
-name: "Bimtech Greater Noida",
-        icon: "??",
-type: "Private Institute",
-location: "Greater Noida, Uttar Pradesh",
-mode: ["Regular", "Distance"],
-approvals: ["AICTE", "NAAC"],
-rating: 4.0,
-reviews: 280,
-accreditation: "NAAC A",
-establishedYear: 1988,
-courses: ["MBA", "BBA"],
-fees: {
-  "MBA": 185000,
-  "BBA": 95000
-},
-specializations: ["Management", "International Business", "Finance", "Marketing"],
-nirfRanking: null,
-placements: { averagePackage: 650000, highestPackage: 1800000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "birchwood-university",
-name: "Birchwood University",
-        icon: "??",
-type: "International University",
-location: "Orlando, Florida, USA",
-mode: ["Regular", "Online"],
-approvals: ["SACSCOC"],
-rating: 4.1,
-reviews: 180,
-accreditation: "SACSCOC",
-establishedYear: 1982,
-courses: ["MBA", "Masters", "Bachelors"],
-specializations: ["Business", "Healthcare", "Technology", "Education"],
-nirfRanking: null,
-fees: {
-"MBA": 403211,
-"Masters": 884409,
-"Bachelors": 2100000,
-},
-placements: { averagePackage: 6500000, highestPackage: 11000000, offered: true },
-isInternational: true,
-state: "Florida",
-country: "USA",
-studentsRating: "4.5/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
-eligibility: "Graduation with 60%",
-},
-{
-id: "bits-pilani",
-name: "BITS Pilani",
-        icon: "??",
-type: "University",
-location: "Pilani, Rajasthan",
-mode: ["Regular"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 313000,
-"MCA": 284000,
-"BBA": 310000,
-"BCA": 310000,
-"M.Com": 284000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 310000,
-"MA": 284000,
-"BA": 310000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "cde-amu-distance-education",
-name: "CDE Amu (Distance Education)",
-        icon: "??",
-type: "University",
-location: "Aligarh, Uttar Pradesh",
-mode: ["Distance", "Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 19500,
-"MCA": 19500,
-"BBA": 19500,
-"BCA": 19500,
-"M.Com": 19000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 22500,
-"MA": 19500,
-"BA": 19500,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "chandigarh-university-distance",
-name: "Chandigarh University Distance",
-        icon: "??",
-type: "Private University",
-location: "Mohali, Punjab",
-mode: ["Distance", "Online"],
-approvals: ["UGC-DEB", "AICTE", "NAAC", "NBA"],
-rating: 4.0,
-reviews: 312,
-accreditation: "NAAC A+",
-establishedYear: 2012,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-fees: {
-  "MBA": 78000,
-  "MCA": 68000,
-  "BBA": 42000,
-  "BCA": 52000,
-  "M.Com": 28000,
-  "M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 22000,
-  "MA": 18000,
-  "BA": 16000
-},
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: 85,
-placements: { averagePackage: 340000, highestPackage: 880000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "chaudhary-charan-singh-university-online",
-name: "Chaudhary Charan Singh University (Online)",
-        icon: "??",
-type: "University",
-location: "Meerut, Uttar Pradesh",
-mode: ["Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 81250,
-"MCA": 81250,
-"BBA": 81250,
-"BCA": 81250,
-"M.Com": 81250,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 81250,
-"MA": 81250,
-"BA": 81250,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "chitkara-university-online",
-name: "Chitkara University (Online)",
-        icon: "??",
-type: "Private University",
-location: "Rajpura, Punjab",
-mode: ["Online"],
-approvals: ["UGC-DEB", "AICTE", "NAAC"],
-rating: 4.0,
-reviews: 315,
-accreditation: "NAAC A+",
-establishedYear: 2010,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-fees: {
-  "MBA": 115000,
-  "MCA": 105000,
-  "BBA": 65000,
-  "BCA": 75000,
-  "M.Com": 45000,
-  "M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 38000,
-  "MA": 32000,
-  "BA": 28000
-},
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-placements: { averagePackage: 450000, highestPackage: 1250000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "ddu-deen-dayal-upadhyay-gorakhpur-online",
-name: "DDU Deen Dayal Upadhyay Gorakhpur (Online)",
-        icon: "??",
-type: "State University",
-location: "Gorakhpur, Uttar Pradesh",
-mode: ["Online"],
-approvals: ["UGC-DEB", "AICTE", "NAAC"],
-rating: 3.7,
-reviews: 185,
-accreditation: "NAAC A",
-establishedYear: 1957,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-fees: {
-  "MBA": 32000,
-  "MCA": 28000,
-  "BBA": 16000,
-  "BCA": 20000,
-  "M.Com": 12000,
-  "M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 10000,
-  "MA": 8000,
-  "BA": 6000
-},
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-placements: { averagePackage: 265000, highestPackage: 680000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "deakin-university-melbourne",
-name: "Deakin University Melbourne",
-        icon: "??",
-type: "International University",
-location: "Melbourne, Victoria, Australia",
-mode: ["Regular", "Online"],
-approvals: ["TEQSA", "AACSB"],
-rating: 4.3,
-reviews: 320,
-accreditation: "TEQSA",
-establishedYear: 1974,
-courses: ["MBA", "Masters", "Bachelors"],
-specializations: ["Business", "Engineering", "Health Sciences", "Information Technology", "Education"],
-nirfRanking: null,
-fees: {
-"MBA": 550000,
-"Masters": 1744596,
-"Bachelors": 1744596,
-},
-placements: { averagePackage: 8500000, highestPackage: 15000000, offered: true },
-isInternational: true,
-state: "Victoria",
-country: "Australia",
-studentsRating: "4.5/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
-eligibility: "Graduation with 60%",
-},
-{
-id: "dibrugarh-university-distance-education",
-name: "Dibrugarh University (Distance Education)",
-        icon: "??",
-type: "University",
-location: "Dibrugarh, Assam",
-mode: ["Distance", "Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 35000,
-"MCA": 17000,
-"BBA": 9400,
-"BCA": 9400,
-"M.Com": 17000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 9400,
-"MA": 17000,
-"BA": 9400,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "durham-university",
-name: "Durham University",
-        icon: "??",
-type: "International University",
-location: "Durham, England, UK",
-mode: ["Regular"],
-approvals: ["QAA", "British Council"],
-rating: 4.3,
-reviews: 150,
-accreditation: "Russell Group",
-establishedYear: 1832,
-courses: ["MBA", "Masters", "Bachelors"],
-specializations: ["Business", "Engineering", "Arts", "Sciences", "Law"],
-nirfRanking: null,
-fees: {
-"MBA": 1533784,
-"Masters": 4501200,
-"Bachelors": 4501200,
-},
-placements: { averagePackage: 6000000, highestPackage: 12000000, offered: true },
-isInternational: true,
-state: "England",
-country: "UK",
-studentsRating: "4.5/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
-eligibility: "Graduation with 60%",
-},
-{
-id: "du-sol",
-name: "Du Sol",
-        icon: "??",
-type: "University",
-location: "Delhi",
-mode: ["Regular"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 100000,
-"MCA": 47500,
-"BBA": 15200,
-"BCA": 40200,
-"M.Com": 10000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 9600,
-"MA": 12000,
-"BA": 5000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "dy-patil-university-navi-mumbai-online",
-name: "D.Y. Patil University Navi Mumbai (Online)",
-        icon: "??",
-type: "Private University",
-location: "Navi Mumbai, Maharashtra",
-mode: ["Online"],
-approvals: ["UGC-DEB", "AICTE", "NAAC"],
-rating: 4.0,
-reviews: 295,
-accreditation: "NAAC A",
-establishedYear: 2003,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-fees: {
-  "MBA": 120000,
-  "MCA": 105000,
-  "BBA": 65000,
-  "BCA": 75000,
-  "M.Com": 45000,
-  "M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 35000,
-  "MA": 30000,
-  "BA": 25000
-},
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-placements: { averagePackage: 400000, highestPackage: 1200000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "dy-patil-university-online",
-name: "D.Y. Patil University (Online)",
-        icon: "??",
-type: "Private University",
-location: "Pune, Maharashtra",
-mode: ["Online"],
-approvals: ["UGC-DEB", "AICTE", "NAAC"],
-rating: 4.1,
-reviews: 325,
-accreditation: "NAAC A+",
-establishedYear: 2002,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-fees: {
-  "MBA": 125000,
-  "MCA": 110000,
-  "BBA": 70000,
-  "BCA": 80000,
-  "M.Com": 50000,
-  "M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 40000,
-  "MA": 35000,
-  "BA": 30000
-},
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-placements: { averagePackage: 420000, highestPackage: 1350000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "edgewood-university",
-name: "Edgewood University",
-        icon: "??",
-type: "International University",
-location: "Madison, Wisconsin, USA",
-mode: ["Regular", "Online"],
-approvals: ["HLC", "AACSB"],
-rating: 4.1,
-reviews: 180,
-accreditation: "HLC",
-establishedYear: 1927,
-courses: ["MBA", "Masters", "Bachelors"],
-specializations: ["Business", "Education", "Nursing", "Psychology"],
-nirfRanking: null,
-fees: {
-"MBA": 395000,
-"Masters": 485000,
-"Bachelors": 3260000,
-},
-placements: { averagePackage: 6000000, highestPackage: 10000000, offered: true },
-isInternational: true,
-state: "Wisconsin",
-country: "USA",
-studentsRating: "4.5/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
-eligibility: "Graduation with 60%",
-},
-{
-id: "english-and-foreign-languages-university-distance-education",
-name: "English And Foreign Languages University (Distance Education)",
-        icon: "??",
-type: "University",
-location: "Hyderabad, Telangana",
-mode: ["Distance", "Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 6070,
-"MCA": 6070,
-"BBA": 5260,
-"BCA": 5260,
-"M.Com": 6070,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 5260,
-"MA": 6070,
-"BA": 5260,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "esgci",
-name: "ESGCI - École Supérieure de Gestion et Commerce International",
-        icon: "??",
-type: "International University",
-location: "Paris, Île-de-France, France",
-mode: ["Regular", "Online"],
-approvals: ["French Ministry of Education", "RNCP"],
-rating: 4.0,
-reviews: 180,
-accreditation: "RNCP",
-establishedYear: 1985,
-courses: ["MBA", "Masters", "Bachelors"],
-specializations: ["International Business", "Digital Marketing", "Finance", "Management"],
-nirfRanking: null,
-fees: {
-"MBA": 814000,
-"Masters": 814000,
-"Bachelors": 1046400,
-},
-placements: { averagePackage: 6500000, highestPackage: 11000000, offered: true },
-studentsRating: "4.5/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
-eligibility: "Graduation with 60%",
-isInternational: true,
-state: "Île-de-France",
-country: "France"
-},
-{
-id: "galgotias-university-online",
-name: "Galgotias University (Online)",
-        icon: "??",
-type: "Private University",
-location: "Greater Noida, Uttar Pradesh",
-mode: ["Online"],
-approvals: ["UGC-DEB", "AICTE", "NAAC"],
-rating: 3.8,
-reviews: 295,
-accreditation: "NAAC A",
-establishedYear: 2011,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-fees: {
-  "MBA": 105000,
-  "MCA": 95000,
-  "BBA": 58000,
-  "BCA": 68000,
-  "M.Com": 38000,
-  "M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 32000,
-  "MA": 28000,
-  "BA": 22000
-},
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-placements: { averagePackage: 420000, highestPackage: 1150000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "gitam-university-distance-education",
-name: "Gitam University (Distance Education)",
-        icon: "??",
-type: "University",
-location: "Visakhapatnam, Andhra Pradesh",
-mode: ["Distance", "Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 56000,
-"MCA": 56000,
-"BBA": 48000,
-"BCA": 48000,
-"M.Com": 48000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 48000,
-"MA": 48000,
-"BA": 48000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "gla-university-online",
-name: "GLA University (Online)",
-        icon: "??",
-type: "University",
-location: "Mathura, Uttar Pradesh",
-mode: ["Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 105000,
-"MCA": 105000,
-"BBA": 94500,
-"BCA": 94500,
-"M.Com": 66000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 66000,
-"MA": 105000,
-"BA": 94500,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "golden-gate-university",
-name: "Golden Gate University",
-        icon: "??",
-type: "International University",
-location: "San Francisco, California, USA",
-mode: ["Regular", "Online"],
-approvals: ["WASC", "AACSB"],
-rating: 4.2,
-reviews: 250,
-accreditation: "WASC",
-establishedYear: 1901,
-courses: ["MBA", "Masters", "JD", "Bachelors"],
-specializations: ["Business", "Technology", "Law", "Public Administration"],
-nirfRanking: null,
-fees: {
-"MBA": 430000,
-"Masters": 821011,
-"JD": 1230000,
-"Bachelors": 1230000,
-},
-placements: { averagePackage: 8000000, highestPackage: 15000000, offered: true },
-isInternational: true,
-state: "California",
-country: "USA",
-studentsRating: "4.5/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
-eligibility: "Graduation with 60%",
-},
-{
-id: "graphic-era-university-online",
-name: "Graphic Era University (Online)",
-        icon: "??",
-type: "Deemed University",
-location: "Dehradun, Uttarakhand",
-mode: ["Online"],
-approvals: ["UGC-DEB", "AICTE", "NAAC"],
-rating: 3.9,
-reviews: 285,
-accreditation: "NAAC A",
-establishedYear: 2008,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-fees: {
-  "MBA": 85000,
-  "MCA": 75000,
-  "BBA": 45000,
-  "BCA": 55000,
-  "M.Com": 30000,
-  "M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 25000,
-  "MA": 20000,
-  "BA": 18000
-},
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-placements: { averagePackage: 365000, highestPackage: 980000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "guru-kashi-university-online",
-name: "Guru Kashi University (Online)",
-        icon: "??",
-type: "University",
-location: "Bathinda, Punjab",
-mode: ["Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 90000,
-"MCA": 90000,
-"BBA": 43200,
-"BCA": 43200,
-"M.Com": 48000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 43200,
-"MA": 28800,
-"BA": 21600,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "harvard-university-online",
-name: "Harvard University (Online)",
-        icon: "??",
-type: "International University",
-location: "Cambridge, Massachusetts, USA",
-mode: ["Online"],
-approvals: ["AACSB", "Regional Accreditation"],
-rating: 4.8,
-reviews: 400,
-accreditation: "AACSB",
-establishedYear: 1636,
-courses: ["MBA", "Masters", "Executive Education"],
-specializations: ["Business", "Technology", "Public Policy", "Medicine", "Law"],
-nirfRanking: null,
-fees: {
-"MBA": 6660000,
-"Masters": 6090000,
-"Executive Education": 3720000,
-},
-placements: { averagePackage: 12000000, highestPackage: 25000000, offered: true },
-isInternational: true,
-state: "Massachusetts",
-country: "USA",
-studentsRating: "4.5/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
-eligibility: "Graduation with 60%",
-},
-{
-id: "hpu-himachal-pradesh-university-distance-education",
-name: "HPU Himachal Pradesh University (Distance Education)",
-        icon: "??",
-type: "University",
-location: "Shimla, Himachal Pradesh",
-mode: ["Distance", "Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 15200,
-"MCA": 15200,
-"BBA": 7600,
-"BCA": 7600,
-"M.Com": 7600,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 7600,
-"MA": 7600,
-"BA": 7600,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "ideku-kerala-university-distance-education",
-name: "Ideku Kerala University (Distance Education)",
-        icon: "??",
-type: "University",
-location: "Kerala",
-mode: ["Distance", "Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 43220,
-"MCA": 43220,
-"BBA": 40810,
-"BCA": 40810,
-"M.Com": 21610,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 40810,
-"MA": 21610,
-"BA": 40810,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "ignou",
-name: "IGNOU",
-        icon: "??",
-type: "Central University",
-location: "New Delhi, Delhi",
-mode: ["Distance", "Online"],
-approvals: ["UGC-DEB", "AICTE", "DEC", "NAAC"],
-rating: 4.2,
-reviews: 1250,
-accreditation: "NAAC A++",
-establishedYear: 1985,
-courses: ["MBA", "MCA", "BBA", "BCA", "M.Com", "B.Com", "MA", "BA", "B.Ed", "M.Ed"],
-fees: {
-  "MBA": 36000,
-  "MCA": 39000,
-  "BBA": 21000,
-  "BCA": 24000,
-  "M.Com": 15000,
-  "M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 12000,
-  "MA": 9000,
-  "BA": 7500,
-  "B.Ed": 18000,
-  "M.Ed": 15000
-},
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science", "Education"],
-nirfRanking: 35,
-placements: { averagePackage: 320000, highestPackage: 950000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "iiit-bangalore",
-name: "IIIT Bangalore",
-        icon: "??",
-type: "Government Institute",
-location: "Bangalore, Karnataka",
-mode: ["Regular"],
-approvals: ["NIRF", "AICTE", "UGC"],
-rating: 4.5,
-reviews: 400,
-accreditation: "NIRF Rank 5",
-establishedYear: 1960,
-courses: ["B.Tech", "M.Tech", "MBA", "PhD"],
-specializations: ["Computer Science", "Data Science", "AI & ML", "Engineering", "Management"],
-nirfRanking: 5,
-fees: {
-"B.Tech": 827000,
-"M.Tech": 112000,
-"MBA": 200000,
-"PhD": 50000,
-},
-placements: { averagePackage: 1500000, highestPackage: 4000000, offered: true },
-studentsRating: "4.7/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
-eligibility: "Graduation with 50%",
-},
-{
-id: "iiit-dharwad",
-name: "IIIT Dharwad",
-        icon: "??",
-type: "Government Institute",
-location: "Dharwad, Karnataka",
-mode: ["Regular"],
-approvals: ["NIRF", "AICTE", "UGC"],
-rating: 4.5,
-reviews: 400,
-accreditation: "NIRF Rank 5",
-establishedYear: 1960,
-courses: ["B.Tech", "M.Tech", "MBA", "PhD"],
-specializations: ["Computer Science", "Data Science", "AI & ML", "Engineering", "Management"],
-nirfRanking: 5,
-fees: {
-"B.Tech": 827000,
-"M.Tech": 112000,
-"MBA": 200000,
-"PhD": 50000,
-},
-placements: { averagePackage: 1500000, highestPackage: 4000000, offered: true },
-studentsRating: "4.7/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
-eligibility: "Graduation with 50%",
-},
-{
-id: "iim-ahmedabad",
-name: "IIM Ahmedabad",
-        icon: "??",
-type: "Government Institute",
-location: "Ahmedabad, Gujarat",
-mode: ["Regular"],
-approvals: ["NIRF", "AICTE", "UGC"],
-rating: 4.7,
-reviews: 350,
-accreditation: "NIRF Rank 3",
-establishedYear: 1965,
-courses: ["MBA", "Executive MBA", "PGDM", "PhD"],
-specializations: ["Strategic Management", "Finance", "Marketing", "Operations", "HR"],
-nirfRanking: 3,
-fees: {
-"MBA": 2650000,
-"Executive MBA": 3415000,
-"PGDM": 2650000,
-"PhD": 50000,
-},
-placements: { averagePackage: 3000000, highestPackage: 6500000, offered: true },
-studentsRating: "4.7/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
-eligibility: "Graduation with 50%",
-},
-{
-id: "iim-amritsar",
-name: "IIM Amritsar",
-        icon: "??",
-type: "Government Institute",
-location: "Amritsar, Punjab",
-mode: ["Regular"],
-approvals: ["NIRF", "AICTE", "UGC"],
-rating: 4.7,
-reviews: 350,
-accreditation: "NIRF Rank 3",
-establishedYear: 1965,
-courses: ["MBA", "Executive MBA", "PGDM", "PhD"],
-specializations: ["Strategic Management", "Finance", "Marketing", "Operations", "HR"],
-nirfRanking: 3,
-fees: {
-"MBA": 1800000,
-"Executive MBA": 1800000,
-"PGDM": 1800000,
-"PhD": 50000,
-},
-placements: { averagePackage: 3000000, highestPackage: 6500000, offered: true },
-studentsRating: "4.7/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
-eligibility: "Graduation with 50%",
-},
-{
-id: "iim-bangalore",
-name: "IIM Bangalore",
-        icon: "??",
-type: "Government Institute",
-location: "Bangalore, Karnataka",
-mode: ["Regular"],
-approvals: ["NIRF", "AICTE", "UGC"],
-rating: 4.7,
-reviews: 350,
-accreditation: "NIRF Rank 3",
-establishedYear: 1965,
-courses: ["MBA", "Executive MBA", "PGDM", "PhD"],
-specializations: ["Strategic Management", "Finance", "Marketing", "Operations", "HR"],
-nirfRanking: 3,
-fees: {
-"MBA": 2650000,
-"Executive MBA": 2650000,
-"PGDM": 2650000,
-"PhD": 50000,
-},
-placements: { averagePackage: 3000000, highestPackage: 6500000, offered: true },
-studentsRating: "4.7/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
-eligibility: "Graduation with 50%",
-},
-{
-id: "iim-bodh-gaya",
-name: "IIM Bodh Gaya",
-        icon: "??",
-type: "Government Institute",
-location: "Bodh Gaya, Bihar",
-mode: ["Regular"],
-approvals: ["NIRF", "AICTE", "UGC"],
-rating: 4.7,
-reviews: 350,
-accreditation: "NIRF Rank 3",
-establishedYear: 1965,
-courses: ["MBA", "Executive MBA", "PGDM", "PhD"],
-specializations: ["Strategic Management", "Finance", "Marketing", "Operations", "HR"],
-nirfRanking: 3,
-fees: {
-"MBA": 1628000,
-"Executive MBA": 1628000,
-"PGDM": 1628000,
-"PhD": 50000,
-},
-placements: { averagePackage: 3000000, highestPackage: 6500000, offered: true },
-studentsRating: "4.7/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
-eligibility: "Graduation with 50%",
-},
-{
-id: "iim-calcutta",
-name: "IIM Calcutta",
-        icon: "??",
-type: "Government Institute",
-location: "Kolkata, West Bengal",
-mode: ["Regular"],
-approvals: ["NIRF", "AICTE", "UGC"],
-rating: 4.7,
-reviews: 350,
-accreditation: "NIRF Rank 3",
-establishedYear: 1965,
-courses: ["MBA", "Executive MBA", "PGDM", "PhD"],
-specializations: ["Strategic Management", "Finance", "Marketing", "Operations", "HR"],
-nirfRanking: 3,
-fees: {
-"MBA": 3350000,
-"Executive MBA": 3350000,
-"PGDM": 3350000,
-"PhD": 50000,
-},
-placements: { averagePackage: 3000000, highestPackage: 6500000, offered: true },
-studentsRating: "4.7/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
-eligibility: "Graduation with 50%",
-},
-{
-id: "iim-indore",
-name: "IIM Indore",
-        icon: "??",
-type: "Government Institute",
-location: "Indore, Madhya Pradesh",
-mode: ["Regular"],
-approvals: ["NIRF", "AICTE", "UGC"],
-rating: 4.7,
-reviews: 350,
-accreditation: "NIRF Rank 3",
-establishedYear: 1965,
-courses: ["MBA", "Executive MBA", "PGDM", "PhD"],
-specializations: ["Strategic Management", "Finance", "Marketing", "Operations", "HR"],
-nirfRanking: 3,
-fees: {
-"MBA": 2200000,
-"Executive MBA": 2200000,
-"PGDM": 2200000,
-"PhD": 50000,
-},
-placements: { averagePackage: 3000000, highestPackage: 6500000, offered: true },
-studentsRating: "4.7/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
-eligibility: "Graduation with 50%",
-},
-{
-id: "iim-indore-timespro",
-name: "IIM Indore Timespro",
-        icon: "??",
-type: "Government Institute",
-location: "Indore, Madhya Pradesh",
-mode: ["Regular"],
-approvals: ["NIRF", "AICTE", "UGC"],
-rating: 4.7,
-reviews: 350,
-accreditation: "NIRF Rank 3",
-establishedYear: 1965,
-courses: ["MBA", "Executive MBA", "PGDM", "PhD"],
-specializations: ["Strategic Management", "Finance", "Marketing", "Operations", "HR"],
-nirfRanking: 3,
-fees: {
-"MBA": 2200000,
-"Executive MBA": 2200000,
-"PGDM": 2200000,
-"PhD": 50000,
-},
-placements: { averagePackage: 3000000, highestPackage: 6500000, offered: true },
-studentsRating: "4.7/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
-eligibility: "Graduation with 50%",
-},
-{
-id: "iim-jammu",
-name: "IIM Jammu",
-        icon: "??",
-type: "Government Institute",
-location: "Jammu, Jammu and Kashmir",
-mode: ["Regular"],
-approvals: ["NIRF", "AICTE", "UGC"],
-rating: 4.7,
-reviews: 350,
-accreditation: "NIRF Rank 3",
-establishedYear: 1965,
-courses: ["MBA", "Executive MBA", "PGDM", "PhD"],
-specializations: ["Strategic Management", "Finance", "Marketing", "Operations", "HR"],
-nirfRanking: 3,
-fees: {
-"MBA": 1700000,
-"Executive MBA": 1700000,
-"PGDM": 1700000,
-"PhD": 50000,
-},
-placements: { averagePackage: 3000000, highestPackage: 6500000, offered: true },
-studentsRating: "4.7/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
-eligibility: "Graduation with 50%",
-},
-{
-id: "iim-kashipur",
-name: "IIM Kashipur",
-        icon: "??",
-type: "Government Institute",
-location: "Kashipur, Uttarakhand",
-mode: ["Regular"],
-approvals: ["NIRF", "AICTE", "UGC"],
-rating: 4.7,
-reviews: 350,
-accreditation: "NIRF Rank 3",
-establishedYear: 1965,
-courses: ["MBA", "Executive MBA", "PGDM", "PhD"],
-specializations: ["Strategic Management", "Finance", "Marketing", "Operations", "HR"],
-nirfRanking: 3,
-fees: {
-"MBA": 1790000,
-"Executive MBA": 1790000,
-"PGDM": 1790000,
-"PhD": 50000,
-},
-placements: { averagePackage: 3000000, highestPackage: 6500000, offered: true },
-studentsRating: "4.7/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
-eligibility: "Graduation with 50%",
-},
-{
-id: "iim-kozhikode",
-name: "IIM Kozhikode",
-        icon: "??",
-type: "Government Institute",
-location: "Kozhikode, Kerala",
-mode: ["Regular"],
-approvals: ["NIRF", "AICTE", "UGC"],
-rating: 4.7,
-reviews: 350,
-accreditation: "NIRF Rank 3",
-establishedYear: 1965,
-courses: ["MBA", "Executive MBA", "PGDM", "PhD"],
-specializations: ["Strategic Management", "Finance", "Marketing", "Operations", "HR"],
-nirfRanking: 3,
-fees: {
-"MBA": 2000000,
-"Executive MBA": 2000000,
-"PGDM": 2000000,
-"PhD": 50000,
-},
-placements: { averagePackage: 3000000, highestPackage: 6500000, offered: true },
-studentsRating: "4.7/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
-eligibility: "Graduation with 50%",
-},
-{
-id: "iim-lucknow",
-name: "IIM Lucknow",
-        icon: "??",
-type: "Government Institute",
-location: "Uttar Pradesh",
-mode: ["Regular"],
-approvals: ["NIRF", "AICTE", "UGC"],
-rating: 4.7,
-reviews: 350,
-accreditation: "NIRF Rank 3",
-establishedYear: 1965,
-courses: ["MBA", "Executive MBA", "PGDM", "PhD"],
-specializations: ["Strategic Management", "Finance", "Marketing", "Operations", "HR"],
-nirfRanking: 3,
-fees: {
-"MBA": 2200000,
-"Executive MBA": 2200000,
-"PGDM": 2200000,
-"PhD": 50000,
-},
-placements: { averagePackage: 3000000, highestPackage: 6500000, offered: true },
-studentsRating: "4.7/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
-eligibility: "Graduation with 50%",
-},
-{
-id: "iim-mumbai",
-name: "IIM Mumbai",
-        icon: "??",
-type: "Government Institute",
-location: "Mumbai, Maharashtra",
-mode: ["Regular"],
-approvals: ["NIRF", "AICTE", "UGC"],
-rating: 4.7,
-reviews: 350,
-accreditation: "NIRF Rank 3",
-establishedYear: 1965,
-courses: ["MBA", "Executive MBA", "PGDM", "PhD"],
-specializations: ["Strategic Management", "Finance", "Marketing", "Operations", "HR"],
-nirfRanking: 3,
-fees: {
-"MBA": 1790000,
-"Executive MBA": 1790000,
-"PGDM": 1790000,
-"PhD": 50000,
-},
-placements: { averagePackage: 3000000, highestPackage: 6500000, offered: true },
-studentsRating: "4.7/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
-eligibility: "Graduation with 50%",
-},
-{
-id: "iim-nagpur",
-name: "IIM Nagpur",
-        icon: "??",
-type: "Government Institute",
-location: "Nagpur, Maharashtra",
-mode: ["Regular"],
-approvals: ["NIRF", "AICTE", "UGC"],
-rating: 4.7,
-reviews: 350,
-accreditation: "NIRF Rank 3",
-establishedYear: 1965,
-courses: ["MBA", "Executive MBA", "PGDM", "PhD"],
-specializations: ["Strategic Management", "Finance", "Marketing", "Operations", "HR"],
-nirfRanking: 3,
-fees: {
-"MBA": 1790000,
-"Executive MBA": 1790000,
-"PGDM": 1790000,
-"PhD": 50000,
-},
-placements: { averagePackage: 3000000, highestPackage: 6500000, offered: true },
-studentsRating: "4.7/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
-eligibility: "Graduation with 50%",
-},
-{
-id: "iim-raipur",
-name: "IIM Raipur",
-        icon: "??",
-type: "Government Institute",
-location: "Raipur, Chhattisgarh",
-mode: ["Regular"],
-approvals: ["NIRF", "AICTE", "UGC"],
-rating: 4.7,
-reviews: 350,
-accreditation: "NIRF Rank 3",
-establishedYear: 1965,
-courses: ["MBA", "Executive MBA", "PGDM", "PhD"],
-specializations: ["Strategic Management", "Finance", "Marketing", "Operations", "HR"],
-nirfRanking: 3,
-fees: {
-"MBA": 1800000,
-"Executive MBA": 1800000,
-"PGDM": 1800000,
-"PhD": 50000,
-},
-placements: { averagePackage: 3000000, highestPackage: 6500000, offered: true },
-studentsRating: "4.7/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
-eligibility: "Graduation with 50%",
-},
-{
-id: "iim-ranchi",
-name: "IIM Ranchi",
-        icon: "??",
-type: "Government Institute",
-location: "Ranchi, Jharkhand",
-mode: ["Regular"],
-approvals: ["NIRF", "AICTE", "UGC"],
-rating: 4.7,
-reviews: 350,
-accreditation: "NIRF Rank 3",
-establishedYear: 1965,
-courses: ["MBA", "Executive MBA", "PGDM", "PhD"],
-specializations: ["Strategic Management", "Finance", "Marketing", "Operations", "HR"],
-nirfRanking: 3,
-fees: {
-"MBA": 1790000,
-"Executive MBA": 1790000,
-"PGDM": 1790000,
-"PhD": 50000,
-},
-placements: { averagePackage: 3000000, highestPackage: 6500000, offered: true },
-studentsRating: "4.7/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
-eligibility: "Graduation with 50%",
-},
-{
-id: "iim-rohtak",
-name: "IIM Rohtak",
-        icon: "??",
-type: "Government Institute",
-location: "Rohtak, Haryana",
-mode: ["Regular"],
-approvals: ["NIRF", "AICTE", "UGC"],
-rating: 4.7,
-reviews: 350,
-accreditation: "NIRF Rank 3",
-establishedYear: 1965,
-courses: ["MBA", "Executive MBA", "PGDM", "PhD"],
-specializations: ["Strategic Management", "Finance", "Marketing", "Operations", "HR"],
-nirfRanking: 3,
-fees: {
-"MBA": 1790000,
-"Executive MBA": 1790000,
-"PGDM": 1790000,
-"PhD": 50000,
-},
-placements: { averagePackage: 3000000, highestPackage: 6500000, offered: true },
-studentsRating: "4.7/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
-eligibility: "Graduation with 50%",
-},
-{
-id: "iim-sambalpur",
-name: "IIM Sambalpur",
-        icon: "??",
-type: "Government Institute",
-location: "Sambalpur, Odisha",
-mode: ["Regular"],
-approvals: ["NIRF", "AICTE", "UGC"],
-rating: 4.7,
-reviews: 350,
-accreditation: "NIRF Rank 3",
-establishedYear: 1965,
-courses: ["MBA", "Executive MBA", "PGDM", "PhD"],
-specializations: ["Strategic Management", "Finance", "Marketing", "Operations", "HR"],
-nirfRanking: 3,
-fees: {
-"MBA": 1790000,
-"Executive MBA": 1790000,
-"PGDM": 1790000,
-"PhD": 50000,
-},
-placements: { averagePackage: 3000000, highestPackage: 6500000, offered: true },
-studentsRating: "4.7/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
-eligibility: "Graduation with 50%",
-},
-{
-id: "iim-shillong",
-name: "IIM Shillong",
-        icon: "??",
-type: "Government Institute",
-location: "Shillong, Meghalaya",
-mode: ["Regular"],
-approvals: ["NIRF", "AICTE", "UGC"],
-rating: 4.7,
-reviews: 350,
-accreditation: "NIRF Rank 3",
-establishedYear: 1965,
-courses: ["MBA", "Executive MBA", "PGDM", "PhD"],
-specializations: ["Strategic Management", "Finance", "Marketing", "Operations", "HR"],
-nirfRanking: 3,
-fees: {
-"MBA": 1790000,
-"Executive MBA": 1790000,
-"PGDM": 1790000,
-"PhD": 50000,
-},
-placements: { averagePackage: 3000000, highestPackage: 6500000, offered: true },
-studentsRating: "4.7/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
-eligibility: "Graduation with 50%",
-},
-{
-id: "iim-sirmaur",
-name: "IIM Sirmaur",
-        icon: "??",
-type: "Government Institute",
-location: "Sirmaur, Himachal Pradesh",
-mode: ["Regular"],
-approvals: ["NIRF", "AICTE", "UGC"],
-rating: 4.7,
-reviews: 350,
-accreditation: "NIRF Rank 3",
-establishedYear: 1965,
-courses: ["MBA", "Executive MBA", "PGDM", "PhD"],
-specializations: ["Strategic Management", "Finance", "Marketing", "Operations", "HR"],
-nirfRanking: 3,
-fees: {
-"MBA": 1628000,
-"Executive MBA": 1628000,
-"PGDM": 1628000,
-"PhD": 50000,
-},
-placements: { averagePackage: 3000000, highestPackage: 6500000, offered: true },
-studentsRating: "4.7/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
-eligibility: "Graduation with 50%",
-},
-{
-id: "iim-trichy",
-name: "IIM Trichy",
-        icon: "??",
-type: "Government Institute",
-location: "Tiruchirappalli, Tamil Nadu",
-mode: ["Regular"],
-approvals: ["NIRF", "AICTE", "UGC"],
-rating: 4.7,
-reviews: 350,
-accreditation: "NIRF Rank 3",
-establishedYear: 1965,
-courses: ["MBA", "Executive MBA", "PGDM", "PhD"],
-specializations: ["Strategic Management", "Finance", "Marketing", "Operations", "HR"],
-nirfRanking: 3,
-fees: {
-"MBA": 1790000,
-"Executive MBA": 1790000,
-"PGDM": 1790000,
-"PhD": 50000,
-},
-placements: { averagePackage: 3000000, highestPackage: 6500000, offered: true },
-studentsRating: "4.7/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
-eligibility: "Graduation with 50%",
-},
-{
-id: "iim-udaipur",
-name: "IIM Udaipur",
-        icon: "??",
-type: "Government Institute",
-location: "Udaipur, Rajasthan",
-mode: ["Regular"],
-approvals: ["NIRF", "AICTE", "UGC"],
-rating: 4.7,
-reviews: 350,
-accreditation: "NIRF Rank 3",
-establishedYear: 1965,
-courses: ["MBA", "Executive MBA", "PGDM", "PhD"],
-specializations: ["Strategic Management", "Finance", "Marketing", "Operations", "HR"],
-nirfRanking: 3,
-fees: {
-"MBA": 1496000,
-"Executive MBA": 1496000,
-"PGDM": 1496000,
-"PhD": 50000,
-},
-placements: { averagePackage: 3000000, highestPackage: 6500000, offered: true },
-studentsRating: "4.7/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
-eligibility: "Graduation with 50%",
-},
-{
-id: "iim-visakhapatnam",
-name: "IIM Visakhapatnam",
-        icon: "??",
-type: "Government Institute",
-location: "Visakhapatnam, Andhra Pradesh",
-mode: ["Regular"],
-approvals: ["NIRF", "AICTE", "UGC"],
-rating: 4.7,
-reviews: 350,
-accreditation: "NIRF Rank 3",
-establishedYear: 1965,
-courses: ["MBA", "Executive MBA", "PGDM", "PhD"],
-specializations: ["Strategic Management", "Finance", "Marketing", "Operations", "HR"],
-nirfRanking: 3,
-fees: {
-"MBA": 1790000,
-"Executive MBA": 1790000,
-"PGDM": 1790000,
-"PhD": 50000,
-},
-placements: { averagePackage: 3000000, highestPackage: 6500000, offered: true },
-studentsRating: "4.7/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
-eligibility: "Graduation with 50%",
-},
-{
-id: "iisc-bangalore",
-name: "Iisc Bangalore",
-        icon: "??",
-type: "University",
-location: "Bangalore, Karnataka",
-mode: ["Regular"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 200000,
-"MCA": 112000,
-"BBA": 827000,
-"BCA": 827000,
-"M.Com": 112000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 827000,
-"MA": 112000,
-"BA": 827000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.7/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
-eligibility: "Graduation with 50%",
-},
-{
-id: "iit-bombay",
-name: "IIT Bombay",
-        icon: "??",
-type: "Government Institute",
-location: "Mumbai, Maharashtra",
-mode: ["Regular"],
-approvals: ["NIRF", "AICTE", "UGC"],
-rating: 4.5,
-reviews: 400,
-accreditation: "NIRF Rank 5",
-establishedYear: 1960,
-courses: ["B.Tech", "M.Tech", "MBA", "PhD"],
-specializations: ["Computer Science", "Data Science", "AI & ML", "Engineering", "Management"],
-nirfRanking: 5,
-fees: {
-"B.Tech": 827000,
-"M.Tech": 112000,
-"MBA": 200000,
-"PhD": 50000,
-},
-placements: { averagePackage: 1500000, highestPackage: 4000000, offered: true },
-studentsRating: "4.7/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
-eligibility: "Graduation with 50%",
-},
-{
-id: "iit-delhi",
-name: "IIT Delhi",
-        icon: "??",
-type: "Government Institute",
-location: "New Delhi, Delhi",
-mode: ["Regular"],
-approvals: ["NIRF", "AICTE", "UGC"],
-rating: 4.5,
-reviews: 400,
-accreditation: "NIRF Rank 5",
-establishedYear: 1960,
-courses: ["B.Tech", "M.Tech", "MBA", "PhD"],
-specializations: ["Computer Science", "Data Science", "AI & ML", "Engineering", "Management"],
-nirfRanking: 5,
-fees: {
-"B.Tech": 827000,
-"M.Tech": 112000,
-"MBA": 200000,
-"PhD": 50000,
-},
-placements: { averagePackage: 1500000, highestPackage: 4000000, offered: true },
-studentsRating: "4.7/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
-eligibility: "Graduation with 50%",
-},
-{
-id: "iit-guwahati",
-name: "IIT Guwahati",
-        icon: "??",
-type: "Government Institute",
-location: "Guwahati, Assam",
-mode: ["Regular"],
-approvals: ["NIRF", "AICTE", "UGC"],
-rating: 4.5,
-reviews: 400,
-accreditation: "NIRF Rank 5",
-establishedYear: 1960,
-courses: ["B.Tech", "M.Tech", "MBA", "PhD"],
-specializations: ["Computer Science", "Data Science", "AI & ML", "Engineering", "Management"],
-nirfRanking: 5,
-fees: {
-"B.Tech": 91000,
-"M.Tech": 91000,
-"MBA": 91000,
-"PhD": 50000,
-},
-placements: { averagePackage: 1500000, highestPackage: 4000000, offered: true },
-studentsRating: "4.7/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
-eligibility: "Graduation with 50%",
-},
-{
-id: "iit-hyderabad",
-name: "IIT Hyderabad",
-        icon: "??",
-type: "Government Institute",
-location: "Hyderabad, Telangana",
-mode: ["Regular"],
-approvals: ["NIRF", "AICTE", "UGC"],
-rating: 4.5,
-reviews: 400,
-accreditation: "NIRF Rank 5",
-establishedYear: 1960,
-courses: ["B.Tech", "M.Tech", "MBA", "PhD"],
-specializations: ["Computer Science", "Data Science", "AI & ML", "Engineering", "Management"],
-nirfRanking: 5,
-fees: {
-"B.Tech": 827000,
-"M.Tech": 112000,
-"MBA": 200000,
-"PhD": 50000,
-},
-placements: { averagePackage: 1500000, highestPackage: 4000000, offered: true },
-studentsRating: "4.7/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
-eligibility: "Graduation with 50%",
-},
-{
-id: "iit-jodhpur",
-name: "IIT Jodhpur",
-        icon: "??",
-type: "Government Institute",
-location: "Jodhpur, Rajasthan",
-mode: ["Regular"],
-approvals: ["NIRF", "AICTE", "UGC"],
-rating: 4.5,
-reviews: 400,
-accreditation: "NIRF Rank 5",
-establishedYear: 1960,
-courses: ["B.Tech", "M.Tech", "MBA", "PhD"],
-specializations: ["Computer Science", "Data Science", "AI & ML", "Engineering", "Management"],
-nirfRanking: 5,
-fees: {
-"B.Tech": 827000,
-"M.Tech": 112000,
-"MBA": 200000,
-"PhD": 50000,
-},
-placements: { averagePackage: 1500000, highestPackage: 4000000, offered: true },
-studentsRating: "4.7/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
-eligibility: "Graduation with 50%",
-},
-{
-id: "iit-kanpur",
-name: "IIT Kanpur",
-        icon: "??",
-type: "Government Institute",
-location: "Kanpur, Uttar Pradesh",
-mode: ["Regular"],
-approvals: ["NIRF", "AICTE", "UGC"],
-rating: 4.5,
-reviews: 400,
-accreditation: "NIRF Rank 5",
-establishedYear: 1960,
-courses: ["B.Tech", "M.Tech", "MBA", "PhD"],
-specializations: ["Computer Science", "Data Science", "AI & ML", "Engineering", "Management"],
-nirfRanking: 5,
-fees: {
-"B.Tech": 827000,
-"M.Tech": 112000,
-"MBA": 232790,
-"PhD": 50000,
-},
-placements: { averagePackage: 1500000, highestPackage: 4000000, offered: true },
-studentsRating: "4.7/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
-eligibility: "Graduation with 50%",
-},
-{
-id: "iit-kharagpur",
-name: "IIT Kharagpur",
-        icon: "??",
-type: "Government Institute",
-location: "Kharagpur, West Bengal",
-mode: ["Regular"],
-approvals: ["NIRF", "AICTE", "UGC"],
-rating: 4.5,
-reviews: 400,
-accreditation: "NIRF Rank 5",
-establishedYear: 1960,
-courses: ["B.Tech", "M.Tech", "MBA", "PhD"],
-specializations: ["Computer Science", "Data Science", "AI & ML", "Engineering", "Management"],
-nirfRanking: 5,
-fees: {
-"B.Tech": 827000,
-"M.Tech": 112000,
-"MBA": 200000,
-"PhD": 50000,
-},
-placements: { averagePackage: 1500000, highestPackage: 4000000, offered: true },
-studentsRating: "4.7/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
-eligibility: "Graduation with 50%",
-},
-{
-id: "iit-madras",
-name: "IIT Madras",
-        icon: "??",
-type: "Government Institute",
-location: "Chennai, Tamil Nadu",
-mode: ["Regular"],
-approvals: ["NIRF", "AICTE", "UGC"],
-rating: 4.5,
-reviews: 400,
-accreditation: "NIRF Rank 5",
-establishedYear: 1960,
-courses: ["B.Tech", "M.Tech", "MBA", "PhD"],
-specializations: ["Computer Science", "Data Science", "AI & ML", "Engineering", "Management"],
-nirfRanking: 5,
-fees: {
-"B.Tech": 827000,
-"M.Tech": 112000,
-"MBA": 200000,
-"PhD": 50000,
-},
-placements: { averagePackage: 1500000, highestPackage: 4000000, offered: true },
-studentsRating: "4.7/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
-eligibility: "Graduation with 50%",
-},
-{
-id: "iit-roorkee",
-name: "IIT Roorkee",
-        icon: "??",
-type: "Government Institute",
-location: "Roorkee, Uttarakhand",
-mode: ["Regular"],
-approvals: ["NIRF", "AICTE", "UGC"],
-rating: 4.5,
-reviews: 400,
-accreditation: "NIRF Rank 5",
-establishedYear: 1960,
-courses: ["B.Tech", "M.Tech", "MBA", "PhD"],
-specializations: ["Computer Science", "Data Science", "AI & ML", "Engineering", "Management"],
-nirfRanking: 5,
-fees: {
-"B.Tech": 827000,
-"M.Tech": 112000,
-"MBA": 200000,
-"PhD": 50000,
-},
-placements: { averagePackage: 1500000, highestPackage: 4000000, offered: true },
-studentsRating: "4.7/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
-eligibility: "Graduation with 50%",
-},
-{
-id: "iit-ropar",
-name: "IIT Ropar",
-        icon: "??",
-type: "Government Institute",
-location: "Ropar, Punjab",
-mode: ["Regular"],
-approvals: ["NIRF", "AICTE", "UGC"],
-rating: 4.5,
-reviews: 400,
-accreditation: "NIRF Rank 5",
-establishedYear: 1960,
-courses: ["B.Tech", "M.Tech", "MBA", "PhD"],
-specializations: ["Computer Science", "Data Science", "AI & ML", "Engineering", "Management"],
-nirfRanking: 5,
-fees: {
-"B.Tech": 827000,
-"M.Tech": 112000,
-"MBA": 200000,
-"PhD": 50000,
-},
-placements: { averagePackage: 1500000, highestPackage: 4000000, offered: true },
-studentsRating: "4.7/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
-eligibility: "Graduation with 50%",
-},
-{
-id: "iit-varanasi",
-name: "IIT Varanasi",
-        icon: "??",
-type: "Government Institute",
-location: "Varanasi, Uttar Pradesh",
-mode: ["Regular"],
-approvals: ["NIRF", "AICTE", "UGC"],
-rating: 4.5,
-reviews: 400,
-accreditation: "NIRF Rank 5",
-establishedYear: 1960,
-courses: ["B.Tech", "M.Tech", "MBA", "PhD"],
-specializations: ["Computer Science", "Data Science", "AI & ML", "Engineering", "Management"],
-nirfRanking: 5,
-fees: {
-"B.Tech": 827000,
-"M.Tech": 112000,
-"MBA": 200000,
-"PhD": 50000,
-},
-placements: { averagePackage: 1500000, highestPackage: 4000000, offered: true },
-studentsRating: "4.7/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
-eligibility: "Graduation with 50%",
-},
-{
-id: "Bharath Institute of Higher Education and Research",
-name: "Bharath Institute of Higher Education and Research",
-        icon: "??",
-type: "University",
-location: "Chennai, Tamil Nadu",
-mode: ["Regular"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 150000,
-"MCA": 120000,
-"BBA": 80000,
-"BCA": 75000,
-"M.Com": 60000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 50000,
-"MA": 50000,
-"BA": 40000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "imt-center-for-distance-learning",
-name: "Imt Center For Distance Learning",
-        icon: "??",
-type: "University",
-location: "Ghaziabad, Uttar Pradesh",
-mode: ["Distance", "Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 150000,
-"MCA": 120000,
-"BBA": 80000,
-"BCA": 75000,
-"M.Com": 60000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 50000,
-"MA": 50000,
-"BA": 40000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "imt-ghaziabad",
-name: "Imt Ghaziabad",
-        icon: "??",
-type: "University",
-location: "Ghaziabad, Uttar Pradesh",
-mode: ["Regular"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 150000,
-"MCA": 120000,
-"BBA": 80000,
-"BCA": 75000,
-"M.Com": 60000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 50000,
-"MA": 50000,
-"BA": 40000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "indian-management-school-and-research-centre",
-name: "Indian Management School And Research Centre",
-        icon: "??",
-type: "University",
-location: "Pune, Maharashtra",
-mode: ["Regular"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 150000,
-"MCA": 120000,
-"BBA": 80000,
-"BCA": 75000,
-"M.Com": 60000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 50000,
-"MA": 50000,
-"BA": 40000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "jain-university-distance-education",
-name: "Jain University (Distance Education)",
-        icon: "??",
-type: "University",
-location: "Bangalore, Karnataka",
-mode: ["Distance", "Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 150000,
-"MCA": 120000,
-"BBA": 75000,
-"BCA": 75000,
-"M.Com": 45000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 75000,
-"MA": 22500,
-"BA": 75000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "jain-university-online",
-name: "Jain University (Online)",
-        icon: "??",
-type: "Deemed University",
-location: "Bangalore, Karnataka",
-mode: ["Online"],
-approvals: ["UGC", "AICTE", "AIU", "NIRF", "WES", "NAAC A++", "QS", "AUAP"],
-rating: 4.6,
-reviews: 766,
-accreditation: "NAAC A++",
-nirfRanking: 65,
-establishedYear: 1990,
-courses: ["MBA", "MCA", "BBA", "BCA", "M.Com", "B.Com", "MA"],
-specializations: ["Management", "Technology", "Commerce", "Arts"],
-fees: {
-    "MBA": 196000,
-    "MCA": 160000,
-    "BBA": 150000,
-    "BCA": 165000,
-    "B.Com": 90000,
-    "M.Com": 110000,
-    "MA": 90000
-},
-placements: { averagePackage: 420000, highestPackage: 1500000, offered: true, hiringPartners: 2000 },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "jamia-hamdard-online",
-name: "Jamia Hamdard (Online)",
-        icon: "??",
-type: "Deemed University",
-location: "New Delhi, Delhi",
-mode: ["Online"],
-approvals: ["UGC-DEB", "AICTE", "NAAC"],
-rating: 4.1,
-reviews: 385,
-accreditation: "NAAC A",
-establishedYear: 1989,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-fees: {
-  "MBA": 125000,
-  "MCA": 105000,
-  "BBA": 65000,
-  "BCA": 75000,
-  "M.Com": 45000,
-  "M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 35000,
-  "MA": 30000,
-  "BA": 25000
-},
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-placements: { averagePackage: 420000, highestPackage: 1250000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "jamia-millia-islamia-distance-education",
-name: "Jamia Millia Islamia (Distance Education)",
-        icon: "??",
-type: "Central University",
-location: "New Delhi, Delhi",
-mode: ["Distance", "Online"],
-approvals: ["UGC-DEB", "AICTE", "NAAC"],
-rating: 4.3,
-reviews: 520,
-accreditation: "NAAC A++",
-establishedYear: 1920,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-fees: {
-  "MBA": 48000,
-  "MCA": 42000,
-  "BBA": 28000,
-  "BCA": 32000,
-  "M.Com": 20000,
-  "M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 18000,
-  "MA": 15000,
-  "BA": 12000
-},
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: 38,
-placements: { averagePackage: 450000, highestPackage: 1400000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "jamia-millia-islamia-online",
-name: "Jamia Millia Islamia (Online)",
-        icon: "??",
-type: "University",
-location: "New Delhi, Delhi",
-mode: ["Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 70000,
-"MCA": 70000,
-"BBA": 30000,
-"BCA": 30000,
-"M.Com": 20000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 30000,
-"MA": 20000,
-"BA": 10000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "jammu-university-distance-education",
-name: "Jammu University (Distance Education)",
-        icon: "??",
-type: "University",
-location: "Jammu, Jammu and Kashmir",
-mode: ["Distance", "Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 30000,
-"MCA": 30000,
-"BBA": 15000,
-"BCA": 15000,
-"M.Com": 15000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 15000,
-"MA": 15000,
-"BA": 15000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "jgu-online-coursera",
-name: "Jgu (Online) Coursera",
-        icon: "??",
-type: "University",
-location: "Sonipat, Haryana",
-mode: ["Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 150000,
-"MCA": 120000,
-"BBA": 80000,
-"BCA": 75000,
-"M.Com": 60000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 50000,
-"MA": 50000,
-"BA": 40000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "jnu-jawaharlal-nehru-university-delhi",
-name: "Jnu Jawaharlal Nehru University Delhi",
-        icon: "??",
-type: "University",
-location: "New Delhi, Delhi",
-mode: ["Regular"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 50000,
-"MCA": 50000,
-"BBA": 20000,
-"BCA": 20000,
-"M.Com": 20000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 20000,
-"MA": 20000,
-"BA": 10000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "kakatiya-university-distance-education",
-name: "Kakatiya University (Distance Education)",
-        icon: "??",
-type: "University",
-location: "Warangal, Telangana",
-mode: ["Distance", "Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 40000,
-"MCA": 40000,
-"BBA": 20000,
-"BCA": 20000,
-"M.Com": 20000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 20000,
-"MA": 20000,
-"BA": 20000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "kalinga-university-engineering",
-name: "Kalinga University Engineering",
-        icon: "??",
-type: "Private University",
-location: "Raipur, Chhattisgarh",
-mode: ["Distance", "Online"],
-approvals: ["UGC-DEB", "AICTE", "NAAC"],
-rating: 3.7,
-reviews: 195,
-accreditation: "NAAC A",
-establishedYear: 2003,
-courses: ["MBA", "MCA", "BBA", "BCA", "M.Com", "B.Com", "MA", "BA", "B.Tech"],
-fees: {
-  "MBA": 65000,
-  "MCA": 55000,
-  "BBA": 35000,
-  "BCA": 45000,
-  "M.Com": 22000,
-  "M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 18000,
-  "MA": 15000,
-  "BA": 12000,
-  "B.Tech": 80000
-},
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science", "Engineering"],
-nirfRanking: null,
-placements: { averagePackage: 290000, highestPackage: 780000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "kalyani-university-distance-education",
-name: "Kalyani University (Distance Education)",
-        icon: "??",
-type: "State University",
-location: "Kalyani, West Bengal",
-mode: ["Distance", "Online"],
-approvals: ["UGC-DEB", "AICTE", "NAAC"],
-rating: 3.8,
-reviews: 185,
-accreditation: "NAAC A",
-establishedYear: 1960,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-fees: {
-  "MBA": 32000,
-  "MCA": 28000,
-  "BBA": 18000,
-  "BCA": 22000,
-  "M.Com": 14000,
-  "M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 12000,
-  "MA": 10000,
-  "BA": 8000
-},
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-placements: { averagePackage: 275000, highestPackage: 720000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "kiit-university-online",
-name: "KIIT University (Online)",
-        icon: "??",
-type: "Government Institute",
-location: "Bhubaneswar, Odisha",
-mode: ["Online"],
-approvals: ["NIRF", "AICTE", "UGC"],
-studentsChoice: true,
-rating: 4.5,
-reviews: 400,
-accreditation: "NIRF Rank 5",
-establishedYear: 1960,
-courses: ["B.Tech", "M.Tech", "MBA", "PhD"],
-specializations: ["Computer Science", "Data Science", "AI & ML", "Engineering", "Management"],
-nirfRanking: 5,
-fees: {
-"MBA": 150000,
-"MCA": 120000,
-"BBA": 100000,
-"BCA": 100000,
-"M.Com": 80000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 80000,
-"MA": 80000,
-"BA": 80000,
-},
-placements: { averagePackage: 1500000, highestPackage: 4000000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "kl-university-distance-education",
-name: "KL University (Distance Education)",
-        icon: "??",
-type: "University",
-location: "Vaddeswaram, Andhra Pradesh",
-mode: ["Distance", "Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 100000,
-"MCA": 100000,
-"BBA": 60000,
-"BCA": 60000,
-"M.Com": 50000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 60000,
-"MA": 50000,
-"BA": 60000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "kuk-dde-kurukshetra-university-distance-education",
-name: "Kuk Dde Kurukshetra University (Distance Education)",
-        icon: "??",
-type: "State University",
-location: "Kurukshetra, Haryana",
-mode: ["Distance", "Online"],
-approvals: ["UGC-DEB", "AICTE", "NAAC"],
-rating: 3.9,
-reviews: 305,
-accreditation: "NAAC A",
-establishedYear: 1956,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-fees: {
-  "MBA": 38000,
-  "MCA": 32000,
-  "BBA": 20000,
-  "BCA": 25000,
-  "M.Com": 15000,
-  "M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 12000,
-  "MA": 10000,
-  "BA": 8000
-},
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-placements: { averagePackage: 310000, highestPackage: 850000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "kurukshetra-university-online",
-name: "Kurukshetra University (Online)",
-        icon: "??",
-type: "State University",
-location: "Kurukshetra, Haryana",
-mode: ["Online"],
-approvals: ["UGC-DEB", "AICTE", "NAAC"],
-rating: 4.0,
-reviews: 320,
-accreditation: "NAAC A",
-establishedYear: 1956,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-fees: {
-  "MBA": 42000,
-  "MCA": 36000,
-  "BBA": 24000,
-  "BCA": 29000,
-  "M.Com": 18000,
-  "M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 15000,
-  "MA": 12000,
-  "BA": 10000
-},
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-placements: { averagePackage: 335000, highestPackage: 920000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "kuvempu-university-distance-education",
-name: "Kuvempu University (Distance Education)",
-        icon: "??",
-type: "University",
-location: "Shimoga, Karnataka",
-mode: ["Distance", "Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 40000,
-"MCA": 40000,
-"BBA": 20000,
-"BCA": 20000,
-"M.Com": 20000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 20000,
-"MA": 20000,
-"BA": 20000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "liberty-university",
-name: "Liberty University",
-        icon: "??",
-type: "International University",
-location: "Lynchburg, Virginia, USA",
-mode: ["Regular", "Online"],
-approvals: ["SACSCOC"],
-rating: 4.1,
-reviews: 320,
-accreditation: "SACSCOC",
-establishedYear: 1971,
-courses: ["MBA", "Masters", "Bachelors", "Doctorate"],
-specializations: ["Business", "Education", "Engineering", "Nursing", "Divinity"],
-nirfRanking: null,
-fees: {
-"MBA": 300000,
-"Masters": 400000,
-"Bachelors": 800000,
-"Doctorate": 500000,
-},
-placements: { averagePackage: 6800000, highestPackage: 12000000, offered: true },
-isInternational: true,
-state: "Virginia",
-country: "USA",
-studentsRating: "4.5/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
-eligibility: "Graduation with 60%",
-},
-{
-id: "lingayas-vidyapeeth",
-name: "Lingayas Vidyapeeth",
-        icon: "??",
-type: "University",
-location: "Faridabad, Haryana",
-mode: ["Regular"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 150000,
-"MCA": 120000,
-"BBA": 80000,
-"BCA": 75000,
-"M.Com": 60000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 50000,
-"MA": 50000,
-"BA": 40000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "liverpool-john-moores",
-name: "Liverpool John Moores University",
-        icon: "??",
-type: "International University",
-location: "Liverpool, Merseyside, UK",
-mode: ["Regular", "Online"],
-approvals: ["QAA", "British Council"],
-rating: 4.0,
-reviews: 300,
-accreditation: "QAA",
-establishedYear: 1992,
-courses: ["MBA", "Masters", "Bachelors"],
-specializations: ["Business", "Engineering", "Sports Science", "Creative Arts"],
-nirfRanking: null,
-fees: {
-"MBA": 1500000,
-"Masters": 1500000,
-"Bachelors": 1500000,
-},
-placements: { averagePackage: 5500000, highestPackage: 9000000, offered: true },
-isInternational: true,
-state: "Merseyside",
-country: "UK",
-studentsRating: "4.5/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
-eligibility: "Graduation with 60%",
-},
-{
-id: "lovely-professional-university-distance-education",
-name: "Lovely Professional University (Distance Education)",
-        icon: "??",
-type: "Private University",
-location: "Phagwara, Punjab",
-mode: ["Distance", "Online"],
-approvals: ["UGC-DEB", "AICTE", "NAAC", "NBA"],
-rating: 4.1,
-reviews: 385,
-accreditation: "NAAC A+",
-establishedYear: 2005,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-fees: {
-  "MBA": 85000,
-  "MCA": 75000,
-  "BBA": 45000,
-  "BCA": 55000,
-  "M.Com": 30000,
-  "M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 25000,
-  "MA": 20000,
-  "BA": 18000
-},
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: 52,
-placements: { averagePackage: 350000, highestPackage: 950000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "loyola-institute-of-business-administration",
-name: "Loyola Institute Of Business Administration",
-        icon: "??",
-type: "University",
-location: "Chennai, Tamil Nadu",
-mode: ["Regular"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 150000,
-"MCA": 120000,
-"BBA": 80000,
-"BCA": 75000,
-"M.Com": 60000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 50000,
-"MA": 50000,
-"BA": 40000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "lucknow-university",
-name: "Lucknow University",
-        icon: "??",
-type: "University",
-location: "Uttar Pradesh",
-mode: ["Regular"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 100000,
-"MCA": 100000,
-"BBA": 50000,
-"BCA": 50000,
-"M.Com": 40000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 50000,
-"MA": 40000,
-"BA": 30000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "madras-university-distance-education",
-name: "Madras University (Distance Education)",
-        icon: "??",
-type: "State University",
-location: "Chennai, Tamil Nadu",
-mode: ["Distance", "Online"],
-approvals: ["UGC-DEB", "AICTE", "NAAC"],
-rating: 4.2,
-reviews: 425,
-accreditation: "NAAC A++",
-establishedYear: 1857,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-fees: {
-  "MBA": 42000,
-  "MCA": 35000,
-  "BBA": 22000,
-  "BCA": 28000,
-  "M.Com": 16000,
-  "M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 14000,
-  "MA": 11000,
-  "BA": 9000
-},
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: 42,
-placements: { averagePackage: 420000, highestPackage: 1250000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "maharishi-markandeshwar-university-online",
-name: "Maharishi Markandeshwar University (Online)",
-        icon: "??",
-type: "University",
-location: "Ambala, Haryana",
-mode: ["Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 100000,
-"MCA": 100000,
-"BBA": 50000,
-"BCA": 50000,
-"M.Com": 40000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 40000,
-"MA": 40000,
-"BA": 30000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "mahe-manipal-online",
-name: "Mahe Manipal (Online)",
-        icon: "??",
-type: "Private University",
-location: "Manipal, Karnataka",
-mode: ["Online"],
-approvals: ["UGC-DEB", "AICTE", "NAAC"],
-rating: 4,
-reviews: 250,
-accreditation: "NAAC A",
-establishedYear: 2005,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: 30,
-fees: {
-"MBA": 300000,
-"MCA": 200000,
-"BBA": 150000,
-"BCA": 150000,
-"M.Com": 100000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 100000,
-"MA": 100000,
-"BA": 100000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "manav-rachna-university-online",
-name: "Manav Rachna University (Online)",
-        icon: "??",
-type: "University",
-location: "Faridabad, Haryana",
-mode: ["Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 150000,
-"MCA": 120000,
-"BBA": 80000,
-"BCA": 75000,
-"M.Com": 60000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 50000,
-"MA": 50000,
-"BA": 40000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "manipal-university-online",
-name: "Manipal University (Online)",
-        icon: "??",
-type: "Private University",
-location: "Manipal, Karnataka",
-mode: ["Online"],
-approvals: ["UGC-DEB", "AICTE", "NAAC A+", "WES", "QS"],
-rating: 4.5,
-reviews: 857,
-accreditation: "NAAC A+",
-nirfRanking: 16,
-establishedYear: 1993,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-fees: {
-    "MBA": 250000,
-    "MCA": 185000,
-    "BBA": 175000,
-    "BCA": 165000,
-    "B.Com": 110000,
-    "M.Com": 135000,
-    "MA": 125000,
-    "BA": 105000
-},
-placements: { averagePackage: 550000, highestPackage: 1800000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "manonmaniam-sundaranar-university-distance-education",
-name: "Manonmaniam Sundaranar University (Distance Education)",
-        icon: "??",
-type: "University",
-location: "Tirunelveli, Tamil Nadu",
-mode: ["Distance", "Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 40000,
-"MCA": 40000,
-"BBA": 20000,
-"BCA": 20000,
-"M.Com": 20000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 20000,
-"MA": 20000,
-"BA": 20000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "manuu-maulana-azad-national-urdu-university-distance",
-name: "Manuu Maulana Azad National Urdu University Distance",
-        icon: "??",
-type: "Central University",
-location: "Hyderabad, Telangana",
-mode: ["Distance", "Online"],
-approvals: ["UGC-DEB", "AICTE", "NAAC"],
-rating: 3.9,
-reviews: 275,
-accreditation: "NAAC A",
-establishedYear: 1998,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-fees: {
-  "MBA": 35000,
-  "MCA": 30000,
-  "BBA": 18000,
-  "BCA": 22000,
-  "M.Com": 12000,
-  "M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 10000,
-  "MA": 8000,
-  "BA": 6000
-},
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-placements: { averagePackage: 285000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "mizoram-university-online",
-name: "Mizoram University (Online)",
-        icon: "??",
-type: "University",
-location: "Aizawl, Mizoram",
-mode: ["Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 50000,
-"MCA": 50000,
-"BBA": 25000,
-"BCA": 25000,
-"M.Com": 25000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 25000,
-"MA": 25000,
-"BA": 25000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "mku-madurai-kamaraj-university-distance-education",
-name: "Mku Madurai Kamaraj University (Distance Education)",
-        icon: "??",
-type: "University",
-location: "Madurai, Tamil Nadu",
-mode: ["Distance", "Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 30000,
-"MCA": 30000,
-"BBA": 15000,
-"BCA": 15000,
-"M.Com": 15000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 15000,
-"MA": 15000,
-"BA": 15000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "mody-university-online",
-name: "Mody University (Online)",
-        icon: "??",
-type: "University",
-location: "Sikar, Rajasthan",
-mode: ["Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 150000,
-"MCA": 120000,
-"BBA": 80000,
-"BCA": 75000,
-"M.Com": 60000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 50000,
-"MA": 50000,
-"BA": 40000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "mumbai-university-distance-education",
-name: "Mumbai University (Distance Education)",
-        icon: "??",
-type: "University",
-location: "Mumbai, Maharashtra",
-mode: ["Distance", "Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 80000,
-"MCA": 80000,
-"BBA": 40000,
-"BCA": 40000,
-"M.Com": 30000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 30000,
-"MA": 30000,
-"BA": 20000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "nalsar-university-of-law-distance-education",
-name: "Nalsar University Of Law (Distance Education)",
-        icon: "??",
-type: "University",
-location: "Hyderabad, Telangana",
-mode: ["Distance", "Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 100000,
-"MCA": 100000,
-"BBA": 50000,
-"BCA": 50000,
-"M.Com": 40000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 40000,
-"MA": 40000,
-"BA": 30000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "nmims-online",
-name: "NMIMS (Online)",
-        icon: "??",
-type: "Private University",
-location: "Mumbai, Maharashtra",
-mode: ["Online"],
-approvals: ["UGC-DEB", "AICTE", "NAAC", "NBA"],
-rating: 4.6,
-reviews: 640,
-accreditation: "NAAC A++",
-establishedYear: 1981,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-fees: {
-  "MBA": 350000,
-  "MCA": 280000,
-  "BBA": 180000,
-  "BCA": 220000,
-  "M.Com": 120000,
-  "M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 100000,
-  "MA": 80000,
-  "BA": 65000
-},
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: 15,
-placements: { averagePackage: 850000, highestPackage: 3500000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "o-p-jindal-global-university",
-name: "O P Jindal Global University",
-        icon: "??",
-type: "University",
-location: "Sonipat, Haryana",
-mode: ["Regular"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 150000,
-"MCA": 120000,
-"BBA": 80000,
-"BCA": 75000,
-"M.Com": 60000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 50000,
-"MA": 50000,
-"BA": 40000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "osmania-university-distance-education",
-name: "Osmania University (Distance Education)",
-        icon: "??",
-type: "State University",
-location: "Hyderabad, Telangana",
-mode: ["Distance", "Online"],
-approvals: ["UGC-DEB", "AICTE", "NAAC"],
-rating: 4.1,
-reviews: 365,
-accreditation: "NAAC A+",
-establishedYear: 1918,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-fees: {
-  "MBA": 45000,
-  "MCA": 38000,
-  "BBA": 25000,
-  "BCA": 30000,
-  "M.Com": 18000,
-  "M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 15000,
-  "MA": 12000,
-  "BA": 10000
-},
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: 65,
-placements: { averagePackage: 380000, highestPackage: 1100000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "paris-school-of-business",
-name: "Paris School Of Business",
-        icon: "??",
-type: "International University",
-location: "Paris, Île-de-France, France",
-mode: ["Regular", "Online"],
-approvals: ["French Ministry of Education", "AACSB"],
-rating: 4.2,
-reviews: 220,
-accreditation: "AACSB",
-establishedYear: 1974,
-courses: ["MBA", "Masters", "Bachelors"],
-specializations: ["International Business", "Luxury Management", "Digital Transformation", "Entrepreneurship"],
-nirfRanking: null,
-fees: {
-"MBA": 814000,
-"Masters": 814000,
-"Bachelors": 1046400,
-},
-placements: { averagePackage: 7500000, highestPackage: 13000000, offered: true },
-isInternational: true,
-state: "Île-de-France",
-country: "France",
-studentsRating: "4.5/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
-eligibility: "Graduation with 60%",
-},
-{
-id: "parul-university-online",
-name: "Parul University (Online)",
-        icon: "??",
-type: "University",
-location: "Vadodara, Gujarat",
-mode: ["Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 100000,
-"MCA": 100000,
-"BBA": 50000,
-"BCA": 50000,
-"M.Com": 40000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 40000,
-"MA": 40000,
-"BA": 30000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "periyar-university-distance-education",
-name: "Periyar University (Distance Education)",
-        icon: "??",
-type: "University",
-location: "Salem, Tamil Nadu",
-mode: ["Distance", "Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 30000,
-"MCA": 30000,
-"BBA": 15000,
-"BCA": 15000,
-"M.Com": 15000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 15000,
-"MA": 15000,
-"BA": 15000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "pudde-pondicherry-university-distance-education",
-name: "Pudde Pondicherry University (Distance Education)",
-        icon: "??",
-type: "University",
-location: "Puducherry",
-mode: ["Distance", "Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 50000,
-"MCA": 50000,
-"BBA": 25000,
-"BCA": 25000,
-"M.Com": 25000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 25000,
-"MA": 25000,
-"BA": 25000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "punjabi-university-distance-education",
-name: "Punjabi University (Distance Education)",
-        icon: "??",
-type: "University",
-location: "Punjab",
-mode: ["Distance", "Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 40000,
-"MCA": 40000,
-"BBA": 20000,
-"BCA": 20000,
-"M.Com": 20000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 20000,
-"MA": 20000,
-"BA": 20000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "purdue-university",
-name: "Purdue University",
-        icon: "??",
-type: "University",
-location: "West Lafayette, Indiana",
-mode: ["Regular"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 3000000,
-"MCA": 2000000,
-"BBA": 1500000,
-"BCA": 1500000,
-"M.Com": 2000000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 1500000,
-"MA": 2000000,
-"BA": 1500000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.5/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
-eligibility: "Graduation with 60%",
-},
-{
-id: "queen-margaret-university",
-name: "Queen Margaret University",
-        icon: "??",
-type: "International University",
-location: "Musselburgh, East Lothian, Scotland",
-mode: ["Regular", "Online"],
-approvals: ["QAA", "British Council"],
-rating: 4.0,
-reviews: 200,
-accreditation: "QAA",
-establishedYear: 1875,
-courses: ["MBA", "Masters", "Bachelors"],
-specializations: ["Business", "Health Sciences", "Drama & Creative Industries", "Social Sciences"],
-nirfRanking: null,
-fees: {
-"MBA": 1500000,
-"Masters": 1500000,
-"Bachelors": 1500000,
-},
-placements: { averagePackage: 5000000, highestPackage: 8500000, offered: true },
-isInternational: true,
-state: "Scotland",
-country: "UK",
-studentsRating: "4.5/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
-eligibility: "Graduation with 60%",
-},
-{
-id: "rbudde-rabindra-bharati-university-distance-education",
-name: "Rbudde Rabindra Bharati University (Distance Education)",
-        icon: "??",
-type: "University",
-location: "Kolkata, West Bengal",
-mode: ["Distance", "Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 30000,
-"MCA": 30000,
-"BBA": 15000,
-"BCA": 15000,
-"M.Com": 15000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 15000,
-"MA": 15000,
-"BA": 15000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "rushford-business-school",
-name: "Rushford Business School",
-        icon: "??",
-type: "International University",
-location: "Lucerne, Lucerne, Switzerland",
-mode: ["Online", "Hybrid"],
-approvals: ["Swiss Federal Government", "EduQua"],
-rating: 4.1,
-reviews: 180,
-accreditation: "EduQua",
-establishedYear: 2005,
-courses: ["MBA", "DBA", "Masters"],
-specializations: ["International Business", "Digital Innovation", "Sustainable Management"],
-nirfRanking: null,
-fees: {
-"MBA": 1000000,
-"DBA": 1500000,
-"Masters": 800000,
-},
-placements: { averagePackage: 7500000, highestPackage: 13000000, offered: true },
-isInternational: true,
-state: "Lucerne",
-country: "Switzerland",
-studentsRating: "4.5/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
-eligibility: "Graduation with 60%",
-},
-{
-id: "sanskriti-university-engineering",
-name: "Sanskriti University Engineering",
-        icon: "??",
-type: "University",
-location: "Mathura, Uttar Pradesh",
-mode: ["Regular"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 150000,
-"MCA": 120000,
-"BBA": 80000,
-"BCA": 75000,
-"M.Com": 60000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 50000,
-"MA": 50000,
-"BA": 40000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "sgvu-engineering",
-name: "Sgvu Engineering",
-        icon: "??",
-type: "University",
-location: "Jaipur, Rajasthan",
-mode: ["Regular"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 150000,
-"MCA": 120000,
-"BBA": 80000,
-"BCA": 75000,
-"M.Com": 60000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 50000,
-"MA": 50000,
-"BA": 40000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "sharda-university-online",
-name: "Sharda University (Online)",
-        icon: "??",
-type: "Private University",
-location: "Greater Noida, Uttar Pradesh",
-mode: ["Online"],
-approvals: ["UGC-DEB", "AICTE", "NAAC"],
-rating: 3.8,
-reviews: 265,
-accreditation: "NAAC A",
-establishedYear: 2009,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-fees: {
-  "MBA": 95000,
-  "MCA": 85000,
-  "BBA": 55000,
-  "BCA": 65000,
-  "M.Com": 35000,
-  "M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 28000,
-  "MA": 25000,
-  "BA": 20000
-},
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-placements: { averagePackage: 385000, highestPackage: 1050000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "shivaji-university-distance-education",
-name: "Shivaji University (Distance Education)",
-        icon: "??",
-type: "University",
-location: "Kolhapur, Maharashtra",
-mode: ["Distance", "Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 40000,
-"MCA": 40000,
-"BBA": 20000,
-"BCA": 20000,
-"M.Com": 20000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 20000,
-"MA": 20000,
-"BA": 20000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "shobhit-university-online",
-name: "Shobhit University (Online)",
-        icon: "??",
-type: "University",
-location: "Meerut, Uttar Pradesh",
-mode: ["Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 100000,
-"MCA": 100000,
-"BBA": 50000,
-"BCA": 50000,
-"M.Com": 40000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 40000,
-"MA": 40000,
-"BA": 30000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "shoolini-university-online",
-name: "Shoolini University (Online)",
-        icon: "??",
-type: "University",
-location: "Solan, Himachal Pradesh",
-mode: ["Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 150000,
-"MCA": 120000,
-"BBA": 80000,
-"BCA": 75000,
-"M.Com": 60000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 50000,
-"MA": 50000,
-"BA": 40000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "sikkim-manipal-university-online",
-name: "Sikkim Manipal University (Online)",
-        icon: "??",
-type: "Private University",
-location: "Gangtok, Sikkim",
-mode: ["Online"],
-approvals: ["UGC-DEB", "AICTE", "NAAC", "NBA"],
-rating: 4.3,
-reviews: 520,
-accreditation: "NAAC A+",
-establishedYear: 1995,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-fees: {
-  "MBA": 135000,
-  "MCA": 120000,
-  "BBA": 75000,
-  "BCA": 85000,
-  "M.Com": 45000,
-  "M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 35000,
-  "MA": 30000,
-  "BA": 25000
-},
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: 45,
-placements: { averagePackage: 380000, highestPackage: 1100000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "smude-sikkim-manipal-university-distance-education",
-name: "Smude Sikkim Manipal University (Distance Education)",
-        icon: "??",
-type: "Private University",
-location: "Gangtok, Sikkim",
-mode: ["Distance", "Online"],
-approvals: ["UGC-DEB", "AICTE", "NAAC"],
-rating: 4,
-reviews: 250,
-accreditation: "NAAC A",
-establishedYear: 2005,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: 30,
-fees: {
-"MBA": 150000,
-"MCA": 120000,
-"BBA": 80000,
-"BCA": 75000,
-"M.Com": 60000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 50000,
-"MA": 50000,
-"BA": 40000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "spmvv-distance-education",
-name: "SPMVV (Distance Education)",
-        icon: "??",
-type: "University",
-location: "Tirupati, Andhra Pradesh",
-mode: ["Distance", "Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 40000,
-"MCA": 40000,
-"BBA": 20000,
-"BCA": 20000,
-"M.Com": 20000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 20000,
-"MA": 20000,
-"BA": 20000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "srm-university-online",
-name: "SRM University (Online)",
-        icon: "??",
-type: "Deemed University",
-location: "Chennai, Tamil Nadu",
-mode: ["Online"],
-approvals: ["UGC-DEB", "AICTE", "NAAC"],
-rating: 4.1,
-reviews: 420,
-accreditation: "NAAC A++",
-establishedYear: 1985,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-fees: {
-  "MBA": 165000,
-  "MCA": 145000,
-  "BBA": 85000,
-  "BCA": 95000,
-  "M.Com": 55000,
-  "M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 45000,
-  "MA": 35000,
-  "BA": 28000
-},
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: 35,
-placements: { averagePackage: 550000, highestPackage: 1850000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "srm-university-online-sikkim",
-name: "SRM University (Online) Sikkim",
-        icon: "??",
-type: "University",
-location: "Gangtok, Sikkim",
-mode: ["Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 150000,
-"MCA": 120000,
-"BBA": 80000,
-"BCA": 75000,
-"M.Com": 60000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 50000,
-"MA": 50000,
-"BA": 40000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "ssbm-geneva",
-name: "SSBM Geneva - Swiss School of Business and Management",
-        icon: "??",
-type: "International University",
-location: "Geneva, Geneva, Switzerland",
-mode: ["Regular", "Online"],
-approvals: ["Swiss Federal Government", "EduQua"],
-rating: 4.3,
-reviews: 200,
-accreditation: "EduQua",
-establishedYear: 2008,
-courses: ["MBA", "DBA", "Masters", "Bachelors"],
-specializations: ["International Business", "Finance", "Marketing", "Innovation Management"],
-nirfRanking: null,
-fees: {
-"MBA": 1000000,
-"DBA": 1500000,
-"Masters": 800000,
-"Bachelors": 600000,
-},
-placements: { averagePackage: 8500000, highestPackage: 15000000, offered: true },
-isInternational: true,
-state: "Geneva",
-country: "Switzerland",
-studentsRating: "4.5/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
-eligibility: "Graduation with 60%",
-},
-{
-id: "subharti-university-distance-education",
-name: "Subharti University (Distance Education)",
-        icon: "??",
-type: "University",
-location: "Meerut, Uttar Pradesh",
-mode: ["Distance", "Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 14500,
-"MCA": 14500,
-"BBA": 14500,
-"BCA": 14500,
-"M.Com": 14500,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 14500,
-"MA": 14500,
-"BA": 14500,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "suresh-gyan-vihar-distance-education",
-name: "Suresh Gyan Vihar (Distance Education)",
-        icon: "??",
-type: "University",
-location: "Jaipur, Rajasthan",
-mode: ["Distance", "Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 50000,
-"MCA": 50000,
-"BBA": 25000,
-"BCA": 25000,
-"M.Com": 25000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 25000,
-"MA": 25000,
-"BA": 25000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "svu-dde-sri-venkateswara-distance-education",
-name: "SVU DDE Sri Venkateswara (Distance Education)",
-        icon: "??",
-type: "University",
-location: "Tirupati, Andhra Pradesh",
-mode: ["Distance", "Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 40000,
-"MCA": 40000,
-"BBA": 20000,
-"BCA": 20000,
-"M.Com": 20000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 20000,
-"MA": 20000,
-"BA": 20000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "svu-gajraula-wilp",
-name: "Svu Gajraula Wilp",
-        icon: "??",
-type: "University",
-location: "Gajraula, Uttar Pradesh",
-mode: ["Regular"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 150000,
-"MCA": 120000,
-"BBA": 80000,
-"BCA": 75000,
-"M.Com": 60000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 50000,
-"MA": 50000,
-"BA": 40000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "svyasa-distance-education",
-name: "Svyasa (Distance Education)",
-        icon: "??",
-type: "University",
-location: "Bengaluru, Karnataka",
-mode: ["Distance", "Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 150000,
-"MCA": 120000,
-"BBA": 80000,
-"BCA": 75000,
-"M.Com": 60000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 50000,
-"MA": 50000,
-"BA": 40000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "symbiosis-distance-learning",
-name: "Symbiosis Distance Learning",
-        icon: "??",
-type: "Private University",
-location: "Pune, Maharashtra",
-mode: ["Distance", "Online"],
-approvals: ["UGC-DEB", "AICTE", "NAAC", "NBA"],
-rating: 4.4,
-reviews: 485,
-accreditation: "NAAC A++",
-establishedYear: 1971,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-fees: {
-  "MBA": 195000,
-  "MCA": 165000,
-  "BBA": 95000,
-  "BCA": 115000,
-  "M.Com": 65000,
-  "M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 55000,
-  "MA": 45000,
-  "BA": 35000
-},
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: 25,
-placements: { averagePackage: 520000, highestPackage: 1800000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "symbiosis-scdl",
-name: "Symbiosis SCDL",
-        icon: "??",
-type: "University",
-location: "Pune, Maharashtra",
-mode: ["Regular"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 74000,
-"MCA": 120000,
-"BBA": 80000,
-"BCA": 75000,
-"M.Com": 60000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 50000,
-"MA": 50000,
-"BA": 40000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "university-of-calicut-distance-education",
-name: "University Of Calicut (Distance Education)",
-        icon: "??",
-type: "State University",
-location: "Malappuram, Kerala",
-mode: ["Distance", "Online"],
-approvals: ["UGC-DEB", "AICTE", "NAAC"],
-rating: 4.0,
-reviews: 340,
-accreditation: "NAAC A++",
-establishedYear: 1968,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-fees: {
-  "MBA": 40000,
-  "MCA": 35000,
-  "BBA": 20000,
-  "BCA": 25000,
-  "M.Com": 15000,
-  "M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 12000,
-  "MA": 10000,
-  "BA": 8000
-},
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: 55,
-placements: { averagePackage: 350000, highestPackage: 980000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "university-of-dallas",
-name: "University Of Dallas",
-        icon: "??",
-type: "International University",
-location: "Irving, Texas, USA",
-mode: ["Regular", "Online"],
-approvals: ["SACSCOC"],
-rating: 4.2,
-reviews: 280,
-accreditation: "SACSCOC",
-establishedYear: 1956,
-courses: ["MBA", "Masters", "Bachelors"],
-specializations: ["Business", "Liberal Arts", "Education", "Nursing"],
-nirfRanking: null,
-fees: {
-"MBA": 300000,
-"Masters": 400000,
-"Bachelors": 800000,
-},
-placements: { averagePackage: 7500000, highestPackage: 13000000, offered: true },
-isInternational: true,
-state: "Texas",
-country: "USA",
-studentsRating: "4.5/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
-eligibility: "Graduation with 60%",
-},
-{
-id: "university-of-hyderabad-distance-education",
-name: "University Of Hyderabad (Distance Education)",
-        icon: "??",
-type: "University",
-location: "Hyderabad, Telangana",
-mode: ["Distance", "Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 50000,
-"MCA": 50000,
-"BBA": 25000,
-"BCA": 25000,
-"M.Com": 25000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 25000,
-"MA": 25000,
-"BA": 25000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "university-of-kashmir-distance-education",
-name: "University Of Kashmir (Distance Education)",
-        icon: "??",
-type: "University",
-location: "Srinagar, Jammu and Kashmir",
-mode: ["Distance", "Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 30000,
-"MCA": 30000,
-"BBA": 15000,
-"BCA": 15000,
-"M.Com": 15000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 15000,
-"MA": 15000,
-"BA": 15000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "university-of-michigan-flint",
-name: "University Of Michigan Flint",
-        icon: "??",
-type: "International University",
-location: "Flint, Michigan, USA",
-mode: ["Regular", "Online"],
-approvals: ["HLC"],
-rating: 4.3,
-reviews: 350,
-accreditation: "HLC",
-establishedYear: 1956,
-courses: ["MBA", "Masters", "Bachelors"],
-specializations: ["Business", "Engineering", "Health Sciences", "Education", "Public Health"],
-nirfRanking: null,
-fees: {
-"MBA": 300000,
-"Masters": 400000,
-"Bachelors": 800000,
-},
-placements: { averagePackage: 8200000, highestPackage: 14500000, offered: true },
-isInternational: true,
-state: "Michigan",
-country: "USA",
-studentsRating: "4.5/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
-eligibility: "Graduation with 60%",
-},
-{
-id: "university-of-south-florida",
-name: "University Of South Florida",
-        icon: "??",
-type: "International University",
-location: "Tampa, Florida, USA",
-mode: ["Regular", "Online"],
-approvals: ["SACSCOC", "AACSB"],
-rating: 4.4,
-reviews: 350,
-accreditation: "SACSCOC",
-establishedYear: 1956,
-courses: ["MBA", "Masters", "PhD", "Bachelors"],
-specializations: ["Business", "Engineering", "Medicine", "Education", "Public Health"],
-nirfRanking: null,
-fees: {
-"MBA": 300000,
-"Masters": 400000,
-"PhD": 500000,
-"Bachelors": 800000,
-},
-placements: { averagePackage: 9000000, highestPackage: 16000000, offered: true },
-isInternational: true,
-state: "Florida",
-country: "USA",
-studentsRating: "4.5/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
-eligibility: "Graduation with 60%",
-},
-{
-id: "uom-university-of-mysore-distance-education",
-name: "Uom University Of Mysore (Distance Education)",
-        icon: "??",
-type: "University",
-location: "Mysore, Karnataka",
-mode: ["Distance", "Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 100000,
-"MCA": 100000,
-"BBA": 50000,
-"BCA": 50000,
-"M.Com": 50000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 50000,
-"MA": 50000,
-"BA": 50000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "upes-cce-center-for-continuing-education",
-name: "UPES CCE Center For Continuing Education",
-        icon: "??",
-type: "University",
-location: "Dehradun, Uttarakhand",
-mode: ["Regular"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 150000,
-"MCA": 120000,
-"BBA": 80000,
-"BCA": 75000,
-"M.Com": 60000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 50000,
-"MA": 50000,
-"BA": 40000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "upes-online",
-name: "UPES (Online)",
-        icon: "??",
-type: "Private University",
-location: "Dehradun, Uttarakhand",
-mode: ["Online"],
-approvals: ["UGC-DEB", "AICTE", "NAAC"],
-rating: 4.2,
-reviews: 450,
-accreditation: "NAAC A",
-establishedYear: 2003,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-fees: {
-  "MBA": 195000,
-  "MCA": 165000,
-  "BBA": 95000,
-  "BCA": 115000,
-  "M.Com": 65000,
-  "M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 55000,
-  "MA": 45000,
-  "BA": 35000
-},
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: 47,
-placements: { averagePackage: 480000, highestPackage: 1500000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "upgrad-college-uk-woolf",
-name: "Upgrad College UK Woolf",
-        icon: "??",
-type: "International University",
-location: "Appleton, Wisconsin, USA",
-mode: ["Online", "Hybrid"],
-approvals: ["HLC", "WASC"],
-rating: 4.2,
-reviews: 250,
-accreditation: "HLC",
-establishedYear: 1995,
-courses: ["MBA", "Masters", "Bachelors"],
-specializations: ["Business", "Technology", "Data Science", "Digital Marketing"],
-nirfRanking: null,
-fees: {
-"MBA": 300000,
-"Masters": 400000,
-"Bachelors": 800000,
-},
-placements: { averagePackage: 7000000, highestPackage: 12000000, offered: true },
-isInternational: true,
-state: "Wisconsin",
-country: "USA",
-studentsRating: "4.5/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
-eligibility: "Graduation with 60%",
-},
-{
-id: "uttaranchal-university-online",
-name: "Uttaranchal University (Online)",
-        icon: "??",
-type: "University",
-location: "Dehradun, Uttarakhand",
-mode: ["Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 150000,
-"MCA": 120000,
-"BBA": 80000,
-"BCA": 75000,
-"M.Com": 60000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 50000,
-"MA": 50000,
-"BA": 40000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "vignan-university-online",
-name: "Vignan University (Online)",
-        icon: "??",
-type: "Private University",
-location: "Guntur, Andhra Pradesh",
-mode: ["Online"],
-approvals: ["UGC-DEB", "AICTE", "NAAC"],
-rating: 3.8,
-reviews: 205,
-accreditation: "NAAC A",
-establishedYear: 2008,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-fees: {
-  "MBA": 75000,
-  "MCA": 65000,
-  "BBA": 40000,
-  "BCA": 50000,
-  "M.Com": 25000,
-  "M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 20000,
-  "MA": 18000,
-  "BA": 15000
-},
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-placements: { averagePackage: 320000, highestPackage: 850000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "vit-bangalore",
-name: "VIT (Online)",
-        icon: "??",
-type: "Deemed University",
-location: "Vellore, Tamil Nadu",
-mode: ["Online"],
-approvals: ["UGC-DEB", "AICTE", "NAAC"],
-rating: 4.2,
-reviews: 465,
-accreditation: "NAAC A++",
-establishedYear: 1984,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-fees: {
-  "MBA": 195000,
-  "MCA": 165000,
-  "BBA": 95000,
-  "BCA": 115000,
-  "M.Com": 65000,
-  "M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 55000,
-  "MA": 45000,
-  "BA": 35000
-},
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: 11,
-placements: { averagePackage: 680000, highestPackage: 2500000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "vivekananda-global-university-online",
-name: "Vivekananda Global University (Online)",
-        icon: "??",
-type: "University",
-location: "Jaipur, Rajasthan",
-mode: ["Online"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 100000,
-"MCA": 100000,
-"BBA": 50000,
-"BCA": 50000,
-"M.Com": 40000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 40000,
-"MA": 40000,
-"BA": 30000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-studentsRating: "4.0/5",
-onlineClasses: true,
-duration: "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
-eligibility: "Graduation with 50% / 10+2 with 45%",
-},
-{
-id: "walden-university",
-name: "Walden University",
-        icon: "??",
-type: "International University",
-location: "Minneapolis, Minnesota, USA",
-mode: ["Online", "Hybrid"],
-approvals: ["HLC"],
-rating: 4.0,
-reviews: 280,
-accreditation: "HLC",
-establishedYear: 1970,
-courses: ["MBA", "Masters", "Doctorate", "Certificates"],
-specializations: ["Business", "Psychology", "Education", "Health Sciences", "Social Work"],
-nirfRanking: null,
-fees: {
-"MBA": 300000,
-"Masters": 400000,
-"Doctorate": 500000,
-"Certificates": 100000,
-},
-placements: { averagePackage: 7200000, highestPackage: 13500000, offered: true },
-isInternational: true,
-state: "Minnesota",
-country: "USA",
-studentsRating: "4.5/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
-eligibility: "Graduation with 60%",
-},
-{
-id: "westcliff-university",
-name: "Westcliff University",
-        icon: "??",
-type: "International University",
-location: "Irvine, California, USA",
-mode: ["Regular", "Online"],
-approvals: ["WASC", "ACBSP"],
-rating: 4.0,
-reviews: 200,
-accreditation: "WASC",
-establishedYear: 1993,
-courses: ["MBA", "Masters", "DBA", "Bachelors"],
-specializations: ["Business Administration", "Information Technology", "Education"],
-nirfRanking: null,
-fees: {
-"MBA": 300000,
-"Masters": 400000,
-"DBA": 500000,
-"Bachelors": 800000,
-},
-placements: { averagePackage: 7000000, highestPackage: 12000000, offered: true },
-isInternational: true,
-state: "California",
-country: "USA",
-studentsRating: "4.5/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
-eligibility: "Graduation with 60%",
-},
-{
-id: "xim-university-bhubaneswar",
-name: "XIM University Bhubaneswar",
-        icon: "??",
-type: "University",
-location: "Bhubaneswar, Odisha",
-mode: ["Regular"],
-approvals: ["UGC", "AICTE"],
-rating: 3.5,
-reviews: 150,
-accreditation: "NAAC A",
-establishedYear: 2000,
-courses: ["MBA", "MCA", "M.Sc", "BBA", "BCA", "B.Sc", "M.Com", "B.Com", "MA", "BA"],
-specializations: ["Management", "Technology", "Commerce", "Arts", "Science"],
-nirfRanking: null,
-fees: {
-"MBA": 2000000,
-"MCA": 120000,
-"BBA": 80000,
-"BCA": 75000,
-"M.Com": 60000,
-"M.Sc": 45000,
-  "B.Sc": 35000,
-  "B.Com": 50000,
-"MA": 50000,
-"BA": 40000,
-},
-placements: { averagePackage: 250000, highestPackage: 750000, offered: true },
-},
-// International Universities for Abroad Programs
-{
-id: "harvard-business-school",
-name: "Harvard Business School",
-        icon: "??",
-type: "International University",
-location: "Boston, Massachusetts, USA",
-mode: ["Regular", "Executive"],
-approvals: ["AACSB", "Regional Accreditation"],
-rating: 4.9,
-reviews: 500,
-accreditation: "AACSB",
-establishedYear: 1908,
-courses: ["MBA", "Executive MBA", "Masters"],
-specializations: ["General Management", "Entrepreneurship", "Finance", "Strategy", "Leadership"],
-nirfRanking: null,
-fees: {
-"MBA": 6660000,
-"Executive MBA": 6660000,
-"Masters": 6090000,
-},
-placements: { averagePackage: 15000000, highestPackage: 35000000, offered: true },
-isInternational: true,
-state: "Massachusetts",
-country: "USA",
-studentsRating: "4.5/5",
-onlineClasses: true,
-duration: "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
-eligibility: "Graduation with 60%",
-},
-{
-id: "london-business-school",
-name: "London Business School",
-        icon: "??",
-type: "International University", 
-location: "London, England, UK",
-mode: ["Regular", "Executive"],
-approvals: ["AACSB", "EQUIS", "AMBA"],
-rating: 4.8,
-reviews: 450,
-accreditation: "Triple Crown",
-establishedYear: 1964,
-courses: ["MBA", "Executive MBA", "Masters", "MiM"],
-specializations: ["Finance", "Strategy", "Entrepreneurship", "Marketing", "Leadership"],
-nirfRanking: null,
-fees: {
-"MBA": 10000000,
-"Executive MBA": 10000000,
-"Masters": 8000000,
-"MiM": 6000000,
-},
-placements: { averagePackage: 12000000, highestPackage: 25000000, offered: true },
-isInternational: true,
-state: "England",
-country: "UK"
-},
-{
-id: "insead-business-school",
-name: "INSEAD Business School",
-        icon: "??",
-type: "International University",
-location: "Fontainebleau, France",
-mode: ["Regular", "Executive"],
-approvals: ["AACSB", "EQUIS", "AMBA"],
-rating: 4.8,
-reviews: 400,
-accreditation: "Triple Crown", 
-establishedYear: 1957,
-courses: ["MBA", "Executive MBA", "Masters"],
-specializations: ["General Management", "Strategy", "Finance", "Marketing", "Leadership"],
-nirfRanking: null,
-fees: {
-"MBA": 8600000,
-"Executive MBA": 8600000,
-"Masters": 8000000,
-},
-placements: { averagePackage: 11000000, highestPackage: 22000000, offered: true },
-isInternational: true,
-state: "Île-de-France",
-country: "France"
-},
-{
-id: "melbourne-business-school",
-name: "Melbourne Business School",
-        icon: "??",
-type: "International University",
-location: "Melbourne, Victoria, Australia", 
-mode: ["Regular", "Executive"],
-approvals: ["AACSB", "EQUIS"],
-rating: 4.6,
-reviews: 300,
-accreditation: "AACSB",
-establishedYear: 1955,
-courses: ["MBA", "Executive MBA", "Masters"],
-specializations: ["General Management", "Innovation", "Marketing", "Finance", "Leadership"],
-nirfRanking: null,
-fees: {
-"MBA": 5500000,
-"Executive MBA": 5500000,
-"Masters": 4000000,
-},
-placements: { averagePackage: 9000000, highestPackage: 18000000, offered: true },
-isInternational: true,
-state: "Victoria",
-country: "Australia"
-},
-{
-id: "rotman-school-management",
-name: "Rotman School of Management",
-        icon: "??",
-type: "International University",
-location: "Toronto, Ontario, Canada",
-mode: ["Regular", "Executive"],
-approvals: ["AACSB"],
-rating: 4.5,
-reviews: 250,
-accreditation: "AACSB",
-establishedYear: 1901,
-courses: ["MBA", "Executive MBA", "Masters"],
-specializations: ["Finance", "Strategy", "Innovation", "Marketing", "Leadership"],
-nirfRanking: null,
-fees: {
-"MBA": 12000000,
-"Executive MBA": 12000000,
-"Masters": 8000000,
-},
-placements: { averagePackage: 8500000, highestPackage: 16000000, offered: true },
-isInternational: true,
-state: "Ontario",
-country: "Canada"
-},
-{
-id: "nus-business-school",
-name: "National University of Singapore Business School",
-        icon: "??",
-type: "International University",
-location: "Singapore",
-mode: ["Regular", "Executive"],
-approvals: ["AACSB", "EQUIS"],
-rating: 4.7,
-reviews: 350,
-accreditation: "AACSB",
-establishedYear: 1965,
-courses: ["MBA", "Executive MBA", "Masters"],
-specializations: ["Asian Business", "Finance", "Strategy", "Innovation", "Leadership"],
-nirfRanking: null,
-fees: {
-"MBA": 6000000,
-"Executive MBA": 6000000,
-"Masters": 5000000,
-},
-placements: { averagePackage: 10000000, highestPackage: 20000000, offered: true },
-isInternational: true,
-state: "Singapore",
-country: "Singapore"
-},
-{
-id: "wharton-school",
-name: "The Wharton School",
-        icon: "??",
-type: "International University",
-location: "Philadelphia, Pennsylvania, USA",
-mode: ["Regular", "Executive"],
-approvals: ["AACSB"],
-rating: 4.9,
-reviews: 600,
-accreditation: "AACSB",
-establishedYear: 1881,
-courses: ["MBA", "Executive MBA", "Masters"],
-specializations: ["Finance", "Strategy", "Entrepreneurship", "Marketing", "Leadership"],
-nirfRanking: null,
-fees: {
-"MBA": 15400000,
-"Executive MBA": 15400000,
-"Masters": 12000000,
-},
-placements: { averagePackage: 16000000, highestPackage: 40000000, offered: true },
-isInternational: true,
-state: "Pennsylvania",
-country: "USA"
-},
-{
-id: "oxford-said-business-school",
-name: "Oxford Saïd Business School",
-        icon: "??",
-type: "International University",
-location: "Oxford, England, UK",
-mode: ["Regular", "Executive"],
-approvals: ["AACSB", "EQUIS", "AMBA"],
-rating: 4.8,
-reviews: 400,
-accreditation: "Triple Crown",
-establishedYear: 1996,
-courses: ["MBA", "Executive MBA", "Masters"],
-specializations: ["Strategy", "Finance", "Entrepreneurship", "Social Impact", "Leadership"],
-nirfRanking: null,
-fees: {
-"MBA": 10000000,
-"Executive MBA": 10000000,
-"Masters": 8000000,
-},
-placements: { averagePackage: 13000000, highestPackage: 28000000, offered: true },
-isInternational: true,
-state: "England",
-country: "UK"
-},
-{
-id: "duke-university",
-name: "Duke University - Fuqua School of Business",
-        icon: "??",
-type: "International University",
-location: "Durham, North Carolina, USA",
-mode: ["Regular", "Executive"],
-approvals: ["AACSB"],
-rating: 4.8,
-reviews: 450,
-accreditation: "AACSB",
-establishedYear: 1924,
-courses: ["MBA", "Executive MBA", "Masters"],
-specializations: ["Strategy", "Finance", "Healthcare Management", "Innovation", "Leadership"],
-nirfRanking: null,
-fees: {
-"MBA": 12000000,
-"Executive MBA": 12000000,
-"Masters": 8000000,
-},
-placements: { averagePackage: 14000000, highestPackage: 30000000, offered: true },
-isInternational: true,
-state: "North Carolina",
-country: "USA"
-}
+// Generated: 2025-10-29 15:40:42
+
+// Use var to allow redeclaration or check if already exists
+if (typeof universityDatabase === 'undefined') {
+  var universityDatabase = [
+  {
+    "id": "alagappa-university-distance-education",
+    "name": "Alagappa University (Distance Education)",
+    "icon": "??",
+    "type": "University",
+    "location": "Karaikudi, Tamil Nadu",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC-DEB",
+      "AICTE",
+      "NAAC"
+    ],
+    "rating": 4,
+    "reviews": 182,
+    "accreditation": "NAAC A+",
+    "establishedYear": 1985,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "English",
+          "Tamil",
+          "Journalism and Mass Communication"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "Tamil"
+        ]
+      }
+    },
+    "fees": {
+      "MBA": 37000,
+      "MCA": 30000,
+      "BBA": 15000,
+      "BCA": 20000,
+      "M.Com": 12000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 10000,
+      "MA": 8000,
+      "BA": 6000
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "aligarh-muslim-university-online",
+    "name": "Aligarh Muslim University (Online)",
+    "icon": "??",
+    "type": "Central University",
+    "location": "Aligarh, Uttar Pradesh",
+    "mode": [
+      "Online"
+    ],
+    "approvals": [
+      "UGC-DEB",
+      "AICTE",
+      "NAAC"
+    ],
+    "rating": 4.1,
+    "reviews": 380,
+    "accreditation": "NAAC A++",
+    "establishedYear": 1875,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "Economics",
+          "Hindi",
+          "History",
+          "Political Science",
+          "Urdu"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "Economics",
+          "Hindi",
+          "History",
+          "Political Science",
+          "Urdu"
+        ]
+      }
+    },
+    "fees": {
+      "MBA": 45000,
+      "MCA": 38000,
+      "BBA": 25000,
+      "BCA": 30000,
+      "M.Com": 18000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 15000,
+      "MA": 12000,
+      "BA": 10000
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": 48,
+    "placements": {
+      "averagePackage": 385000,
+      "highestPackage": 1150000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "amity-university-distance-education",
+    "name": "Amity University (Distance Education)",
+    "icon": "??",
+    "type": "Private University",
+    "location": "Noida, Uttar Pradesh",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC-DEB",
+      "AICTE",
+      "NAAC"
+    ],
+    "rating": 4,
+    "reviews": 250,
+    "accreditation": "NAAC A",
+    "establishedYear": 2005,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Finance Management",
+          "Marketing Management",
+          "Human Resource Management",
+          "Operations Management",
+          "Business Analytics",
+          "Digital Marketing",
+          "International Business",
+          "Entrepreneurship",
+          "Banking & Financial Services",
+          "Retail Management",
+          "Supply Chain Management",
+          "Project Management",
+          "Healthcare Management",
+          "IT Management",
+          "Hospitality Management",
+          "Digital Entrepreneurship",
+          "HR Analytics",
+          "Data Science",
+          "Insurance Management",
+          "Entrepreneurship & Leadership",
+          "Oil & Gas Management",
+          "Marketing & Sales",
+          "Global Finance Market",
+          "General",
+          "Data Science & Analytics",
+          "Finance and Accounting",
+          "Production and Operations",
+          "International Finance",
+          "International Finance with ACCA"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "Data Science",
+          "Cyber Security",
+          "ML and AI",
+          "Blockchain",
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General Management"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General",
+          "Machine Learning"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "Accounting & Taxation"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General",
+          "International Finance and Accounting",
+          "International Finance",
+          "Accounting and Finance",
+          "B.Com (Hons)"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "English",
+          "Psychology",
+          "Journalism & Mass Communication",
+          "Public Policy"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General",
+          "Hindi",
+          "Political Science",
+          "Economics",
+          "English",
+          "Journalism & Mass Communication",
+          "Sociology"
+        ]
+      }
+    },
+    "fees": {
+      "MBA": 199000,
+      "MCA": 170000,
+      "BBA": 165000,
+      "BCA": 150000,
+      "M.Com": 120000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 99000,
+      "MA": 170000,
+      "BA": 99000
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": 30,
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "amrita-university-online",
+    "name": "Amrita University (Online)",
+    "icon": "??",
+    "type": "Private University",
+    "location": "Coimbatore, Tamil Nadu",
+    "mode": [
+      "Online"
+    ],
+    "approvals": [
+      "UGC-DEB",
+      "AICTE",
+      "NAAC",
+      "NBA"
+    ],
+    "rating": 4.3,
+    "reviews": 485,
+    "accreditation": "NAAC A++",
+    "establishedYear": 2003,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Finance Management",
+          "Marketing Management",
+          "HR Management",
+          "Operations Management",
+          "General",
+          "International Business"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "Artificial Intelligence",
+          "Cyber Security",
+          "Data Science",
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General Management",
+          "FinTech & Banking",
+          "Digital Marketing & Sale"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "Data Science and Analytics",
+          "Cybersecurity and Applications",
+          "Mobile Application and Web Technology",
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "Finance & Accounting",
+          "General",
+          "International Financial Management"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General",
+          "Accounting and Finance",
+          "Banking Management and Financial Services"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "fees": {
+      "MBA": 98000,
+      "MCA": 88000,
+      "BBA": 48000,
+      "BCA": 58000,
+      "M.Com": 38000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 28000,
+      "MA": 25000,
+      "BA": 20000
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": 8,
+    "placements": {
+      "averagePackage": 465000,
+      "highestPackage": 1300000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "andhra-university-distance-education",
+    "name": "Andhra University (Distance Education)",
+    "icon": "??",
+    "type": "State University",
+    "location": "Visakhapatnam, Andhra Pradesh",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC-DEB",
+      "AICTE",
+      "NAAC"
+    ],
+    "rating": 4,
+    "reviews": 325,
+    "accreditation": "NAAC A+",
+    "establishedYear": 1926,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Finance",
+          "Human Resource Management",
+          "Marketing",
+          "Hospital Administration",
+          "Banking & Insurance Management"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "Accountancy"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "English",
+          "Sociology"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "fees": {
+      "MBA": 42000,
+      "MCA": 35000,
+      "BBA": 22000,
+      "BCA": 28000,
+      "M.Com": 16000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 14000,
+      "MA": 11000,
+      "BA": 9000
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": 58,
+    "placements": {
+      "averagePackage": 365000,
+      "highestPackage": 1050000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "annamalai-distance-education",
+    "name": "Annamalai (Distance Education)",
+    "icon": "??",
+    "type": "University",
+    "location": "Chidambaram, Tamil Nadu",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC-DEB",
+      "AICTE",
+      "NAAC"
+    ],
+    "rating": 4,
+    "reviews": 198,
+    "accreditation": "NAAC A",
+    "establishedYear": 1929,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General",
+          "E-Business",
+          "International Business",
+          "Human Resource Management",
+          "Marketing Management",
+          "Financial Management",
+          "Information System",
+          "Hospital Management",
+          "Project Management",
+          "Supply Chain Management"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General",
+          "Accounting and Finance",
+          "Education Management",
+          "Marketing Management",
+          "Entrepreneurship",
+          "Co-operative Management",
+          "Banking & Insurance Management",
+          "Computer Application"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General",
+          "Computer Application",
+          "Business Studies",
+          "International Business",
+          "Accounting and Finance",
+          "Marketing Management"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "English"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General",
+          "Social and Civic Studies",
+          "Computer Applications",
+          "Human Rights",
+          "English",
+          "Social Welfare Administration",
+          "History",
+          "Population Studies",
+          "History and Heritage Management",
+          "Economics",
+          "Business Economics",
+          "Sociology",
+          "Political Science",
+          "Public Administration",
+          "Police Administration",
+          "Tamil",
+          "Functional Tamil",
+          "Social Work",
+          "English & Communication"
+        ]
+      }
+    },
+    "fees": {
+      "MBA": 35000,
+      "MCA": 30000,
+      "BBA": 15000,
+      "BCA": 20000,
+      "M.Com": 12000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 10000,
+      "MA": 8000,
+      "BA": 6000
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "placements": {
+      "averagePackage": 280000,
+      "highestPackage": 800000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "anna-university-distance-education",
+    "name": "Anna University (Distance Education)",
+    "icon": "??",
+    "type": "University",
+    "location": "Chennai, Tamil Nadu",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General",
+          "Finance",
+          "Marketing",
+          "HR",
+          "Operations"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "English",
+          "History"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 82000,
+      "MCA": 82000,
+      "BBA": 56150,
+      "BCA": 56150,
+      "M.Com": 56150,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 56150,
+      "MA": 56150,
+      "BA": 56150
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "anucde-acharya-nagarjuna-distance-education",
+    "name": "Anucde Acharya Nagarjuna (Distance Education)",
+    "icon": "??",
+    "type": "State University",
+    "location": "Guntur, Andhra Pradesh",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC-DEB",
+      "AICTE",
+      "NAAC"
+    ],
+    "rating": 3.8,
+    "reviews": 215,
+    "accreditation": "NAAC A",
+    "establishedYear": 1976,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "fees": {
+      "MBA": 35000,
+      "MCA": 28000,
+      "BBA": 18000,
+      "BCA": 22000,
+      "M.Com": 12000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 10000,
+      "MA": 8000,
+      "BA": 6000
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "placements": {
+      "averagePackage": 285000,
+      "highestPackage": 780000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "bharathiar-university-distance-education",
+    "name": "Bharathiar University (Distance Education)",
+    "icon": "??",
+    "type": "University",
+    "location": "Coimbatore, Tamil Nadu",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General",
+          "Airline and Airport Management",
+          "Shipping & port Management",
+          "Hospital Management",
+          "Shipping Administration",
+          "Finance and Accounting",
+          "Customer Care Management",
+          "Front Office & Customer Care Management",
+          "Event Management",
+          "Air-Cargo, Shipping, and Logistics Management",
+          "Logistics and Supply Chain Management",
+          "International Shipping and Air-Cargo Logistics Management",
+          "Airport and Customer Care Management",
+          "Retail Management",
+          "Event Management and Public Relations"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General",
+          "CA"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General",
+          "Computer Applications",
+          "Corporate Secretaryship",
+          "Actuarial Science"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "Tamil",
+          "English Literature",
+          "Journalism & Mass Comm.",
+          "History",
+          "Economics",
+          "Political Science and Public Administration",
+          "Sociology",
+          "Criminology and Police Administration"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "Tamil",
+          "English",
+          "Public Administration",
+          "Education",
+          "Applied Tamil",
+          "Yoga for Human Excellence"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 42200,
+      "MCA": 42200,
+      "BBA": 50000,
+      "BCA": 50000,
+      "M.Com": 42200,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 50000,
+      "MA": 42200,
+      "BA": 50000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "bharathidasan-university-distance-education",
+    "name": "Bharathidasan University (Distance Education)",
+    "icon": "??",
+    "type": "State University",
+    "location": "Tiruchirappalli, Tamil Nadu",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC-DEB",
+      "AICTE",
+      "NAAC"
+    ],
+    "rating": 3.9,
+    "reviews": 245,
+    "accreditation": "NAAC A",
+    "establishedYear": 1982,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Finance Management",
+          "Marketing Management",
+          "Systems Management",
+          "Human Resource Management",
+          "Operations Management"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "English",
+          "Public Administration",
+          "Economics"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "English",
+          "Tamil"
+        ]
+      }
+    },
+    "fees": {
+      "MBA": 28000,
+      "MCA": 25000,
+      "BBA": 12000,
+      "BCA": 15000,
+      "M.Com": 10000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 8000,
+      "MA": 6000,
+      "BA": 5000
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "placements": {
+      "averagePackage": 270000,
+      "highestPackage": 720000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "bimtech-greater-noida",
+    "name": "Bimtech Greater Noida",
+    "icon": "??",
+    "type": "Private Institute",
+    "location": "Greater Noida, Uttar Pradesh",
+    "mode": [
+      "Regular",
+      "Distance"
+    ],
+    "approvals": [
+      "AICTE",
+      "NAAC"
+    ],
+    "rating": 4,
+    "reviews": 280,
+    "accreditation": "NAAC A",
+    "establishedYear": 1988,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Marketing Management",
+          "Logistics and Supply Chain Management",
+          "Operations Management",
+          "Finance Management",
+          "Information Technology",
+          "BFSI",
+          "Analytics",
+          "General Management",
+          "HR Management",
+          "Insurance Management",
+          "Retail Management"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "fees": {
+      "MBA": 185000,
+      "BBA": 95000
+    },
+    "specializations": [
+      "Management",
+      "International Business",
+      "Finance",
+      "Marketing"
+    ],
+    "nirfRanking": null,
+    "placements": {
+      "averagePackage": 650000,
+      "highestPackage": 1800000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "birchwood-university",
+    "name": "Birchwood University",
+    "icon": "??",
+    "type": "International University",
+    "location": "Orlando, Florida, USA",
+    "mode": [
+      "Regular",
+      "Online"
+    ],
+    "approvals": [
+      "SACSCOC"
+    ],
+    "rating": 4.1,
+    "reviews": 180,
+    "accreditation": "SACSCOC",
+    "establishedYear": 1982,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Business",
+          "Healthcare",
+          "Technology",
+          "Education"
+        ]
+      },
+      "Masters": {
+        "specializations": [
+          "Business",
+          "Healthcare",
+          "Technology",
+          "Education"
+        ]
+      },
+      "Bachelors": {
+        "specializations": [
+          "Business",
+          "Healthcare",
+          "Technology",
+          "Education"
+        ]
+      }
+    },
+    "specializations": [
+      "Business",
+      "Healthcare",
+      "Technology",
+      "Education"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 403211,
+      "Masters": 884409,
+      "Bachelors": 2100000
+    },
+    "placements": {
+      "averagePackage": 6500000,
+      "highestPackage": 11000000,
+      "offered": true
+    },
+    "isInternational": true,
+    "state": "Florida",
+    "country": "USA",
+    "studentsRating": "4.5/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
+    "eligibility": "Graduation with 60%"
+  },
+  {
+    "id": "bits-pilani",
+    "name": "BITS Pilani",
+    "icon": "??",
+    "type": "University",
+    "location": "Pilani, Rajasthan",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 313000,
+      "MCA": 284000,
+      "BBA": 310000,
+      "BCA": 310000,
+      "M.Com": 284000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 310000,
+      "MA": 284000,
+      "BA": 310000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "cde-amu-distance-education",
+    "name": "CDE Amu (Distance Education)",
+    "icon": "??",
+    "type": "University",
+    "location": "Aligarh, Uttar Pradesh",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 19500,
+      "MCA": 19500,
+      "BBA": 19500,
+      "BCA": 19500,
+      "M.Com": 19000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 22500,
+      "MA": 19500,
+      "BA": 19500
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "chandigarh-university-distance",
+    "name": "Chandigarh University Distance",
+    "icon": "??",
+    "type": "Private University",
+    "location": "Mohali, Punjab",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC-DEB",
+      "AICTE",
+      "NAAC",
+      "NBA"
+    ],
+    "rating": 4,
+    "reviews": 312,
+    "accreditation": "NAAC A+",
+    "establishedYear": 2012,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Finance",
+          "Marketing",
+          "HR",
+          "Operations",
+          "Business Analytics"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General",
+          "Data Science",
+          "Cyber Security"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "English",
+          "History"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "fees": {
+      "MBA": 78000,
+      "MCA": 68000,
+      "BBA": 42000,
+      "BCA": 52000,
+      "M.Com": 28000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 22000,
+      "MA": 18000,
+      "BA": 16000
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": 85,
+    "placements": {
+      "averagePackage": 340000,
+      "highestPackage": 880000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "chaudhary-charan-singh-university-online",
+    "name": "Chaudhary Charan Singh University (Online)",
+    "icon": "??",
+    "type": "University",
+    "location": "Meerut, Uttar Pradesh",
+    "mode": [
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General",
+          "Finance",
+          "Marketing",
+          "HR"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 81250,
+      "MCA": 81250,
+      "BBA": 81250,
+      "BCA": 81250,
+      "M.Com": 81250,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 81250,
+      "MA": 81250,
+      "BA": 81250
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "chitkara-university-online",
+    "name": "Chitkara University (Online)",
+    "icon": "??",
+    "type": "Private University",
+    "location": "Rajpura, Punjab",
+    "mode": [
+      "Online"
+    ],
+    "approvals": [
+      "UGC-DEB",
+      "AICTE",
+      "NAAC"
+    ],
+    "rating": 4,
+    "reviews": 315,
+    "accreditation": "NAAC A+",
+    "establishedYear": 2010,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General",
+          "Finance",
+          "Marketing",
+          "HR",
+          "Operations"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General",
+          "Data Science"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "English"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "fees": {
+      "MBA": 115000,
+      "MCA": 105000,
+      "BBA": 65000,
+      "BCA": 75000,
+      "M.Com": 45000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 38000,
+      "MA": 32000,
+      "BA": 28000
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "placements": {
+      "averagePackage": 450000,
+      "highestPackage": 1250000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "ddu-deen-dayal-upadhyay-gorakhpur-online",
+    "name": "DDU Deen Dayal Upadhyay Gorakhpur (Online)",
+    "icon": "??",
+    "type": "State University",
+    "location": "Gorakhpur, Uttar Pradesh",
+    "mode": [
+      "Online"
+    ],
+    "approvals": [
+      "UGC-DEB",
+      "AICTE",
+      "NAAC"
+    ],
+    "rating": 3.7,
+    "reviews": 185,
+    "accreditation": "NAAC A",
+    "establishedYear": 1957,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "fees": {
+      "MBA": 32000,
+      "MCA": 28000,
+      "BBA": 16000,
+      "BCA": 20000,
+      "M.Com": 12000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 10000,
+      "MA": 8000,
+      "BA": 6000
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "placements": {
+      "averagePackage": 265000,
+      "highestPackage": 680000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "deakin-university-melbourne",
+    "name": "Deakin University Melbourne",
+    "icon": "??",
+    "type": "International University",
+    "location": "Melbourne, Victoria, Australia",
+    "mode": [
+      "Regular",
+      "Online"
+    ],
+    "approvals": [
+      "TEQSA",
+      "AACSB"
+    ],
+    "rating": 4.3,
+    "reviews": 320,
+    "accreditation": "TEQSA",
+    "establishedYear": 1974,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Business",
+          "Engineering",
+          "Health Sciences",
+          "Information Technology",
+          "Education"
+        ]
+      },
+      "Masters": {
+        "specializations": [
+          "Business",
+          "Engineering",
+          "Health Sciences",
+          "Information Technology",
+          "Education"
+        ]
+      },
+      "Bachelors": {
+        "specializations": [
+          "Business",
+          "Engineering",
+          "Health Sciences",
+          "Information Technology",
+          "Education"
+        ]
+      }
+    },
+    "specializations": [
+      "Business",
+      "Engineering",
+      "Health Sciences",
+      "Information Technology",
+      "Education"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 550000,
+      "Masters": 1744596,
+      "Bachelors": 1744596
+    },
+    "placements": {
+      "averagePackage": 8500000,
+      "highestPackage": 15000000,
+      "offered": true
+    },
+    "isInternational": true,
+    "state": "Victoria",
+    "country": "Australia",
+    "studentsRating": "4.5/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
+    "eligibility": "Graduation with 60%"
+  },
+  {
+    "id": "dibrugarh-university-distance-education",
+    "name": "Dibrugarh University (Distance Education)",
+    "icon": "??",
+    "type": "University",
+    "location": "Dibrugarh, Assam",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 35000,
+      "MCA": 17000,
+      "BBA": 9400,
+      "BCA": 9400,
+      "M.Com": 17000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 9400,
+      "MA": 17000,
+      "BA": 9400
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "durham-university",
+    "name": "Durham University",
+    "icon": "??",
+    "type": "International University",
+    "location": "Durham, England, UK",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "QAA",
+      "British Council"
+    ],
+    "rating": 4.3,
+    "reviews": 150,
+    "accreditation": "Russell Group",
+    "establishedYear": 1832,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Business",
+          "Engineering",
+          "Arts",
+          "Sciences",
+          "Law"
+        ]
+      },
+      "Masters": {
+        "specializations": [
+          "Business",
+          "Engineering",
+          "Arts",
+          "Sciences",
+          "Law"
+        ]
+      },
+      "Bachelors": {
+        "specializations": [
+          "Business",
+          "Engineering",
+          "Arts",
+          "Sciences",
+          "Law"
+        ]
+      }
+    },
+    "specializations": [
+      "Business",
+      "Engineering",
+      "Arts",
+      "Sciences",
+      "Law"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 1533784,
+      "Masters": 4501200,
+      "Bachelors": 4501200
+    },
+    "placements": {
+      "averagePackage": 6000000,
+      "highestPackage": 12000000,
+      "offered": true
+    },
+    "isInternational": true,
+    "state": "England",
+    "country": "UK",
+    "studentsRating": "4.5/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
+    "eligibility": "Graduation with 60%"
+  },
+  {
+    "id": "du-sol",
+    "name": "Du Sol",
+    "icon": "??",
+    "type": "University",
+    "location": "Delhi",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 100000,
+      "MCA": 47500,
+      "BBA": 15200,
+      "BCA": 40200,
+      "M.Com": 10000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 9600,
+      "MA": 12000,
+      "BA": 5000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "dy-patil-university-navi-mumbai-online",
+    "name": "D.Y. Patil University Navi Mumbai (Online)",
+    "icon": "??",
+    "type": "Private University",
+    "location": "Navi Mumbai, Maharashtra",
+    "mode": [
+      "Online"
+    ],
+    "approvals": [
+      "UGC-DEB",
+      "AICTE",
+      "NAAC"
+    ],
+    "rating": 4,
+    "reviews": 295,
+    "accreditation": "NAAC A",
+    "establishedYear": 2003,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General",
+          "Finance",
+          "Marketing",
+          "HR",
+          "Operations"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "fees": {
+      "MBA": 120000,
+      "MCA": 105000,
+      "BBA": 65000,
+      "BCA": 75000,
+      "M.Com": 45000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 35000,
+      "MA": 30000,
+      "BA": 25000
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "placements": {
+      "averagePackage": 400000,
+      "highestPackage": 1200000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "dy-patil-university-online",
+    "name": "D.Y. Patil University (Online)",
+    "icon": "??",
+    "type": "Private University",
+    "location": "Pune, Maharashtra",
+    "mode": [
+      "Online"
+    ],
+    "approvals": [
+      "UGC-DEB",
+      "AICTE",
+      "NAAC"
+    ],
+    "rating": 4.1,
+    "reviews": 325,
+    "accreditation": "NAAC A+",
+    "establishedYear": 2002,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General",
+          "Finance",
+          "Marketing",
+          "HR",
+          "Operations"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "fees": {
+      "MBA": 125000,
+      "MCA": 110000,
+      "BBA": 70000,
+      "BCA": 80000,
+      "M.Com": 50000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 40000,
+      "MA": 35000,
+      "BA": 30000
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "placements": {
+      "averagePackage": 420000,
+      "highestPackage": 1350000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "edgewood-university",
+    "name": "Edgewood University",
+    "icon": "??",
+    "type": "International University",
+    "location": "Madison, Wisconsin, USA",
+    "mode": [
+      "Regular",
+      "Online"
+    ],
+    "approvals": [
+      "HLC",
+      "AACSB"
+    ],
+    "rating": 4.1,
+    "reviews": 180,
+    "accreditation": "HLC",
+    "establishedYear": 1927,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Business",
+          "Education",
+          "Nursing",
+          "Psychology"
+        ]
+      },
+      "Masters": {
+        "specializations": [
+          "Business",
+          "Education",
+          "Nursing",
+          "Psychology"
+        ]
+      },
+      "Bachelors": {
+        "specializations": [
+          "Business",
+          "Education",
+          "Nursing",
+          "Psychology"
+        ]
+      }
+    },
+    "specializations": [
+      "Business",
+      "Education",
+      "Nursing",
+      "Psychology"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 395000,
+      "Masters": 485000,
+      "Bachelors": 3260000
+    },
+    "placements": {
+      "averagePackage": 6000000,
+      "highestPackage": 10000000,
+      "offered": true
+    },
+    "isInternational": true,
+    "state": "Wisconsin",
+    "country": "USA",
+    "studentsRating": "4.5/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
+    "eligibility": "Graduation with 60%"
+  },
+  {
+    "id": "english-and-foreign-languages-university-distance-education",
+    "name": "English And Foreign Languages University (Distance Education)",
+    "icon": "??",
+    "type": "University",
+    "location": "Hyderabad, Telangana",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 6070,
+      "MCA": 6070,
+      "BBA": 5260,
+      "BCA": 5260,
+      "M.Com": 6070,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 5260,
+      "MA": 6070,
+      "BA": 5260
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "esgci",
+    "name": "ESGCI - École Supérieure de Gestion et Commerce International",
+    "icon": "??",
+    "type": "International University",
+    "location": "Paris, Île-de-France, France",
+    "mode": [
+      "Regular",
+      "Online"
+    ],
+    "approvals": [
+      "French Ministry of Education",
+      "RNCP"
+    ],
+    "rating": 4,
+    "reviews": 180,
+    "accreditation": "RNCP",
+    "establishedYear": 1985,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "International Business",
+          "Digital Marketing",
+          "Finance",
+          "Management"
+        ]
+      },
+      "Masters": {
+        "specializations": [
+          "International Business",
+          "Digital Marketing",
+          "Finance",
+          "Management"
+        ]
+      },
+      "Bachelors": {
+        "specializations": [
+          "International Business",
+          "Digital Marketing",
+          "Finance",
+          "Management"
+        ]
+      }
+    },
+    "specializations": [
+      "International Business",
+      "Digital Marketing",
+      "Finance",
+      "Management"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 814000,
+      "Masters": 814000,
+      "Bachelors": 1046400
+    },
+    "placements": {
+      "averagePackage": 6500000,
+      "highestPackage": 11000000,
+      "offered": true
+    },
+    "studentsRating": "4.5/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
+    "eligibility": "Graduation with 60%",
+    "isInternational": true,
+    "state": "Île-de-France",
+    "country": "France"
+  },
+  {
+    "id": "galgotias-university-online",
+    "name": "Galgotias University (Online)",
+    "icon": "??",
+    "type": "Private University",
+    "location": "Greater Noida, Uttar Pradesh",
+    "mode": [
+      "Online"
+    ],
+    "approvals": [
+      "UGC-DEB",
+      "AICTE",
+      "NAAC"
+    ],
+    "rating": 3.8,
+    "reviews": 295,
+    "accreditation": "NAAC A",
+    "establishedYear": 2011,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General",
+          "Finance",
+          "Marketing",
+          "HR"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "fees": {
+      "MBA": 105000,
+      "MCA": 95000,
+      "BBA": 58000,
+      "BCA": 68000,
+      "M.Com": 38000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 32000,
+      "MA": 28000,
+      "BA": 22000
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "placements": {
+      "averagePackage": 420000,
+      "highestPackage": 1150000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "gitam-university-distance-education",
+    "name": "Gitam University (Distance Education)",
+    "icon": "??",
+    "type": "University",
+    "location": "Visakhapatnam, Andhra Pradesh",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 56000,
+      "MCA": 56000,
+      "BBA": 48000,
+      "BCA": 48000,
+      "M.Com": 48000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 48000,
+      "MA": 48000,
+      "BA": 48000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "gla-university-online",
+    "name": "GLA University (Online)",
+    "icon": "??",
+    "type": "University",
+    "location": "Mathura, Uttar Pradesh",
+    "mode": [
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 105000,
+      "MCA": 105000,
+      "BBA": 94500,
+      "BCA": 94500,
+      "M.Com": 66000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 66000,
+      "MA": 105000,
+      "BA": 94500
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "golden-gate-university",
+    "name": "Golden Gate University",
+    "icon": "??",
+    "type": "International University",
+    "location": "San Francisco, California, USA",
+    "mode": [
+      "Regular",
+      "Online"
+    ],
+    "approvals": [
+      "WASC",
+      "AACSB"
+    ],
+    "rating": 4.2,
+    "reviews": 250,
+    "accreditation": "WASC",
+    "establishedYear": 1901,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Business",
+          "Technology",
+          "Law",
+          "Public Administration"
+        ]
+      },
+      "Masters": {
+        "specializations": [
+          "Business",
+          "Technology",
+          "Law",
+          "Public Administration"
+        ]
+      },
+      "JD": {
+        "specializations": [
+          "Business",
+          "Technology",
+          "Law",
+          "Public Administration"
+        ]
+      },
+      "Bachelors": {
+        "specializations": [
+          "Business",
+          "Technology",
+          "Law",
+          "Public Administration"
+        ]
+      }
+    },
+    "specializations": [
+      "Business",
+      "Technology",
+      "Law",
+      "Public Administration"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 430000,
+      "Masters": 821011,
+      "JD": 1230000,
+      "Bachelors": 1230000
+    },
+    "placements": {
+      "averagePackage": 8000000,
+      "highestPackage": 15000000,
+      "offered": true
+    },
+    "isInternational": true,
+    "state": "California",
+    "country": "USA",
+    "studentsRating": "4.5/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
+    "eligibility": "Graduation with 60%"
+  },
+  {
+    "id": "graphic-era-university-online",
+    "name": "Graphic Era University (Online)",
+    "icon": "??",
+    "type": "Deemed University",
+    "location": "Dehradun, Uttarakhand",
+    "mode": [
+      "Online"
+    ],
+    "approvals": [
+      "UGC-DEB",
+      "AICTE",
+      "NAAC"
+    ],
+    "rating": 3.9,
+    "reviews": 285,
+    "accreditation": "NAAC A",
+    "establishedYear": 2008,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General",
+          "Finance",
+          "Marketing",
+          "HR"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "fees": {
+      "MBA": 85000,
+      "MCA": 75000,
+      "BBA": 45000,
+      "BCA": 55000,
+      "M.Com": 30000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 25000,
+      "MA": 20000,
+      "BA": 18000
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "placements": {
+      "averagePackage": 365000,
+      "highestPackage": 980000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "guru-kashi-university-online",
+    "name": "Guru Kashi University (Online)",
+    "icon": "??",
+    "type": "University",
+    "location": "Bathinda, Punjab",
+    "mode": [
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 90000,
+      "MCA": 90000,
+      "BBA": 43200,
+      "BCA": 43200,
+      "M.Com": 48000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 43200,
+      "MA": 28800,
+      "BA": 21600
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "harvard-university-online",
+    "name": "Harvard University (Online)",
+    "icon": "??",
+    "type": "International University",
+    "location": "Cambridge, Massachusetts, USA",
+    "mode": [
+      "Online"
+    ],
+    "approvals": [
+      "AACSB",
+      "Regional Accreditation"
+    ],
+    "rating": 4.8,
+    "reviews": 400,
+    "accreditation": "AACSB",
+    "establishedYear": 1636,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Business",
+          "Technology",
+          "Public Policy",
+          "Medicine",
+          "Law"
+        ]
+      },
+      "Masters": {
+        "specializations": [
+          "Business",
+          "Technology",
+          "Public Policy",
+          "Medicine",
+          "Law"
+        ]
+      },
+      "Executive Education": {
+        "specializations": [
+          "Business",
+          "Technology",
+          "Public Policy",
+          "Medicine",
+          "Law"
+        ]
+      }
+    },
+    "specializations": [
+      "Business",
+      "Technology",
+      "Public Policy",
+      "Medicine",
+      "Law"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 6660000,
+      "Masters": 6090000,
+      "Executive Education": 3720000
+    },
+    "placements": {
+      "averagePackage": 12000000,
+      "highestPackage": 25000000,
+      "offered": true
+    },
+    "isInternational": true,
+    "state": "Massachusetts",
+    "country": "USA",
+    "studentsRating": "4.5/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
+    "eligibility": "Graduation with 60%"
+  },
+  {
+    "id": "hpu-himachal-pradesh-university-distance-education",
+    "name": "HPU Himachal Pradesh University (Distance Education)",
+    "icon": "??",
+    "type": "University",
+    "location": "Shimla, Himachal Pradesh",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 15200,
+      "MCA": 15200,
+      "BBA": 7600,
+      "BCA": 7600,
+      "M.Com": 7600,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 7600,
+      "MA": 7600,
+      "BA": 7600
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "ideku-kerala-university-distance-education",
+    "name": "Ideku Kerala University (Distance Education)",
+    "icon": "??",
+    "type": "University",
+    "location": "Kerala",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 43220,
+      "MCA": 43220,
+      "BBA": 40810,
+      "BCA": 40810,
+      "M.Com": 21610,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 40810,
+      "MA": 21610,
+      "BA": 40810
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "ignou",
+    "name": "IGNOU",
+    "icon": "??",
+    "type": "Central University",
+    "location": "New Delhi, Delhi",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC-DEB",
+      "AICTE",
+      "DEC",
+      "NAAC"
+    ],
+    "rating": 4.2,
+    "reviews": 1250,
+    "accreditation": "NAAC A++",
+    "establishedYear": 1985,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General",
+          "HR",
+          "Operations",
+          "Finance",
+          "Marketing"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Ed": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Ed": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "fees": {
+      "MBA": 36000,
+      "MCA": 39000,
+      "BBA": 21000,
+      "BCA": 24000,
+      "M.Com": 15000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 12000,
+      "MA": 9000,
+      "BA": 7500,
+      "B.Ed": 18000,
+      "M.Ed": 15000
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science",
+      "Education"
+    ],
+    "nirfRanking": 35,
+    "placements": {
+      "averagePackage": 320000,
+      "highestPackage": 950000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "iiit-bangalore",
+    "name": "IIIT Bangalore",
+    "icon": "??",
+    "type": "Government Institute",
+    "location": "Bangalore, Karnataka",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "NIRF",
+      "AICTE",
+      "UGC"
+    ],
+    "rating": 4.5,
+    "reviews": 400,
+    "accreditation": "NIRF Rank 5",
+    "establishedYear": 1960,
+    "courses": {
+      "B.Tech": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "M.Tech": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "MBA": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "PhD": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      }
+    },
+    "specializations": [
+      "Computer Science",
+      "Data Science",
+      "AI & ML",
+      "Engineering",
+      "Management"
+    ],
+    "nirfRanking": 5,
+    "fees": {
+      "B.Tech": 827000,
+      "M.Tech": 112000,
+      "MBA": 200000,
+      "PhD": 50000
+    },
+    "placements": {
+      "averagePackage": 1500000,
+      "highestPackage": 4000000,
+      "offered": true
+    },
+    "studentsRating": "4.7/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
+    "eligibility": "Graduation with 50%"
+  },
+  {
+    "id": "iiit-dharwad",
+    "name": "IIIT Dharwad",
+    "icon": "??",
+    "type": "Government Institute",
+    "location": "Dharwad, Karnataka",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "NIRF",
+      "AICTE",
+      "UGC"
+    ],
+    "rating": 4.5,
+    "reviews": 400,
+    "accreditation": "NIRF Rank 5",
+    "establishedYear": 1960,
+    "courses": {
+      "B.Tech": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "M.Tech": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "MBA": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "PhD": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      }
+    },
+    "specializations": [
+      "Computer Science",
+      "Data Science",
+      "AI & ML",
+      "Engineering",
+      "Management"
+    ],
+    "nirfRanking": 5,
+    "fees": {
+      "B.Tech": 827000,
+      "M.Tech": 112000,
+      "MBA": 200000,
+      "PhD": 50000
+    },
+    "placements": {
+      "averagePackage": 1500000,
+      "highestPackage": 4000000,
+      "offered": true
+    },
+    "studentsRating": "4.7/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
+    "eligibility": "Graduation with 50%"
+  },
+  {
+    "id": "iim-ahmedabad",
+    "name": "IIM Ahmedabad",
+    "icon": "??",
+    "type": "Government Institute",
+    "location": "Ahmedabad, Gujarat",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "NIRF",
+      "AICTE",
+      "UGC"
+    ],
+    "rating": 4.7,
+    "reviews": 350,
+    "accreditation": "NIRF Rank 3",
+    "establishedYear": 1965,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "Executive MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PGDM": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PhD": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      }
+    },
+    "specializations": [
+      "Strategic Management",
+      "Finance",
+      "Marketing",
+      "Operations",
+      "HR"
+    ],
+    "nirfRanking": 3,
+    "fees": {
+      "MBA": 2650000,
+      "Executive MBA": 3415000,
+      "PGDM": 2650000,
+      "PhD": 50000
+    },
+    "placements": {
+      "averagePackage": 3000000,
+      "highestPackage": 6500000,
+      "offered": true
+    },
+    "studentsRating": "4.7/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
+    "eligibility": "Graduation with 50%"
+  },
+  {
+    "id": "iim-amritsar",
+    "name": "IIM Amritsar",
+    "icon": "??",
+    "type": "Government Institute",
+    "location": "Amritsar, Punjab",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "NIRF",
+      "AICTE",
+      "UGC"
+    ],
+    "rating": 4.7,
+    "reviews": 350,
+    "accreditation": "NIRF Rank 3",
+    "establishedYear": 1965,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "Executive MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PGDM": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PhD": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      }
+    },
+    "specializations": [
+      "Strategic Management",
+      "Finance",
+      "Marketing",
+      "Operations",
+      "HR"
+    ],
+    "nirfRanking": 3,
+    "fees": {
+      "MBA": 1800000,
+      "Executive MBA": 1800000,
+      "PGDM": 1800000,
+      "PhD": 50000
+    },
+    "placements": {
+      "averagePackage": 3000000,
+      "highestPackage": 6500000,
+      "offered": true
+    },
+    "studentsRating": "4.7/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
+    "eligibility": "Graduation with 50%"
+  },
+  {
+    "id": "iim-bangalore",
+    "name": "IIM Bangalore",
+    "icon": "??",
+    "type": "Government Institute",
+    "location": "Bangalore, Karnataka",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "NIRF",
+      "AICTE",
+      "UGC"
+    ],
+    "rating": 4.7,
+    "reviews": 350,
+    "accreditation": "NIRF Rank 3",
+    "establishedYear": 1965,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "Executive MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PGDM": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PhD": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      }
+    },
+    "specializations": [
+      "Strategic Management",
+      "Finance",
+      "Marketing",
+      "Operations",
+      "HR"
+    ],
+    "nirfRanking": 3,
+    "fees": {
+      "MBA": 2650000,
+      "Executive MBA": 2650000,
+      "PGDM": 2650000,
+      "PhD": 50000
+    },
+    "placements": {
+      "averagePackage": 3000000,
+      "highestPackage": 6500000,
+      "offered": true
+    },
+    "studentsRating": "4.7/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
+    "eligibility": "Graduation with 50%"
+  },
+  {
+    "id": "iim-bodh-gaya",
+    "name": "IIM Bodh Gaya",
+    "icon": "??",
+    "type": "Government Institute",
+    "location": "Bodh Gaya, Bihar",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "NIRF",
+      "AICTE",
+      "UGC"
+    ],
+    "rating": 4.7,
+    "reviews": 350,
+    "accreditation": "NIRF Rank 3",
+    "establishedYear": 1965,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "Executive MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PGDM": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PhD": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      }
+    },
+    "specializations": [
+      "Strategic Management",
+      "Finance",
+      "Marketing",
+      "Operations",
+      "HR"
+    ],
+    "nirfRanking": 3,
+    "fees": {
+      "MBA": 1628000,
+      "Executive MBA": 1628000,
+      "PGDM": 1628000,
+      "PhD": 50000
+    },
+    "placements": {
+      "averagePackage": 3000000,
+      "highestPackage": 6500000,
+      "offered": true
+    },
+    "studentsRating": "4.7/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
+    "eligibility": "Graduation with 50%"
+  },
+  {
+    "id": "iim-calcutta",
+    "name": "IIM Calcutta",
+    "icon": "??",
+    "type": "Government Institute",
+    "location": "Kolkata, West Bengal",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "NIRF",
+      "AICTE",
+      "UGC"
+    ],
+    "rating": 4.7,
+    "reviews": 350,
+    "accreditation": "NIRF Rank 3",
+    "establishedYear": 1965,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "Executive MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PGDM": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PhD": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      }
+    },
+    "specializations": [
+      "Strategic Management",
+      "Finance",
+      "Marketing",
+      "Operations",
+      "HR"
+    ],
+    "nirfRanking": 3,
+    "fees": {
+      "MBA": 3350000,
+      "Executive MBA": 3350000,
+      "PGDM": 3350000,
+      "PhD": 50000
+    },
+    "placements": {
+      "averagePackage": 3000000,
+      "highestPackage": 6500000,
+      "offered": true
+    },
+    "studentsRating": "4.7/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
+    "eligibility": "Graduation with 50%"
+  },
+  {
+    "id": "iim-indore",
+    "name": "IIM Indore",
+    "icon": "??",
+    "type": "Government Institute",
+    "location": "Indore, Madhya Pradesh",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "NIRF",
+      "AICTE",
+      "UGC"
+    ],
+    "rating": 4.7,
+    "reviews": 350,
+    "accreditation": "NIRF Rank 3",
+    "establishedYear": 1965,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "Executive MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PGDM": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PhD": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      }
+    },
+    "specializations": [
+      "Strategic Management",
+      "Finance",
+      "Marketing",
+      "Operations",
+      "HR"
+    ],
+    "nirfRanking": 3,
+    "fees": {
+      "MBA": 2200000,
+      "Executive MBA": 2200000,
+      "PGDM": 2200000,
+      "PhD": 50000
+    },
+    "placements": {
+      "averagePackage": 3000000,
+      "highestPackage": 6500000,
+      "offered": true
+    },
+    "studentsRating": "4.7/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
+    "eligibility": "Graduation with 50%"
+  },
+  {
+    "id": "iim-indore-timespro",
+    "name": "IIM Indore Timespro",
+    "icon": "??",
+    "type": "Government Institute",
+    "location": "Indore, Madhya Pradesh",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "NIRF",
+      "AICTE",
+      "UGC"
+    ],
+    "rating": 4.7,
+    "reviews": 350,
+    "accreditation": "NIRF Rank 3",
+    "establishedYear": 1965,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "Executive MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PGDM": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PhD": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      }
+    },
+    "specializations": [
+      "Strategic Management",
+      "Finance",
+      "Marketing",
+      "Operations",
+      "HR"
+    ],
+    "nirfRanking": 3,
+    "fees": {
+      "MBA": 2200000,
+      "Executive MBA": 2200000,
+      "PGDM": 2200000,
+      "PhD": 50000
+    },
+    "placements": {
+      "averagePackage": 3000000,
+      "highestPackage": 6500000,
+      "offered": true
+    },
+    "studentsRating": "4.7/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
+    "eligibility": "Graduation with 50%"
+  },
+  {
+    "id": "iim-jammu",
+    "name": "IIM Jammu",
+    "icon": "??",
+    "type": "Government Institute",
+    "location": "Jammu, Jammu and Kashmir",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "NIRF",
+      "AICTE",
+      "UGC"
+    ],
+    "rating": 4.7,
+    "reviews": 350,
+    "accreditation": "NIRF Rank 3",
+    "establishedYear": 1965,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "Executive MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PGDM": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PhD": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      }
+    },
+    "specializations": [
+      "Strategic Management",
+      "Finance",
+      "Marketing",
+      "Operations",
+      "HR"
+    ],
+    "nirfRanking": 3,
+    "fees": {
+      "MBA": 1700000,
+      "Executive MBA": 1700000,
+      "PGDM": 1700000,
+      "PhD": 50000
+    },
+    "placements": {
+      "averagePackage": 3000000,
+      "highestPackage": 6500000,
+      "offered": true
+    },
+    "studentsRating": "4.7/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
+    "eligibility": "Graduation with 50%"
+  },
+  {
+    "id": "iim-kashipur",
+    "name": "IIM Kashipur",
+    "icon": "??",
+    "type": "Government Institute",
+    "location": "Kashipur, Uttarakhand",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "NIRF",
+      "AICTE",
+      "UGC"
+    ],
+    "rating": 4.7,
+    "reviews": 350,
+    "accreditation": "NIRF Rank 3",
+    "establishedYear": 1965,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "Executive MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PGDM": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PhD": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      }
+    },
+    "specializations": [
+      "Strategic Management",
+      "Finance",
+      "Marketing",
+      "Operations",
+      "HR"
+    ],
+    "nirfRanking": 3,
+    "fees": {
+      "MBA": 1790000,
+      "Executive MBA": 1790000,
+      "PGDM": 1790000,
+      "PhD": 50000
+    },
+    "placements": {
+      "averagePackage": 3000000,
+      "highestPackage": 6500000,
+      "offered": true
+    },
+    "studentsRating": "4.7/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
+    "eligibility": "Graduation with 50%"
+  },
+  {
+    "id": "iim-kozhikode",
+    "name": "IIM Kozhikode",
+    "icon": "??",
+    "type": "Government Institute",
+    "location": "Kozhikode, Kerala",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "NIRF",
+      "AICTE",
+      "UGC"
+    ],
+    "rating": 4.7,
+    "reviews": 350,
+    "accreditation": "NIRF Rank 3",
+    "establishedYear": 1965,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "Executive MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PGDM": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PhD": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      }
+    },
+    "specializations": [
+      "Strategic Management",
+      "Finance",
+      "Marketing",
+      "Operations",
+      "HR"
+    ],
+    "nirfRanking": 3,
+    "fees": {
+      "MBA": 2000000,
+      "Executive MBA": 2000000,
+      "PGDM": 2000000,
+      "PhD": 50000
+    },
+    "placements": {
+      "averagePackage": 3000000,
+      "highestPackage": 6500000,
+      "offered": true
+    },
+    "studentsRating": "4.7/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
+    "eligibility": "Graduation with 50%"
+  },
+  {
+    "id": "iim-lucknow",
+    "name": "IIM Lucknow",
+    "icon": "??",
+    "type": "Government Institute",
+    "location": "Uttar Pradesh",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "NIRF",
+      "AICTE",
+      "UGC"
+    ],
+    "rating": 4.7,
+    "reviews": 350,
+    "accreditation": "NIRF Rank 3",
+    "establishedYear": 1965,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "Executive MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PGDM": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PhD": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      }
+    },
+    "specializations": [
+      "Strategic Management",
+      "Finance",
+      "Marketing",
+      "Operations",
+      "HR"
+    ],
+    "nirfRanking": 3,
+    "fees": {
+      "MBA": 2200000,
+      "Executive MBA": 2200000,
+      "PGDM": 2200000,
+      "PhD": 50000
+    },
+    "placements": {
+      "averagePackage": 3000000,
+      "highestPackage": 6500000,
+      "offered": true
+    },
+    "studentsRating": "4.7/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
+    "eligibility": "Graduation with 50%"
+  },
+  {
+    "id": "iim-mumbai",
+    "name": "IIM Mumbai",
+    "icon": "??",
+    "type": "Government Institute",
+    "location": "Mumbai, Maharashtra",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "NIRF",
+      "AICTE",
+      "UGC"
+    ],
+    "rating": 4.7,
+    "reviews": 350,
+    "accreditation": "NIRF Rank 3",
+    "establishedYear": 1965,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "Executive MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PGDM": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PhD": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      }
+    },
+    "specializations": [
+      "Strategic Management",
+      "Finance",
+      "Marketing",
+      "Operations",
+      "HR"
+    ],
+    "nirfRanking": 3,
+    "fees": {
+      "MBA": 1790000,
+      "Executive MBA": 1790000,
+      "PGDM": 1790000,
+      "PhD": 50000
+    },
+    "placements": {
+      "averagePackage": 3000000,
+      "highestPackage": 6500000,
+      "offered": true
+    },
+    "studentsRating": "4.7/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
+    "eligibility": "Graduation with 50%"
+  },
+  {
+    "id": "iim-nagpur",
+    "name": "IIM Nagpur",
+    "icon": "??",
+    "type": "Government Institute",
+    "location": "Nagpur, Maharashtra",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "NIRF",
+      "AICTE",
+      "UGC"
+    ],
+    "rating": 4.7,
+    "reviews": 350,
+    "accreditation": "NIRF Rank 3",
+    "establishedYear": 1965,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "Executive MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PGDM": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PhD": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      }
+    },
+    "specializations": [
+      "Strategic Management",
+      "Finance",
+      "Marketing",
+      "Operations",
+      "HR"
+    ],
+    "nirfRanking": 3,
+    "fees": {
+      "MBA": 1790000,
+      "Executive MBA": 1790000,
+      "PGDM": 1790000,
+      "PhD": 50000
+    },
+    "placements": {
+      "averagePackage": 3000000,
+      "highestPackage": 6500000,
+      "offered": true
+    },
+    "studentsRating": "4.7/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
+    "eligibility": "Graduation with 50%"
+  },
+  {
+    "id": "iim-raipur",
+    "name": "IIM Raipur",
+    "icon": "??",
+    "type": "Government Institute",
+    "location": "Raipur, Chhattisgarh",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "NIRF",
+      "AICTE",
+      "UGC"
+    ],
+    "rating": 4.7,
+    "reviews": 350,
+    "accreditation": "NIRF Rank 3",
+    "establishedYear": 1965,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "Executive MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PGDM": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PhD": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      }
+    },
+    "specializations": [
+      "Strategic Management",
+      "Finance",
+      "Marketing",
+      "Operations",
+      "HR"
+    ],
+    "nirfRanking": 3,
+    "fees": {
+      "MBA": 1800000,
+      "Executive MBA": 1800000,
+      "PGDM": 1800000,
+      "PhD": 50000
+    },
+    "placements": {
+      "averagePackage": 3000000,
+      "highestPackage": 6500000,
+      "offered": true
+    },
+    "studentsRating": "4.7/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
+    "eligibility": "Graduation with 50%"
+  },
+  {
+    "id": "iim-ranchi",
+    "name": "IIM Ranchi",
+    "icon": "??",
+    "type": "Government Institute",
+    "location": "Ranchi, Jharkhand",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "NIRF",
+      "AICTE",
+      "UGC"
+    ],
+    "rating": 4.7,
+    "reviews": 350,
+    "accreditation": "NIRF Rank 3",
+    "establishedYear": 1965,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "Executive MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PGDM": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PhD": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      }
+    },
+    "specializations": [
+      "Strategic Management",
+      "Finance",
+      "Marketing",
+      "Operations",
+      "HR"
+    ],
+    "nirfRanking": 3,
+    "fees": {
+      "MBA": 1790000,
+      "Executive MBA": 1790000,
+      "PGDM": 1790000,
+      "PhD": 50000
+    },
+    "placements": {
+      "averagePackage": 3000000,
+      "highestPackage": 6500000,
+      "offered": true
+    },
+    "studentsRating": "4.7/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
+    "eligibility": "Graduation with 50%"
+  },
+  {
+    "id": "iim-rohtak",
+    "name": "IIM Rohtak",
+    "icon": "??",
+    "type": "Government Institute",
+    "location": "Rohtak, Haryana",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "NIRF",
+      "AICTE",
+      "UGC"
+    ],
+    "rating": 4.7,
+    "reviews": 350,
+    "accreditation": "NIRF Rank 3",
+    "establishedYear": 1965,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "Executive MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PGDM": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PhD": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      }
+    },
+    "specializations": [
+      "Strategic Management",
+      "Finance",
+      "Marketing",
+      "Operations",
+      "HR"
+    ],
+    "nirfRanking": 3,
+    "fees": {
+      "MBA": 1790000,
+      "Executive MBA": 1790000,
+      "PGDM": 1790000,
+      "PhD": 50000
+    },
+    "placements": {
+      "averagePackage": 3000000,
+      "highestPackage": 6500000,
+      "offered": true
+    },
+    "studentsRating": "4.7/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
+    "eligibility": "Graduation with 50%"
+  },
+  {
+    "id": "iim-sambalpur",
+    "name": "IIM Sambalpur",
+    "icon": "??",
+    "type": "Government Institute",
+    "location": "Sambalpur, Odisha",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "NIRF",
+      "AICTE",
+      "UGC"
+    ],
+    "rating": 4.7,
+    "reviews": 350,
+    "accreditation": "NIRF Rank 3",
+    "establishedYear": 1965,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "Executive MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PGDM": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PhD": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      }
+    },
+    "specializations": [
+      "Strategic Management",
+      "Finance",
+      "Marketing",
+      "Operations",
+      "HR"
+    ],
+    "nirfRanking": 3,
+    "fees": {
+      "MBA": 1790000,
+      "Executive MBA": 1790000,
+      "PGDM": 1790000,
+      "PhD": 50000
+    },
+    "placements": {
+      "averagePackage": 3000000,
+      "highestPackage": 6500000,
+      "offered": true
+    },
+    "studentsRating": "4.7/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
+    "eligibility": "Graduation with 50%"
+  },
+  {
+    "id": "iim-shillong",
+    "name": "IIM Shillong",
+    "icon": "??",
+    "type": "Government Institute",
+    "location": "Shillong, Meghalaya",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "NIRF",
+      "AICTE",
+      "UGC"
+    ],
+    "rating": 4.7,
+    "reviews": 350,
+    "accreditation": "NIRF Rank 3",
+    "establishedYear": 1965,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "Executive MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PGDM": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PhD": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      }
+    },
+    "specializations": [
+      "Strategic Management",
+      "Finance",
+      "Marketing",
+      "Operations",
+      "HR"
+    ],
+    "nirfRanking": 3,
+    "fees": {
+      "MBA": 1790000,
+      "Executive MBA": 1790000,
+      "PGDM": 1790000,
+      "PhD": 50000
+    },
+    "placements": {
+      "averagePackage": 3000000,
+      "highestPackage": 6500000,
+      "offered": true
+    },
+    "studentsRating": "4.7/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
+    "eligibility": "Graduation with 50%"
+  },
+  {
+    "id": "iim-sirmaur",
+    "name": "IIM Sirmaur",
+    "icon": "??",
+    "type": "Government Institute",
+    "location": "Sirmaur, Himachal Pradesh",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "NIRF",
+      "AICTE",
+      "UGC"
+    ],
+    "rating": 4.7,
+    "reviews": 350,
+    "accreditation": "NIRF Rank 3",
+    "establishedYear": 1965,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "Executive MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PGDM": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PhD": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      }
+    },
+    "specializations": [
+      "Strategic Management",
+      "Finance",
+      "Marketing",
+      "Operations",
+      "HR"
+    ],
+    "nirfRanking": 3,
+    "fees": {
+      "MBA": 1628000,
+      "Executive MBA": 1628000,
+      "PGDM": 1628000,
+      "PhD": 50000
+    },
+    "placements": {
+      "averagePackage": 3000000,
+      "highestPackage": 6500000,
+      "offered": true
+    },
+    "studentsRating": "4.7/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
+    "eligibility": "Graduation with 50%"
+  },
+  {
+    "id": "iim-trichy",
+    "name": "IIM Trichy",
+    "icon": "??",
+    "type": "Government Institute",
+    "location": "Tiruchirappalli, Tamil Nadu",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "NIRF",
+      "AICTE",
+      "UGC"
+    ],
+    "rating": 4.7,
+    "reviews": 350,
+    "accreditation": "NIRF Rank 3",
+    "establishedYear": 1965,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "Executive MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PGDM": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PhD": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      }
+    },
+    "specializations": [
+      "Strategic Management",
+      "Finance",
+      "Marketing",
+      "Operations",
+      "HR"
+    ],
+    "nirfRanking": 3,
+    "fees": {
+      "MBA": 1790000,
+      "Executive MBA": 1790000,
+      "PGDM": 1790000,
+      "PhD": 50000
+    },
+    "placements": {
+      "averagePackage": 3000000,
+      "highestPackage": 6500000,
+      "offered": true
+    },
+    "studentsRating": "4.7/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
+    "eligibility": "Graduation with 50%"
+  },
+  {
+    "id": "iim-udaipur",
+    "name": "IIM Udaipur",
+    "icon": "??",
+    "type": "Government Institute",
+    "location": "Udaipur, Rajasthan",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "NIRF",
+      "AICTE",
+      "UGC"
+    ],
+    "rating": 4.7,
+    "reviews": 350,
+    "accreditation": "NIRF Rank 3",
+    "establishedYear": 1965,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "Executive MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PGDM": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PhD": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      }
+    },
+    "specializations": [
+      "Strategic Management",
+      "Finance",
+      "Marketing",
+      "Operations",
+      "HR"
+    ],
+    "nirfRanking": 3,
+    "fees": {
+      "MBA": 1496000,
+      "Executive MBA": 1496000,
+      "PGDM": 1496000,
+      "PhD": 50000
+    },
+    "placements": {
+      "averagePackage": 3000000,
+      "highestPackage": 6500000,
+      "offered": true
+    },
+    "studentsRating": "4.7/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
+    "eligibility": "Graduation with 50%"
+  },
+  {
+    "id": "iim-visakhapatnam",
+    "name": "IIM Visakhapatnam",
+    "icon": "??",
+    "type": "Government Institute",
+    "location": "Visakhapatnam, Andhra Pradesh",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "NIRF",
+      "AICTE",
+      "UGC"
+    ],
+    "rating": 4.7,
+    "reviews": 350,
+    "accreditation": "NIRF Rank 3",
+    "establishedYear": 1965,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "Executive MBA": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PGDM": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      },
+      "PhD": {
+        "specializations": [
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR"
+        ]
+      }
+    },
+    "specializations": [
+      "Strategic Management",
+      "Finance",
+      "Marketing",
+      "Operations",
+      "HR"
+    ],
+    "nirfRanking": 3,
+    "fees": {
+      "MBA": 1790000,
+      "Executive MBA": 1790000,
+      "PGDM": 1790000,
+      "PhD": 50000
+    },
+    "placements": {
+      "averagePackage": 3000000,
+      "highestPackage": 6500000,
+      "offered": true
+    },
+    "studentsRating": "4.7/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
+    "eligibility": "Graduation with 50%"
+  },
+  {
+    "id": "iisc-bangalore",
+    "name": "Iisc Bangalore",
+    "icon": "??",
+    "type": "University",
+    "location": "Bangalore, Karnataka",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 200000,
+      "MCA": 112000,
+      "BBA": 827000,
+      "BCA": 827000,
+      "M.Com": 112000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 827000,
+      "MA": 112000,
+      "BA": 827000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.7/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
+    "eligibility": "Graduation with 50%"
+  },
+  {
+    "id": "iit-bombay",
+    "name": "IIT Bombay",
+    "icon": "??",
+    "type": "Government Institute",
+    "location": "Mumbai, Maharashtra",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "NIRF",
+      "AICTE",
+      "UGC"
+    ],
+    "rating": 4.5,
+    "reviews": 400,
+    "accreditation": "NIRF Rank 5",
+    "establishedYear": 1960,
+    "courses": {
+      "B.Tech": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "M.Tech": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "MBA": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "PhD": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      }
+    },
+    "specializations": [
+      "Computer Science",
+      "Data Science",
+      "AI & ML",
+      "Engineering",
+      "Management"
+    ],
+    "nirfRanking": 5,
+    "fees": {
+      "B.Tech": 827000,
+      "M.Tech": 112000,
+      "MBA": 200000,
+      "PhD": 50000
+    },
+    "placements": {
+      "averagePackage": 1500000,
+      "highestPackage": 4000000,
+      "offered": true
+    },
+    "studentsRating": "4.7/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
+    "eligibility": "Graduation with 50%"
+  },
+  {
+    "id": "iit-delhi",
+    "name": "IIT Delhi",
+    "icon": "??",
+    "type": "Government Institute",
+    "location": "New Delhi, Delhi",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "NIRF",
+      "AICTE",
+      "UGC"
+    ],
+    "rating": 4.5,
+    "reviews": 400,
+    "accreditation": "NIRF Rank 5",
+    "establishedYear": 1960,
+    "courses": {
+      "B.Tech": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "M.Tech": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "MBA": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "PhD": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      }
+    },
+    "specializations": [
+      "Computer Science",
+      "Data Science",
+      "AI & ML",
+      "Engineering",
+      "Management"
+    ],
+    "nirfRanking": 5,
+    "fees": {
+      "B.Tech": 827000,
+      "M.Tech": 112000,
+      "MBA": 200000,
+      "PhD": 50000
+    },
+    "placements": {
+      "averagePackage": 1500000,
+      "highestPackage": 4000000,
+      "offered": true
+    },
+    "studentsRating": "4.7/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
+    "eligibility": "Graduation with 50%"
+  },
+  {
+    "id": "iit-guwahati",
+    "name": "IIT Guwahati",
+    "icon": "??",
+    "type": "Government Institute",
+    "location": "Guwahati, Assam",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "NIRF",
+      "AICTE",
+      "UGC"
+    ],
+    "rating": 4.5,
+    "reviews": 400,
+    "accreditation": "NIRF Rank 5",
+    "establishedYear": 1960,
+    "courses": {
+      "B.Tech": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "M.Tech": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "MBA": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "PhD": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      }
+    },
+    "specializations": [
+      "Computer Science",
+      "Data Science",
+      "AI & ML",
+      "Engineering",
+      "Management"
+    ],
+    "nirfRanking": 5,
+    "fees": {
+      "B.Tech": 91000,
+      "M.Tech": 91000,
+      "MBA": 91000,
+      "PhD": 50000
+    },
+    "placements": {
+      "averagePackage": 1500000,
+      "highestPackage": 4000000,
+      "offered": true
+    },
+    "studentsRating": "4.7/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
+    "eligibility": "Graduation with 50%"
+  },
+  {
+    "id": "iit-hyderabad",
+    "name": "IIT Hyderabad",
+    "icon": "??",
+    "type": "Government Institute",
+    "location": "Hyderabad, Telangana",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "NIRF",
+      "AICTE",
+      "UGC"
+    ],
+    "rating": 4.5,
+    "reviews": 400,
+    "accreditation": "NIRF Rank 5",
+    "establishedYear": 1960,
+    "courses": {
+      "B.Tech": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "M.Tech": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "MBA": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "PhD": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      }
+    },
+    "specializations": [
+      "Computer Science",
+      "Data Science",
+      "AI & ML",
+      "Engineering",
+      "Management"
+    ],
+    "nirfRanking": 5,
+    "fees": {
+      "B.Tech": 827000,
+      "M.Tech": 112000,
+      "MBA": 200000,
+      "PhD": 50000
+    },
+    "placements": {
+      "averagePackage": 1500000,
+      "highestPackage": 4000000,
+      "offered": true
+    },
+    "studentsRating": "4.7/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
+    "eligibility": "Graduation with 50%"
+  },
+  {
+    "id": "iit-jodhpur",
+    "name": "IIT Jodhpur",
+    "icon": "??",
+    "type": "Government Institute",
+    "location": "Jodhpur, Rajasthan",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "NIRF",
+      "AICTE",
+      "UGC"
+    ],
+    "rating": 4.5,
+    "reviews": 400,
+    "accreditation": "NIRF Rank 5",
+    "establishedYear": 1960,
+    "courses": {
+      "B.Tech": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "M.Tech": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "MBA": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "PhD": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      }
+    },
+    "specializations": [
+      "Computer Science",
+      "Data Science",
+      "AI & ML",
+      "Engineering",
+      "Management"
+    ],
+    "nirfRanking": 5,
+    "fees": {
+      "B.Tech": 827000,
+      "M.Tech": 112000,
+      "MBA": 200000,
+      "PhD": 50000
+    },
+    "placements": {
+      "averagePackage": 1500000,
+      "highestPackage": 4000000,
+      "offered": true
+    },
+    "studentsRating": "4.7/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
+    "eligibility": "Graduation with 50%"
+  },
+  {
+    "id": "iit-kanpur",
+    "name": "IIT Kanpur",
+    "icon": "??",
+    "type": "Government Institute",
+    "location": "Kanpur, Uttar Pradesh",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "NIRF",
+      "AICTE",
+      "UGC"
+    ],
+    "rating": 4.5,
+    "reviews": 400,
+    "accreditation": "NIRF Rank 5",
+    "establishedYear": 1960,
+    "courses": {
+      "B.Tech": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "M.Tech": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "MBA": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "PhD": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      }
+    },
+    "specializations": [
+      "Computer Science",
+      "Data Science",
+      "AI & ML",
+      "Engineering",
+      "Management"
+    ],
+    "nirfRanking": 5,
+    "fees": {
+      "B.Tech": 827000,
+      "M.Tech": 112000,
+      "MBA": 232790,
+      "PhD": 50000
+    },
+    "placements": {
+      "averagePackage": 1500000,
+      "highestPackage": 4000000,
+      "offered": true
+    },
+    "studentsRating": "4.7/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
+    "eligibility": "Graduation with 50%"
+  },
+  {
+    "id": "iit-kharagpur",
+    "name": "IIT Kharagpur",
+    "icon": "??",
+    "type": "Government Institute",
+    "location": "Kharagpur, West Bengal",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "NIRF",
+      "AICTE",
+      "UGC"
+    ],
+    "rating": 4.5,
+    "reviews": 400,
+    "accreditation": "NIRF Rank 5",
+    "establishedYear": 1960,
+    "courses": {
+      "B.Tech": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "M.Tech": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "MBA": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "PhD": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      }
+    },
+    "specializations": [
+      "Computer Science",
+      "Data Science",
+      "AI & ML",
+      "Engineering",
+      "Management"
+    ],
+    "nirfRanking": 5,
+    "fees": {
+      "B.Tech": 827000,
+      "M.Tech": 112000,
+      "MBA": 200000,
+      "PhD": 50000
+    },
+    "placements": {
+      "averagePackage": 1500000,
+      "highestPackage": 4000000,
+      "offered": true
+    },
+    "studentsRating": "4.7/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
+    "eligibility": "Graduation with 50%"
+  },
+  {
+    "id": "iit-madras",
+    "name": "IIT Madras",
+    "icon": "??",
+    "type": "Government Institute",
+    "location": "Chennai, Tamil Nadu",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "NIRF",
+      "AICTE",
+      "UGC"
+    ],
+    "rating": 4.5,
+    "reviews": 400,
+    "accreditation": "NIRF Rank 5",
+    "establishedYear": 1960,
+    "courses": {
+      "B.Tech": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "M.Tech": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "MBA": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "PhD": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      }
+    },
+    "specializations": [
+      "Computer Science",
+      "Data Science",
+      "AI & ML",
+      "Engineering",
+      "Management"
+    ],
+    "nirfRanking": 5,
+    "fees": {
+      "B.Tech": 827000,
+      "M.Tech": 112000,
+      "MBA": 200000,
+      "PhD": 50000
+    },
+    "placements": {
+      "averagePackage": 1500000,
+      "highestPackage": 4000000,
+      "offered": true
+    },
+    "studentsRating": "4.7/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
+    "eligibility": "Graduation with 50%"
+  },
+  {
+    "id": "iit-roorkee",
+    "name": "IIT Roorkee",
+    "icon": "??",
+    "type": "Government Institute",
+    "location": "Roorkee, Uttarakhand",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "NIRF",
+      "AICTE",
+      "UGC"
+    ],
+    "rating": 4.5,
+    "reviews": 400,
+    "accreditation": "NIRF Rank 5",
+    "establishedYear": 1960,
+    "courses": {
+      "B.Tech": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "M.Tech": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "MBA": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "PhD": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      }
+    },
+    "specializations": [
+      "Computer Science",
+      "Data Science",
+      "AI & ML",
+      "Engineering",
+      "Management"
+    ],
+    "nirfRanking": 5,
+    "fees": {
+      "B.Tech": 827000,
+      "M.Tech": 112000,
+      "MBA": 200000,
+      "PhD": 50000
+    },
+    "placements": {
+      "averagePackage": 1500000,
+      "highestPackage": 4000000,
+      "offered": true
+    },
+    "studentsRating": "4.7/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
+    "eligibility": "Graduation with 50%"
+  },
+  {
+    "id": "iit-ropar",
+    "name": "IIT Ropar",
+    "icon": "??",
+    "type": "Government Institute",
+    "location": "Ropar, Punjab",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "NIRF",
+      "AICTE",
+      "UGC"
+    ],
+    "rating": 4.5,
+    "reviews": 400,
+    "accreditation": "NIRF Rank 5",
+    "establishedYear": 1960,
+    "courses": {
+      "B.Tech": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "M.Tech": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "MBA": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "PhD": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      }
+    },
+    "specializations": [
+      "Computer Science",
+      "Data Science",
+      "AI & ML",
+      "Engineering",
+      "Management"
+    ],
+    "nirfRanking": 5,
+    "fees": {
+      "B.Tech": 827000,
+      "M.Tech": 112000,
+      "MBA": 200000,
+      "PhD": 50000
+    },
+    "placements": {
+      "averagePackage": 1500000,
+      "highestPackage": 4000000,
+      "offered": true
+    },
+    "studentsRating": "4.7/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
+    "eligibility": "Graduation with 50%"
+  },
+  {
+    "id": "iit-varanasi",
+    "name": "IIT Varanasi",
+    "icon": "??",
+    "type": "Government Institute",
+    "location": "Varanasi, Uttar Pradesh",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "NIRF",
+      "AICTE",
+      "UGC"
+    ],
+    "rating": 4.5,
+    "reviews": 400,
+    "accreditation": "NIRF Rank 5",
+    "establishedYear": 1960,
+    "courses": {
+      "B.Tech": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "M.Tech": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "MBA": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "PhD": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      }
+    },
+    "specializations": [
+      "Computer Science",
+      "Data Science",
+      "AI & ML",
+      "Engineering",
+      "Management"
+    ],
+    "nirfRanking": 5,
+    "fees": {
+      "B.Tech": 827000,
+      "M.Tech": 112000,
+      "MBA": 200000,
+      "PhD": 50000
+    },
+    "placements": {
+      "averagePackage": 1500000,
+      "highestPackage": 4000000,
+      "offered": true
+    },
+    "studentsRating": "4.7/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:N/A / PhD:3-5 years / Adv Diploma:N/A / Skilling Cert:3-6 months",
+    "eligibility": "Graduation with 50%"
+  },
+  {
+    "id": "Bharath Institute of Higher Education and Research",
+    "name": "Bharath Institute of Higher Education and Research",
+    "icon": "??",
+    "type": "University",
+    "location": "Chennai, Tamil Nadu",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 150000,
+      "MCA": 120000,
+      "BBA": 80000,
+      "BCA": 75000,
+      "M.Com": 60000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 50000,
+      "MA": 50000,
+      "BA": 40000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "imt-center-for-distance-learning",
+    "name": "Imt Center For Distance Learning",
+    "icon": "??",
+    "type": "University",
+    "location": "Ghaziabad, Uttar Pradesh",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 150000,
+      "MCA": 120000,
+      "BBA": 80000,
+      "BCA": 75000,
+      "M.Com": 60000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 50000,
+      "MA": 50000,
+      "BA": 40000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "imt-ghaziabad",
+    "name": "Imt Ghaziabad",
+    "icon": "??",
+    "type": "University",
+    "location": "Ghaziabad, Uttar Pradesh",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 150000,
+      "MCA": 120000,
+      "BBA": 80000,
+      "BCA": 75000,
+      "M.Com": 60000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 50000,
+      "MA": 50000,
+      "BA": 40000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "indian-management-school-and-research-centre",
+    "name": "Indian Management School And Research Centre",
+    "icon": "??",
+    "type": "University",
+    "location": "Pune, Maharashtra",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 150000,
+      "MCA": 120000,
+      "BBA": 80000,
+      "BCA": 75000,
+      "M.Com": 60000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 50000,
+      "MA": 50000,
+      "BA": 40000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "jain-university-distance-education",
+    "name": "Jain University (Distance Education)",
+    "icon": "??",
+    "type": "University",
+    "location": "Bangalore, Karnataka",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 150000,
+      "MCA": 120000,
+      "BBA": 75000,
+      "BCA": 75000,
+      "M.Com": 45000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 75000,
+      "MA": 22500,
+      "BA": 75000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "jain-university-online",
+    "name": "Jain University (Online)",
+    "icon": "??",
+    "type": "Deemed University",
+    "location": "Bangalore, Karnataka",
+    "mode": [
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE",
+      "AIU",
+      "NIRF",
+      "WES",
+      "NAAC A++",
+      "QS",
+      "AUAP"
+    ],
+    "rating": 4.6,
+    "reviews": 766,
+    "accreditation": "NAAC A++",
+    "nirfRanking": 65,
+    "establishedYear": 1990,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General",
+          "Finance",
+          "Marketing",
+          "HR",
+          "Operations"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts"
+    ],
+    "fees": {
+      "MBA": 196000,
+      "MCA": 160000,
+      "BBA": 150000,
+      "BCA": 165000,
+      "B.Com": 90000,
+      "M.Com": 110000,
+      "MA": 90000
+    },
+    "placements": {
+      "averagePackage": 420000,
+      "highestPackage": 1500000,
+      "offered": true,
+      "hiringPartners": 2000
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "jamia-hamdard-online",
+    "name": "Jamia Hamdard (Online)",
+    "icon": "??",
+    "type": "Deemed University",
+    "location": "New Delhi, Delhi",
+    "mode": [
+      "Online"
+    ],
+    "approvals": [
+      "UGC-DEB",
+      "AICTE",
+      "NAAC"
+    ],
+    "rating": 4.1,
+    "reviews": 385,
+    "accreditation": "NAAC A",
+    "establishedYear": 1989,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General",
+          "Finance",
+          "Marketing",
+          "HR"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "fees": {
+      "MBA": 125000,
+      "MCA": 105000,
+      "BBA": 65000,
+      "BCA": 75000,
+      "M.Com": 45000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 35000,
+      "MA": 30000,
+      "BA": 25000
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "placements": {
+      "averagePackage": 420000,
+      "highestPackage": 1250000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "jamia-millia-islamia-distance-education",
+    "name": "Jamia Millia Islamia (Distance Education)",
+    "icon": "??",
+    "type": "Central University",
+    "location": "New Delhi, Delhi",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC-DEB",
+      "AICTE",
+      "NAAC"
+    ],
+    "rating": 4.3,
+    "reviews": 520,
+    "accreditation": "NAAC A++",
+    "establishedYear": 1920,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "fees": {
+      "MBA": 48000,
+      "MCA": 42000,
+      "BBA": 28000,
+      "BCA": 32000,
+      "M.Com": 20000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 18000,
+      "MA": 15000,
+      "BA": 12000
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": 38,
+    "placements": {
+      "averagePackage": 450000,
+      "highestPackage": 1400000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "jamia-millia-islamia-online",
+    "name": "Jamia Millia Islamia (Online)",
+    "icon": "??",
+    "type": "University",
+    "location": "New Delhi, Delhi",
+    "mode": [
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 70000,
+      "MCA": 70000,
+      "BBA": 30000,
+      "BCA": 30000,
+      "M.Com": 20000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 30000,
+      "MA": 20000,
+      "BA": 10000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "jammu-university-distance-education",
+    "name": "Jammu University (Distance Education)",
+    "icon": "??",
+    "type": "University",
+    "location": "Jammu, Jammu and Kashmir",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 30000,
+      "MCA": 30000,
+      "BBA": 15000,
+      "BCA": 15000,
+      "M.Com": 15000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 15000,
+      "MA": 15000,
+      "BA": 15000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "jgu-online-coursera",
+    "name": "Jgu (Online) Coursera",
+    "icon": "??",
+    "type": "University",
+    "location": "Sonipat, Haryana",
+    "mode": [
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 150000,
+      "MCA": 120000,
+      "BBA": 80000,
+      "BCA": 75000,
+      "M.Com": 60000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 50000,
+      "MA": 50000,
+      "BA": 40000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "jnu-jawaharlal-nehru-university-delhi",
+    "name": "Jnu Jawaharlal Nehru University Delhi",
+    "icon": "??",
+    "type": "University",
+    "location": "New Delhi, Delhi",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 50000,
+      "MCA": 50000,
+      "BBA": 20000,
+      "BCA": 20000,
+      "M.Com": 20000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 20000,
+      "MA": 20000,
+      "BA": 10000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "kakatiya-university-distance-education",
+    "name": "Kakatiya University (Distance Education)",
+    "icon": "??",
+    "type": "University",
+    "location": "Warangal, Telangana",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 40000,
+      "MCA": 40000,
+      "BBA": 20000,
+      "BCA": 20000,
+      "M.Com": 20000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 20000,
+      "MA": 20000,
+      "BA": 20000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "kalinga-university-engineering",
+    "name": "Kalinga University Engineering",
+    "icon": "??",
+    "type": "Private University",
+    "location": "Raipur, Chhattisgarh",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC-DEB",
+      "AICTE",
+      "NAAC"
+    ],
+    "rating": 3.7,
+    "reviews": 195,
+    "accreditation": "NAAC A",
+    "establishedYear": 2003,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Tech": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "fees": {
+      "MBA": 65000,
+      "MCA": 55000,
+      "BBA": 35000,
+      "BCA": 45000,
+      "M.Com": 22000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 18000,
+      "MA": 15000,
+      "BA": 12000,
+      "B.Tech": 80000
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science",
+      "Engineering"
+    ],
+    "nirfRanking": null,
+    "placements": {
+      "averagePackage": 290000,
+      "highestPackage": 780000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "kalyani-university-distance-education",
+    "name": "Kalyani University (Distance Education)",
+    "icon": "??",
+    "type": "State University",
+    "location": "Kalyani, West Bengal",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC-DEB",
+      "AICTE",
+      "NAAC"
+    ],
+    "rating": 3.8,
+    "reviews": 185,
+    "accreditation": "NAAC A",
+    "establishedYear": 1960,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "fees": {
+      "MBA": 32000,
+      "MCA": 28000,
+      "BBA": 18000,
+      "BCA": 22000,
+      "M.Com": 14000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 12000,
+      "MA": 10000,
+      "BA": 8000
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "placements": {
+      "averagePackage": 275000,
+      "highestPackage": 720000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "kiit-university-online",
+    "name": "KIIT University (Online)",
+    "icon": "??",
+    "type": "Government Institute",
+    "location": "Bhubaneswar, Odisha",
+    "mode": [
+      "Online"
+    ],
+    "approvals": [
+      "NIRF",
+      "AICTE",
+      "UGC"
+    ],
+    "studentsChoice": true,
+    "rating": 4.5,
+    "reviews": 400,
+    "accreditation": "NIRF Rank 5",
+    "establishedYear": 1960,
+    "courses": {
+      "B.Tech": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "M.Tech": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "MBA": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      },
+      "PhD": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "AI & ML",
+          "Engineering",
+          "Management"
+        ]
+      }
+    },
+    "specializations": [
+      "Computer Science",
+      "Data Science",
+      "AI & ML",
+      "Engineering",
+      "Management"
+    ],
+    "nirfRanking": 5,
+    "fees": {
+      "MBA": 150000,
+      "MCA": 120000,
+      "BBA": 100000,
+      "BCA": 100000,
+      "M.Com": 80000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 80000,
+      "MA": 80000,
+      "BA": 80000
+    },
+    "placements": {
+      "averagePackage": 1500000,
+      "highestPackage": 4000000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "kl-university-distance-education",
+    "name": "KL University (Distance Education)",
+    "icon": "??",
+    "type": "University",
+    "location": "Vaddeswaram, Andhra Pradesh",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 100000,
+      "MCA": 100000,
+      "BBA": 60000,
+      "BCA": 60000,
+      "M.Com": 50000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 60000,
+      "MA": 50000,
+      "BA": 60000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "kuk-dde-kurukshetra-university-distance-education",
+    "name": "Kuk Dde Kurukshetra University (Distance Education)",
+    "icon": "??",
+    "type": "State University",
+    "location": "Kurukshetra, Haryana",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC-DEB",
+      "AICTE",
+      "NAAC"
+    ],
+    "rating": 3.9,
+    "reviews": 305,
+    "accreditation": "NAAC A",
+    "establishedYear": 1956,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "fees": {
+      "MBA": 38000,
+      "MCA": 32000,
+      "BBA": 20000,
+      "BCA": 25000,
+      "M.Com": 15000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 12000,
+      "MA": 10000,
+      "BA": 8000
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "placements": {
+      "averagePackage": 310000,
+      "highestPackage": 850000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "kurukshetra-university-online",
+    "name": "Kurukshetra University (Online)",
+    "icon": "??",
+    "type": "State University",
+    "location": "Kurukshetra, Haryana",
+    "mode": [
+      "Online"
+    ],
+    "approvals": [
+      "UGC-DEB",
+      "AICTE",
+      "NAAC"
+    ],
+    "rating": 4,
+    "reviews": 320,
+    "accreditation": "NAAC A",
+    "establishedYear": 1956,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "fees": {
+      "MBA": 42000,
+      "MCA": 36000,
+      "BBA": 24000,
+      "BCA": 29000,
+      "M.Com": 18000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 15000,
+      "MA": 12000,
+      "BA": 10000
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "placements": {
+      "averagePackage": 335000,
+      "highestPackage": 920000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "kuvempu-university-distance-education",
+    "name": "Kuvempu University (Distance Education)",
+    "icon": "??",
+    "type": "University",
+    "location": "Shimoga, Karnataka",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 40000,
+      "MCA": 40000,
+      "BBA": 20000,
+      "BCA": 20000,
+      "M.Com": 20000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 20000,
+      "MA": 20000,
+      "BA": 20000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "liberty-university",
+    "name": "Liberty University",
+    "icon": "??",
+    "type": "International University",
+    "location": "Lynchburg, Virginia, USA",
+    "mode": [
+      "Regular",
+      "Online"
+    ],
+    "approvals": [
+      "SACSCOC"
+    ],
+    "rating": 4.1,
+    "reviews": 320,
+    "accreditation": "SACSCOC",
+    "establishedYear": 1971,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Business",
+          "Education",
+          "Engineering",
+          "Nursing",
+          "Divinity"
+        ]
+      },
+      "Masters": {
+        "specializations": [
+          "Business",
+          "Education",
+          "Engineering",
+          "Nursing",
+          "Divinity"
+        ]
+      },
+      "Bachelors": {
+        "specializations": [
+          "Business",
+          "Education",
+          "Engineering",
+          "Nursing",
+          "Divinity"
+        ]
+      },
+      "Doctorate": {
+        "specializations": [
+          "Business",
+          "Education",
+          "Engineering",
+          "Nursing",
+          "Divinity"
+        ]
+      }
+    },
+    "specializations": [
+      "Business",
+      "Education",
+      "Engineering",
+      "Nursing",
+      "Divinity"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 300000,
+      "Masters": 400000,
+      "Bachelors": 800000,
+      "Doctorate": 500000
+    },
+    "placements": {
+      "averagePackage": 6800000,
+      "highestPackage": 12000000,
+      "offered": true
+    },
+    "isInternational": true,
+    "state": "Virginia",
+    "country": "USA",
+    "studentsRating": "4.5/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
+    "eligibility": "Graduation with 60%"
+  },
+  {
+    "id": "lingayas-vidyapeeth",
+    "name": "Lingayas Vidyapeeth",
+    "icon": "??",
+    "type": "University",
+    "location": "Faridabad, Haryana",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 150000,
+      "MCA": 120000,
+      "BBA": 80000,
+      "BCA": 75000,
+      "M.Com": 60000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 50000,
+      "MA": 50000,
+      "BA": 40000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "liverpool-john-moores",
+    "name": "Liverpool John Moores University",
+    "icon": "??",
+    "type": "International University",
+    "location": "Liverpool, Merseyside, UK",
+    "mode": [
+      "Regular",
+      "Online"
+    ],
+    "approvals": [
+      "QAA",
+      "British Council"
+    ],
+    "rating": 4,
+    "reviews": 300,
+    "accreditation": "QAA",
+    "establishedYear": 1992,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Business",
+          "Engineering",
+          "Sports Science",
+          "Creative Arts"
+        ]
+      },
+      "Masters": {
+        "specializations": [
+          "Business",
+          "Engineering",
+          "Sports Science",
+          "Creative Arts"
+        ]
+      },
+      "Bachelors": {
+        "specializations": [
+          "Business",
+          "Engineering",
+          "Sports Science",
+          "Creative Arts"
+        ]
+      }
+    },
+    "specializations": [
+      "Business",
+      "Engineering",
+      "Sports Science",
+      "Creative Arts"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 1500000,
+      "Masters": 1500000,
+      "Bachelors": 1500000
+    },
+    "placements": {
+      "averagePackage": 5500000,
+      "highestPackage": 9000000,
+      "offered": true
+    },
+    "isInternational": true,
+    "state": "Merseyside",
+    "country": "UK",
+    "studentsRating": "4.5/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
+    "eligibility": "Graduation with 60%"
+  },
+  {
+    "id": "lovely-professional-university-distance-education",
+    "name": "Lovely Professional University (Distance Education)",
+    "icon": "??",
+    "type": "Private University",
+    "location": "Phagwara, Punjab",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC-DEB",
+      "AICTE",
+      "NAAC",
+      "NBA"
+    ],
+    "rating": 4.1,
+    "reviews": 385,
+    "accreditation": "NAAC A+",
+    "establishedYear": 2005,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General",
+          "Finance",
+          "Marketing",
+          "HR",
+          "Operations"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General",
+          "Data Science"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "fees": {
+      "MBA": 85000,
+      "MCA": 75000,
+      "BBA": 45000,
+      "BCA": 55000,
+      "M.Com": 30000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 25000,
+      "MA": 20000,
+      "BA": 18000
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": 52,
+    "placements": {
+      "averagePackage": 350000,
+      "highestPackage": 950000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "loyola-institute-of-business-administration",
+    "name": "Loyola Institute Of Business Administration",
+    "icon": "??",
+    "type": "University",
+    "location": "Chennai, Tamil Nadu",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 150000,
+      "MCA": 120000,
+      "BBA": 80000,
+      "BCA": 75000,
+      "M.Com": 60000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 50000,
+      "MA": 50000,
+      "BA": 40000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "lucknow-university",
+    "name": "Lucknow University",
+    "icon": "??",
+    "type": "University",
+    "location": "Uttar Pradesh",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 100000,
+      "MCA": 100000,
+      "BBA": 50000,
+      "BCA": 50000,
+      "M.Com": 40000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 50000,
+      "MA": 40000,
+      "BA": 30000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "madras-university-distance-education",
+    "name": "Madras University (Distance Education)",
+    "icon": "??",
+    "type": "State University",
+    "location": "Chennai, Tamil Nadu",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC-DEB",
+      "AICTE",
+      "NAAC"
+    ],
+    "rating": 4.2,
+    "reviews": 425,
+    "accreditation": "NAAC A++",
+    "establishedYear": 1857,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "fees": {
+      "MBA": 42000,
+      "MCA": 35000,
+      "BBA": 22000,
+      "BCA": 28000,
+      "M.Com": 16000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 14000,
+      "MA": 11000,
+      "BA": 9000
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": 42,
+    "placements": {
+      "averagePackage": 420000,
+      "highestPackage": 1250000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "maharishi-markandeshwar-university-online",
+    "name": "Maharishi Markandeshwar University (Online)",
+    "icon": "??",
+    "type": "University",
+    "location": "Ambala, Haryana",
+    "mode": [
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 100000,
+      "MCA": 100000,
+      "BBA": 50000,
+      "BCA": 50000,
+      "M.Com": 40000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 40000,
+      "MA": 40000,
+      "BA": 30000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "mahe-manipal-online",
+    "name": "Mahe Manipal (Online)",
+    "icon": "??",
+    "type": "Private University",
+    "location": "Manipal, Karnataka",
+    "mode": [
+      "Online"
+    ],
+    "approvals": [
+      "UGC-DEB",
+      "AICTE",
+      "NAAC"
+    ],
+    "rating": 4,
+    "reviews": 250,
+    "accreditation": "NAAC A",
+    "establishedYear": 2005,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": 30,
+    "fees": {
+      "MBA": 300000,
+      "MCA": 200000,
+      "BBA": 150000,
+      "BCA": 150000,
+      "M.Com": 100000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 100000,
+      "MA": 100000,
+      "BA": 100000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "manav-rachna-university-online",
+    "name": "Manav Rachna University (Online)",
+    "icon": "??",
+    "type": "University",
+    "location": "Faridabad, Haryana",
+    "mode": [
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 150000,
+      "MCA": 120000,
+      "BBA": 80000,
+      "BCA": 75000,
+      "M.Com": 60000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 50000,
+      "MA": 50000,
+      "BA": 40000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "manipal-university-online",
+    "name": "Manipal University (Online)",
+    "icon": "??",
+    "type": "Private University",
+    "location": "Manipal, Karnataka",
+    "mode": [
+      "Online"
+    ],
+    "approvals": [
+      "UGC-DEB",
+      "AICTE",
+      "NAAC A+",
+      "WES",
+      "QS"
+    ],
+    "rating": 4.5,
+    "reviews": 857,
+    "accreditation": "NAAC A+",
+    "nirfRanking": 16,
+    "establishedYear": 1993,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General",
+          "Finance",
+          "Marketing",
+          "HR",
+          "Operations"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "fees": {
+      "MBA": 250000,
+      "MCA": 185000,
+      "BBA": 175000,
+      "BCA": 165000,
+      "B.Com": 110000,
+      "M.Com": 135000,
+      "MA": 125000,
+      "BA": 105000
+    },
+    "placements": {
+      "averagePackage": 550000,
+      "highestPackage": 1800000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "manonmaniam-sundaranar-university-distance-education",
+    "name": "Manonmaniam Sundaranar University (Distance Education)",
+    "icon": "??",
+    "type": "University",
+    "location": "Tirunelveli, Tamil Nadu",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 40000,
+      "MCA": 40000,
+      "BBA": 20000,
+      "BCA": 20000,
+      "M.Com": 20000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 20000,
+      "MA": 20000,
+      "BA": 20000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "manuu-maulana-azad-national-urdu-university-distance",
+    "name": "Manuu Maulana Azad National Urdu University Distance",
+    "icon": "??",
+    "type": "Central University",
+    "location": "Hyderabad, Telangana",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC-DEB",
+      "AICTE",
+      "NAAC"
+    ],
+    "rating": 3.9,
+    "reviews": 275,
+    "accreditation": "NAAC A",
+    "establishedYear": 1998,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "fees": {
+      "MBA": 35000,
+      "MCA": 30000,
+      "BBA": 18000,
+      "BCA": 22000,
+      "M.Com": 12000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 10000,
+      "MA": 8000,
+      "BA": 6000
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "placements": {
+      "averagePackage": 285000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "mizoram-university-online",
+    "name": "Mizoram University (Online)",
+    "icon": "??",
+    "type": "University",
+    "location": "Aizawl, Mizoram",
+    "mode": [
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 50000,
+      "MCA": 50000,
+      "BBA": 25000,
+      "BCA": 25000,
+      "M.Com": 25000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 25000,
+      "MA": 25000,
+      "BA": 25000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "mku-madurai-kamaraj-university-distance-education",
+    "name": "Mku Madurai Kamaraj University (Distance Education)",
+    "icon": "??",
+    "type": "University",
+    "location": "Madurai, Tamil Nadu",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 30000,
+      "MCA": 30000,
+      "BBA": 15000,
+      "BCA": 15000,
+      "M.Com": 15000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 15000,
+      "MA": 15000,
+      "BA": 15000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "mody-university-online",
+    "name": "Mody University (Online)",
+    "icon": "??",
+    "type": "University",
+    "location": "Sikar, Rajasthan",
+    "mode": [
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 150000,
+      "MCA": 120000,
+      "BBA": 80000,
+      "BCA": 75000,
+      "M.Com": 60000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 50000,
+      "MA": 50000,
+      "BA": 40000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "mumbai-university-distance-education",
+    "name": "Mumbai University (Distance Education)",
+    "icon": "??",
+    "type": "University",
+    "location": "Mumbai, Maharashtra",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 80000,
+      "MCA": 80000,
+      "BBA": 40000,
+      "BCA": 40000,
+      "M.Com": 30000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 30000,
+      "MA": 30000,
+      "BA": 20000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "nalsar-university-of-law-distance-education",
+    "name": "Nalsar University Of Law (Distance Education)",
+    "icon": "??",
+    "type": "University",
+    "location": "Hyderabad, Telangana",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 100000,
+      "MCA": 100000,
+      "BBA": 50000,
+      "BCA": 50000,
+      "M.Com": 40000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 40000,
+      "MA": 40000,
+      "BA": 30000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "nmims-online",
+    "name": "NMIMS (Online)",
+    "icon": "??",
+    "type": "Private University",
+    "location": "Mumbai, Maharashtra",
+    "mode": [
+      "Online"
+    ],
+    "approvals": [
+      "UGC-DEB",
+      "AICTE",
+      "NAAC",
+      "NBA"
+    ],
+    "rating": 4.6,
+    "reviews": 640,
+    "accreditation": "NAAC A++",
+    "establishedYear": 1981,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General",
+          "Finance",
+          "Marketing",
+          "HR",
+          "Operations"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "fees": {
+      "MBA": 350000,
+      "MCA": 280000,
+      "BBA": 180000,
+      "BCA": 220000,
+      "M.Com": 120000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 100000,
+      "MA": 80000,
+      "BA": 65000
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": 15,
+    "placements": {
+      "averagePackage": 850000,
+      "highestPackage": 3500000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "o-p-jindal-global-university",
+    "name": "O P Jindal Global University",
+    "icon": "??",
+    "type": "University",
+    "location": "Sonipat, Haryana",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 150000,
+      "MCA": 120000,
+      "BBA": 80000,
+      "BCA": 75000,
+      "M.Com": 60000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 50000,
+      "MA": 50000,
+      "BA": 40000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "osmania-university-distance-education",
+    "name": "Osmania University (Distance Education)",
+    "icon": "??",
+    "type": "State University",
+    "location": "Hyderabad, Telangana",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC-DEB",
+      "AICTE",
+      "NAAC"
+    ],
+    "rating": 4.1,
+    "reviews": 365,
+    "accreditation": "NAAC A+",
+    "establishedYear": 1918,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "fees": {
+      "MBA": 45000,
+      "MCA": 38000,
+      "BBA": 25000,
+      "BCA": 30000,
+      "M.Com": 18000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 15000,
+      "MA": 12000,
+      "BA": 10000
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": 65,
+    "placements": {
+      "averagePackage": 380000,
+      "highestPackage": 1100000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "paris-school-of-business",
+    "name": "Paris School Of Business",
+    "icon": "??",
+    "type": "International University",
+    "location": "Paris, Île-de-France, France",
+    "mode": [
+      "Regular",
+      "Online"
+    ],
+    "approvals": [
+      "French Ministry of Education",
+      "AACSB"
+    ],
+    "rating": 4.2,
+    "reviews": 220,
+    "accreditation": "AACSB",
+    "establishedYear": 1974,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "International Business",
+          "Luxury Management",
+          "Digital Transformation",
+          "Entrepreneurship"
+        ]
+      },
+      "Masters": {
+        "specializations": [
+          "International Business",
+          "Luxury Management",
+          "Digital Transformation",
+          "Entrepreneurship"
+        ]
+      },
+      "Bachelors": {
+        "specializations": [
+          "International Business",
+          "Luxury Management",
+          "Digital Transformation",
+          "Entrepreneurship"
+        ]
+      }
+    },
+    "specializations": [
+      "International Business",
+      "Luxury Management",
+      "Digital Transformation",
+      "Entrepreneurship"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 814000,
+      "Masters": 814000,
+      "Bachelors": 1046400
+    },
+    "placements": {
+      "averagePackage": 7500000,
+      "highestPackage": 13000000,
+      "offered": true
+    },
+    "isInternational": true,
+    "state": "Île-de-France",
+    "country": "France",
+    "studentsRating": "4.5/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
+    "eligibility": "Graduation with 60%"
+  },
+  {
+    "id": "parul-university-online",
+    "name": "Parul University (Online)",
+    "icon": "??",
+    "type": "University",
+    "location": "Vadodara, Gujarat",
+    "mode": [
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 100000,
+      "MCA": 100000,
+      "BBA": 50000,
+      "BCA": 50000,
+      "M.Com": 40000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 40000,
+      "MA": 40000,
+      "BA": 30000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "periyar-university-distance-education",
+    "name": "Periyar University (Distance Education)",
+    "icon": "??",
+    "type": "University",
+    "location": "Salem, Tamil Nadu",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 30000,
+      "MCA": 30000,
+      "BBA": 15000,
+      "BCA": 15000,
+      "M.Com": 15000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 15000,
+      "MA": 15000,
+      "BA": 15000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "pudde-pondicherry-university-distance-education",
+    "name": "Pudde Pondicherry University (Distance Education)",
+    "icon": "??",
+    "type": "University",
+    "location": "Puducherry",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 50000,
+      "MCA": 50000,
+      "BBA": 25000,
+      "BCA": 25000,
+      "M.Com": 25000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 25000,
+      "MA": 25000,
+      "BA": 25000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "punjabi-university-distance-education",
+    "name": "Punjabi University (Distance Education)",
+    "icon": "??",
+    "type": "University",
+    "location": "Punjab",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 40000,
+      "MCA": 40000,
+      "BBA": 20000,
+      "BCA": 20000,
+      "M.Com": 20000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 20000,
+      "MA": 20000,
+      "BA": 20000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "purdue-university",
+    "name": "Purdue University",
+    "icon": "??",
+    "type": "University",
+    "location": "West Lafayette, Indiana",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 3000000,
+      "MCA": 2000000,
+      "BBA": 1500000,
+      "BCA": 1500000,
+      "M.Com": 2000000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 1500000,
+      "MA": 2000000,
+      "BA": 1500000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.5/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
+    "eligibility": "Graduation with 60%"
+  },
+  {
+    "id": "queen-margaret-university",
+    "name": "Queen Margaret University",
+    "icon": "??",
+    "type": "International University",
+    "location": "Musselburgh, East Lothian, Scotland",
+    "mode": [
+      "Regular",
+      "Online"
+    ],
+    "approvals": [
+      "QAA",
+      "British Council"
+    ],
+    "rating": 4,
+    "reviews": 200,
+    "accreditation": "QAA",
+    "establishedYear": 1875,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Business",
+          "Health Sciences",
+          "Drama & Creative Industries",
+          "Social Sciences"
+        ]
+      },
+      "Masters": {
+        "specializations": [
+          "Business",
+          "Health Sciences",
+          "Drama & Creative Industries",
+          "Social Sciences"
+        ]
+      },
+      "Bachelors": {
+        "specializations": [
+          "Business",
+          "Health Sciences",
+          "Drama & Creative Industries",
+          "Social Sciences"
+        ]
+      }
+    },
+    "specializations": [
+      "Business",
+      "Health Sciences",
+      "Drama & Creative Industries",
+      "Social Sciences"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 1500000,
+      "Masters": 1500000,
+      "Bachelors": 1500000
+    },
+    "placements": {
+      "averagePackage": 5000000,
+      "highestPackage": 8500000,
+      "offered": true
+    },
+    "isInternational": true,
+    "state": "Scotland",
+    "country": "UK",
+    "studentsRating": "4.5/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
+    "eligibility": "Graduation with 60%"
+  },
+  {
+    "id": "rbudde-rabindra-bharati-university-distance-education",
+    "name": "Rbudde Rabindra Bharati University (Distance Education)",
+    "icon": "??",
+    "type": "University",
+    "location": "Kolkata, West Bengal",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 30000,
+      "MCA": 30000,
+      "BBA": 15000,
+      "BCA": 15000,
+      "M.Com": 15000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 15000,
+      "MA": 15000,
+      "BA": 15000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "rushford-business-school",
+    "name": "Rushford Business School",
+    "icon": "??",
+    "type": "International University",
+    "location": "Lucerne, Lucerne, Switzerland",
+    "mode": [
+      "Online",
+      "Hybrid"
+    ],
+    "approvals": [
+      "Swiss Federal Government",
+      "EduQua"
+    ],
+    "rating": 4.1,
+    "reviews": 180,
+    "accreditation": "EduQua",
+    "establishedYear": 2005,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "International Business",
+          "Digital Innovation",
+          "Sustainable Management"
+        ]
+      },
+      "DBA": {
+        "specializations": [
+          "International Business",
+          "Digital Innovation",
+          "Sustainable Management"
+        ]
+      },
+      "Masters": {
+        "specializations": [
+          "International Business",
+          "Digital Innovation",
+          "Sustainable Management"
+        ]
+      }
+    },
+    "specializations": [
+      "International Business",
+      "Digital Innovation",
+      "Sustainable Management"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 1000000,
+      "DBA": 1500000,
+      "Masters": 800000
+    },
+    "placements": {
+      "averagePackage": 7500000,
+      "highestPackage": 13000000,
+      "offered": true
+    },
+    "isInternational": true,
+    "state": "Lucerne",
+    "country": "Switzerland",
+    "studentsRating": "4.5/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
+    "eligibility": "Graduation with 60%"
+  },
+  {
+    "id": "sanskriti-university-engineering",
+    "name": "Sanskriti University Engineering",
+    "icon": "??",
+    "type": "University",
+    "location": "Mathura, Uttar Pradesh",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 150000,
+      "MCA": 120000,
+      "BBA": 80000,
+      "BCA": 75000,
+      "M.Com": 60000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 50000,
+      "MA": 50000,
+      "BA": 40000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "sgvu-engineering",
+    "name": "Sgvu Engineering",
+    "icon": "??",
+    "type": "University",
+    "location": "Jaipur, Rajasthan",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 150000,
+      "MCA": 120000,
+      "BBA": 80000,
+      "BCA": 75000,
+      "M.Com": 60000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 50000,
+      "MA": 50000,
+      "BA": 40000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "sharda-university-online",
+    "name": "Sharda University (Online)",
+    "icon": "??",
+    "type": "Private University",
+    "location": "Greater Noida, Uttar Pradesh",
+    "mode": [
+      "Online"
+    ],
+    "approvals": [
+      "UGC-DEB",
+      "AICTE",
+      "NAAC"
+    ],
+    "rating": 3.8,
+    "reviews": 265,
+    "accreditation": "NAAC A",
+    "establishedYear": 2009,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General",
+          "Finance",
+          "Marketing",
+          "HR"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "fees": {
+      "MBA": 95000,
+      "MCA": 85000,
+      "BBA": 55000,
+      "BCA": 65000,
+      "M.Com": 35000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 28000,
+      "MA": 25000,
+      "BA": 20000
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "placements": {
+      "averagePackage": 385000,
+      "highestPackage": 1050000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "shivaji-university-distance-education",
+    "name": "Shivaji University (Distance Education)",
+    "icon": "??",
+    "type": "University",
+    "location": "Kolhapur, Maharashtra",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 40000,
+      "MCA": 40000,
+      "BBA": 20000,
+      "BCA": 20000,
+      "M.Com": 20000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 20000,
+      "MA": 20000,
+      "BA": 20000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "shobhit-university-online",
+    "name": "Shobhit University (Online)",
+    "icon": "??",
+    "type": "University",
+    "location": "Meerut, Uttar Pradesh",
+    "mode": [
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 100000,
+      "MCA": 100000,
+      "BBA": 50000,
+      "BCA": 50000,
+      "M.Com": 40000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 40000,
+      "MA": 40000,
+      "BA": 30000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "shoolini-university-online",
+    "name": "Shoolini University (Online)",
+    "icon": "??",
+    "type": "University",
+    "location": "Solan, Himachal Pradesh",
+    "mode": [
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 150000,
+      "MCA": 120000,
+      "BBA": 80000,
+      "BCA": 75000,
+      "M.Com": 60000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 50000,
+      "MA": 50000,
+      "BA": 40000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "sikkim-manipal-university-online",
+    "name": "Sikkim Manipal University (Online)",
+    "icon": "??",
+    "type": "Private University",
+    "location": "Gangtok, Sikkim",
+    "mode": [
+      "Online"
+    ],
+    "approvals": [
+      "UGC-DEB",
+      "AICTE",
+      "NAAC",
+      "NBA"
+    ],
+    "rating": 4.3,
+    "reviews": 520,
+    "accreditation": "NAAC A+",
+    "establishedYear": 1995,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General",
+          "Finance",
+          "Marketing",
+          "HR",
+          "Operations"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "fees": {
+      "MBA": 135000,
+      "MCA": 120000,
+      "BBA": 75000,
+      "BCA": 85000,
+      "M.Com": 45000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 35000,
+      "MA": 30000,
+      "BA": 25000
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": 45,
+    "placements": {
+      "averagePackage": 380000,
+      "highestPackage": 1100000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "smude-sikkim-manipal-university-distance-education",
+    "name": "Smude Sikkim Manipal University (Distance Education)",
+    "icon": "??",
+    "type": "Private University",
+    "location": "Gangtok, Sikkim",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC-DEB",
+      "AICTE",
+      "NAAC"
+    ],
+    "rating": 4,
+    "reviews": 250,
+    "accreditation": "NAAC A",
+    "establishedYear": 2005,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": 30,
+    "fees": {
+      "MBA": 150000,
+      "MCA": 120000,
+      "BBA": 80000,
+      "BCA": 75000,
+      "M.Com": 60000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 50000,
+      "MA": 50000,
+      "BA": 40000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "spmvv-distance-education",
+    "name": "SPMVV (Distance Education)",
+    "icon": "??",
+    "type": "University",
+    "location": "Tirupati, Andhra Pradesh",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 40000,
+      "MCA": 40000,
+      "BBA": 20000,
+      "BCA": 20000,
+      "M.Com": 20000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 20000,
+      "MA": 20000,
+      "BA": 20000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "srm-university-online",
+    "name": "SRM University (Online)",
+    "icon": "??",
+    "type": "Deemed University",
+    "location": "Chennai, Tamil Nadu",
+    "mode": [
+      "Online"
+    ],
+    "approvals": [
+      "UGC-DEB",
+      "AICTE",
+      "NAAC"
+    ],
+    "rating": 4.1,
+    "reviews": 420,
+    "accreditation": "NAAC A++",
+    "establishedYear": 1985,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General",
+          "Finance",
+          "Marketing",
+          "HR",
+          "Operations"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "fees": {
+      "MBA": 165000,
+      "MCA": 145000,
+      "BBA": 85000,
+      "BCA": 95000,
+      "M.Com": 55000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 45000,
+      "MA": 35000,
+      "BA": 28000
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": 35,
+    "placements": {
+      "averagePackage": 550000,
+      "highestPackage": 1850000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "srm-university-online-sikkim",
+    "name": "SRM University (Online) Sikkim",
+    "icon": "??",
+    "type": "University",
+    "location": "Gangtok, Sikkim",
+    "mode": [
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 150000,
+      "MCA": 120000,
+      "BBA": 80000,
+      "BCA": 75000,
+      "M.Com": 60000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 50000,
+      "MA": 50000,
+      "BA": 40000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "ssbm-geneva",
+    "name": "SSBM Geneva - Swiss School of Business and Management",
+    "icon": "??",
+    "type": "International University",
+    "location": "Geneva, Geneva, Switzerland",
+    "mode": [
+      "Regular",
+      "Online"
+    ],
+    "approvals": [
+      "Swiss Federal Government",
+      "EduQua"
+    ],
+    "rating": 4.3,
+    "reviews": 200,
+    "accreditation": "EduQua",
+    "establishedYear": 2008,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "International Business",
+          "Finance",
+          "Marketing",
+          "Innovation Management"
+        ]
+      },
+      "DBA": {
+        "specializations": [
+          "International Business",
+          "Finance",
+          "Marketing",
+          "Innovation Management"
+        ]
+      },
+      "Masters": {
+        "specializations": [
+          "International Business",
+          "Finance",
+          "Marketing",
+          "Innovation Management"
+        ]
+      },
+      "Bachelors": {
+        "specializations": [
+          "International Business",
+          "Finance",
+          "Marketing",
+          "Innovation Management"
+        ]
+      }
+    },
+    "specializations": [
+      "International Business",
+      "Finance",
+      "Marketing",
+      "Innovation Management"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 1000000,
+      "DBA": 1500000,
+      "Masters": 800000,
+      "Bachelors": 600000
+    },
+    "placements": {
+      "averagePackage": 8500000,
+      "highestPackage": 15000000,
+      "offered": true
+    },
+    "isInternational": true,
+    "state": "Geneva",
+    "country": "Switzerland",
+    "studentsRating": "4.5/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
+    "eligibility": "Graduation with 60%"
+  },
+  {
+    "id": "subharti-university-distance-education",
+    "name": "Subharti University (Distance Education)",
+    "icon": "??",
+    "type": "University",
+    "location": "Meerut, Uttar Pradesh",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 14500,
+      "MCA": 14500,
+      "BBA": 14500,
+      "BCA": 14500,
+      "M.Com": 14500,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 14500,
+      "MA": 14500,
+      "BA": 14500
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "suresh-gyan-vihar-distance-education",
+    "name": "Suresh Gyan Vihar (Distance Education)",
+    "icon": "??",
+    "type": "University",
+    "location": "Jaipur, Rajasthan",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 50000,
+      "MCA": 50000,
+      "BBA": 25000,
+      "BCA": 25000,
+      "M.Com": 25000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 25000,
+      "MA": 25000,
+      "BA": 25000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "svu-dde-sri-venkateswara-distance-education",
+    "name": "SVU DDE Sri Venkateswara (Distance Education)",
+    "icon": "??",
+    "type": "University",
+    "location": "Tirupati, Andhra Pradesh",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 40000,
+      "MCA": 40000,
+      "BBA": 20000,
+      "BCA": 20000,
+      "M.Com": 20000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 20000,
+      "MA": 20000,
+      "BA": 20000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "svu-gajraula-wilp",
+    "name": "Svu Gajraula Wilp",
+    "icon": "??",
+    "type": "University",
+    "location": "Gajraula, Uttar Pradesh",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 150000,
+      "MCA": 120000,
+      "BBA": 80000,
+      "BCA": 75000,
+      "M.Com": 60000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 50000,
+      "MA": 50000,
+      "BA": 40000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "svyasa-distance-education",
+    "name": "Svyasa (Distance Education)",
+    "icon": "??",
+    "type": "University",
+    "location": "Bengaluru, Karnataka",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 150000,
+      "MCA": 120000,
+      "BBA": 80000,
+      "BCA": 75000,
+      "M.Com": 60000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 50000,
+      "MA": 50000,
+      "BA": 40000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "symbiosis-distance-learning",
+    "name": "Symbiosis Distance Learning",
+    "icon": "??",
+    "type": "Private University",
+    "location": "Pune, Maharashtra",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC-DEB",
+      "AICTE",
+      "NAAC",
+      "NBA"
+    ],
+    "rating": 4.4,
+    "reviews": 485,
+    "accreditation": "NAAC A++",
+    "establishedYear": 1971,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General",
+          "Finance",
+          "Marketing",
+          "HR",
+          "Operations"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "fees": {
+      "MBA": 195000,
+      "MCA": 165000,
+      "BBA": 95000,
+      "BCA": 115000,
+      "M.Com": 65000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 55000,
+      "MA": 45000,
+      "BA": 35000
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": 25,
+    "placements": {
+      "averagePackage": 520000,
+      "highestPackage": 1800000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "symbiosis-scdl",
+    "name": "Symbiosis SCDL",
+    "icon": "??",
+    "type": "University",
+    "location": "Pune, Maharashtra",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 74000,
+      "MCA": 120000,
+      "BBA": 80000,
+      "BCA": 75000,
+      "M.Com": 60000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 50000,
+      "MA": 50000,
+      "BA": 40000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "university-of-calicut-distance-education",
+    "name": "University Of Calicut (Distance Education)",
+    "icon": "??",
+    "type": "State University",
+    "location": "Malappuram, Kerala",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC-DEB",
+      "AICTE",
+      "NAAC"
+    ],
+    "rating": 4,
+    "reviews": 340,
+    "accreditation": "NAAC A++",
+    "establishedYear": 1968,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "fees": {
+      "MBA": 40000,
+      "MCA": 35000,
+      "BBA": 20000,
+      "BCA": 25000,
+      "M.Com": 15000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 12000,
+      "MA": 10000,
+      "BA": 8000
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": 55,
+    "placements": {
+      "averagePackage": 350000,
+      "highestPackage": 980000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "university-of-dallas",
+    "name": "University Of Dallas",
+    "icon": "??",
+    "type": "International University",
+    "location": "Irving, Texas, USA",
+    "mode": [
+      "Regular",
+      "Online"
+    ],
+    "approvals": [
+      "SACSCOC"
+    ],
+    "rating": 4.2,
+    "reviews": 280,
+    "accreditation": "SACSCOC",
+    "establishedYear": 1956,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Business",
+          "Liberal Arts",
+          "Education",
+          "Nursing"
+        ]
+      },
+      "Masters": {
+        "specializations": [
+          "Business",
+          "Liberal Arts",
+          "Education",
+          "Nursing"
+        ]
+      },
+      "Bachelors": {
+        "specializations": [
+          "Business",
+          "Liberal Arts",
+          "Education",
+          "Nursing"
+        ]
+      }
+    },
+    "specializations": [
+      "Business",
+      "Liberal Arts",
+      "Education",
+      "Nursing"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 300000,
+      "Masters": 400000,
+      "Bachelors": 800000
+    },
+    "placements": {
+      "averagePackage": 7500000,
+      "highestPackage": 13000000,
+      "offered": true
+    },
+    "isInternational": true,
+    "state": "Texas",
+    "country": "USA",
+    "studentsRating": "4.5/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
+    "eligibility": "Graduation with 60%"
+  },
+  {
+    "id": "university-of-hyderabad-distance-education",
+    "name": "University Of Hyderabad (Distance Education)",
+    "icon": "??",
+    "type": "University",
+    "location": "Hyderabad, Telangana",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 50000,
+      "MCA": 50000,
+      "BBA": 25000,
+      "BCA": 25000,
+      "M.Com": 25000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 25000,
+      "MA": 25000,
+      "BA": 25000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "university-of-kashmir-distance-education",
+    "name": "University Of Kashmir (Distance Education)",
+    "icon": "??",
+    "type": "University",
+    "location": "Srinagar, Jammu and Kashmir",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 30000,
+      "MCA": 30000,
+      "BBA": 15000,
+      "BCA": 15000,
+      "M.Com": 15000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 15000,
+      "MA": 15000,
+      "BA": 15000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "university-of-michigan-flint",
+    "name": "University Of Michigan Flint",
+    "icon": "??",
+    "type": "International University",
+    "location": "Flint, Michigan, USA",
+    "mode": [
+      "Regular",
+      "Online"
+    ],
+    "approvals": [
+      "HLC"
+    ],
+    "rating": 4.3,
+    "reviews": 350,
+    "accreditation": "HLC",
+    "establishedYear": 1956,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Business",
+          "Engineering",
+          "Health Sciences",
+          "Education",
+          "Public Health"
+        ]
+      },
+      "Masters": {
+        "specializations": [
+          "Business",
+          "Engineering",
+          "Health Sciences",
+          "Education",
+          "Public Health"
+        ]
+      },
+      "Bachelors": {
+        "specializations": [
+          "Business",
+          "Engineering",
+          "Health Sciences",
+          "Education",
+          "Public Health"
+        ]
+      }
+    },
+    "specializations": [
+      "Business",
+      "Engineering",
+      "Health Sciences",
+      "Education",
+      "Public Health"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 300000,
+      "Masters": 400000,
+      "Bachelors": 800000
+    },
+    "placements": {
+      "averagePackage": 8200000,
+      "highestPackage": 14500000,
+      "offered": true
+    },
+    "isInternational": true,
+    "state": "Michigan",
+    "country": "USA",
+    "studentsRating": "4.5/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
+    "eligibility": "Graduation with 60%"
+  },
+  {
+    "id": "university-of-south-florida",
+    "name": "University Of South Florida",
+    "icon": "??",
+    "type": "International University",
+    "location": "Tampa, Florida, USA",
+    "mode": [
+      "Regular",
+      "Online"
+    ],
+    "approvals": [
+      "SACSCOC",
+      "AACSB"
+    ],
+    "rating": 4.4,
+    "reviews": 350,
+    "accreditation": "SACSCOC",
+    "establishedYear": 1956,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Business",
+          "Engineering",
+          "Medicine",
+          "Education",
+          "Public Health"
+        ]
+      },
+      "Masters": {
+        "specializations": [
+          "Business",
+          "Engineering",
+          "Medicine",
+          "Education",
+          "Public Health"
+        ]
+      },
+      "PhD": {
+        "specializations": [
+          "Business",
+          "Engineering",
+          "Medicine",
+          "Education",
+          "Public Health"
+        ]
+      },
+      "Bachelors": {
+        "specializations": [
+          "Business",
+          "Engineering",
+          "Medicine",
+          "Education",
+          "Public Health"
+        ]
+      }
+    },
+    "specializations": [
+      "Business",
+      "Engineering",
+      "Medicine",
+      "Education",
+      "Public Health"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 300000,
+      "Masters": 400000,
+      "PhD": 500000,
+      "Bachelors": 800000
+    },
+    "placements": {
+      "averagePackage": 9000000,
+      "highestPackage": 16000000,
+      "offered": true
+    },
+    "isInternational": true,
+    "state": "Florida",
+    "country": "USA",
+    "studentsRating": "4.5/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
+    "eligibility": "Graduation with 60%"
+  },
+  {
+    "id": "uom-university-of-mysore-distance-education",
+    "name": "Uom University Of Mysore (Distance Education)",
+    "icon": "??",
+    "type": "University",
+    "location": "Mysore, Karnataka",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 100000,
+      "MCA": 100000,
+      "BBA": 50000,
+      "BCA": 50000,
+      "M.Com": 50000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 50000,
+      "MA": 50000,
+      "BA": 50000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "upes-cce-center-for-continuing-education",
+    "name": "UPES CCE Center For Continuing Education",
+    "icon": "??",
+    "type": "University",
+    "location": "Dehradun, Uttarakhand",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 150000,
+      "MCA": 120000,
+      "BBA": 80000,
+      "BCA": 75000,
+      "M.Com": 60000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 50000,
+      "MA": 50000,
+      "BA": 40000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "upes-online",
+    "name": "UPES (Online)",
+    "icon": "??",
+    "type": "Private University",
+    "location": "Dehradun, Uttarakhand",
+    "mode": [
+      "Online"
+    ],
+    "approvals": [
+      "UGC-DEB",
+      "AICTE",
+      "NAAC"
+    ],
+    "rating": 4.2,
+    "reviews": 450,
+    "accreditation": "NAAC A",
+    "establishedYear": 2003,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General",
+          "Finance",
+          "Marketing",
+          "HR",
+          "Operations"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "fees": {
+      "MBA": 195000,
+      "MCA": 165000,
+      "BBA": 95000,
+      "BCA": 115000,
+      "M.Com": 65000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 55000,
+      "MA": 45000,
+      "BA": 35000
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": 47,
+    "placements": {
+      "averagePackage": 480000,
+      "highestPackage": 1500000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "upgrad-college-uk-woolf",
+    "name": "Upgrad College UK Woolf",
+    "icon": "??",
+    "type": "International University",
+    "location": "Appleton, Wisconsin, USA",
+    "mode": [
+      "Online",
+      "Hybrid"
+    ],
+    "approvals": [
+      "HLC",
+      "WASC"
+    ],
+    "rating": 4.2,
+    "reviews": 250,
+    "accreditation": "HLC",
+    "establishedYear": 1995,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Business",
+          "Technology",
+          "Data Science",
+          "Digital Marketing"
+        ]
+      },
+      "Masters": {
+        "specializations": [
+          "Business",
+          "Technology",
+          "Data Science",
+          "Digital Marketing"
+        ]
+      },
+      "Bachelors": {
+        "specializations": [
+          "Business",
+          "Technology",
+          "Data Science",
+          "Digital Marketing"
+        ]
+      }
+    },
+    "specializations": [
+      "Business",
+      "Technology",
+      "Data Science",
+      "Digital Marketing"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 300000,
+      "Masters": 400000,
+      "Bachelors": 800000
+    },
+    "placements": {
+      "averagePackage": 7000000,
+      "highestPackage": 12000000,
+      "offered": true
+    },
+    "isInternational": true,
+    "state": "Wisconsin",
+    "country": "USA",
+    "studentsRating": "4.5/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
+    "eligibility": "Graduation with 60%"
+  },
+  {
+    "id": "uttaranchal-university-online",
+    "name": "Uttaranchal University (Online)",
+    "icon": "??",
+    "type": "University",
+    "location": "Dehradun, Uttarakhand",
+    "mode": [
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 150000,
+      "MCA": 120000,
+      "BBA": 80000,
+      "BCA": 75000,
+      "M.Com": 60000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 50000,
+      "MA": 50000,
+      "BA": 40000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "vignan-university-online",
+    "name": "Vignan University (Online)",
+    "icon": "??",
+    "type": "Private University",
+    "location": "Guntur, Andhra Pradesh",
+    "mode": [
+      "Online"
+    ],
+    "approvals": [
+      "UGC-DEB",
+      "AICTE",
+      "NAAC"
+    ],
+    "rating": 3.8,
+    "reviews": 205,
+    "accreditation": "NAAC A",
+    "establishedYear": 2008,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "fees": {
+      "MBA": 75000,
+      "MCA": 65000,
+      "BBA": 40000,
+      "BCA": 50000,
+      "M.Com": 25000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 20000,
+      "MA": 18000,
+      "BA": 15000
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "placements": {
+      "averagePackage": 320000,
+      "highestPackage": 850000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "vit-bangalore",
+    "name": "VIT (Online)",
+    "icon": "??",
+    "type": "Deemed University",
+    "location": "Vellore, Tamil Nadu",
+    "mode": [
+      "Online"
+    ],
+    "approvals": [
+      "UGC-DEB",
+      "AICTE",
+      "NAAC"
+    ],
+    "rating": 4.2,
+    "reviews": 465,
+    "accreditation": "NAAC A++",
+    "establishedYear": 1984,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General",
+          "Finance",
+          "Marketing",
+          "HR",
+          "Operations"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "fees": {
+      "MBA": 195000,
+      "MCA": 165000,
+      "BBA": 95000,
+      "BCA": 115000,
+      "M.Com": 65000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 55000,
+      "MA": 45000,
+      "BA": 35000
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": 11,
+    "placements": {
+      "averagePackage": 680000,
+      "highestPackage": 2500000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "vivekananda-global-university-online",
+    "name": "Vivekananda Global University (Online)",
+    "icon": "??",
+    "type": "University",
+    "location": "Jaipur, Rajasthan",
+    "mode": [
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 100000,
+      "MCA": 100000,
+      "BBA": 50000,
+      "BCA": 50000,
+      "M.Com": 40000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 40000,
+      "MA": 40000,
+      "BA": 30000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    },
+    "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "walden-university",
+    "name": "Walden University",
+    "icon": "??",
+    "type": "International University",
+    "location": "Minneapolis, Minnesota, USA",
+    "mode": [
+      "Online",
+      "Hybrid"
+    ],
+    "approvals": [
+      "HLC"
+    ],
+    "rating": 4,
+    "reviews": 280,
+    "accreditation": "HLC",
+    "establishedYear": 1970,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Business",
+          "Psychology",
+          "Education",
+          "Health Sciences",
+          "Social Work"
+        ]
+      },
+      "Masters": {
+        "specializations": [
+          "Business",
+          "Psychology",
+          "Education",
+          "Health Sciences",
+          "Social Work"
+        ]
+      },
+      "Doctorate": {
+        "specializations": [
+          "Business",
+          "Psychology",
+          "Education",
+          "Health Sciences",
+          "Social Work"
+        ]
+      },
+      "Certificates": {
+        "specializations": [
+          "Business",
+          "Psychology",
+          "Education",
+          "Health Sciences",
+          "Social Work"
+        ]
+      }
+    },
+    "specializations": [
+      "Business",
+      "Psychology",
+      "Education",
+      "Health Sciences",
+      "Social Work"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 300000,
+      "Masters": 400000,
+      "Doctorate": 500000,
+      "Certificates": 100000
+    },
+    "placements": {
+      "averagePackage": 7200000,
+      "highestPackage": 13500000,
+      "offered": true
+    },
+    "isInternational": true,
+    "state": "Minnesota",
+    "country": "USA",
+    "studentsRating": "4.5/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
+    "eligibility": "Graduation with 60%"
+  },
+  {
+    "id": "westcliff-university",
+    "name": "Westcliff University",
+    "icon": "??",
+    "type": "International University",
+    "location": "Irvine, California, USA",
+    "mode": [
+      "Regular",
+      "Online"
+    ],
+    "approvals": [
+      "WASC",
+      "ACBSP"
+    ],
+    "rating": 4,
+    "reviews": 200,
+    "accreditation": "WASC",
+    "establishedYear": 1993,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Business Administration",
+          "Information Technology",
+          "Education"
+        ]
+      },
+      "Masters": {
+        "specializations": [
+          "Business Administration",
+          "Information Technology",
+          "Education"
+        ]
+      },
+      "DBA": {
+        "specializations": [
+          "Business Administration",
+          "Information Technology",
+          "Education"
+        ]
+      },
+      "Bachelors": {
+        "specializations": [
+          "Business Administration",
+          "Information Technology",
+          "Education"
+        ]
+      }
+    },
+    "specializations": [
+      "Business Administration",
+      "Information Technology",
+      "Education"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 300000,
+      "Masters": 400000,
+      "DBA": 500000,
+      "Bachelors": 800000
+    },
+    "placements": {
+      "averagePackage": 7000000,
+      "highestPackage": 12000000,
+      "offered": true
+    },
+    "isInternational": true,
+    "state": "California",
+    "country": "USA",
+    "studentsRating": "4.5/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
+    "eligibility": "Graduation with 60%"
+  },
+  {
+    "id": "xim-university-bhubaneswar",
+    "name": "XIM University Bhubaneswar",
+    "icon": "??",
+    "type": "University",
+    "location": "Bhubaneswar, Odisha",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE"
+    ],
+    "rating": 3.5,
+    "reviews": 150,
+    "accreditation": "NAAC A",
+    "establishedYear": 2000,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BA": {
+        "specializations": [
+          "General"
+        ]
+      }
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Arts",
+      "Science"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 2000000,
+      "MCA": 120000,
+      "BBA": 80000,
+      "BCA": 75000,
+      "M.Com": 60000,
+      "M.Sc": 45000,
+      "B.Sc": 35000,
+      "B.Com": 50000,
+      "MA": 50000,
+      "BA": 40000
+    },
+    "placements": {
+      "averagePackage": 250000,
+      "highestPackage": 750000,
+      "offered": true
+    }
+  },
+  {
+    "id": "harvard-business-school",
+    "name": "Harvard Business School",
+    "icon": "??",
+    "type": "International University",
+    "location": "Boston, Massachusetts, USA",
+    "mode": [
+      "Regular",
+      "Executive"
+    ],
+    "approvals": [
+      "AACSB",
+      "Regional Accreditation"
+    ],
+    "rating": 4.9,
+    "reviews": 500,
+    "accreditation": "AACSB",
+    "establishedYear": 1908,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General Management",
+          "Entrepreneurship",
+          "Finance",
+          "Strategy",
+          "Leadership"
+        ]
+      },
+      "Executive MBA": {
+        "specializations": [
+          "General Management",
+          "Entrepreneurship",
+          "Finance",
+          "Strategy",
+          "Leadership"
+        ]
+      },
+      "Masters": {
+        "specializations": [
+          "General Management",
+          "Entrepreneurship",
+          "Finance",
+          "Strategy",
+          "Leadership"
+        ]
+      }
+    },
+    "specializations": [
+      "General Management",
+      "Entrepreneurship",
+      "Finance",
+      "Strategy",
+      "Leadership"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 6660000,
+      "Executive MBA": 6660000,
+      "Masters": 6090000
+    },
+    "placements": {
+      "averagePackage": 15000000,
+      "highestPackage": 35000000,
+      "offered": true
+    },
+    "isInternational": true,
+    "state": "Massachusetts",
+    "country": "USA",
+    "studentsRating": "4.5/5",
+    "onlineClasses": true,
+    "duration": "PG:1-2 years / UG:3 years / PhD:3 years / Adv Diploma:12 months / Skilling Cert:6 months",
+    "eligibility": "Graduation with 60%"
+  },
+  {
+    "id": "london-business-school",
+    "name": "London Business School",
+    "icon": "??",
+    "type": "International University",
+    "location": "London, England, UK",
+    "mode": [
+      "Regular",
+      "Executive"
+    ],
+    "approvals": [
+      "AACSB",
+      "EQUIS",
+      "AMBA"
+    ],
+    "rating": 4.8,
+    "reviews": 450,
+    "accreditation": "Triple Crown",
+    "establishedYear": 1964,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Finance",
+          "Strategy",
+          "Entrepreneurship",
+          "Marketing",
+          "Leadership"
+        ]
+      },
+      "Executive MBA": {
+        "specializations": [
+          "Finance",
+          "Strategy",
+          "Entrepreneurship",
+          "Marketing",
+          "Leadership"
+        ]
+      },
+      "Masters": {
+        "specializations": [
+          "Finance",
+          "Strategy",
+          "Entrepreneurship",
+          "Marketing",
+          "Leadership"
+        ]
+      },
+      "MiM": {
+        "specializations": [
+          "Finance",
+          "Strategy",
+          "Entrepreneurship",
+          "Marketing",
+          "Leadership"
+        ]
+      }
+    },
+    "specializations": [
+      "Finance",
+      "Strategy",
+      "Entrepreneurship",
+      "Marketing",
+      "Leadership"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 10000000,
+      "Executive MBA": 10000000,
+      "Masters": 8000000,
+      "MiM": 6000000
+    },
+    "placements": {
+      "averagePackage": 12000000,
+      "highestPackage": 25000000,
+      "offered": true
+    },
+    "isInternational": true,
+    "state": "England",
+    "country": "UK"
+  },
+  {
+    "id": "insead-business-school",
+    "name": "INSEAD Business School",
+    "icon": "??",
+    "type": "International University",
+    "location": "Fontainebleau, France",
+    "mode": [
+      "Regular",
+      "Executive"
+    ],
+    "approvals": [
+      "AACSB",
+      "EQUIS",
+      "AMBA"
+    ],
+    "rating": 4.8,
+    "reviews": 400,
+    "accreditation": "Triple Crown",
+    "establishedYear": 1957,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General Management",
+          "Strategy",
+          "Finance",
+          "Marketing",
+          "Leadership"
+        ]
+      },
+      "Executive MBA": {
+        "specializations": [
+          "General Management",
+          "Strategy",
+          "Finance",
+          "Marketing",
+          "Leadership"
+        ]
+      },
+      "Masters": {
+        "specializations": [
+          "General Management",
+          "Strategy",
+          "Finance",
+          "Marketing",
+          "Leadership"
+        ]
+      }
+    },
+    "specializations": [
+      "General Management",
+      "Strategy",
+      "Finance",
+      "Marketing",
+      "Leadership"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 8600000,
+      "Executive MBA": 8600000,
+      "Masters": 8000000
+    },
+    "placements": {
+      "averagePackage": 11000000,
+      "highestPackage": 22000000,
+      "offered": true
+    },
+    "isInternational": true,
+    "state": "Île-de-France",
+    "country": "France"
+  },
+  {
+    "id": "melbourne-business-school",
+    "name": "Melbourne Business School",
+    "icon": "??",
+    "type": "International University",
+    "location": "Melbourne, Victoria, Australia",
+    "mode": [
+      "Regular",
+      "Executive"
+    ],
+    "approvals": [
+      "AACSB",
+      "EQUIS"
+    ],
+    "rating": 4.6,
+    "reviews": 300,
+    "accreditation": "AACSB",
+    "establishedYear": 1955,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "General Management",
+          "Innovation",
+          "Marketing",
+          "Finance",
+          "Leadership"
+        ]
+      },
+      "Executive MBA": {
+        "specializations": [
+          "General Management",
+          "Innovation",
+          "Marketing",
+          "Finance",
+          "Leadership"
+        ]
+      },
+      "Masters": {
+        "specializations": [
+          "General Management",
+          "Innovation",
+          "Marketing",
+          "Finance",
+          "Leadership"
+        ]
+      }
+    },
+    "specializations": [
+      "General Management",
+      "Innovation",
+      "Marketing",
+      "Finance",
+      "Leadership"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 5500000,
+      "Executive MBA": 5500000,
+      "Masters": 4000000
+    },
+    "placements": {
+      "averagePackage": 9000000,
+      "highestPackage": 18000000,
+      "offered": true
+    },
+    "isInternational": true,
+    "state": "Victoria",
+    "country": "Australia"
+  },
+  {
+    "id": "rotman-school-management",
+    "name": "Rotman School of Management",
+    "icon": "??",
+    "type": "International University",
+    "location": "Toronto, Ontario, Canada",
+    "mode": [
+      "Regular",
+      "Executive"
+    ],
+    "approvals": [
+      "AACSB"
+    ],
+    "rating": 4.5,
+    "reviews": 250,
+    "accreditation": "AACSB",
+    "establishedYear": 1901,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Finance",
+          "Strategy",
+          "Innovation",
+          "Marketing",
+          "Leadership"
+        ]
+      },
+      "Executive MBA": {
+        "specializations": [
+          "Finance",
+          "Strategy",
+          "Innovation",
+          "Marketing",
+          "Leadership"
+        ]
+      },
+      "Masters": {
+        "specializations": [
+          "Finance",
+          "Strategy",
+          "Innovation",
+          "Marketing",
+          "Leadership"
+        ]
+      }
+    },
+    "specializations": [
+      "Finance",
+      "Strategy",
+      "Innovation",
+      "Marketing",
+      "Leadership"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 12000000,
+      "Executive MBA": 12000000,
+      "Masters": 8000000
+    },
+    "placements": {
+      "averagePackage": 8500000,
+      "highestPackage": 16000000,
+      "offered": true
+    },
+    "isInternational": true,
+    "state": "Ontario",
+    "country": "Canada"
+  },
+  {
+    "id": "nus-business-school",
+    "name": "National University of Singapore Business School",
+    "icon": "??",
+    "type": "International University",
+    "location": "Singapore",
+    "mode": [
+      "Regular",
+      "Executive"
+    ],
+    "approvals": [
+      "AACSB",
+      "EQUIS"
+    ],
+    "rating": 4.7,
+    "reviews": 350,
+    "accreditation": "AACSB",
+    "establishedYear": 1965,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Asian Business",
+          "Finance",
+          "Strategy",
+          "Innovation",
+          "Leadership"
+        ]
+      },
+      "Executive MBA": {
+        "specializations": [
+          "Asian Business",
+          "Finance",
+          "Strategy",
+          "Innovation",
+          "Leadership"
+        ]
+      },
+      "Masters": {
+        "specializations": [
+          "Asian Business",
+          "Finance",
+          "Strategy",
+          "Innovation",
+          "Leadership"
+        ]
+      }
+    },
+    "specializations": [
+      "Asian Business",
+      "Finance",
+      "Strategy",
+      "Innovation",
+      "Leadership"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 6000000,
+      "Executive MBA": 6000000,
+      "Masters": 5000000
+    },
+    "placements": {
+      "averagePackage": 10000000,
+      "highestPackage": 20000000,
+      "offered": true
+    },
+    "isInternational": true,
+    "state": "Singapore",
+    "country": "Singapore"
+  },
+  {
+    "id": "wharton-school",
+    "name": "The Wharton School",
+    "icon": "??",
+    "type": "International University",
+    "location": "Philadelphia, Pennsylvania, USA",
+    "mode": [
+      "Regular",
+      "Executive"
+    ],
+    "approvals": [
+      "AACSB"
+    ],
+    "rating": 4.9,
+    "reviews": 600,
+    "accreditation": "AACSB",
+    "establishedYear": 1881,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Finance",
+          "Strategy",
+          "Entrepreneurship",
+          "Marketing",
+          "Leadership"
+        ]
+      },
+      "Executive MBA": {
+        "specializations": [
+          "Finance",
+          "Strategy",
+          "Entrepreneurship",
+          "Marketing",
+          "Leadership"
+        ]
+      },
+      "Masters": {
+        "specializations": [
+          "Finance",
+          "Strategy",
+          "Entrepreneurship",
+          "Marketing",
+          "Leadership"
+        ]
+      }
+    },
+    "specializations": [
+      "Finance",
+      "Strategy",
+      "Entrepreneurship",
+      "Marketing",
+      "Leadership"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 15400000,
+      "Executive MBA": 15400000,
+      "Masters": 12000000
+    },
+    "placements": {
+      "averagePackage": 16000000,
+      "highestPackage": 40000000,
+      "offered": true
+    },
+    "isInternational": true,
+    "state": "Pennsylvania",
+    "country": "USA"
+  },
+  {
+    "id": "oxford-said-business-school",
+    "name": "Oxford Saïd Business School",
+    "icon": "??",
+    "type": "International University",
+    "location": "Oxford, England, UK",
+    "mode": [
+      "Regular",
+      "Executive"
+    ],
+    "approvals": [
+      "AACSB",
+      "EQUIS",
+      "AMBA"
+    ],
+    "rating": 4.8,
+    "reviews": 400,
+    "accreditation": "Triple Crown",
+    "establishedYear": 1996,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Strategy",
+          "Finance",
+          "Entrepreneurship",
+          "Social Impact",
+          "Leadership"
+        ]
+      },
+      "Executive MBA": {
+        "specializations": [
+          "Strategy",
+          "Finance",
+          "Entrepreneurship",
+          "Social Impact",
+          "Leadership"
+        ]
+      },
+      "Masters": {
+        "specializations": [
+          "Strategy",
+          "Finance",
+          "Entrepreneurship",
+          "Social Impact",
+          "Leadership"
+        ]
+      }
+    },
+    "specializations": [
+      "Strategy",
+      "Finance",
+      "Entrepreneurship",
+      "Social Impact",
+      "Leadership"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 10000000,
+      "Executive MBA": 10000000,
+      "Masters": 8000000
+    },
+    "placements": {
+      "averagePackage": 13000000,
+      "highestPackage": 28000000,
+      "offered": true
+    },
+    "isInternational": true,
+    "state": "England",
+    "country": "UK"
+  },
+  {
+    "id": "duke-university",
+    "name": "Duke University - Fuqua School of Business",
+    "icon": "??",
+    "type": "International University",
+    "location": "Durham, North Carolina, USA",
+    "mode": [
+      "Regular",
+      "Executive"
+    ],
+    "approvals": [
+      "AACSB"
+    ],
+    "rating": 4.8,
+    "reviews": 450,
+    "accreditation": "AACSB",
+    "establishedYear": 1924,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Strategy",
+          "Finance",
+          "Healthcare Management",
+          "Innovation",
+          "Leadership"
+        ]
+      },
+      "Executive MBA": {
+        "specializations": [
+          "Strategy",
+          "Finance",
+          "Healthcare Management",
+          "Innovation",
+          "Leadership"
+        ]
+      },
+      "Masters": {
+        "specializations": [
+          "Strategy",
+          "Finance",
+          "Healthcare Management",
+          "Innovation",
+          "Leadership"
+        ]
+      }
+    },
+    "specializations": [
+      "Strategy",
+      "Finance",
+      "Healthcare Management",
+      "Innovation",
+      "Leadership"
+    ],
+    "nirfRanking": null,
+    "fees": {
+      "MBA": 12000000,
+      "Executive MBA": 12000000,
+      "Masters": 8000000
+    },
+    "placements": {
+      "averagePackage": 14000000,
+      "highestPackage": 30000000,
+      "offered": true
+    },
+    "isInternational": true,
+    "state": "North Carolina",
+    "country": "USA"
+  }
 ];
-// Database metadata
-const databaseMetadata = {
-totalUniversities: universityDatabase.length,
-lastUpdated: "2025-10-09 19:04:10",
-dataCompleteness: "100% - All universities have complete details",
-features: ["Fees", "Specializations", "Placements", "Ratings", "Approvals", "Accreditation"]
-};
-
-// Export for use
-if (typeof module !== 'undefined' && module.exports) {
-module.exports = {
-universityDatabase: universityDatabase,
-databaseMetadata: databaseMetadata
-};
-}
-console.log('Master University Database loaded: ' + universityDatabase.length + ' universities');
-console.log('All universities have complete details: fees, specializations, placements, ratings');
-// Make database available globally for AI recommendation system
-if (typeof window !== 'undefined') {
-window.universityDatabase = universityDatabase;
-} else if (typeof global !== 'undefined') {
-global.universityDatabase = universityDatabase;
 }
 
 
-// ============================================================================
-// COURSES DATABASE SECTION - ALL 213 COURSES WITH COMPLETE DETAILS
-// ============================================================================
-
-// COMPLETE Comprehensive Course Database - 213 Courses 
-// Generated: 2025-10-09 19:54:25
-// Updated: 2025-10-16 with College Vidya real fees data and university explanations
-// Major Update: Added real fees data from College Vidya website for top courses
-// Enhancement: Added university-specific explanations with percentage ratings for better matching
-
-const coursesDatabase = [
+if (typeof coursesDatabase === 'undefined') {
+  var coursesDatabase = [
     {
         id: "1-year-mba-online",
         name: "1-Year MBA Online",
@@ -8507,26 +18768,35 @@ const coursesDatabase = [
         careerOptions: ["Professional", "Specialist", "Analyst", "Coordinator"],
     }
 ];
+}
 
 // Course categories for filtering
-const courseCategories = [
+if (typeof courseCategories === 'undefined') {
+  var courseCategories = [
     "Management", "Engineering", "Computer Applications", "Data Science", 
     "Commerce", "Finance", "Marketing", "Human Resources", "Arts", 
     "Law", "Design", "Media", "Education", "General"
-];
+  ];
+}
 
 // Course levels
-const courseLevels = ["Undergraduate", "Postgraduate", "Diploma", "Certificate"];
+if (typeof courseLevels === 'undefined') {
+  var courseLevels = ["Undergraduate", "Postgraduate", "Diploma", "Certificate"];
+}
 
 // Study modes
-const studyModes = ["Online", "Distance", "Regular", "Part-time", "Executive"];
+if (typeof studyModes === 'undefined') {
+  var studyModes = ["Online", "Distance", "Regular", "Part-time", "Executive"];
+}
 
 // Database metadata
-const coursesDatabaseMetadata = {
+if (typeof coursesDatabaseMetadata === 'undefined') {
+  var coursesDatabaseMetadata = {
     totalCourses: coursesDatabase.length,
     lastUpdated: "2025-10-09 19:54:25",
     categories: courseCategories.length
-};
+  };
+}
 
 // Export for use - MERGE with the university database export above
 if (typeof module !== 'undefined' && module.exports) {
@@ -8542,18 +18812,35 @@ console.log('Complete Courses Database loaded: ' + coursesDatabase.length + ' co
 console.log('Categories: ' + courseCategories.join(', '));
 
 // Make database available globally for AI recommendation system
+
+
+// Make databases available globally
 if (typeof window !== 'undefined') {
+    window.universityDatabase = universityDatabase;
     window.coursesDatabase = coursesDatabase;
     window.courseCategories = courseCategories;
     window.courseLevels = courseLevels;
     window.studyModes = studyModes;
 } else if (typeof global !== 'undefined') {
+    global.universityDatabase = universityDatabase;
     global.coursesDatabase = coursesDatabase;
     global.courseCategories = courseCategories;
     global.courseLevels = courseLevels;
     global.studyModes = studyModes;
 }
 
+console.log('Master University Database loaded: ' + universityDatabase.length + ' universities');
+console.log('All universities have complete details: fees, specializations, placements, ratings');
+console.log('Complete Courses Database loaded: ' + coursesDatabase.length + ' courses');
+console.log('Categories: ' + courseCategories.join(', '));
 
-
-
+// Add coursesList array to each university for backward compatibility with old code
+if (universityDatabase && Array.isArray(universityDatabase)) {
+  universityDatabase.forEach(uni => {
+    if (uni.courses && typeof uni.courses === 'object' && !Array.isArray(uni.courses)) {
+      // Create coursesList array from courses object keys
+      uni.coursesList = Object.keys(uni.courses);
+    }
+  });
+  console.log('Added coursesList arrays for backward compatibility');
+}

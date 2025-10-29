@@ -41,7 +41,7 @@ export default function Leadership() {
 
   return (
     <>
-      <section className={styles.leadershipSection}>
+      <section id="leadership" className={styles.leadershipSection}>
         <div className={styles.container}>
           <h2 className={styles.heading}>Meet Our Leadership</h2>
           <p className={styles.subheading}>

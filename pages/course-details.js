@@ -50,11 +50,23 @@ export default function CourseDetails() {
       console.log('Fetching universities for courseId:', actualCourseId);
 
       try {
-        // Import the comprehensive database
-        const module = await import('../public/assets/js/comprehensive-unified-database-COMPLETE.js');
+        // The comprehensive database sets global variables, so we access them from window
+        let uniDatabase = null;
         
-        // Access universityDatabase from module.default (CommonJS export)
-        const uniDatabase = module.default?.universityDatabase || module.universityDatabase;
+        if (typeof window !== 'undefined' && window.universityDatabase) {
+          // Database already loaded globally
+          uniDatabase = window.universityDatabase;
+        } else {
+          // Load the database script
+          const response = await fetch('/assets/js/comprehensive-unified-database-COMPLETE.js');
+          const scriptText = await response.text();
+          
+          // Execute the script to populate global variables
+          eval(scriptText);
+          
+          // Now access from window
+          uniDatabase = window.universityDatabase;
+        }
 
         console.log('Database loaded, total universities:', uniDatabase?.length);
 
@@ -209,7 +221,19 @@ export default function CourseDetails() {
             if (isOverseas) return false;
 
             // Match courses - improved matching with specialization awareness
-            const hasMatch = uni.courses?.some(course => {
+            // Support both coursesList (array) and courses (object) formats
+            let courseArray = [];
+            if (uni.coursesList && Array.isArray(uni.coursesList)) {
+              courseArray = uni.coursesList;
+            } else if (uni.courses) {
+              if (Array.isArray(uni.courses)) {
+                courseArray = uni.courses;
+              } else if (typeof uni.courses === 'object') {
+                courseArray = Object.keys(uni.courses);
+              }
+            }
+
+            const hasMatch = courseArray.some(course => {
               const courseStr = typeof course === 'string' ? course : course.name;
               const normalizedCourse = courseStr.toUpperCase().replace(/[.\s-]/g, '');
               const normalizedType = courseType.replace(/[.\s-]/g, '');
@@ -276,7 +300,17 @@ export default function CourseDetails() {
           // Add specialization bonus if university offers matching specializations
           let specializationBonus = 0;
           if (specializationKeywords.length > 0 && uni.courses) {
-            const courseMatches = uni.courses.filter(c => {
+            // Get course array - support both formats
+            let courseArray = [];
+            if (uni.coursesList && Array.isArray(uni.coursesList)) {
+              courseArray = uni.coursesList;
+            } else if (Array.isArray(uni.courses)) {
+              courseArray = uni.courses;
+            } else if (typeof uni.courses === 'object') {
+              courseArray = Object.keys(uni.courses);
+            }
+            
+            const courseMatches = courseArray.filter(c => {
               const cStr = typeof c === 'string' ? c : c.name;
               return specializationKeywords.some(kw => cStr.toUpperCase().includes(kw));
             });

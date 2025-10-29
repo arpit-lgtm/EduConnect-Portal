@@ -507,6 +507,16 @@ function getUniversityLogo(universityName) {
     }
   }
 
+  // Fuzzy match: normalize keys and cleaned name (remove punctuation, extra spaces)
+  const normalizeForMatch = (s) => s.toLowerCase().replace(/[\W_]+/g, ' ').replace(/\s+/g, ' ').trim();
+  const cleanNormalized = normalizeForMatch(cleanName);
+  for (const [key, value] of Object.entries(universityLogoMap)) {
+    const keyNormalized = normalizeForMatch(key);
+    if (keyNormalized === cleanNormalized || keyNormalized.includes(cleanNormalized) || cleanNormalized.includes(keyNormalized)) {
+      return value;
+    }
+  }
+
   // Fallback to cleaned filename
   return `${cleanName}.png`;
 }

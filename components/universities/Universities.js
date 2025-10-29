@@ -10,15 +10,55 @@ export default function Universities() {
   useEffect(() => {
     async function loadUniversities() {
       try {
-        // Import the comprehensive database
-        const module = await import('../../public/assets/js/comprehensive-unified-database-COMPLETE.js');
-        const uniDatabase = module.default?.universityDatabase || module.universityDatabase;
+        // Import the comprehensive database from public folder
+        // In Next.js, we need to load it via script tag and wait for it
+        let uniDatabase;
+        
+        // Function to check if database is loaded
+        const checkDatabase = () => {
+          return new Promise((resolve) => {
+            const checkInterval = setInterval(() => {
+              if (typeof window !== 'undefined' && window.universityDatabase) {
+                clearInterval(checkInterval);
+                resolve(window.universityDatabase);
+              }
+            }, 100); // Check every 100ms
+            
+            // Timeout after 10 seconds
+            setTimeout(() => {
+              clearInterval(checkInterval);
+              resolve(null);
+            }, 10000);
+          });
+        };
+        
+        // If already loaded, use it
+        if (typeof window !== 'undefined' && window.universityDatabase) {
+          uniDatabase = window.universityDatabase;
+          console.log('✅ Loaded from window.universityDatabase (already available)');
+        } else {
+          // Load the script dynamically if not already loaded
+          const existingScript = document.querySelector('script[src="/assets/js/comprehensive-unified-database-COMPLETE.js"]');
+          
+          if (!existingScript) {
+            const script = document.createElement('script');
+            script.src = '/assets/js/comprehensive-unified-database-COMPLETE.js';
+            script.async = true;
+            document.head.appendChild(script);
+          }
+          
+          // Wait for database to be available
+          console.log('⏳ Waiting for database to load...');
+          uniDatabase = await checkDatabase();
+        }
 
         if (!uniDatabase || !Array.isArray(uniDatabase)) {
-          console.error('University database is empty or invalid');
+          console.error('❌ University database is empty or invalid');
           setLoading(false);
           return;
         }
+        
+        console.log(`📚 Total universities in database: ${uniDatabase.length}`);
 
         // Universities to exclude from carousel (duplicates)
         const excludeUniversities = [
@@ -27,12 +67,13 @@ export default function Universities() {
           'UPES (Online)', // Keep UPES CCE
           'Svu Gajraula Wilp',
           'SRM University (Online)',
-          'Symbiosis Distance Learning', // Keep main Symbiosis
+          'Symbiosis Distance Learning', // Keep Symbiosis SCDL
           'Sgvu Engineering',
           'Smude Sikkim Manipal University',
           'Mahe Manipal',
           'Kuk Dde',
-          'Jain University (Distance Education)' // Keep only Online version
+          'Jain University (Distance Education)', // Keep only Online version
+          'Jgu (Online) Coursera' // Keep only O P Jindal Global University
         ];
 
         // Filter out excluded universities

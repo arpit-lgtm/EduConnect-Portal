@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import styles from '../styles/UniversityMatcherResults.module.css';
+import { getUniversityLogo as getLogoFilename } from '../utils/universityLogoMap';
 
 const UniversityMatcherResults = () => {
   const router = useRouter();
@@ -13,6 +14,12 @@ const UniversityMatcherResults = () => {
   const [allUniversitiesWithCourse, setAllUniversitiesWithCourse] = useState([]); // All universities with the course (for filtering)
   const [filteredUniversities, setFilteredUniversities] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  
+  // Helper function to get full logo path
+  const getUniversityLogo = (universityName) => {
+    const filename = getLogoFilename(universityName);
+    return filename ? `/images/universities/${filename}` : null;
+  };
   
   // Filter states
   const [selectedState, setSelectedState] = useState('all');
@@ -87,13 +94,40 @@ const UniversityMatcherResults = () => {
       // Check if data already loaded
       if (window.universityDatabase && Array.isArray(window.universityDatabase)) {
         console.log('✅ Data already loaded in window scope');
-        setUniversities(window.universityDatabase);
+        
+        // Universities to exclude from results (duplicates removed)
+        const excludeUniversities = [
+          'CDE Amu',
+          'IIM Indore Timespro',
+          'UPES (Online)', // Keep UPES CCE
+          'Svu Gajraula Wilp',
+          'SRM University (Online)',
+          'Symbiosis Distance Learning', // Keep Symbiosis SCDL
+          'Sgvu Engineering',
+          'Smude Sikkim Manipal University',
+          'Mahe Manipal',
+          'Kuk Dde',
+          'Jain University (Distance Education)', // Keep only Online version
+          'Jgu (Online) Coursera' // Keep only O P Jindal Global University
+        ];
+
+        // Filter out excluded universities
+        const filteredDatabase = window.universityDatabase.filter(uni => {
+          const nameLower = uni.name.toLowerCase();
+          return !excludeUniversities.some(excluded => 
+            nameLower.includes(excluded.toLowerCase())
+          );
+        });
+        
+        console.log(`📊 Total universities: ${window.universityDatabase.length}, After duplicate filter: ${filteredDatabase.length}`);
+        
+        setUniversities(filteredDatabase);
         
         // Match universities based on form data (this respects location filter)
-        const matched = matchUniversities(window.universityDatabase, data);
+        const matched = matchUniversities(filteredDatabase, data);
         
         // Get universities with the course but WITHOUT location filter for state/country dropdown
-        const allWithCourse = matchUniversities(window.universityDatabase, { ...data, preferredLocation: 'any' });
+        const allWithCourse = matchUniversities(filteredDatabase, { ...data, preferredLocation: 'any' });
         
         // Fetch College Vidya ratings for matched universities
         const matchedWithRatings = await fetchCollegeVidyaRatings(matched);
@@ -104,6 +138,13 @@ const UniversityMatcherResults = () => {
         setMatchedUniversities(matchedWithRatings);
         setAllUniversitiesWithCourse(allWithCourseAndRatings); // Store all universities with course
         setFilteredUniversities(matchedWithRatings);
+        
+        // Log matched universities with logo status
+        console.log(`🎓 Matched Universities (${matchedWithRatings.length}):`);
+        matchedWithRatings.slice(0, 10).forEach(uni => {
+          const logoPath = getUniversityLogo(uni.name);
+          console.log(`  ${uni.name} → Logo: ${logoPath ? '✅' : '❌'} ${logoPath || 'MISSING'}`);
+        });
         
         // Extract available states and countries from ALL universities with the course
         extractAvailableLocations(allWithCourseAndRatings);
@@ -128,13 +169,40 @@ const UniversityMatcherResults = () => {
       
       // Now access the database from window scope
       if (window.universityDatabase && Array.isArray(window.universityDatabase)) {
-        setUniversities(window.universityDatabase);
+        
+        // Universities to exclude from results (duplicates removed)
+        const excludeUniversities = [
+          'CDE Amu',
+          'IIM Indore Timespro',
+          'UPES (Online)', // Keep UPES CCE
+          'Svu Gajraula Wilp',
+          'SRM University (Online)',
+          'Symbiosis Distance Learning', // Keep Symbiosis SCDL
+          'Sgvu Engineering',
+          'Smude Sikkim Manipal University',
+          'Mahe Manipal',
+          'Kuk Dde',
+          'Jain University (Distance Education)', // Keep only Online version
+          'Jgu (Online) Coursera' // Keep only O P Jindal Global University
+        ];
+
+        // Filter out excluded universities
+        const filteredDatabase = window.universityDatabase.filter(uni => {
+          const nameLower = uni.name.toLowerCase();
+          return !excludeUniversities.some(excluded => 
+            nameLower.includes(excluded.toLowerCase())
+          );
+        });
+        
+        console.log(`📊 Total universities: ${window.universityDatabase.length}, After duplicate filter: ${filteredDatabase.length}`);
+        
+        setUniversities(filteredDatabase);
         
         // Match universities based on form data (this respects location filter)
-        const matched = matchUniversities(window.universityDatabase, data);
+        const matched = matchUniversities(filteredDatabase, data);
         
         // Get universities with the course but WITHOUT location filter for state/country dropdown
-        const allWithCourse = matchUniversities(window.universityDatabase, { ...data, preferredLocation: 'any' });
+        const allWithCourse = matchUniversities(filteredDatabase, { ...data, preferredLocation: 'any' });
         
         // Fetch College Vidya ratings for matched universities
         const matchedWithRatings = await fetchCollegeVidyaRatings(matched);
@@ -145,6 +213,13 @@ const UniversityMatcherResults = () => {
         setMatchedUniversities(matchedWithRatings);
         setAllUniversitiesWithCourse(allWithCourseAndRatings); // Store all universities with course
         setFilteredUniversities(matchedWithRatings);
+        
+        // Log matched universities with logo status
+        console.log(`🎓 Matched Universities (${matchedWithRatings.length}):`);
+        matchedWithRatings.slice(0, 10).forEach(uni => {
+          const logoPath = getUniversityLogo(uni.name);
+          console.log(`  ${uni.name} → Logo: ${logoPath ? '✅' : '❌'} ${logoPath || 'MISSING'}`);
+        });
         
         // Extract available states and countries from ALL universities with the course
         extractAvailableLocations(allWithCourseAndRatings);
@@ -234,15 +309,29 @@ const UniversityMatcherResults = () => {
 
       // Match selected course (CRITICAL - must have the course)
       let hasCourse = false;
-      if (courseNameToMatch && uni.courses && Array.isArray(uni.courses)) {
-        hasCourse = uni.courses.some(course => {
-          // Try exact match first
-          if (course.toLowerCase() === courseNameToMatch.toLowerCase()) return true;
-          // Try partial match (e.g., "MBA" matches "1-Year MBA Online")
-          if (courseNameToMatch.toLowerCase().includes(course.toLowerCase())) return true;
-          if (course.toLowerCase().includes(courseNameToMatch.toLowerCase())) return true;
-          return false;
-        });
+      if (courseNameToMatch && uni.courses) {
+        // Handle both array format (old) and object format (new)
+        if (Array.isArray(uni.courses)) {
+          hasCourse = uni.courses.some(course => {
+            // Try exact match first
+            if (course.toLowerCase() === courseNameToMatch.toLowerCase()) return true;
+            // Try partial match (e.g., "MBA" matches "1-Year MBA Online")
+            if (courseNameToMatch.toLowerCase().includes(course.toLowerCase())) return true;
+            if (course.toLowerCase().includes(courseNameToMatch.toLowerCase())) return true;
+            return false;
+          });
+        } else if (typeof uni.courses === 'object') {
+          // Object format: { "MBA": { specializations: [...] }, "BCA": {...} }
+          hasCourse = Object.keys(uni.courses).some(courseKey => {
+            // Try exact match first
+            if (courseKey.toLowerCase() === courseNameToMatch.toLowerCase()) return true;
+            // Try partial match
+            if (courseNameToMatch.toLowerCase().includes(courseKey.toLowerCase())) return true;
+            if (courseKey.toLowerCase().includes(courseNameToMatch.toLowerCase())) return true;
+            return false;
+          });
+        }
+        
         if (hasCourse) {
           score += 40; // High weight for course match
           console.log(`✅ ${uni.name} has course ${courseNameToMatch}`);
@@ -257,10 +346,29 @@ const UniversityMatcherResults = () => {
       // Filter by location if a specific state is selected (not "any" or "any-state")
       if (formData.preferredLocation && 
           formData.preferredLocation !== 'any' && 
-          formData.preferredLocation !== 'any-state' &&
-          uni.location) {
-        const locationMatch = uni.location.toLowerCase().includes(formData.preferredLocation.toLowerCase()) ||
-                             formData.preferredLocation.toLowerCase().includes(uni.location.toLowerCase());
+          formData.preferredLocation !== 'any-state') {
+        
+        // Normalize strings for comparison
+        const normalize = (s) => (s || '').toString().toLowerCase().replace(/[^a-z\s]/g, '').replace(/\s+/g, ' ').trim();
+        const targetLocation = normalize(formData.preferredLocation);
+        
+        // Extract state from "City, State" format
+        let uniState = '';
+        let uniLocation = normalize(uni.location || '');
+        
+        if (uni.location && uni.location.includes(',')) {
+          const parts = uni.location.split(',').map(p => normalize(p.trim()));
+          uniState = parts[1] || parts[0]; // Get state part (after comma)
+        } else {
+          uniState = normalize(uni.state || uni.location || '');
+        }
+        
+        // Check if location matches (check both full location and extracted state)
+        const locationMatch = uniState.includes(targetLocation) || 
+                             targetLocation.includes(uniState) ||
+                             uniLocation.includes(targetLocation) ||
+                             targetLocation.includes(uniLocation);
+        
         if (!locationMatch) {
           return null; // Will be filtered out
         }
@@ -484,54 +592,6 @@ const UniversityMatcherResults = () => {
   const clearFilters = () => {
     setSelectedState('all');
     setSelectedCountry('all');
-  };
-
-  const getUniversityLogo = (universityName) => {
-    // Map university names to logo filenames
-    const logoMap = {
-      'Amity University': 'Amity University.png',
-      'Amrita University': 'Amrita University.png',
-      'Atlas SkillTech University': 'Atlas Skilltech University.png',
-      'BIMTECH': 'BIMTECH University.png',
-      'Birchwood University': 'Birchwood University Online.png',
-      'BITS Pilani': 'BITS Pilani.png',
-      'Chandigarh University': 'Chandigarh University.png',
-      'Chitkara University': 'Chitkara University.png',
-      'D.Y. Patil University': 'DY Patil University.png',
-      'DPU': 'DPU.png',
-      'Galgotias University': 'Galgotia University.png',
-      'GLA University': 'GLA University.png',
-      'Graphic Era University': 'Graphic Era University.png',
-      'IIIT Bangalore': 'IIIT Bangalore.png',
-      'IIM Indore': 'IIM Indore.png',
-      'IIM Kozhikode': 'IIM Kozhikode.png',
-      'IIT Guwahati': 'IIT Guwahati.png',
-      'Jain University': 'Jain University.png',
-      'Kalinga University': 'Kalinga University.png',
-      'KIIT University': 'KIIT University.png',
-      'Lovely Professional University': 'LPU University.png',
-      'Manipal University': 'Manipal University.png',
-      'NMIMS': 'NMIMS University.png',
-      'O.P. Jindal University': 'O P Jindal University.png',
-      'Sharda University': 'Sharda University.png',
-      'Shoolini University': 'Shoolini University.png',
-      'Sikkim Manipal University': 'Sikkim Manipal University.png',
-      'SRM University': 'SRM University.png',
-      'Symbiosis': 'Symbiosis SCDL.png',
-      'UPES': 'UPES University.png',
-      'Uttaranchal University': 'Uttaranchal University.png',
-      'Vignan University': 'Vignans University.png',
-    };
-    
-    // Try to find exact match or partial match
-    for (const [key, filename] of Object.entries(logoMap)) {
-      if (universityName.includes(key) || key.includes(universityName.split('(')[0].trim())) {
-        return `/images/universities/${filename}`;
-      }
-    }
-    
-    // Return null if no logo found (will show initials instead)
-    return null;
   };
 
   const getInitials = (name) => {

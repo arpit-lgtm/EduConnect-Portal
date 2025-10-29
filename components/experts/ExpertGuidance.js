@@ -32,7 +32,7 @@ const ExpertGuidance = () => {
     ];
 
     return (
-        <section className={styles.expertsSection}>
+        <section id="expert-guidance" className={styles.expertsSection}>
             <div className={styles.container}>
                 <div className={styles.header}>
                     <h2 className={styles.title}>Professional Guidance from Experts</h2>
