@@ -170,7 +170,7 @@ export default function Universities() {
   }
 
   return (
-    <section className={styles.universitiesSection}>
+    <section id="universities" className={styles.universitiesSection}>
       <div className={styles.container}>
         <h2 className={styles.heading}>
           Discover 100+ Top Universities & Compare Across 30+ Key Parameters

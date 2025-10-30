@@ -1,73 +1,72 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import styles from './Header.module.css';
 
 const Header = ({ courseTitle = null }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const router = useRouter();
 
   const navigationLinks = [
     {
-      title: 'Explore',
-      href: '/',
-      submenu: [
-        { title: 'Browse All Courses', href: '/browse-courses' },
-        { title: 'Top Universities', href: '/#universities' },
-        { title: 'Video Testimonials', href: '/#testimonials' },
-        { title: 'Expert Guidance', href: '/#expert-guidance' },
-        { title: 'Our Leadership', href: '/#leadership' }
-      ]
+      title: 'Courses',
+      href: '/browse-courses'
     },
     {
-      title: 'Programs',
-      href: '/programs',
-      submenu: [
-        { title: 'Undergraduate', href: '/undergraduate' },
-        { title: 'Postgraduate', href: '/postgraduate' },
-        { title: 'Certificate Programs', href: '/certificates' },
-        { title: 'Diploma Courses', href: '/diploma' },
-        { title: 'Professional Courses', href: '/professional' }
-      ]
+      title: 'Universities',
+      href: '/#universities'
     },
     {
-      title: 'Study Modes',
-      href: '/study-modes',
-      submenu: [
-        { title: 'Online Learning', href: '/online-learning' },
-        { title: 'Distance Education', href: '/distance-education' },
-        { title: 'Hybrid Programs', href: '/hybrid-programs' }
-      ]
+      title: 'Counselors',
+      href: '/#expert-guidance'
     },
     {
-      title: 'Resources',
-      href: '/resources',
-      submenu: [
-        { title: 'Career Guide', href: '/career-guide' },
-        { title: 'Success Stories', href: '/success-stories' },
-        { title: 'Learning Tips', href: '/learning-tips' },
-        { title: 'Compare Programs', href: '/compare' }
-      ]
+      title: 'Leadership',
+      href: '/#leadership'
     },
     {
-      title: 'Support',
-      href: '/support',
-      submenu: [
-        { title: 'Academic Counseling', href: '/counseling' },
-        { title: 'Admission Help', href: '/admission-help' },
-        { title: 'Financial Aid', href: '/financial-aid' },
-        { title: 'Student Services', href: '/student-services' }
-      ]
-    },
-    {
-      title: 'About Us',
-      href: '/about',
-      submenu: [
-        { title: 'Our Mission', href: '/mission' },
-        { title: 'Expert Team', href: '/team' },
-        { title: 'Contact Us', href: '/contact' }
-      ]
+      title: 'Contact Us',
+      href: '/#talk-to-experts'
     }
   ];
+
+  // Handle smooth scrolling for anchor links
+  const handleNavClick = (e, href, title) => {
+    // Open Courses in new tab
+    if (title === 'Courses') {
+      e.preventDefault();
+      window.open(href, '_blank');
+      return;
+    }
+    
+    // Check if it's an anchor link (contains #)
+    if (href.includes('#')) {
+      e.preventDefault();
+      const targetId = href.split('#')[1];
+      
+      // If we're not on the home page, navigate there first
+      if (router.pathname !== '/') {
+        router.push('/').then(() => {
+          setTimeout(() => {
+            scrollToElement(targetId);
+          }, 100);
+        });
+      } else {
+        scrollToElement(targetId);
+      }
+    }
+  };
+
+  const scrollToElement = (targetId) => {
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
 
   return (
     <header className={styles.header}>
@@ -97,26 +96,12 @@ const Header = ({ courseTitle = null }) => {
               <ul className={styles.navList}>
                 {navigationLinks.map((link, index) => (
                   <li key={index} className={styles.navItem}>
-                    <Link href={link.href}>
+                    <Link 
+                      href={link.href}
+                      onClick={(e) => handleNavClick(e, link.href, link.title)}
+                    >
                       {link.title}
                     </Link>
-                    {link.submenu && (
-                      <ul className={styles.submenu}>
-                        {link.submenu.map((sublink, subIndex) => (
-                          <li key={subIndex}>
-                            <Link 
-                              href={sublink.href}
-                              {...(sublink.title === 'Browse All Courses' && { 
-                                target: '_blank', 
-                                rel: 'noopener noreferrer' 
-                              })}
-                            >
-                              {sublink.title}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
                   </li>
                 ))}
               </ul>

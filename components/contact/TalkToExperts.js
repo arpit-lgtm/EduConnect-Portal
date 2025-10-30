@@ -26,7 +26,7 @@ export default function TalkToExperts() {
   };
 
   return (
-    <section className={styles.talkToExpertsSection}>
+    <section id="talk-to-experts" className={styles.talkToExpertsSection}>
       <div className={styles.container}>
         <div className={styles.headerSection}>
           <h2 className={styles.mainHeading}>Talk to Our Experts</h2>
