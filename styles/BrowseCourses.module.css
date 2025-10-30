@@ -439,3 +439,209 @@
   font-size: 0.95rem;
   text-align: right;
 }
+
+/* Centered Grid for Executive Education, PhD, Study Abroad, etc. */
+.courseGridCentered {
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 150px));
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Active Course Card */
+.courseCardActive {
+  border-color: #0074d7;
+  box-shadow: 0 8px 24px rgba(0, 116, 215, 0.25);
+  transform: translateY(-4px);
+  background: linear-gradient(135deg, rgba(0, 116, 215, 0.05) 0%, rgba(0, 116, 215, 0.02) 100%);
+}
+
+.courseCardActive::before {
+  transform: scaleX(1);
+}
+
+/* Course Details Section Below Cards */
+/* Expandable Course Details Section - Distinct Design */
+.courseDetails {
+  margin-top: 2.5rem;
+  padding: 0;
+  animation: expandDown 0.4s ease-out;
+}
+
+@keyframes expandDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+    transform: scaleY(0.95);
+  }
+  to {
+    opacity: 1;
+    max-height: 1000px;
+    transform: scaleY(1);
+  }
+}
+
+.detailsCard {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1.75rem;
+  box-shadow: 0 6px 20px rgba(16, 24, 40, 0.08);
+  border: 1px solid #e6eef8;
+  width: 100%;
+  margin: 0;
+  position: relative;
+  overflow: visible;
+  display: block;
+}
+
+.detailsTitle {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 1rem 0;
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+}
+
+/* Layout inside the details card: main content + logos on right */
+.detailsMain {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+
+.detailsContent {
+  flex: 1 1 0;
+  max-width: 50%;
+}
+
+.courseDescription {
+  font-size: 0.95rem;
+  color: #334155;
+  margin: 0 0 1rem 0;
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.detailsLogos {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1.5rem;
+  justify-content: flex-start;
+  padding-left: 2rem;
+}
+
+.logoLabel {
+  font-size: 1rem;
+  color: #334155;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.logoGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.logoGrid img {
+  width: 100%;
+  height: 220px;
+  object-fit: contain;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  border: 2px solid #e2e8f0;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.logoGrid img:hover {
+  border-color: #0074d7;
+  box-shadow: 0 6px 20px rgba(0, 116, 215, 0.2);
+  transform: translateY(-4px);
+}
+
+.findButton {
+  background: #0074d7;
+  color: white;
+  padding: 1.25rem 1.5rem;
+  border-radius: 12px;
+  border: none;
+  font-weight: 800;
+  font-size: 0.95rem;
+  letter-spacing: 0.8px;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 116, 215, 0.2);
+}
+
+.findButton:hover {
+  background: #005ea8;
+  box-shadow: 0 8px 24px rgba(0, 116, 215, 0.4);
+  transform: translateY(-2px);
+}
+
+.detailsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+/* Vertical stacked layout for course details */
+.detailsStack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.detailItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  border: none;
+  transition: all 0.3s ease;
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.detailItem:hover {
+  background: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.detailLabel {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #0074d7;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.detailValue {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1e293b;
+  line-height: 1.6;
+}

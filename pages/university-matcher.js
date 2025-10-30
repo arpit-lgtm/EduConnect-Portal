@@ -122,6 +122,27 @@ const UniversityMatcher = () => {
     loadData();
   }, []);
 
+  // If the page is opened with query params (degreeType, preferredCourse), prefill formData
+  useEffect(() => {
+    if (!router || !router.query) return;
+
+    const { degreeType, preferredCourse } = router.query;
+    if (degreeType || preferredCourse) {
+      setFormData(prev => ({
+        ...prev,
+        degreeType: degreeType || prev.degreeType,
+        preferredCourse: preferredCourse || prev.preferredCourse
+      }));
+
+      // If degreeType exists, filter courses and auto-advance to step 2 after data loads
+      setTimeout(() => {
+        if (degreeType) {
+          setCurrentStep(2);
+        }
+      }, 300);
+    }
+  }, [router.query]);
+
   // Filter courses when degree type OR courses data changes
   useEffect(() => {
     if (formData.degreeType && courses.length > 0) {
