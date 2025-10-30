@@ -136,12 +136,21 @@ export default function Universities() {
             console.warn(`No logo mapping found for: ${uni.name}`);
           }
           
+          // Special handling for Amity University - link to our custom detail page
+          let linkUrl = uni.website || '#';
+          if (uni.name && (
+            uni.name.toLowerCase().includes('amity university') || 
+            uni.id === 'amity-university-distance-education'
+          )) {
+            linkUrl = '/university/amity-university';
+          }
+          
           return {
             id: index + 1,
             name: uni.name,
             logo: `/images/universities/${logoFilename}`,
             courses: uni.courses ? `${uni.courses.length} Courses` : '0 Courses',
-            link: uni.website || '#'
+            link: linkUrl
           };
         });
 
