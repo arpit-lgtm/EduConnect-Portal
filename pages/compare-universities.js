@@ -20,6 +20,19 @@ export default function CompareUniversities() {
   const [showComparison, setShowComparison] = useState(false); // Hide comparison table by default
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedState, setSelectedState] = useState(''); // State filter
+  
+  // Contact modal state
+  const [showContactModal, setShowContactModal] = useState(false);
+  const [contactFormData, setContactFormData] = useState({
+    fullName: '',
+    contactNumber: '',
+    email: '',
+    gender: '',
+    dob: '',
+    city: '',
+    state: '',
+    qualification: ''
+  });
 
   // Map display course names to database keys
   const getCourseKey = (displayName) => {
@@ -317,6 +330,35 @@ export default function CompareUniversities() {
     // Update universities array
     const filledUniversities = newSlots.filter(uni => uni !== null);
     setUniversities(filledUniversities);
+    
+    // Hide comparison data when university is removed
+    setShowComparison(false);
+  };
+
+  // Contact form handlers
+  const handleContactFormChange = (e) => {
+    const { name, value } = e.target;
+    setContactFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleContactFormSubmit = (e) => {
+    e.preventDefault();
+    console.log('Contact form submitted:', contactFormData);
+    alert('Thank you! Our expert counsellors will contact you shortly.');
+    setShowContactModal(false);
+    setContactFormData({
+      fullName: '',
+      contactNumber: '',
+      email: '',
+      gender: '',
+      dob: '',
+      city: '',
+      state: '',
+      qualification: ''
+    });
   };
 
   // Extract unique states from available universities

@@ -34,9 +34,7 @@ const UniversityMatcherResults = () => {
     qualification: ''
   });
 
-  // Comparison state
-  const [selectedForComparison, setSelectedForComparison] = useState([]);
-  const [showContactButtons, setShowContactButtons] = useState(false);
+
 
   useEffect(() => {
     // Load form data from localStorage
@@ -124,42 +122,6 @@ const UniversityMatcherResults = () => {
       state: '',
       qualification: ''
     });
-  };
-
-  // Handle university selection for comparison
-  const toggleUniversitySelection = (universityName) => {
-    setSelectedForComparison(prev => {
-      if (prev.includes(universityName)) {
-        // Deselect
-        return prev.filter(name => name !== universityName);
-      } else {
-        // Select (max 5)
-        if (prev.length < 5) {
-          return [...prev, universityName];
-        } else {
-          alert('You can select maximum 5 universities to compare');
-          return prev;
-        }
-      }
-    });
-    // Hide contact buttons when selection changes
-    setShowContactButtons(false);
-  };
-
-  // Handle Compare Universities click
-  const handleCompareUniversities = () => {
-    if (selectedForComparison.length === 0) {
-      alert('Please select at least one university to compare');
-      return;
-    }
-    setShowContactButtons(true);
-    // Scroll to first selected university
-    setTimeout(() => {
-      const firstSelectedCard = document.querySelector(`.${styles.universityCard}[data-selected="true"]`);
-      if (firstSelectedCard) {
-        firstSelectedCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }
-    }, 100);
   };
 
   const loadUniversities = async (data) => {
@@ -737,39 +699,12 @@ const UniversityMatcherResults = () => {
 
             {/* Universities List */}
             <div className={styles.universitiesList}>
-              {/* Floating Compare Button */}
-              {selectedForComparison.length > 0 && (
-                <div className={styles.compareFloatingButton}>
-                  <button 
-                    className={styles.compareButton}
-                    onClick={handleCompareUniversities}
-                  >
-                    Compare {selectedForComparison.length} Universit{selectedForComparison.length === 1 ? 'y' : 'ies'}
-                  </button>
-                </div>
-              )}
-
               {filteredUniversities.length > 0 ? (
                 filteredUniversities.map((university, index) => (
                   <div 
                     key={index} 
                     className={styles.universityCard}
-                    data-selected={selectedForComparison.includes(university.name)}
                   >
-                    {/* Selection Checkbox - Top Left */}
-                    <div className={styles.checkboxWrapper}>
-                      <input
-                        type="checkbox"
-                        id={`select-${index}`}
-                        className={styles.universityCheckbox}
-                        checked={selectedForComparison.includes(university.name)}
-                        onChange={() => toggleUniversitySelection(university.name)}
-                      />
-                      <label htmlFor={`select-${index}`} className={styles.checkboxLabel}>
-                        Select
-                      </label>
-                    </div>
-
                     {/* Match Circle - Top Right with CSS variable for progress */}
                     <div 
                       className={styles.matchCircle}
@@ -794,21 +729,18 @@ const UniversityMatcherResults = () => {
                         )}
                       </div>
                       
-                      {/* CONTACT Button - ONLY show when selected */}
-                      {selectedForComparison.includes(university.name) && (
-                        <button 
-                          className={styles.contactButton}
-                          onClick={() => setShowContactModal(true)}
-                        >
-                          <span className={styles.contactText}>CONTACT US</span>
-                          <span className={styles.contactTextAlt}>KNOW MORE</span>
-                        </button>
-                      )}
+                      {/* CONTACT Button - Always show */}
+                      <button 
+                        className={styles.contactButton}
+                        onClick={() => setShowContactModal(true)}
+                      >
+                        <span className={styles.contactText}>CONTACT US</span>
+                        <span className={styles.contactTextAlt}>KNOW MORE</span>
+                      </button>
                     </div>
 
-                    {/* Right Side: Partitioned Details - ONLY SHOW AFTER COMPARE AND IF SELECTED */}
-                    {showContactButtons && selectedForComparison.includes(university.name) && (
-                      <div className={styles.rightSection}>
+                    {/* Right Side: Partitioned Details - Always show */}
+                    <div className={styles.rightSection}>
                         {/* University Name on Top */}
                         <h3 className={styles.universityNameTop}>{university.name}</h3>
                         
@@ -927,7 +859,6 @@ const UniversityMatcherResults = () => {
 
                       </div>
                       </div>
-                    )}
                   </div>
                 ))
               ) : (
