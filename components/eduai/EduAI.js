@@ -21,7 +21,7 @@ const EduAI = () => {
   });
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [videoExpanded, setVideoExpanded] = useState(false);
-  const [isMuted, setIsMuted] = useState(false); // Voice control
+  const [isMuted, setIsMuted] = useState(true); // Voice control - START MUTED
   const [videoVisible, setVideoVisible] = useState(true); // Video widget visibility - open by default
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);

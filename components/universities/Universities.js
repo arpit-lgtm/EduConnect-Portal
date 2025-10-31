@@ -128,31 +128,86 @@ export default function Universities() {
 
         // Transform database format to component format
         const transformedUniversities = combinedDatabase.map((uni, index) => {
-          // Get the logo filename using the universityLogoMap
-          const logoFilename = getUniversityLogo(uni.name);
+          // Get the logo path using the universityLogoMap (already returns full path)
+          const logoPath = getUniversityLogo(uni.name);
           
           // Log universities with potential logo issues
-          if (!logoFilename || logoFilename === 'default-university-logo.png') {
+          if (!logoPath || logoPath.includes('default-university-logo')) {
             console.warn(`No logo mapping found for: ${uni.name}`);
           }
           
-          // Special handling for Amity University - link to our custom detail page
+          // Special handling for universities with detail pages - link to custom pages
           let linkUrl = uni.website || '#';
-          if (uni.name && (
-            uni.name.toLowerCase().includes('amity university') || 
-            uni.id === 'amity-university-distance-education'
-          )) {
+          const uniName = uni.name ? uni.name.toLowerCase() : '';
+          const uniId = uni.id || '';
+          
+          if (uniName.includes('amity university') || uniId === 'amity-university-distance-education') {
             linkUrl = '/university/amity-university';
+          } else if (uniName.includes('manipal') || uniId === 'manipal-university-online') {
+            linkUrl = '/university/manipal-university';
+          } else if (uniName.includes('nmims') || uniId === 'nmims-online') {
+            linkUrl = '/university/nmims';
+          } else if ((uniName.includes('d.y. patil') || uniName.includes('dy patil')) && uniName.includes('navi mumbai')) {
+            linkUrl = '/university/dy-patil-navi-mumbai';
+          } else if (uniId === 'dy-patil-university-online' || uniId.includes('dy-patil-vidyapeeth')) {
+            linkUrl = '/university/dy-patil-pune';
+          } else if ((uniName.includes('d.y. patil') || uniName.includes('dy patil')) && (uniName.includes('pune') || uniName.includes('vidyapeeth'))) {
+            linkUrl = '/university/dy-patil-pune';
+          } else if (uniName.includes('vivekananda global') || uniId === 'vivekananda-global-university-online') {
+            linkUrl = '/university/vivekananda-global';
+          } else if (uniName.includes('mit') && uniName.includes('pune')) {
+            linkUrl = '/university/mit-university';
+          } else if (uniName.includes('mit university')) {
+            linkUrl = '/university/mit-university';
+          }
+          
+          // Get accurate course count from database
+          let courseCount = '0 Courses';
+          if (uni.courses) {
+            if (Array.isArray(uni.courses)) {
+              courseCount = `${uni.courses.length} Courses`;
+            } else if (typeof uni.courses === 'object') {
+              const numCourses = Object.keys(uni.courses).length;
+              courseCount = `${numCourses} Course${numCourses !== 1 ? 's' : ''}`;
+            }
           }
           
           return {
             id: index + 1,
             name: uni.name,
-            logo: `/images/universities/${logoFilename}`,
-            courses: uni.courses ? `${uni.courses.length} Courses` : '0 Courses',
+            logo: logoPath, // getUniversityLogo already returns full path
+            courses: courseCount,
             link: linkUrl
           };
         });
+
+        // Priority universities to display first
+        const priorityUniversityNames = [
+          'Amity University',
+          'Manipal',
+          'NMIMS',
+          'D.Y. Patil',
+          'Vivekananda Global',
+          'MIT'
+        ];
+
+        // Sort universities to show priority ones first
+        const sortedUniversities = transformedUniversities.sort((a, b) => {
+          const aIsPriority = priorityUniversityNames.some(name => 
+            a.name.toLowerCase().includes(name.toLowerCase())
+          );
+          const bIsPriority = priorityUniversityNames.some(name => 
+            b.name.toLowerCase().includes(name.toLowerCase())
+          );
+          
+          if (aIsPriority && !bIsPriority) return -1;
+          if (!aIsPriority && bIsPriority) return 1;
+          return 0;
+        });
+
+        setUniversities(sortedUniversities);
+        setLoading(false);
+        console.log(`Loaded ${sortedUniversities.length} universities from database`);
 
         setUniversities(transformedUniversities);
         setLoading(false);

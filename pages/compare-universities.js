@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import styles from '../styles/CompareUniversities.module.css';
-import universityLogoMap from '../utils/universityLogoMap';
+import { getUniversityLogo } from '../utils/universityLogoMap';
 
 export default function CompareUniversities() {
   const router = useRouter();
@@ -265,52 +265,7 @@ export default function CompareUniversities() {
     { key: 'semesterFees', label: 'Semester Fees' }
   ];
 
-  const getUniversityLogo = (name) => {
-    try {
-      // Check exact mapping first
-      if (universityLogoMap[name]) {
-        return `/images/universities/${universityLogoMap[name]}`;
-      }
-      
-      // Try to find partial match (case-insensitive)
-      const nameLower = name.toLowerCase();
-      for (const [dbName, logoFile] of Object.entries(universityLogoMap)) {
-        if (dbName.toLowerCase() === nameLower) {
-          return `/images/universities/${logoFile}`;
-        }
-      }
-      
-      // Try fuzzy match - extract key words and compare
-      const skipWords = ['university', 'online', 'distance', 'education', 'the', 'of'];
-      const nameWords = name.toLowerCase()
-        .replace(/[()]/g, '')
-        .split(/\s+/)
-        .filter(w => w.length > 2 && !skipWords.includes(w));
-      
-      for (const [dbName, logoFile] of Object.entries(universityLogoMap)) {
-        const dbWords = dbName.toLowerCase()
-          .replace(/[()]/g, '')
-          .split(/\s+/)
-          .filter(w => w.length > 2 && !skipWords.includes(w));
-        
-        // Check if at least 60% of words match
-        const matches = nameWords.filter(nw => 
-          dbWords.some(dw => dw.includes(nw) || nw.includes(dw))
-        );
-        
-        if (matches.length >= Math.ceil(nameWords.length * 0.6)) {
-          console.log(`📸 Logo match found: "${name}" → "${dbName}" → ${logoFile}`);
-          return `/images/universities/${logoFile}`;
-        }
-      }
-      
-      console.warn(`⚠️ No logo found for: ${name}`);
-      return null;
-    } catch (error) {
-      console.error('Error getting university logo:', error);
-      return null;
-    }
-  };
+
 
   const getInitials = (name) => {
     return name

@@ -47,9 +47,10 @@ const universityLogoMap = {
   'IISc Bangalore': 'Iisc Bangalore.png',
 
   // DY Patil - Multiple variations (Mumbai vs Pune)
-  'D.Y. Patil University Navi Mumbai (Online)': 'DY Patil University Mumbai.png',
+  'D.Y. Patil University Navi Mumbai (Online)': 'DY Patil University Navi Mumbai.png',
   'D.Y. Patil University (Online)': 'DY Patil Vidyapeeth Pune.png', // This one is in Pune
   'DY Patil University': 'DY Patil University Mumbai.png',
+  'DY Patil University Navi Mumbai': 'DY Patil University Navi Mumbai.png',
   'D.Y. Patil Vidyapeeth': 'DY Patil Vidyapeeth Pune.png',
   'DY Patil Vidyapeeth': 'DY Patil Vidyapeeth Pune.png',
   'DY Patil University Pune': 'DY Patil Vidyapeeth Pune.png',
@@ -453,6 +454,7 @@ const universityLogoMap = {
   'MICA': 'MICA.png',
   'Michigan State University': 'Michigan State University.png',
   'MIT University': 'MIT University.png',
+  'MIT School of Distance Education Pune': 'MIT University.png',
   'Mody University': 'Mody University.png',
   'Paris School of Business': 'Paris School of Business.png',
   'Presidency University': 'Presidency University.png',
@@ -471,17 +473,21 @@ const universityLogoMap = {
 };
 
 // Helper function to get university logo with fuzzy matching
+// Returns the FULL PATH to the logo image
 function getUniversityLogo(universityName) {
+  let logoFilename = null;
+
   // Direct match
   if (universityLogoMap[universityName]) {
-    return universityLogoMap[universityName];
+    logoFilename = universityLogoMap[universityName];
+    return `/images/universities/${logoFilename}`;
   }
 
   // Try to find partial match (case-insensitive)
   const nameToMatch = universityName.toLowerCase();
   for (const [key, value] of Object.entries(universityLogoMap)) {
     if (key.toLowerCase() === nameToMatch) {
-      return value;
+      return `/images/universities/${value}`;
     }
   }
 
@@ -496,14 +502,14 @@ function getUniversityLogo(universityName) {
 
   // Try cleaned name in the map
   if (universityLogoMap[cleanName]) {
-    return universityLogoMap[cleanName];
+    return `/images/universities/${universityLogoMap[cleanName]}`;
   }
 
   // Try partial match with cleaned name
   const cleanNameLower = cleanName.toLowerCase();
   for (const [key, value] of Object.entries(universityLogoMap)) {
     if (key.toLowerCase() === cleanNameLower) {
-      return value;
+      return `/images/universities/${value}`;
     }
   }
 
@@ -513,12 +519,12 @@ function getUniversityLogo(universityName) {
   for (const [key, value] of Object.entries(universityLogoMap)) {
     const keyNormalized = normalizeForMatch(key);
     if (keyNormalized === cleanNormalized || keyNormalized.includes(cleanNormalized) || cleanNormalized.includes(keyNormalized)) {
-      return value;
+      return `/images/universities/${value}`;
     }
   }
 
   // Fallback to cleaned filename
-  return `${cleanName}.png`;
+  return `/images/universities/${cleanName}.png`;
 }
 
 module.exports = universityLogoMap;

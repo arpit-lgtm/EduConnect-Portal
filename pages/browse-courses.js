@@ -567,19 +567,33 @@ export default function BrowseCourses() {
                                         const logoFile = universityLogoMap[uni.name];
                                         if (!logoFile) {
                                           console.warn(`Missing logo for university: "${uni.name}"`);
-                                          return null; // Don't render if no logo found
+                                          // Show a placeholder if logo not found
+                                          return (
+                                            <div key={idx} className={styles.logoPlaceholder} title={uni.name}>
+                                              {uni.name?.substring(0, 3).toUpperCase()}
+                                            </div>
+                                          );
                                         }
                                         return (
-                                          <img key={idx} src={`/images/universities/${logoFile}`} alt={uni.name} title={uni.name} />
+                                          <img 
+                                            key={idx} 
+                                            src={`/images/universities/${logoFile}`} 
+                                            alt={uni.name} 
+                                            title={uni.name}
+                                            onError={(e) => {
+                                              console.error(`Failed to load logo: ${logoFile}`);
+                                              e.target.style.display = 'none';
+                                            }}
+                                          />
                                         );
-                                      }).filter(Boolean)
+                                      })
                                     ) : (
-                                      // fallback to 4 random logos if no matches found yet
+                                      // fallback to 4 popular university logos
                                       <>
-                                        <img src="/images/universities/IIM Bangalore.png" alt="IIM Bangalore" />
-                                        <img src="/images/universities/IIT Bombay.png" alt="IIT Bombay" />
-                                        <img src="/images/universities/Amity University.png" alt="Amity University" />
-                                        <img src="/images/universities/Symbiosis SCDL.png" alt="Symbiosis" />
+                                        <img src="/images/universities/Amity University.png" alt="Amity University" title="Amity University" />
+                                        <img src="/images/universities/Manipal University Jaipur.png" alt="Manipal University" title="Manipal University" />
+                                        <img src="/images/universities/Chandigarh University.png" alt="Chandigarh University" title="Chandigarh University" />
+                                        <img src="/images/universities/DY Patil University Navi Mumbai.png" alt="DY Patil University" title="DY Patil University" />
                                       </>
                                     )}
                                   </div>
@@ -661,19 +675,33 @@ export default function BrowseCourses() {
                                         const logoFile = universityLogoMap[uni.name];
                                         if (!logoFile) {
                                           console.warn(`Missing logo for university: "${uni.name}"`);
-                                          return null; // Don't render if no logo found
+                                          // Show a placeholder if logo not found
+                                          return (
+                                            <div key={idx} className={styles.logoPlaceholder} title={uni.name}>
+                                              {uni.name?.substring(0, 3).toUpperCase()}
+                                            </div>
+                                          );
                                         }
                                         return (
-                                          <img key={idx} src={`/images/universities/${logoFile}`} alt={uni.name} title={uni.name} />
+                                          <img 
+                                            key={idx} 
+                                            src={`/images/universities/${logoFile}`} 
+                                            alt={uni.name} 
+                                            title={uni.name}
+                                            onError={(e) => {
+                                              console.error(`Failed to load logo: ${logoFile}`);
+                                              e.target.style.display = 'none';
+                                            }}
+                                          />
                                         );
-                                      }).filter(Boolean)
+                                      })
                                     ) : (
-                                      // fallback to 4 random logos if no matches found yet
+                                      // fallback to 4 popular university logos
                                       <>
-                                        <img src="/images/universities/IIM Bangalore.png" alt="IIM Bangalore" />
-                                        <img src="/images/universities/IIT Bombay.png" alt="IIT Bombay" />
-                                        <img src="/images/universities/Amity University.png" alt="Amity University" />
-                                        <img src="/images/universities/Symbiosis SCDL.png" alt="Symbiosis" />
+                                        <img src="/images/universities/Amity University.png" alt="Amity University" title="Amity University" />
+                                        <img src="/images/universities/Manipal University Jaipur.png" alt="Manipal University" title="Manipal University" />
+                                        <img src="/images/universities/Chandigarh University.png" alt="Chandigarh University" title="Chandigarh University" />
+                                        <img src="/images/universities/DY Patil University Navi Mumbai.png" alt="DY Patil University" title="DY Patil University" />
                                       </>
                                     )}
                                   </div>

@@ -4,7 +4,7 @@ import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import styles from '../styles/CourseDetails.module.css';
 import coursesData from '../lib/courseData';
-import universityLogoMap from '../utils/universityLogoMap';
+import { getUniversityLogo } from '../utils/universityLogoMap';
 
 export default function CourseDetails() {
   const router = useRouter();
@@ -13,6 +13,17 @@ export default function CourseDetails() {
   const [selectedForCompare, setSelectedForCompare] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentCourseInfo, setCurrentCourseInfo] = useState(null);
+  const [showContactModal, setShowContactModal] = useState(false);
+  const [contactFormData, setContactFormData] = useState({
+    fullName: '',
+    contactNumber: '',
+    email: '',
+    gender: '',
+    dob: '',
+    city: '',
+    state: '',
+    qualification: ''
+  });
 
   useEffect(() => {
     async function fetchUniversities() {
@@ -394,50 +405,31 @@ export default function CourseDetails() {
     window.open('/compare-universities', '_blank');
   };
 
-  // Get university logo path
-  const getUniversityLogo = (universityName) => {
-    try {
-      // Check exact mapping first
-      if (universityLogoMap[universityName]) {
-        return `/images/universities/${universityLogoMap[universityName]}`;
-      }
-      
-      // Try to find partial match (case-insensitive)
-      const nameLower = universityName.toLowerCase();
-      for (const [dbName, logoFile] of Object.entries(universityLogoMap)) {
-        if (dbName.toLowerCase() === nameLower) {
-          return `/images/universities/${logoFile}`;
-        }
-      }
-      
-      // Try fuzzy match - extract key words and compare
-      const skipWords = ['university', 'online', 'distance', 'education', 'the', 'of'];
-      const nameWords = universityName.toLowerCase()
-        .replace(/[()]/g, '')
-        .split(/\s+/)
-        .filter(w => w.length > 2 && !skipWords.includes(w));
-      
-      for (const [dbName, logoFile] of Object.entries(universityLogoMap)) {
-        const dbWords = dbName.toLowerCase()
-          .replace(/[()]/g, '')
-          .split(/\s+/)
-          .filter(w => w.length > 2 && !skipWords.includes(w));
-        
-        // Check if at least 60% of words match
-        const matches = nameWords.filter(nw => 
-          dbWords.some(dw => dw.includes(nw) || nw.includes(dw))
-        );
-        
-        if (matches.length >= Math.ceil(nameWords.length * 0.6)) {
-          return `/images/universities/${logoFile}`;
-        }
-      }
-      
-      return null;
-    } catch (error) {
-      console.error('Error getting university logo:', error);
-      return null;
-    }
+  // Contact form handlers
+  const handleContactFormChange = (e) => {
+    const { name, value } = e.target;
+    setContactFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleContactFormSubmit = (e) => {
+    e.preventDefault();
+    console.log('Contact form submitted:', contactFormData);
+    // Add your form submission logic here (e.g., API call)
+    alert('Thank you! Our expert counsellors will contact you shortly.');
+    setShowContactModal(false);
+    setContactFormData({
+      fullName: '',
+      contactNumber: '',
+      email: '',
+      gender: '',
+      dob: '',
+      city: '',
+      state: '',
+      qualification: ''
+    });
   };
 
   const getInitials = (name) => {
@@ -536,20 +528,6 @@ export default function CourseDetails() {
                                 {getInitials(uni.name)}
                               </div>
                             )}
-                          </div>
-
-                          {/* CONTACT Button with Flashing Text - Below Logo */}
-                          <div className={styles.contactButtonContainer}>
-                            <button 
-                              className={styles.contactButton}
-                              onClick={() => {
-                                // Add contact action here
-                                window.location.href = '/contact';
-                              }}
-                            >
-                              <span className={styles.contactText}>CONTACT US</span>
-                              <span className={styles.contactTextAlt}>KNOW MORE</span>
-                            </button>
                           </div>
                         </div>
 
@@ -759,6 +737,141 @@ export default function CourseDetails() {
         </div>
       </main>
       <Footer />
+
+      {/* Contact Modal */}
+      {showContactModal && (
+        <div className={styles.modalOverlay} onClick={() => setShowContactModal(false)}>
+          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+            <button className={styles.modalClose} onClick={() => setShowContactModal(false)}>
+              ×
+            </button>
+            <div className={styles.modalHeader}>
+              <h2>Consult with our expert counsellors</h2>
+              <p>Fill in your details and we'll get back to you shortly</p>
+            </div>
+            <form onSubmit={handleContactFormSubmit} className={styles.contactForm}>
+              <div className={styles.formRow}>
+                <div className={styles.formGroup}>
+                  <label htmlFor="fullName">Full Name *</label>
+                  <input
+                    type="text"
+                    id="fullName"
+                    name="fullName"
+                    value={contactFormData.fullName}
+                    onChange={handleContactFormChange}
+                    required
+                    placeholder="Enter your full name"
+                  />
+                </div>
+                <div className={styles.formGroup}>
+                  <label htmlFor="contactNumber">Contact Number *</label>
+                  <input
+                    type="tel"
+                    id="contactNumber"
+                    name="contactNumber"
+                    value={contactFormData.contactNumber}
+                    onChange={handleContactFormChange}
+                    required
+                    placeholder="Enter your contact number"
+                    pattern="[0-9]{10}"
+                  />
+                </div>
+              </div>
+
+              <div className={styles.formRow}>
+                <div className={styles.formGroup}>
+                  <label htmlFor="email">Email Address *</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={contactFormData.email}
+                    onChange={handleContactFormChange}
+                    required
+                    placeholder="Enter your email"
+                  />
+                </div>
+                <div className={styles.formGroup}>
+                  <label htmlFor="gender">Gender</label>
+                  <select
+                    id="gender"
+                    name="gender"
+                    value={contactFormData.gender}
+                    onChange={handleContactFormChange}
+                  >
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className={styles.formRow}>
+                <div className={styles.formGroup}>
+                  <label htmlFor="dob">Date of Birth</label>
+                  <input
+                    type="date"
+                    id="dob"
+                    name="dob"
+                    value={contactFormData.dob}
+                    onChange={handleContactFormChange}
+                  />
+                </div>
+                <div className={styles.formGroup}>
+                  <label htmlFor="qualification">Current Qualification *</label>
+                  <select
+                    id="qualification"
+                    name="qualification"
+                    value={contactFormData.qualification}
+                    onChange={handleContactFormChange}
+                    required
+                  >
+                    <option value="">Select Qualification</option>
+                    <option value="10th">10th Pass</option>
+                    <option value="12th">12th Pass</option>
+                    <option value="diploma">Diploma</option>
+                    <option value="bachelors">Bachelor's Degree</option>
+                    <option value="masters">Master's Degree</option>
+                    <option value="phd">PhD</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className={styles.formRow}>
+                <div className={styles.formGroup}>
+                  <label htmlFor="city">City *</label>
+                  <input
+                    type="text"
+                    id="city"
+                    name="city"
+                    value={contactFormData.city}
+                    onChange={handleContactFormChange}
+                    required
+                    placeholder="Enter your city"
+                  />
+                </div>
+                <div className={styles.formGroup}>
+                  <label htmlFor="state">State *</label>
+                  <input
+                    type="text"
+                    id="state"
+                    name="state"
+                    value={contactFormData.state}
+                    onChange={handleContactFormChange}
+                    required
+                    placeholder="Enter your state"
+                  />
+                </div>
+              </div>
+
+              <button type="submit" className={styles.submitButton}>
+                Submit Details
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </>
   );
 }

@@ -331,6 +331,47 @@ if (typeof universityDatabase === 'undefined') {
           "Journalism & Mass Communication",
           "Sociology"
         ]
+      },
+      "PhD": {
+        "specializations": [
+          "Management",
+          "Computer Science",
+          "Commerce",
+          "Arts",
+          "Science"
+        ]
+      },
+      "Executive MBA": {
+        "specializations": [
+          "Finance",
+          "Marketing",
+          "HR",
+          "Operations",
+          "Business Analytics",
+          "Digital Marketing",
+          "Healthcare Management",
+          "IT Management"
+        ]
+      },
+      "BBA+MBA Integrated": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "BCA+MCA Integrated": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com+MBA Integrated": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Com Honours": {
+        "specializations": [
+          "General"
+        ]
       }
     },
     "fees": {
@@ -339,11 +380,17 @@ if (typeof universityDatabase === 'undefined') {
       "BBA": 165000,
       "BCA": 150000,
       "M.Com": 120000,
-      "M.Sc": 45000,
+      "M.Sc": 250000,
       "B.Sc": 35000,
       "B.Com": 99000,
       "MA": 170000,
-      "BA": 99000
+      "BA": 99000,
+      "PhD": 300000,
+      "Executive MBA": 475000,
+      "BBA+MBA Integrated": 345800,
+      "BCA+MCA Integrated": 304000,
+      "B.Com+MBA Integrated": 283100,
+      "B.Com Honours": 165000
     },
     "specializations": [
       "Management",
@@ -352,7 +399,7 @@ if (typeof universityDatabase === 'undefined') {
       "Arts",
       "Science"
     ],
-    "nirfRanking": 30,
+    "nirfRanking": 32,
     "placements": {
       "averagePackage": 250000,
       "highestPackage": 750000,
@@ -2278,72 +2325,77 @@ if (typeof universityDatabase === 'undefined') {
     "accreditation": "NAAC A",
     "establishedYear": 2003,
     "courses": {
-      "MBA": {
+      "BBA": {
         "specializations": [
-          "General",
           "Finance",
           "Marketing",
           "HR",
-          "Operations"
+          "Operations",
+          "International Business",
+          "Entrepreneurship",
+          "Digital Marketing",
+          "Retail Management",
+          "Event Management"
+        ]
+      },
+      "MBA": {
+        "specializations": [
+          "Finance",
+          "Marketing",
+          "HR",
+          "Operations",
+          "International Business",
+          "Business Analytics",
+          "Digital Marketing",
+          "Healthcare Management",
+          "IT Management",
+          "Project Management",
+          "Supply Chain",
+          "Banking & Finance",
+          "Retail Management",
+          "Entrepreneurship",
+          "Tourism & Hospitality"
         ]
       },
       "MCA": {
         "specializations": [
-          "General"
-        ]
-      },
-      "M.Sc": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "BBA": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "BCA": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "B.Sc": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "M.Com": {
-        "specializations": [
-          "General"
+          "General",
+          "Data Science",
+          "Cyber Security"
         ]
       },
       "B.Com": {
         "specializations": [
-          "General"
+          "General",
+          "Accounting & Finance",
+          "Banking & Finance",
+          "International Accounting",
+          "Business Analytics"
         ]
       },
-      "MA": {
+      "M.Com": {
         "specializations": [
-          "General"
+          "Accounting",
+          "Finance",
+          "Business Management"
         ]
       },
-      "BA": {
+      "BCA": {
         "specializations": [
-          "General"
+          "General",
+          "Data Science",
+          "Cloud Computing",
+          "Cyber Security"
         ]
       }
     },
     "fees": {
-      "MBA": 120000,
-      "MCA": 105000,
-      "BBA": 65000,
-      "BCA": 75000,
-      "M.Com": 45000,
-      "M.Sc": 45000,
-      "B.Sc": 35000,
-      "B.Com": 35000,
-      "MA": 30000,
-      "BA": 25000
+      "BBA": 111000,
+      "MBA": 180000,
+      "MCA": 135000,
+      "B.Com": 95000,
+      "M.Com": 110000,
+      "BCA": 105000
     },
     "specializations": [
       "Management",
@@ -2365,9 +2417,9 @@ if (typeof universityDatabase === 'undefined') {
   },
   {
     "id": "dy-patil-university-online",
-    "name": "D.Y. Patil University (Online)",
+    "name": "Dr. D.Y. Patil Vidyapeeth Pune (Online)",
     "icon": "??",
-    "type": "Private University",
+    "type": "Deemed University",
     "location": "Pune, Maharashtra",
     "mode": [
       "Online"
@@ -2375,96 +2427,118 @@ if (typeof universityDatabase === 'undefined') {
     "approvals": [
       "UGC-DEB",
       "AICTE",
-      "NAAC"
+      "NAAC A++",
+      "AIU",
+      "ISO",
+      "WES"
     ],
-    "rating": 4.1,
-    "reviews": 325,
-    "accreditation": "NAAC A+",
-    "establishedYear": 2002,
+    "rating": 4.7,
+    "reviews": 738,
+    "accreditation": "NAAC A++ (CGPA 3.64)",
+    "establishedYear": 2003,
     "courses": {
       "MBA": {
         "specializations": [
-          "General",
+          "General Management",
           "Finance",
           "Marketing",
           "HR",
-          "Operations"
+          "Operations",
+          "Healthcare Management",
+          "Digital Marketing",
+          "Business Analytics",
+          "International Business",
+          "Supply Chain Management",
+          "Hospitality Management",
+          "Retail Management",
+          "Financial Markets",
+          "Banking & Finance",
+          "Investment Management",
+          "Entrepreneurship",
+          "Project Management"
         ]
       },
-      "MCA": {
+      "MBA Dual": {
         "specializations": [
-          "General"
-        ]
-      },
-      "M.Sc": {
-        "specializations": [
-          "General"
+          "Finance + Marketing",
+          "HR + Marketing",
+          "Operations + Finance"
         ]
       },
       "BBA": {
         "specializations": [
-          "General"
+          "Finance",
+          "Marketing",
+          "HR",
+          "International Business",
+          "Digital Marketing",
+          "Business Analytics",
+          "Entrepreneurship",
+          "Retail Management",
+          "Banking & Finance",
+          "Operations Management"
         ]
       },
-      "BCA": {
+      "MCA": {
         "specializations": [
-          "General"
+          "Software Development",
+          "Data Science",
+          "Cloud Computing"
         ]
       },
-      "B.Sc": {
+      "MBA WX": {
         "specializations": [
-          "General"
+          "General Management",
+          "Healthcare Management",
+          "Digital Marketing",
+          "Business Analytics",
+          "Operations Management"
         ]
       },
-      "M.Com": {
+      "Certificate Programs": {
         "specializations": [
-          "General"
-        ]
-      },
-      "B.Com": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "MA": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "BA": {
-        "specializations": [
-          "General"
+          "Digital Marketing",
+          "Healthcare Management"
         ]
       }
     },
     "fees": {
-      "MBA": 125000,
-      "MCA": 110000,
-      "BBA": 70000,
-      "BCA": 80000,
-      "M.Com": 50000,
-      "M.Sc": 45000,
-      "B.Sc": 35000,
-      "B.Com": 40000,
-      "MA": 35000,
-      "BA": 30000
+      "MBA": 189400,
+      "MBA Dual": 189400,
+      "BBA": 145400,
+      "MCA": 140000,
+      "MBA WX": 250000,
+      "Certificate Programs": 28000
     },
     "specializations": [
       "Management",
       "Technology",
-      "Commerce",
-      "Arts",
-      "Science"
+      "Healthcare",
+      "Digital Marketing"
     ],
-    "nirfRanking": null,
+    "nirfRanking": "44 (University Category)",
     "placements": {
-      "averagePackage": 420000,
-      "highestPackage": 1350000,
-      "offered": true
+      "averagePackage": 460000,
+      "highestPackage": 1500000,
+      "offered": true,
+      "partners": [
+        "American Express",
+        "HDFC Bank",
+        "Bajaj",
+        "Airtel",
+        "Apollo",
+        "BSNL",
+        "Capgemini",
+        "Cognizant",
+        "EY",
+        "L&T",
+        "Microsoft",
+        "Nestle"
+      ]
     },
-    "studentsRating": "4.0/5",
+    "studentsRating": "4.7/5",
     "onlineClasses": true,
-    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "duration": "PG:2 years / UG:3 years / Certificate:6 months",
     "eligibility": "Graduation with 50% / 10+2 with 45%"
   },
   {
@@ -9533,22 +9607,12 @@ if (typeof universityDatabase === 'undefined') {
           "General"
         ]
       },
-      "M.Sc": {
-        "specializations": [
-          "General"
-        ]
-      },
       "BBA": {
         "specializations": [
           "General"
         ]
       },
       "BCA": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "B.Sc": {
         "specializations": [
           "General"
         ]
@@ -9572,6 +9636,22 @@ if (typeof universityDatabase === 'undefined') {
         "specializations": [
           "General"
         ]
+      },
+      "MBA Dual": {
+        "specializations": [
+          "General",
+          "Dual Specialization"
+        ]
+      },
+      "Distance MBA": {
+        "specializations": [
+          "General"
+        ]
+      },
+      "B.Tech": {
+        "specializations": [
+          "Lateral Entry"
+        ]
       }
     },
     "specializations": [
@@ -9582,14 +9662,17 @@ if (typeof universityDatabase === 'undefined') {
       "Science"
     ],
     "fees": {
-      "MBA": 250000,
-      "MCA": 185000,
-      "BBA": 175000,
-      "BCA": 165000,
-      "B.Com": 110000,
-      "M.Com": 135000,
-      "MA": 125000,
-      "BA": 105000
+      "MBA": 175000,
+      "MCA": 158000,
+      "BBA": 135000,
+      "BCA": 135000,
+      "B.Com": 99000,
+      "M.Com": 108000,
+      "MA": 140000,
+      "BA": 75000,
+      "MBA Dual": 175000,
+      "Distance MBA": 175000,
+      "B.Tech": 562000
     },
     "placements": {
       "averagePackage": 550000,
@@ -9597,6 +9680,138 @@ if (typeof universityDatabase === 'undefined') {
       "offered": true
     },
     "studentsRating": "4.0/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "mit-school-of-distance-education-pune",
+    "name": "MIT School of Distance Education Pune",
+    "icon": "??",
+    "type": "Private University",
+    "location": "Pune, Maharashtra",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC-DEB",
+      "AICTE",
+      "NAAC"
+    ],
+    "rating": 3.3,
+    "reviews": 458,
+    "accreditation": "NAAC A",
+    "establishedYear": 2008,
+    "courses": {
+      "MBA": {
+        "specializations": [
+          "Marketing",
+          "Finance",
+          "HR",
+          "Operations",
+          "Information Technology",
+          "Insurance and Risk",
+          "Logistics and Supply Chain",
+          "Retail",
+          "Business Analytics",
+          "Digital Marketing"
+        ]
+      },
+      "Executive MBA": {
+        "specializations": [
+          "Finance",
+          "Marketing",
+          "HR",
+          "Operations",
+          "IT Management",
+          "Healthcare Management"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "Information Technology",
+          "Data Science",
+          "Cyber Security",
+          "AI & ML",
+          "Cloud Computing"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "Finance",
+          "Marketing",
+          "HR",
+          "Operations",
+          "Digital Marketing",
+          "Event Management",
+          "Retail Management",
+          "Hospitality Management"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General",
+          "Data Science",
+          "Cloud Computing",
+          "Cyber Security",
+          "AI & ML",
+          "Web Development"
+        ]
+      },
+      "M.Tech": {
+        "specializations": [
+          "Computer Science",
+          "Data Science",
+          "Cyber Security",
+          "AI & ML"
+        ]
+      },
+      "B.Tech": {
+        "specializations": [
+          "Computer Science",
+          "Information Technology",
+          "Electronics",
+          "Mechanical",
+          "Civil"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "IT",
+          "Data Science",
+          "AI",
+          "Cyber Security",
+          "Cloud Computing",
+          "Analytics"
+        ]
+      }
+    },
+    "fees": {
+      "MBA": 280000,
+      "Executive MBA": 320000,
+      "MCA": 210000,
+      "BBA": 165000,
+      "BCA": 175000,
+      "M.Tech": 250000,
+      "B.Tech": 200000,
+      "M.Sc": 180000
+    },
+    "specializations": [
+      "Management",
+      "Technology",
+      "Commerce",
+      "Finance",
+      "HR",
+      "Operations"
+    ],
+    "nirfRanking": null,
+    "placements": {
+      "averagePackage": 750000,
+      "highestPackage": 3500000,
+      "offered": true
+    },
+    "studentsRating": "3.3/5",
     "onlineClasses": true,
     "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
     "eligibility": "Graduation with 50% / 10+2 with 45%"
@@ -10311,52 +10526,30 @@ if (typeof universityDatabase === 'undefined') {
     ],
     "approvals": [
       "UGC-DEB",
-      "AICTE",
-      "NAAC",
-      "NBA"
+      "NAAC A+",
+      "UGC Autonomy Category I"
     ],
-    "rating": 4.6,
-    "reviews": 640,
-    "accreditation": "NAAC A++",
+    "rating": 4.7,
+    "reviews": 485,
+    "accreditation": "NAAC A+",
     "establishedYear": 1981,
     "courses": {
       "MBA": {
         "specializations": [
-          "General",
           "Finance",
           "Marketing",
           "HR",
-          "Operations"
-        ]
-      },
-      "MCA": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "M.Sc": {
-        "specializations": [
-          "General"
+          "Operations",
+          "Data Science",
+          "Business Analytics",
+          "Digital Marketing"
         ]
       },
       "BBA": {
         "specializations": [
-          "General"
-        ]
-      },
-      "BCA": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "B.Sc": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "M.Com": {
-        "specializations": [
-          "General"
+          "General",
+          "Finance",
+          "Marketing"
         ]
       },
       "B.Com": {
@@ -10364,45 +10557,54 @@ if (typeof universityDatabase === 'undefined') {
           "General"
         ]
       },
-      "MA": {
+      "MBA WX": {
         "specializations": [
-          "General"
+          "Finance",
+          "Marketing",
+          "HR",
+          "Operations",
+          "Business Analytics",
+          "Digital Marketing",
+          "Applied Finance"
         ]
       },
-      "BA": {
+      "PhD": {
         "specializations": [
-          "General"
+          "Management"
         ]
       }
     },
     "fees": {
-      "MBA": 350000,
-      "MCA": 280000,
-      "BBA": 180000,
-      "BCA": 220000,
-      "M.Com": 120000,
-      "M.Sc": 45000,
-      "B.Sc": 35000,
-      "B.Com": 100000,
-      "MA": 80000,
-      "BA": 65000
+      "MBA": 220000,
+      "BBA": 150000,
+      "B.Com": 108000,
+      "MBA WX": 400000,
+      "PhD": 150000
     },
     "specializations": [
       "Management",
-      "Technology",
       "Commerce",
-      "Arts",
-      "Science"
+      "Finance",
+      "Marketing"
     ],
-    "nirfRanking": 15,
+    "nirfRanking": "21 (Management Category)",
     "placements": {
       "averagePackage": 850000,
       "highestPackage": 3500000,
-      "offered": true
+      "offered": true,
+      "partners": [
+        "Google",
+        "Amazon",
+        "Deloitte",
+        "Infosys",
+        "Mahindra",
+        "PWC",
+        "Tata"
+      ]
     },
-    "studentsRating": "4.0/5",
+    "studentsRating": "4.7/5",
     "onlineClasses": true,
-    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "duration": "PG:2 years / UG:3 years / PhD:3 years",
     "eligibility": "Graduation with 50% / 10+2 with 45%"
   },
   {
@@ -14505,93 +14707,102 @@ if (typeof universityDatabase === 'undefined') {
       "Online"
     ],
     "approvals": [
-      "UGC",
-      "AICTE"
+      "UGC-DEB",
+      "AICTE",
+      "NAAC A"
     ],
-    "rating": 3.5,
-    "reviews": 150,
+    "rating": 4.6,
+    "reviews": 584,
     "accreditation": "NAAC A",
-    "establishedYear": 2000,
+    "establishedYear": 2012,
     "courses": {
-      "MBA": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "MCA": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "M.Sc": {
-        "specializations": [
-          "General"
-        ]
-      },
       "BBA": {
         "specializations": [
-          "General"
+          "Finance",
+          "Marketing",
+          "HR",
+          "International Business",
+          "Operations",
+          "Entrepreneurship"
         ]
       },
-      "BCA": {
+      "MBA": {
         "specializations": [
-          "General"
-        ]
-      },
-      "B.Sc": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "M.Com": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "B.Com": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "MA": {
-        "specializations": [
-          "General"
+          "Finance",
+          "Marketing",
+          "HR",
+          "Operations",
+          "International Business",
+          "Business Analytics",
+          "Digital Marketing",
+          "Healthcare Management"
         ]
       },
       "BA": {
         "specializations": [
-          "General"
+          "English",
+          "History",
+          "Political Science",
+          "Psychology",
+          "Sociology",
+          "Economics",
+          "Public Administration",
+          "Journalism"
+        ]
+      },
+      "MA": {
+        "specializations": [
+          "English",
+          "History"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General",
+          "Cloud Computing",
+          "Data Science",
+          "Cyber Security",
+          "AI & ML",
+          "Software Development"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "General",
+          "Cloud Computing",
+          "Data Science"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "Data Science"
         ]
       }
     },
     "specializations": [
       "Management",
       "Technology",
-      "Commerce",
       "Arts",
-      "Science"
+      "Data Science"
     ],
     "nirfRanking": null,
     "fees": {
-      "MBA": 100000,
-      "MCA": 100000,
-      "BBA": 50000,
-      "BCA": 50000,
-      "M.Com": 40000,
-      "M.Sc": 45000,
-      "B.Sc": 35000,
-      "B.Com": 40000,
-      "MA": 40000,
-      "BA": 30000
+      "BBA": 114000,
+      "MBA": 150000,
+      "BA": 60000,
+      "MA": 64000,
+      "BCA": 114000,
+      "MCA": 130000,
+      "M.Sc": 64000
     },
     "placements": {
-      "averagePackage": 250000,
-      "highestPackage": 750000,
+      "averagePackage": 350000,
+      "highestPackage": 1200000,
       "offered": true
     },
-    "studentsRating": "4.0/5",
+    "studentsRating": "4.6/5",
     "onlineClasses": true,
-    "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
+    "duration": "PG:2 years / UG:3 years",
     "eligibility": "Graduation with 50% / 10+2 with 45%"
   },
   {
@@ -16775,9 +16986,10 @@ if (typeof coursesDatabase === 'undefined') {
             "Chandigarh University": { fee: 78000, hybridFee: "Modern university established 2012" },
             "Jain University": { fee: 155000, flexibleFee: "Deemed university with strong industry connect" },
             "Manipal University": { fee: 175000, premiumOnline: "Top-ranked deemed university" },
+            "MIT School of Distance Education Pune": { fee: 90000, affordableFee: "Affordable quality education from Pune" },
             "Symbiosis Distance": { fee: 195000, prestigeFee: "NAAC A++ prestigious institution" },
             "Symbiosis Online": { fee: 215000, premiumOnline: "Premium online education" },
-            "NMIMS": { fee: 350000, premiumFee: "Top business school NAAC A++" },
+            "NMIMS": { fee: 350000, premiumFee: "Top business school NAAC++" },
             "Madras University": { fee: 42000, heritageFee: "Heritage institution since 1857" },
             "University of Calicut": { fee: 40000, stateFee: "NAAC A++ state university" },
             "Osmania University": { fee: 45000, stateFee: "Historic state university since 1918" },
@@ -16824,6 +17036,10 @@ if (typeof coursesDatabase === 'undefined') {
             "Manipal University": { 
                 rating: 93, 
                 explanation: "Top-ranked deemed university with NAAC A++ rating, premium education quality and excellent industry reputation with strong alumni network." 
+            },
+            "MIT School of Distance Education Pune": { 
+                rating: 82, 
+                explanation: "Affordable MBA from Pune's renowned MIT with UGC-DEB approval, strong industry connections in Maharashtra, practical curriculum with 8 specializations available." 
             },
             "Symbiosis": { 
                 rating: 95, 

@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import styles from '../styles/UniversityMatcherResults.module.css';
-import { getUniversityLogo as getLogoFilename } from '../utils/universityLogoMap';
+import { getUniversityLogo } from '../utils/universityLogoMap';
 
 const UniversityMatcherResults = () => {
   const router = useRouter();
@@ -15,17 +15,28 @@ const UniversityMatcherResults = () => {
   const [filteredUniversities, setFilteredUniversities] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   
-  // Helper function to get full logo path
-  const getUniversityLogo = (universityName) => {
-    const filename = getLogoFilename(universityName);
-    return filename ? `/images/universities/${filename}` : null;
-  };
-  
   // Filter states
   const [selectedState, setSelectedState] = useState('all');
   const [selectedCountry, setSelectedCountry] = useState('all');
   const [availableStates, setAvailableStates] = useState([]);
   const [availableCountries, setAvailableCountries] = useState([]);
+  
+  // Contact modal state
+  const [showContactModal, setShowContactModal] = useState(false);
+  const [contactFormData, setContactFormData] = useState({
+    fullName: '',
+    contactNumber: '',
+    email: '',
+    gender: '',
+    dob: '',
+    city: '',
+    state: '',
+    qualification: ''
+  });
+
+  // Comparison state
+  const [selectedForComparison, setSelectedForComparison] = useState([]);
+  const [showContactButtons, setShowContactButtons] = useState(false);
 
   useEffect(() => {
     // Load form data from localStorage
@@ -89,6 +100,68 @@ const UniversityMatcherResults = () => {
     }
   }, [selectedState, selectedCountry, allUniversitiesWithCourse]);
 
+  // Contact form handlers
+  const handleContactFormChange = (e) => {
+    const { name, value } = e.target;
+    setContactFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleContactFormSubmit = (e) => {
+    e.preventDefault();
+    console.log('Contact form submitted:', contactFormData);
+    alert('Thank you! Our expert counsellors will contact you soon.');
+    setShowContactModal(false);
+    setContactFormData({
+      fullName: '',
+      contactNumber: '',
+      email: '',
+      gender: '',
+      dob: '',
+      city: '',
+      state: '',
+      qualification: ''
+    });
+  };
+
+  // Handle university selection for comparison
+  const toggleUniversitySelection = (universityName) => {
+    setSelectedForComparison(prev => {
+      if (prev.includes(universityName)) {
+        // Deselect
+        return prev.filter(name => name !== universityName);
+      } else {
+        // Select (max 5)
+        if (prev.length < 5) {
+          return [...prev, universityName];
+        } else {
+          alert('You can select maximum 5 universities to compare');
+          return prev;
+        }
+      }
+    });
+    // Hide contact buttons when selection changes
+    setShowContactButtons(false);
+  };
+
+  // Handle Compare Universities click
+  const handleCompareUniversities = () => {
+    if (selectedForComparison.length === 0) {
+      alert('Please select at least one university to compare');
+      return;
+    }
+    setShowContactButtons(true);
+    // Scroll to first selected university
+    setTimeout(() => {
+      const firstSelectedCard = document.querySelector(`.${styles.universityCard}[data-selected="true"]`);
+      if (firstSelectedCard) {
+        firstSelectedCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }, 100);
+  };
+
   const loadUniversities = async (data) => {
     try {
       // Check if data already loaded
@@ -138,13 +211,6 @@ const UniversityMatcherResults = () => {
         setMatchedUniversities(matchedWithRatings);
         setAllUniversitiesWithCourse(allWithCourseAndRatings); // Store all universities with course
         setFilteredUniversities(matchedWithRatings);
-        
-        // Log matched universities with logo status
-        console.log(`🎓 Matched Universities (${matchedWithRatings.length}):`);
-        matchedWithRatings.slice(0, 10).forEach(uni => {
-          const logoPath = getUniversityLogo(uni.name);
-          console.log(`  ${uni.name} → Logo: ${logoPath ? '✅' : '❌'} ${logoPath || 'MISSING'}`);
-        });
         
         // Extract available states and countries from ALL universities with the course
         extractAvailableLocations(allWithCourseAndRatings);
@@ -213,13 +279,6 @@ const UniversityMatcherResults = () => {
         setMatchedUniversities(matchedWithRatings);
         setAllUniversitiesWithCourse(allWithCourseAndRatings); // Store all universities with course
         setFilteredUniversities(matchedWithRatings);
-        
-        // Log matched universities with logo status
-        console.log(`🎓 Matched Universities (${matchedWithRatings.length}):`);
-        matchedWithRatings.slice(0, 10).forEach(uni => {
-          const logoPath = getUniversityLogo(uni.name);
-          console.log(`  ${uni.name} → Logo: ${logoPath ? '✅' : '❌'} ${logoPath || 'MISSING'}`);
-        });
         
         // Extract available states and countries from ALL universities with the course
         extractAvailableLocations(allWithCourseAndRatings);
@@ -678,9 +737,39 @@ const UniversityMatcherResults = () => {
 
             {/* Universities List */}
             <div className={styles.universitiesList}>
+              {/* Floating Compare Button */}
+              {selectedForComparison.length > 0 && (
+                <div className={styles.compareFloatingButton}>
+                  <button 
+                    className={styles.compareButton}
+                    onClick={handleCompareUniversities}
+                  >
+                    Compare {selectedForComparison.length} Universit{selectedForComparison.length === 1 ? 'y' : 'ies'}
+                  </button>
+                </div>
+              )}
+
               {filteredUniversities.length > 0 ? (
                 filteredUniversities.map((university, index) => (
-                  <div key={index} className={styles.universityCard}>
+                  <div 
+                    key={index} 
+                    className={styles.universityCard}
+                    data-selected={selectedForComparison.includes(university.name)}
+                  >
+                    {/* Selection Checkbox - Top Left */}
+                    <div className={styles.checkboxWrapper}>
+                      <input
+                        type="checkbox"
+                        id={`select-${index}`}
+                        className={styles.universityCheckbox}
+                        checked={selectedForComparison.includes(university.name)}
+                        onChange={() => toggleUniversitySelection(university.name)}
+                      />
+                      <label htmlFor={`select-${index}`} className={styles.checkboxLabel}>
+                        Select
+                      </label>
+                    </div>
+
                     {/* Match Circle - Top Right with CSS variable for progress */}
                     <div 
                       className={styles.matchCircle}
@@ -691,25 +780,39 @@ const UniversityMatcherResults = () => {
 
                     {/* Left Side: University Logo */}
                     <div className={styles.leftSection}>
-                      {getUniversityLogo(university.name) ? (
-                        <img 
-                          src={getUniversityLogo(university.name)} 
-                          alt={university.name}
-                          className={styles.universityLogoImg}
-                        />
-                      ) : (
-                        <div className={styles.universityLogoInitials}>
-                          {getInitials(university.name)}
-                        </div>
+                      <div className={styles.logoWrapper}>
+                        {getUniversityLogo(university.name) ? (
+                          <img 
+                            src={getUniversityLogo(university.name)} 
+                            alt={university.name}
+                            className={styles.universityLogoImg}
+                          />
+                        ) : (
+                          <div className={styles.universityLogoInitials}>
+                            {getInitials(university.name)}
+                          </div>
+                        )}
+                      </div>
+                      
+                      {/* CONTACT Button - ONLY show when selected */}
+                      {selectedForComparison.includes(university.name) && (
+                        <button 
+                          className={styles.contactButton}
+                          onClick={() => setShowContactModal(true)}
+                        >
+                          <span className={styles.contactText}>CONTACT US</span>
+                          <span className={styles.contactTextAlt}>KNOW MORE</span>
+                        </button>
                       )}
                     </div>
 
-                    {/* Right Side: Partitioned Details */}
-                    <div className={styles.rightSection}>
-                      {/* University Name on Top */}
-                      <h3 className={styles.universityNameTop}>{university.name}</h3>
-                      
-                      <div className={styles.detailsGrid}>
+                    {/* Right Side: Partitioned Details - ONLY SHOW AFTER COMPARE AND IF SELECTED */}
+                    {showContactButtons && selectedForComparison.includes(university.name) && (
+                      <div className={styles.rightSection}>
+                        {/* University Name on Top */}
+                        <h3 className={styles.universityNameTop}>{university.name}</h3>
+                        
+                        <div className={styles.detailsGrid}>
                         
                         {/* Location Partition */}
                         <div className={styles.detailPartition}>
@@ -823,7 +926,8 @@ const UniversityMatcherResults = () => {
                         </div>
 
                       </div>
-                    </div>
+                      </div>
+                    )}
                   </div>
                 ))
               ) : (
@@ -850,6 +954,127 @@ const UniversityMatcherResults = () => {
           </div>
         </div>
       </div>
+
+      {/* Contact Modal */}
+      {showContactModal && (
+        <div className={styles.modalOverlay} onClick={() => setShowContactModal(false)}>
+          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+            <button className={styles.modalClose} onClick={() => setShowContactModal(false)}>
+              ✕
+            </button>
+            <h2 className={styles.modalHeader}>Consult with our expert counsellors</h2>
+            <form className={styles.contactForm} onSubmit={handleContactFormSubmit}>
+              <div className={styles.formRow}>
+                <div className={styles.formGroup}>
+                  <label htmlFor="fullName">Full Name *</label>
+                  <input
+                    type="text"
+                    id="fullName"
+                    name="fullName"
+                    value={contactFormData.fullName}
+                    onChange={handleContactFormChange}
+                    required
+                  />
+                </div>
+                <div className={styles.formGroup}>
+                  <label htmlFor="contactNumber">Contact Number *</label>
+                  <input
+                    type="tel"
+                    id="contactNumber"
+                    name="contactNumber"
+                    value={contactFormData.contactNumber}
+                    onChange={handleContactFormChange}
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className={styles.formRow}>
+                <div className={styles.formGroup}>
+                  <label htmlFor="email">Email Address *</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={contactFormData.email}
+                    onChange={handleContactFormChange}
+                    required
+                  />
+                </div>
+                <div className={styles.formGroup}>
+                  <label htmlFor="gender">Gender *</label>
+                  <select
+                    id="gender"
+                    name="gender"
+                    value={contactFormData.gender}
+                    onChange={handleContactFormChange}
+                    required
+                  >
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className={styles.formRow}>
+                <div className={styles.formGroup}>
+                  <label htmlFor="dob">Date of Birth *</label>
+                  <input
+                    type="date"
+                    id="dob"
+                    name="dob"
+                    value={contactFormData.dob}
+                    onChange={handleContactFormChange}
+                    required
+                  />
+                </div>
+                <div className={styles.formGroup}>
+                  <label htmlFor="city">City *</label>
+                  <input
+                    type="text"
+                    id="city"
+                    name="city"
+                    value={contactFormData.city}
+                    onChange={handleContactFormChange}
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className={styles.formRow}>
+                <div className={styles.formGroup}>
+                  <label htmlFor="state">State *</label>
+                  <input
+                    type="text"
+                    id="state"
+                    name="state"
+                    value={contactFormData.state}
+                    onChange={handleContactFormChange}
+                    required
+                  />
+                </div>
+                <div className={styles.formGroup}>
+                  <label htmlFor="qualification">Highest Qualification *</label>
+                  <input
+                    type="text"
+                    id="qualification"
+                    name="qualification"
+                    value={contactFormData.qualification}
+                    onChange={handleContactFormChange}
+                    required
+                  />
+                </div>
+              </div>
+
+              <button type="submit" className={styles.submitButton}>
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
 
       <Footer />
     </>

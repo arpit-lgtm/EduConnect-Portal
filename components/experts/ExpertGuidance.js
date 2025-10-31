@@ -3,6 +3,18 @@ import styles from './ExpertGuidance.module.css';
 
 const ExpertGuidance = () => {
     const scrollContainerRef = useRef(null);
+    const [showModal, setShowModal] = useState(false);
+    const [selectedExpert, setSelectedExpert] = useState(null);
+    const [formData, setFormData] = useState({
+        fullName: '',
+        contactNumber: '',
+        emailAddress: '',
+        gender: '',
+        dateOfBirth: '',
+        city: '',
+        state: '',
+        currentQualification: ''
+    });
 
     const scrollLeft = () => {
         if (scrollContainerRef.current) {
@@ -14,6 +26,42 @@ const ExpertGuidance = () => {
         if (scrollContainerRef.current) {
             scrollContainerRef.current.scrollBy({ left: 300, behavior: 'smooth' });
         }
+    };
+
+    const handleConsultClick = (expert) => {
+        setSelectedExpert(expert);
+        setShowModal(true);
+    };
+
+    const handleCloseModal = () => {
+        setShowModal(false);
+        setSelectedExpert(null);
+        setFormData({
+            fullName: '',
+            contactNumber: '',
+            emailAddress: '',
+            gender: '',
+            dateOfBirth: '',
+            city: '',
+            state: '',
+            currentQualification: ''
+        });
+    };
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log('Form submitted:', { ...formData, expert: selectedExpert?.name });
+        // TODO: Send data to backend
+        alert(`Thank you! ${selectedExpert?.name} will contact you shortly.`);
+        handleCloseModal();
     };
 
     const experts = [
@@ -71,7 +119,10 @@ const ExpertGuidance = () => {
                                     <p className={styles.expertExperience}>{expert.experience} experience</p>
                                 </div>
 
-                                <button className={styles.consultButton}>
+                                <button 
+                                    className={styles.consultButton}
+                                    onClick={() => handleConsultClick(expert)}
+                                >
                                     Consult Now
                                 </button>
                             </div>
@@ -86,6 +137,144 @@ const ExpertGuidance = () => {
                 </button>
             </div>
             </div>
+
+            {/* Consultation Modal */}
+            {showModal && (
+                <div className={styles.modalOverlay} onClick={handleCloseModal}>
+                    <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+                        <button className={styles.closeButton} onClick={handleCloseModal}>
+                            ✕
+                        </button>
+                        
+                        <div className={styles.modalHeader}>
+                            <h3>Consult with {selectedExpert?.name}</h3>
+                            <p>{selectedExpert?.title} • {selectedExpert?.experience} experience</p>
+                        </div>
+
+                        <form onSubmit={handleSubmit} className={styles.consultForm}>
+                            <div className={styles.formRow}>
+                                <div className={styles.formGroup}>
+                                    <label htmlFor="fullName">Full Name *</label>
+                                    <input
+                                        type="text"
+                                        id="fullName"
+                                        name="fullName"
+                                        value={formData.fullName}
+                                        onChange={handleInputChange}
+                                        required
+                                        placeholder="Enter your full name"
+                                    />
+                                </div>
+
+                                <div className={styles.formGroup}>
+                                    <label htmlFor="contactNumber">Contact Number *</label>
+                                    <input
+                                        type="tel"
+                                        id="contactNumber"
+                                        name="contactNumber"
+                                        value={formData.contactNumber}
+                                        onChange={handleInputChange}
+                                        required
+                                        placeholder="Enter your contact number"
+                                        pattern="[0-9]{10}"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className={styles.formRow}>
+                                <div className={styles.formGroup}>
+                                    <label htmlFor="emailAddress">Email Address *</label>
+                                    <input
+                                        type="email"
+                                        id="emailAddress"
+                                        name="emailAddress"
+                                        value={formData.emailAddress}
+                                        onChange={handleInputChange}
+                                        required
+                                        placeholder="Enter your email address"
+                                    />
+                                </div>
+
+                                <div className={styles.formGroup}>
+                                    <label htmlFor="gender">Gender</label>
+                                    <select
+                                        id="gender"
+                                        name="gender"
+                                        value={formData.gender}
+                                        onChange={handleInputChange}
+                                    >
+                                        <option value="">Select Gender</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div className={styles.formRow}>
+                                <div className={styles.formGroup}>
+                                    <label htmlFor="dateOfBirth">Date of Birth</label>
+                                    <input
+                                        type="date"
+                                        id="dateOfBirth"
+                                        name="dateOfBirth"
+                                        value={formData.dateOfBirth}
+                                        onChange={handleInputChange}
+                                    />
+                                </div>
+
+                                <div className={styles.formGroup}>
+                                    <label htmlFor="city">City</label>
+                                    <input
+                                        type="text"
+                                        id="city"
+                                        name="city"
+                                        value={formData.city}
+                                        onChange={handleInputChange}
+                                        placeholder="Enter your city"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className={styles.formRow}>
+                                <div className={styles.formGroup}>
+                                    <label htmlFor="state">State</label>
+                                    <input
+                                        type="text"
+                                        id="state"
+                                        name="state"
+                                        value={formData.state}
+                                        onChange={handleInputChange}
+                                        placeholder="Enter your state"
+                                    />
+                                </div>
+
+                                <div className={styles.formGroup}>
+                                    <label htmlFor="currentQualification">Current Qualification</label>
+                                    <select
+                                        id="currentQualification"
+                                        name="currentQualification"
+                                        value={formData.currentQualification}
+                                        onChange={handleInputChange}
+                                    >
+                                        <option value="">Select Qualification</option>
+                                        <option value="10th">10th</option>
+                                        <option value="12th">12th</option>
+                                        <option value="diploma">Diploma</option>
+                                        <option value="bachelors">Bachelor's Degree</option>
+                                        <option value="masters">Master's Degree</option>
+                                        <option value="phd">PhD</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <button type="submit" className={styles.submitButton}>
+                                Submit & Get Consultation
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            )}
         </section>
     );
 };

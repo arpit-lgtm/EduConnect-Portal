@@ -48,6 +48,10 @@ const AmityUniversity = () => {
     { name: 'Online B.Com Honours', fee: 165000, duration: '3 Years', specializations: 1 },
     { name: 'Online M.Sc', fee: 250000, duration: '2 Years', specializations: 1 },
     { name: 'Doctor of Philosophy', fee: 300000, duration: '3 Years', specializations: 5 },
+    { name: 'MBA With Campus Immersion (For Executives)', fee: 475000, duration: '2 Years', specializations: 8 },
+    { name: 'Online BBA+MBA Integrated Course', fee: 345800, duration: '4.5 Years', specializations: 1 },
+    { name: 'Online BCA+MCA Integrated Course', fee: 304000, duration: '4.5 Years', specializations: 1 },
+    { name: 'Online B.Com+MBA Integrated Course', fee: 283100, duration: '4.5 Years', specializations: 1 },
   ];
 
   const keyHighlights = [
@@ -61,12 +65,9 @@ const AmityUniversity = () => {
     'Dedicated career support services and virtual job fairs'
   ];
 
-  const approvals = [
-    { name: 'UGC-DEB', logo: '/images/approvals/ugc-deb.png', desc: 'Approved for online programs' },
-    { name: 'AICTE', logo: '/images/approvals/aicte.png', desc: 'Technical education council' },
-    { name: 'NAAC A', logo: '/images/approvals/naac.png', desc: 'Quality assessment' },
-    { name: 'WES', logo: '/images/approvals/wes.png', desc: 'Globally recognized' }
-  ];
+  const approvals = ['UGC-DEB', 'AICTE', 'NAAC A', 'WES'];
+  const nirfRank = 'Rank 32';
+  const accreditation = 'NAAC A';
 
   const placementPartners = [
     'Google', 'Microsoft', 'Amazon', 'Accenture', 'Infosys', 
@@ -114,58 +115,46 @@ const AmityUniversity = () => {
         <div className={styles.heroSection}>
           <div className={styles.heroContent}>
             <div className={styles.heroLeft}>
-              <div className={styles.universityHeader}>
-                <img 
-                  src="/images/universities/Amity University.png" 
-                  alt="Amity University Logo" 
-                  className={styles.universityLogo}
-                />
-                <div className={styles.universityInfo}>
-                  <h1>Amity University Online</h1>
-                  <p className={styles.location}>📍 Noida, Uttar Pradesh</p>
+              <img 
+                src="/images/universities/Amity University.png" 
+                alt="Amity University Logo" 
+                className={styles.universityLogoLarge}
+              />
+            </div>
+
+            <div className={styles.heroRight}>
+              <div className={styles.universityInfo}>
+                <div className={styles.infoRow}>
+                  <span className={styles.infoLabel}>Location:</span>
+                  <span className={styles.infoValue}>📍 Noida, Uttar Pradesh</span>
+                </div>
+                <div className={styles.infoRow}>
+                  <span className={styles.infoLabel}>Ratings:</span>
                   <div className={styles.rating}>
                     <span className={styles.stars}>⭐⭐⭐⭐⭐</span>
                     <span className={styles.ratingText}>4.7/5</span>
                     <span className={styles.reviews}>(667 Reviews)</span>
                   </div>
                 </div>
-              </div>
-
-              <div className={styles.approvalBadges}>
-                {approvals.map((approval, idx) => (
-                  <div key={idx} className={styles.badge} title={approval.desc}>
-                    <span className={styles.badgeIcon}>✓</span>
-                    <span>{approval.name}</span>
+                <div className={styles.infoRow}>
+                  <span className={styles.infoLabel}>Approvals:</span>
+                  <div className={styles.approvalBadges}>
+                    {approvals.map((approval, idx) => (
+                      <div key={idx} className={styles.badge}>
+                        <span className={styles.badgeIcon}>✓</span>
+                        <span>{approval}</span>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-
-              <div className={styles.ctaButtons}>
-                <button className={styles.primaryBtn}>
-                  Apply Now
-                </button>
-                <button className={styles.secondaryBtn}>
-                  Download Brochure
-                </button>
-                <Link href="/university-matcher">
-                  <button className={styles.tertiaryBtn}>
-                    Check Eligibility
-                  </button>
-                </Link>
-              </div>
-            </div>
-
-            <div className={styles.heroRight}>
-              <div className={styles.videoContainer}>
-                <video 
-                  controls 
-                  poster="/images/universities/Amity University.png"
-                  className={styles.testimonialVideo}
-                >
-                  <source src="/videos/Amity University .mp4" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-                <p className={styles.videoCaption}>Watch Student Success Stories</p>
+                </div>
+                <div className={styles.infoRow}>
+                  <span className={styles.infoLabel}>NIRF Ranking:</span>
+                  <span className={styles.infoValue}>{nirfRank}</span>
+                </div>
+                <div className={styles.infoRow}>
+                  <span className={styles.infoLabel}>Accreditation:</span>
+                  <span className={styles.infoValue}>{accreditation}</span>
+                </div>
               </div>
             </div>
           </div>
@@ -180,7 +169,7 @@ const AmityUniversity = () => {
                 className={`${styles.tab} ${activeTab === tab ? styles.activeTab : ''}`}
                 onClick={() => setActiveTab(tab)}
               >
-                {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {tab === 'faqs' ? 'FAQ' : tab.charAt(0).toUpperCase() + tab.slice(1)}
               </button>
             ))}
           </div>
@@ -264,7 +253,6 @@ const AmityUniversity = () => {
                       <th>Specializations</th>
                       <th>Duration</th>
                       <th>Total Fees</th>
-                      <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -274,14 +262,6 @@ const AmityUniversity = () => {
                         <td>{course.specializations}+ Options</td>
                         <td>{course.duration}</td>
                         <td className={styles.fee}>₹{course.fee.toLocaleString()}</td>
-                        <td>
-                          <button 
-                            className={styles.viewDetailsBtn}
-                            onClick={() => setSelectedCourse(course)}
-                          >
-                            View Details
-                          </button>
-                        </td>
                       </tr>
                     ))}
                   </tbody>
@@ -394,39 +374,7 @@ const AmityUniversity = () => {
                 ))}
               </div>
 
-              <div className={styles.careerServices}>
-                <h3>Career Support Services</h3>
-                <div className={styles.servicesList}>
-                  <div className={styles.serviceItem}>
-                    <span className={styles.serviceIcon}>📝</span>
-                    <div>
-                      <h4>Resume Building</h4>
-                      <p>Professional resume and portfolio creation assistance</p>
-                    </div>
-                  </div>
-                  <div className={styles.serviceItem}>
-                    <span className={styles.serviceIcon}>🎯</span>
-                    <div>
-                      <h4>Interview Preparation</h4>
-                      <p>Mock interviews and personality development sessions</p>
-                    </div>
-                  </div>
-                  <div className={styles.serviceItem}>
-                    <span className={styles.serviceIcon}>💼</span>
-                    <div>
-                      <h4>Industry Projects</h4>
-                      <p>Hands-on experience with real-world business cases</p>
-                    </div>
-                  </div>
-                  <div className={styles.serviceItem}>
-                    <span className={styles.serviceIcon}>🤝</span>
-                    <div>
-                      <h4>Virtual Job Fairs</h4>
-                      <p>Direct interaction with recruiters through exclusive hiring drives</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+
             </div>
           )}
 
@@ -462,20 +410,6 @@ const AmityUniversity = () => {
               </div>
             </div>
           )}
-        </div>
-
-        {/* Bottom CTA Section */}
-        <div className={styles.bottomCta}>
-          <div className={styles.ctaContent}>
-            <h2>Ready to Transform Your Career?</h2>
-            <p>Join thousands of successful professionals who advanced their careers with Amity University Online</p>
-            <div className={styles.ctaButtons}>
-              <button className={styles.primaryBtn}>Apply Now for 2025</button>
-              <Link href="/university-matcher">
-                <button className={styles.secondaryBtn}>Find Your Perfect Program</button>
-              </Link>
-            </div>
-          </div>
         </div>
       </div>
 
