@@ -15689,6 +15689,334 @@ if (typeof universityDatabase === 'undefined') {
     "isInternational": true,
     "state": "North Carolina",
     "country": "USA"
+  },
+  {
+    "id": "tu-munich",
+    "name": "Technical University of Munich (TUM)",
+    "location": "Munich, Bavaria, Germany",
+    "establishedYear": 1868,
+    "accreditation": "CHE, AACSB, EQUIS",
+    "approvals": ["CHE", "AACSB", "EQUIS", "FIBAA"],
+    "rating": 4.8,
+    "nirfRanking": null,
+    "mode": ["On-Campus", "Research"],
+    "onlineClasses": false,
+    "duration": "PG:2 years / UG:3-4 years / PhD:3-5 years",
+    "eligibility": "Bachelor's degree with strong academic record + German/English proficiency",
+    "studentsRating": "4.8/5",
+    "coursesList": ["M.Sc", "MBA", "MS", "M.Tech", "PhD", "B.Sc", "B.Tech"],
+    "courses": {
+      "M.Sc": {
+        "specializations": ["Computer Science", "Data Science", "Electrical Engineering", "Mechanical Engineering", "Physics"]
+      },
+      "MBA": {
+        "specializations": ["Technology Management", "Innovation", "Entrepreneurship"]
+      },
+      "MS": {
+        "specializations": ["Engineering", "Applied Sciences", "Technology"]
+      },
+      "PhD": {
+        "specializations": ["Engineering", "Natural Sciences", "Computer Science"]
+      }
+    },
+    "fees": {
+      "M.Sc": 300000,
+      "MBA": 4500000,
+      "MS": 300000,
+      "M.Tech": 300000,
+      "PhD": 150000,
+      "B.Sc": 250000,
+      "B.Tech": 250000
+    },
+    "isInternational": true,
+    "country": "Germany"
+  },
+  {
+    "id": "heidelberg-university",
+    "name": "Heidelberg University",
+    "location": "Heidelberg, Baden-Württemberg, Germany",
+    "establishedYear": 1386,
+    "accreditation": "CHE, German Accreditation Council",
+    "approvals": ["CHE", "FIBAA", "German Council"],
+    "rating": 4.7,
+    "nirfRanking": null,
+    "mode": ["On-Campus", "Research"],
+    "onlineClasses": false,
+    "duration": "PG:2 years / UG:3 years / PhD:3-5 years",
+    "eligibility": "Bachelor's degree + German/English language proficiency",
+    "studentsRating": "4.7/5",
+    "coursesList": ["M.Sc", "MA", "MS", "MBA", "PhD", "B.Sc", "BA"],
+    "courses": {
+      "M.Sc": {
+        "specializations": ["Molecular Biology", "Physics", "Chemistry", "Applied Computer Science"]
+      },
+      "MA": {
+        "specializations": ["Economics", "Political Science", "History", "Philosophy"]
+      },
+      "MBA": {
+        "specializations": ["Health Care Management", "International Business"]
+      },
+      "PhD": {
+        "specializations": ["Life Sciences", "Natural Sciences", "Humanities"]
+      }
+    },
+    "fees": {
+      "M.Sc": 350000,
+      "MA": 300000,
+      "MS": 350000,
+      "MBA": 3500000,
+      "PhD": 150000,
+      "B.Sc": 250000,
+      "BA": 200000
+    },
+    "isInternational": true,
+    "country": "Germany"
+  },
+  {
+    "id": "humboldt-university",
+    "name": "Humboldt University of Berlin",
+    "location": "Berlin, Germany",
+    "establishedYear": 1810,
+    "accreditation": "CHE, AQAS",
+    "approvals": ["CHE", "AQAS", "German Accreditation Council"],
+    "rating": 4.6,
+    "nirfRanking": null,
+    "mode": ["On-Campus", "Research"],
+    "onlineClasses": false,
+    "duration": "PG:2 years / UG:3 years / PhD:3-5 years",
+    "eligibility": "Bachelor's degree + German/English proficiency + entrance exam",
+    "studentsRating": "4.6/5",
+    "coursesList": ["M.Sc", "MA", "MBA", "MS", "PhD", "B.Sc", "BA"],
+    "courses": {
+      "M.Sc": {
+        "specializations": ["Computer Science", "Mathematics", "Physics", "Biology"]
+      },
+      "MA": {
+        "specializations": ["Philosophy", "History", "Cultural Studies", "Economics"]
+      },
+      "MBA": {
+        "specializations": ["International Management", "Finance"]
+      },
+      "PhD": {
+        "specializations": ["Humanities", "Social Sciences", "Natural Sciences"]
+      }
+    },
+    "fees": {
+      "M.Sc": 300000,
+      "MA": 250000,
+      "MBA": 3800000,
+      "MS": 300000,
+      "PhD": 150000,
+      "B.Sc": 200000,
+      "BA": 180000
+    },
+    "isInternational": true,
+    "country": "Germany"
+  },
+  {
+    "id": "rwth-aachen",
+    "name": "RWTH Aachen University",
+    "location": "Aachen, North Rhine-Westphalia, Germany",
+    "establishedYear": 1870,
+    "accreditation": "AQAS, ASIIN, CHE",
+    "approvals": ["AQAS", "ASIIN", "CHE", "FIBAA"],
+    "rating": 4.7,
+    "nirfRanking": null,
+    "mode": ["On-Campus", "Research"],
+    "onlineClasses": false,
+    "duration": "PG:2 years / UG:3-4 years / PhD:3-5 years",
+    "eligibility": "Bachelor's degree in Engineering + German/English proficiency",
+    "studentsRating": "4.7/5",
+    "coursesList": ["M.Sc", "M.Tech", "MBA", "MS", "PhD", "B.Tech", "B.Sc"],
+    "courses": {
+      "M.Sc": {
+        "specializations": ["Mechanical Engineering", "Electrical Engineering", "Computer Science", "Materials Science"]
+      },
+      "M.Tech": {
+        "specializations": ["Automotive Engineering", "Robotics", "Energy Engineering"]
+      },
+      "MBA": {
+        "specializations": ["Technology Management", "Operations"]
+      },
+      "PhD": {
+        "specializations": ["Engineering", "Natural Sciences", "Technology"]
+      }
+    },
+    "fees": {
+      "M.Sc": 350000,
+      "M.Tech": 400000,
+      "MBA": 4200000,
+      "MS": 350000,
+      "PhD": 150000,
+      "B.Tech": 300000,
+      "B.Sc": 250000
+    },
+    "isInternational": true,
+    "country": "Germany"
+  },
+  {
+    "id": "ludwig-maximilians-university",
+    "name": "Ludwig Maximilian University of Munich (LMU)",
+    "location": "Munich, Bavaria, Germany",
+    "establishedYear": 1472,
+    "accreditation": "CHE, FIBAA",
+    "approvals": ["CHE", "FIBAA", "AQAS"],
+    "rating": 4.7,
+    "nirfRanking": null,
+    "mode": ["On-Campus", "Research"],
+    "onlineClasses": false,
+    "duration": "PG:2 years / UG:3 years / PhD:3-5 years",
+    "eligibility": "Bachelor's degree + German/English language proficiency",
+    "studentsRating": "4.7/5",
+    "coursesList": ["M.Sc", "MA", "MBA", "MS", "PhD", "B.Sc", "BA"],
+    "courses": {
+      "M.Sc": {
+        "specializations": ["Physics", "Chemistry", "Biology", "Psychology", "Computer Science"]
+      },
+      "MA": {
+        "specializations": ["Economics", "Philosophy", "History", "Political Science"]
+      },
+      "MBA": {
+        "specializations": ["General Management", "Strategy"]
+      },
+      "PhD": {
+        "specializations": ["Natural Sciences", "Humanities", "Social Sciences"]
+      }
+    },
+    "fees": {
+      "M.Sc": 350000,
+      "MA": 300000,
+      "MBA": 3900000,
+      "MS": 350000,
+      "PhD": 150000,
+      "B.Sc": 250000,
+      "BA": 200000
+    },
+    "isInternational": true,
+    "country": "Germany"
+  },
+  {
+    "id": "free-university-berlin",
+    "name": "Free University of Berlin",
+    "location": "Berlin, Germany",
+    "establishedYear": 1948,
+    "accreditation": "CHE, AQAS",
+    "approvals": ["CHE", "AQAS", "FIBAA"],
+    "rating": 4.6,
+    "nirfRanking": null,
+    "mode": ["On-Campus", "Research"],
+    "onlineClasses": false,
+    "duration": "PG:2 years / UG:3 years / PhD:3-5 years",
+    "eligibility": "Bachelor's degree + German/English proficiency",
+    "studentsRating": "4.6/5",
+    "coursesList": ["M.Sc", "MA", "MBA", "MS", "PhD", "B.Sc", "BA"],
+    "courses": {
+      "M.Sc": {
+        "specializations": ["Computer Science", "Mathematics", "Biochemistry", "Neuroscience"]
+      },
+      "MA": {
+        "specializations": ["Political Science", "Sociology", "History", "Cultural Studies"]
+      },
+      "MBA": {
+        "specializations": ["International Management", "Sustainability"]
+      },
+      "PhD": {
+        "specializations": ["Social Sciences", "Natural Sciences", "Humanities"]
+      }
+    },
+    "fees": {
+      "M.Sc": 300000,
+      "MA": 280000,
+      "MBA": 3700000,
+      "MS": 300000,
+      "PhD": 150000,
+      "B.Sc": 220000,
+      "BA": 200000
+    },
+    "isInternational": true,
+    "country": "Germany"
+  },
+  {
+    "id": "karlsruhe-institute",
+    "name": "Karlsruhe Institute of Technology (KIT)",
+    "location": "Karlsruhe, Baden-Württemberg, Germany",
+    "establishedYear": 1825,
+    "accreditation": "ASIIN, AQAS, CHE",
+    "approvals": ["ASIIN", "AQAS", "CHE", "FIBAA"],
+    "rating": 4.7,
+    "nirfRanking": null,
+    "mode": ["On-Campus", "Research"],
+    "onlineClasses": false,
+    "duration": "PG:2 years / UG:3-4 years / PhD:3-5 years",
+    "eligibility": "Bachelor's degree in Engineering/Science + German/English proficiency",
+    "studentsRating": "4.7/5",
+    "coursesList": ["M.Sc", "M.Tech", "MBA", "MS", "PhD", "B.Tech", "B.Sc"],
+    "courses": {
+      "M.Sc": {
+        "specializations": ["Computer Science", "Mechanical Engineering", "Electrical Engineering", "Materials Science"]
+      },
+      "M.Tech": {
+        "specializations": ["Automotive", "Energy Technology", "Nanotechnology"]
+      },
+      "MBA": {
+        "specializations": ["Technology Management", "Innovation Management"]
+      },
+      "PhD": {
+        "specializations": ["Engineering", "Natural Sciences", "Technology"]
+      }
+    },
+    "fees": {
+      "M.Sc": 350000,
+      "M.Tech": 400000,
+      "MBA": 4000000,
+      "MS": 350000,
+      "PhD": 150000,
+      "B.Tech": 300000,
+      "B.Sc": 250000
+    },
+    "isInternational": true,
+    "country": "Germany"
+  },
+  {
+    "id": "tu-berlin",
+    "name": "Technical University of Berlin (TU Berlin)",
+    "location": "Berlin, Germany",
+    "establishedYear": 1879,
+    "accreditation": "ASIIN, AQAS, CHE",
+    "approvals": ["ASIIN", "AQAS", "CHE", "FIBAA"],
+    "rating": 4.6,
+    "nirfRanking": null,
+    "mode": ["On-Campus", "Research"],
+    "onlineClasses": false,
+    "duration": "PG:2 years / UG:3-4 years / PhD:3-5 years",
+    "eligibility": "Bachelor's degree in relevant field + German/English proficiency",
+    "studentsRating": "4.6/5",
+    "coursesList": ["M.Sc", "M.Tech", "MBA", "MS", "PhD", "B.Tech", "B.Sc"],
+    "courses": {
+      "M.Sc": {
+        "specializations": ["Computer Science", "Industrial Engineering", "Urban Planning", "Environmental Engineering"]
+      },
+      "M.Tech": {
+        "specializations": ["Energy Engineering", "Transportation Systems", "Building Technology"]
+      },
+      "MBA": {
+        "specializations": ["Innovation Management", "Technology Entrepreneurship"]
+      },
+      "PhD": {
+        "specializations": ["Engineering", "Technology", "Planning Sciences"]
+      }
+    },
+    "fees": {
+      "M.Sc": 300000,
+      "M.Tech": 380000,
+      "MBA": 3800000,
+      "MS": 300000,
+      "PhD": 150000,
+      "B.Tech": 280000,
+      "B.Sc": 240000
+    },
+    "isInternational": true,
+    "country": "Germany"
   }
 ];
 }

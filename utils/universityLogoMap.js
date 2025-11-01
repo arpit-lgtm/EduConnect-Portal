@@ -469,7 +469,17 @@ const universityLogoMap = {
   'University of Applied Management': 'University of Applied Management.png',
   'University of Maryland': 'University of Maryland.png',
   'University of Toledo': 'University of Toledo.png',
-  'Vivekananda Global University': 'Vivekananda Global University.png'
+  'Vivekananda Global University': 'Vivekananda Global University.png',
+  
+  // German Universities
+  'Technical University of Munich (TUM)': 'technical-university-of-munich.png',
+  'Heidelberg University': 'heidelberg-university.png',
+  'Humboldt University of Berlin': 'humboldt-university-of-berlin.png',
+  'RWTH Aachen University': 'rwth-aachen-university.png',
+  'Ludwig Maximilian University of Munich (LMU)': 'ludwig-maximilian-university-of-munich.png',
+  'Free University of Berlin': 'free-university-of-berlin.png',
+  'Karlsruhe Institute of Technology (KIT)': 'karlsruhe-institute-of-technology.png',
+  'Technical University of Berlin (TU Berlin)': 'technical-university-of-berlin.png'
 };
 
 // Helper function to get university logo with fuzzy matching

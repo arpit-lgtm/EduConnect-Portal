@@ -631,7 +631,7 @@ export default function CourseDetails() {
                   <div className={styles.videoThumbnailContainer}>
                     <video 
                       className={styles.videoThumbnail}
-                      poster="/images/boy.png"
+                      poster="/images/testimonials/mba-thumb.jpg"
                       controls
                       loop
                       playsInline

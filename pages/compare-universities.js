@@ -369,11 +369,48 @@ export default function CompareUniversities() {
     return parts[parts.length - 1]; // Get last part (usually the state)
   }).filter(Boolean))].sort();
 
-  // Filter available universities based on search and state - SHOW ALL UNIVERSITIES
+  // Filter available universities based on search, state, AND COURSE AVAILABILITY
   const filteredUniversities = availableUniversities.filter(uni => {
     const matchesSearch = uni.name.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesState = !selectedState || uni.location?.includes(selectedState);
-    return matchesSearch && matchesState;
+    
+    // CRITICAL: Check if university actually offers the selected course
+    const courseKey = getCourseKey(courseName);
+    let hasCourse = false;
+    
+    if (uni.courses) {
+      if (Array.isArray(uni.courses)) {
+        // Old format: array of course names
+        hasCourse = uni.courses.some(course => 
+          course.toUpperCase().includes(courseKey?.toUpperCase()) || 
+          courseKey?.toUpperCase().includes(course.toUpperCase())
+        );
+      } else if (typeof uni.courses === 'object') {
+        // New format: object with course details
+        hasCourse = Object.keys(uni.courses).some(course => 
+          course.toUpperCase().includes(courseKey?.toUpperCase()) || 
+          courseKey?.toUpperCase().includes(course.toUpperCase())
+        );
+      }
+    }
+    
+    // Also check in fees object (if university has fees for this course, they offer it)
+    if (!hasCourse && uni.fees && typeof uni.fees === 'object') {
+      hasCourse = Object.keys(uni.fees).some(course => 
+        course.toUpperCase().includes(courseKey?.toUpperCase()) || 
+        courseKey?.toUpperCase().includes(course.toUpperCase())
+      );
+    }
+    
+    console.log('🔍 Course Filter:', { 
+      uniName: uni.name, 
+      courseKey, 
+      hasCourse,
+      courses: uni.courses,
+      fees: uni.fees ? Object.keys(uni.fees) : []
+    });
+    
+    return matchesSearch && matchesState && hasCourse;
   });
 
   const formatData = (uni, key) => {
@@ -463,7 +500,60 @@ export default function CompareUniversities() {
         if (uni.fees && courseName) {
           // Get the proper course key from the database
           const courseKey = getCourseKey(courseName);
-          const courseFee = uni.fees[courseKey];
+          let courseFee = uni.fees[courseKey];
+          
+          // Try alternative key formats if exact match not found
+          if (!courseFee) {
+            // Try without dots: M.Com -> MCom, B.Tech -> BTech
+            const keyWithoutDots = courseKey?.replace(/\./g, '');
+            courseFee = uni.fees[keyWithoutDots];
+          }
+          
+          if (!courseFee) {
+            // Try with dots: MBA -> M.BA (less common but possible)
+            const keyWithDots = courseKey?.replace(/([A-Z])([A-Z]+)/g, '$1.$2');
+            courseFee = uni.fees[keyWithDots];
+          }
+          
+          if (!courseFee) {
+            // SMART FALLBACK: Use similar degree level fees
+            // If looking for MCA (PG), try M.Tech, MBA, M.Sc, M.Com (other PG courses)
+            // If looking for BCA (UG), try B.Tech, B.Sc, B.Com (other UG courses)
+            const pgCourses = ['MBA', 'M.Tech', 'MCA', 'M.Com', 'M.Sc', 'M.Ed', 'MA', 'PGDM'];
+            const ugCourses = ['B.Tech', 'BCA', 'B.Com', 'B.Sc', 'BBA', 'BA'];
+            
+            const isPG = pgCourses.some(c => courseKey?.toUpperCase().includes(c.toUpperCase()));
+            const isUG = ugCourses.some(c => courseKey?.toUpperCase().includes(c.toUpperCase()));
+            
+            if (isPG) {
+              // Try other PG course fees
+              for (const altCourse of ['MBA', 'M.Tech', 'MCA', 'M.Com', 'M.Sc', 'PGDM']) {
+                if (uni.fees[altCourse]) {
+                  courseFee = uni.fees[altCourse];
+                  console.log(`✅ Using ${altCourse} fee for ${courseKey}`);
+                  break;
+                }
+              }
+            } else if (isUG) {
+              // Try other UG course fees
+              for (const altCourse of ['B.Tech', 'BCA', 'B.Com', 'B.Sc', 'BBA']) {
+                if (uni.fees[altCourse]) {
+                  courseFee = uni.fees[altCourse];
+                  console.log(`✅ Using ${altCourse} fee for ${courseKey}`);
+                  break;
+                }
+              }
+            }
+          }
+          
+          if (!courseFee) {
+            // If university has only one fee, use that
+            const feeKeys = Object.keys(uni.fees || {});
+            if (feeKeys.length === 1) {
+              courseFee = uni.fees[feeKeys[0]];
+            }
+          }
+          
           console.log('🔍 Semester Fees check:', { 
             uniName: uni.name, 
             courseName, 
@@ -537,38 +627,54 @@ export default function CompareUniversities() {
           
           <div className={styles.slotsContainer}>
             {selectedUniversities.map((uni, index) => (
-              <div key={index} className={styles.slot}>
-                {uni ? (
-                  // Filled slot with university
-                  <div className={styles.filledSlot}>
-                    <button 
-                      className={styles.removeButton}
-                      onClick={() => handleRemoveFromSlot(index)}
-                      title="Remove university"
-                    >
-                      ✕
-                    </button>
-                    <div className={styles.slotLogoContainer}>
-                      {getUniversityLogo(uni.name) ? (
-                        <img 
-                          src={getUniversityLogo(uni.name)} 
-                          alt={uni.name}
-                          className={styles.slotLogo}
-                        />
-                      ) : (
-                        <div className={styles.slotInitials}>
-                          {getInitials(uni.name)}
-                        </div>
-                      )}
+              <div key={index} className={styles.slotWrapper}>
+                <div className={styles.slot}>
+                  {uni ? (
+                    // Filled slot with university
+                    <div className={styles.filledSlot}>
+                      <button 
+                        className={styles.removeButton}
+                        onClick={() => handleRemoveFromSlot(index)}
+                        title="Remove university"
+                      >
+                        ✕
+                      </button>
+                      <div className={styles.slotLogoContainer}>
+                        {getUniversityLogo(uni.name) ? (
+                          <img 
+                            src={getUniversityLogo(uni.name)} 
+                            alt={uni.name}
+                            className={styles.slotLogo}
+                          />
+                        ) : (
+                          <div className={styles.slotInitials}>
+                            {getInitials(uni.name)}
+                          </div>
+                        )}
+                      </div>
+                      <div className={styles.slotName}>{uni.name}</div>
                     </div>
-                    <div className={styles.slotName}>{uni.name}</div>
-                  </div>
-                ) : (
-                  // Empty slot with "Add to Compare" button
-                  <div className={styles.emptySlot} onClick={() => handleAddToSlot(index)}>
-                    <div className={styles.addIcon}>+</div>
-                    <div className={styles.addText}>Add to Compare</div>
-                  </div>
+                  ) : (
+                    // Empty slot with "Add to Compare" button
+                    <div className={styles.emptySlot} onClick={() => handleAddToSlot(index)}>
+                      <div className={styles.addIcon}>+</div>
+                      <div className={styles.addText}>Add to Compare</div>
+                    </div>
+                  )}
+                </div>
+                
+                {/* CONTACT Button - OUTSIDE and BELOW the slot container */}
+                {uni && (
+                  <button 
+                    className={styles.contactButton}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setShowContactModal(true);
+                    }}
+                  >
+                    <span className={styles.contactText}>CONTACT US</span>
+                    <span className={styles.contactTextAlt}>KNOW MORE</span>
+                  </button>
                 )}
               </div>
             ))}
@@ -705,6 +811,141 @@ export default function CompareUniversities() {
       </main>
 
       <Footer />
+
+      {/* Contact Modal */}
+      {showContactModal && (
+        <div className={styles.contactModalOverlay} onClick={() => setShowContactModal(false)}>
+          <div className={styles.contactModalContent} onClick={(e) => e.stopPropagation()}>
+            <button className={styles.contactModalClose} onClick={() => setShowContactModal(false)}>✕</button>
+            
+            <div className={styles.contactModalHeader}>
+              <h2>Consult with our expert counsellors</h2>
+              <p>Fill in your details and we'll get back to you shortly</p>
+            </div>
+            
+            <form onSubmit={handleContactFormSubmit} className={styles.contactForm}>
+              <div className={styles.formRow}>
+                <div className={styles.formGroup}>
+                  <label htmlFor="fullName">Full Name *</label>
+                  <input
+                    type="text"
+                    id="fullName"
+                    name="fullName"
+                    value={contactFormData.fullName}
+                    onChange={handleContactFormChange}
+                    required
+                    placeholder="Enter your full name"
+                  />
+                </div>
+                <div className={styles.formGroup}>
+                  <label htmlFor="contactNumber">Contact Number *</label>
+                  <input
+                    type="tel"
+                    id="contactNumber"
+                    name="contactNumber"
+                    value={contactFormData.contactNumber}
+                    onChange={handleContactFormChange}
+                    required
+                    placeholder="Enter 10-digit number"
+                    pattern="[0-9]{10}"
+                  />
+                </div>
+              </div>
+
+              <div className={styles.formRow}>
+                <div className={styles.formGroup}>
+                  <label htmlFor="email">Email Address *</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={contactFormData.email}
+                    onChange={handleContactFormChange}
+                    required
+                    placeholder="Enter your email"
+                  />
+                </div>
+                <div className={styles.formGroup}>
+                  <label htmlFor="gender">Gender</label>
+                  <select
+                    id="gender"
+                    name="gender"
+                    value={contactFormData.gender}
+                    onChange={handleContactFormChange}
+                  >
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className={styles.formRow}>
+                <div className={styles.formGroup}>
+                  <label htmlFor="dob">Date of Birth</label>
+                  <input
+                    type="date"
+                    id="dob"
+                    name="dob"
+                    value={contactFormData.dob}
+                    onChange={handleContactFormChange}
+                  />
+                </div>
+                <div className={styles.formGroup}>
+                  <label htmlFor="city">City *</label>
+                  <input
+                    type="text"
+                    id="city"
+                    name="city"
+                    value={contactFormData.city}
+                    onChange={handleContactFormChange}
+                    required
+                    placeholder="Enter your city"
+                  />
+                </div>
+              </div>
+
+              <div className={styles.formRow}>
+                <div className={styles.formGroup}>
+                  <label htmlFor="state">State *</label>
+                  <input
+                    type="text"
+                    id="state"
+                    name="state"
+                    value={contactFormData.state}
+                    onChange={handleContactFormChange}
+                    required
+                    placeholder="Enter your state"
+                  />
+                </div>
+                <div className={styles.formGroup}>
+                  <label htmlFor="qualification">Current Qualification *</label>
+                  <select
+                    id="qualification"
+                    name="qualification"
+                    value={contactFormData.qualification}
+                    onChange={handleContactFormChange}
+                    required
+                  >
+                    <option value="">Select Qualification</option>
+                    <option value="10th">10th Pass</option>
+                    <option value="12th">12th Pass</option>
+                    <option value="diploma">Diploma</option>
+                    <option value="bachelors">Bachelor's Degree</option>
+                    <option value="masters">Master's Degree</option>
+                    <option value="phd">PhD</option>
+                  </select>
+                </div>
+              </div>
+
+              <button type="submit" className={styles.submitButton}>
+                Submit Details
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -335,10 +335,18 @@
   margin-bottom: 2rem;
 }
 
+.slotWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+}
+
 .slot {
   aspect-ratio: 1;
   border-radius: 12px;
   overflow: hidden;
+  width: 100%;
 }
 
 .emptySlot {
@@ -593,22 +601,35 @@
 .stateFilter {
   min-width: 200px;
   padding: 0.875rem 1.25rem;
+  padding-right: 2.5rem;
   border: 2px solid #e2e8f0;
   border-radius: 12px;
   font-size: 1rem;
-  background: white;
+  font-weight: 600;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
   cursor: pointer;
   transition: all 0.3s ease;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%230074d9' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 12px;
+  color: #1e293b;
 }
 
 .stateFilter:focus {
   outline: none;
   border-color: #0074d9;
-  box-shadow: 0 0 0 3px rgba(0, 116, 217, 0.1);
+  box-shadow: 0 0 0 4px rgba(0, 116, 217, 0.15);
+  background: white;
 }
 
 .stateFilter:hover {
-  border-color: #cbd5e1;
+  border-color: #0074d9;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 116, 217, 0.1);
 }
 
 .modalList {
@@ -731,6 +752,245 @@
 @media (max-width: 480px) {
   .slotsContainer {
     grid-template-columns: 1fr;
+  }
+}
+
+/* CONTACT Button with Flashing Text Animation */
+.contactButton {
+  position: relative;
+  padding: 0.6rem 1.25rem;
+  background: linear-gradient(135deg, #0074d7 0%, #0056a8 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 10px rgba(0, 116, 215, 0.3);
+  overflow: hidden;
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.contactButton:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+}
+
+.contactButton:active {
+  transform: scale(1);
+}
+
+.contactText,
+.contactTextAlt {
+  display: block;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.contactText {
+  animation: flashText 4s ease-in-out infinite;
+}
+
+.contactTextAlt {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  animation: flashTextAlt 4s ease-in-out infinite;
+}
+
+@keyframes flashText {
+  0%, 45% {
+    opacity: 1;
+  }
+  50%, 95% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes flashTextAlt {
+  0%, 45% {
+    opacity: 0;
+  }
+  50%, 95% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Contact Modal Styles */
+.contactModalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  backdrop-filter: blur(4px);
+}
+
+.contactModalContent {
+  background: white;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.contactModalClose {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  border: none;
+  font-size: 1.5rem;
+  color: #64748b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.contactModalClose:hover {
+  background: #e2e8f0;
+  color: #1e293b;
+  transform: rotate(90deg);
+}
+
+.contactModalHeader {
+  padding: 2rem 2rem 1.5rem 2rem;
+  text-align: center;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.contactModalHeader h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 0.5rem 0;
+}
+
+.contactModalHeader p {
+  font-size: 0.95rem;
+  color: #64748b;
+  margin: 0;
+}
+
+.contactForm {
+  padding: 2rem;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.formGroup label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+.formGroup input,
+.formGroup select {
+  padding: 0.875rem 1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.formGroup input:focus,
+.formGroup select:focus {
+  outline: none;
+  border-color: #0074d9;
+  box-shadow: 0 0 0 3px rgba(0, 116, 217, 0.1);
+}
+
+.formGroup input:hover,
+.formGroup select:hover {
+  border-color: #cbd5e1;
+}
+
+.formGroup select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2364748b' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #0074d9 0%, #0056a8 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 116, 217, 0.3);
+  margin-top: 0.5rem;
+}
+
+.submitButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 116, 217, 0.4);
+}
+
+.submitButton:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .formRow {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .contactModalContent {
+    width: 95%;
+    max-height: 90vh;
+  }
+  
+  .contactModalHeader {
+    padding: 1.5rem 1.5rem 1rem 1.5rem;
+  }
+  
+  .contactForm {
+    padding: 1.5rem;
   }
 }
 
