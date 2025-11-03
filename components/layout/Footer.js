@@ -17,9 +17,9 @@ const Footer = () => {
       <div className={styles.footerContent}>
         {/* Left Column - Logo and Description */}
         <div className={styles.logoSection}>
-          <img src="/logo.png" alt="EduConnect" className={styles.logo} />
+          <img src="/images/MBA NINJA.png" alt="MBA NINJA" className={styles.logo} />
           <p className={styles.description}>
-            EduConnect provides online courses in partnership with leading universities in India and abroad, assisting working professionals in advancing their careers.
+            MBA NINJA provides online courses in partnership with leading universities in India and abroad, assisting working professionals in advancing their careers.
           </p>
         </div>
 
@@ -28,7 +28,7 @@ const Footer = () => {
           <h5 className={styles.heading}>Our Links</h5>
           <ul className={styles.linksList}>
             <li><a href="/about">About Us</a></li>
-            <li><a href="/apply">Apply to EduConnect</a></li>
+            <li><a href="/apply">Apply to MBA NINJA</a></li>
             <li><a href="/blogs">Blogs</a></li>
             <li><a href="/contact">Contact Us</a></li>
             <li><a href="/privacy">Privacy Policy</a></li>
@@ -69,15 +69,15 @@ const Footer = () => {
       <div className={styles.footerBottom}>
         <div className={styles.footerBottomContent}>
           <p className={styles.copyright}>
-            Copyright © 2025 All Rights Reserved by <a href="/" className={styles.brandLink}>EduConnect</a>
+            Copyright © 2025 All Rights Reserved by <a href="/" className={styles.brandLink}>MBA NINJA</a>
           </p>
           <div className={styles.socialSection}>
             <span className={styles.followText}>Follow us:</span>
             <div className={styles.socialIcons}>
-              <a href="https://www.facebook.com/profile.php?id=61556825227774" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.facebook.com/people/Educativo-EdTech/pfbid02WuUfsLSV31zT6Wkpbt74ZUuAN1k2FgZuzeCWpJiJG5UjRBBX3bFwoCEUspx42R7Vl/" target="_blank" rel="noopener noreferrer">
                 <img src="/images/facebook.png" alt="Facebook" />
               </a>
-              <a href="https://www.instagram.com/educativo_2024/?hl=en" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.instagram.com/educativo_your_growth_partner/?igsh=ZDk0Y3M1MjR2bGlu#" target="_blank" rel="noopener noreferrer">
                 <img src="/images/instagram.png" alt="Instagram" />
               </a>
               <a href="https://api.whatsapp.com/send?phone=919076114175&text=Hi, I need guidance about courses" target="_blank" rel="noopener noreferrer">

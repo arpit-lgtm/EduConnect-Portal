@@ -33,12 +33,8 @@ const Header = ({ courseTitle = null }) => {
 
   // Handle smooth scrolling for anchor links
   const handleNavClick = (e, href, title) => {
-    // Open Courses in new tab
-    if (title === 'Courses') {
-      e.preventDefault();
-      window.open(href, '_blank');
-      return;
-    }
+    // Courses link will now navigate normally with loading animation
+    // No need to prevent default - let Next.js Link handle it
     
     // Check if it's an anchor link (contains #)
     if (href.includes('#')) {
@@ -75,8 +71,8 @@ const Header = ({ courseTitle = null }) => {
           {/* Logo on extreme left */}
           <Link href="/" className={styles.logo}>
             <Image
-              src="/logo.png"
-              alt="EduConnect Logo"
+              src="/images/MBA NINJA.png"
+              alt="MBA NINJA Logo"
               width={180}
               height={48}
               priority
@@ -120,16 +116,16 @@ const Header = ({ courseTitle = null }) => {
             </Link>
 
             <div className={styles.socialLinks}>
-              <a href="https://facebook.com/educativo.in" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="Facebook">
+              <a href="https://www.facebook.com/people/Educativo-EdTech/pfbid02WuUfsLSV31zT6Wkpbt74ZUuAN1k2FgZuzeCWpJiJG5UjRBBX3bFwoCEUspx42R7Vl/" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="Facebook">
                 <Image src="/images/facebook.png" alt="Facebook" width={32} height={32} />
               </a>
-              <a href="https://www.instagram.com/educativo.in" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="Instagram">
+              <a href="https://www.instagram.com/educativo_your_growth_partner/?igsh=ZDk0Y3M1MjR2bGlu#" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="Instagram">
                 <Image src="/images/instagram.png" alt="Instagram" width={32} height={32} />
               </a>
-              <a href="https://www.linkedin.com/company/educativo-in" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="LinkedIn">
+              <a href="https://www.linkedin.com/company/educativo-education-technology/" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="LinkedIn">
                 <Image src="/images/linkedin.png" alt="LinkedIn" width={32} height={32} />
               </a>
-              <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="WhatsApp">
+              <a href="https://api.whatsapp.com/send?phone=919076114175&text=&source=&data=" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="WhatsApp">
                 <Image src="/images/whatsapp.png" alt="WhatsApp" width={32} height={32} />
               </a>
             </div>

@@ -11,6 +11,7 @@ const EduAI = () => {
   const [showCounselorForm, setShowCounselorForm] = useState(false);
   const [questionCount, setQuestionCount] = useState(0); // Track number of questions answered
   const MAX_QUESTIONS = 5; // Limit to 5 questions before suggesting counselor
+  const [hasAskedQuestion, setHasAskedQuestion] = useState(false); // Track if user has asked at least one question
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -23,6 +24,22 @@ const EduAI = () => {
   const [videoExpanded, setVideoExpanded] = useState(false);
   const [isMuted, setIsMuted] = useState(true); // Voice control - START MUTED
   const [videoVisible, setVideoVisible] = useState(true); // Video widget visibility - open by default
+  
+  // Verification flow state
+  const [isVerified, setIsVerified] = useState(false);
+  const [showVerification, setShowVerification] = useState(false); // Only show after first question attempt
+  const [verificationStep, setVerificationStep] = useState('name'); // 'name', 'phone', 'phone-otp', 'email', 'email-otp', 'complete'
+  const [verificationData, setVerificationData] = useState({
+    firstName: '',
+    lastName: '',
+    phone: '',
+    phoneOtp: '',
+    email: '',
+    emailOtp: ''
+  });
+  const [generatedPhoneOtp, setGeneratedPhoneOtp] = useState('');
+  const [generatedEmailOtp, setGeneratedEmailOtp] = useState('');
+  
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
   const videoRef = useRef(null); // Video element ref
@@ -70,7 +87,7 @@ const EduAI = () => {
                        !question.includes('education');
 
     if (isOffTopic) {
-      return "😊 I appreciate your question, but I'm specifically designed to help with **education-related queries** about:\n\n✓ Universities & Courses (**only from our partner universities**)\n✓ Fees & Admissions\n✓ Career guidance\n✓ Study programs\n✓ Our services at EduConnect/Educativo\n\n**Important Note:**\nI only provide information about the **166 universities listed on our EduConnect/Educativo portal**. If you ask about universities not partnered with us, I won't have that information.\n\nFor other topics, I'd recommend checking specialized platforms. But I'm here to help with anything related to your education journey with our partner universities!\n\nWhat would you like to know about universities or courses?";
+      return "😊 I appreciate your question, but I'm specifically designed to help with **education-related queries** about:\n\n✓ Universities & Courses (**only from our partner universities**)\n✓ Fees & Admissions\n✓ Career guidance\n✓ Study programs\n✓ Our services at MBA NINJA\n\n**Important Note:**\nI only provide information about the **166 universities listed on our MBA NINJA portal**. If you ask about universities not partnered with us, I won't have that information.\n\nFor other topics, I'd recommend checking specialized platforms. But I'm here to help with anything related to your education journey with our partner universities!\n\nWhat would you like to know about universities or courses?";
     }
 
     // Context-aware responses (follow-up questions)
@@ -142,19 +159,40 @@ const EduAI = () => {
 
     // Regular knowledge base responses (same as before but with context tracking)
 
-    // Navigation & Website Help
-    if (question.includes('navigate') || question.includes('find') && question.includes('page') || question.includes('where is') || question.includes('how to reach') || question.includes('go to')) {
-      return "🧭 **Website Navigation Guide**\n\n**Main Sections:**\n\n1️⃣ **Home Page** - Overview & Features\n   • Hero carousel with programs\n   • Quick course categories\n   • Video testimonials\n\n2️⃣ **University Matcher** (AI-Powered)\n   • Click 'Find Your Match' button\n   • Answer 9 simple questions\n   • Get personalized recommendations\n\n3️⃣ **Browse Categories** - All Courses\n   • PG Programs (MBA, M.Tech, MCA)\n   • UG Programs (BBA, B.Tech, BCA)\n   • Executive Education\n   • Doctorate & Diploma\n\n4️⃣ **Course Details Page**\n   • Universities offering that course\n   • Fees, ratings, locations\n   • Video insights\n   • Loan partner information\n\n5️⃣ **Compare Universities**\n   • Select up to 5 universities\n   • Side-by-side comparison\n   • Detailed fee breakdown\n\n6️⃣ **Expert Counseling**\n   • Scroll to 'Talk to Our Experts'\n   • Fill form or call directly\n   • Free consultation\n\n**Quick Tips:**\n• Use search to find specific courses\n• Header is sticky for easy navigation\n• MBA NINJA button for AI assistance\n• AskEduAI (that's me!) on every page\n\nWhat specific page are you looking for?";
+    // PRIORITY: University Connection Questions - Direct YES with action
+    if ((question.includes('can') || question.includes('will') || question.includes('does')) && 
+        (question.includes('connect') || question.includes('help me get') || question.includes('admission')) && 
+        (question.includes('university') || question.includes('amity') || question.includes('ignou') || 
+         question.includes('manipal') || question.includes('jain') || question.includes('nmims') || 
+         question.includes('symbiosis') || question.includes('dy patil') || question.includes('lpu'))) {
+      
+      // Extract university name if mentioned
+      let universityName = 'that university';
+      if (question.includes('amity')) universityName = 'Amity University';
+      else if (question.includes('ignou')) universityName = 'IGNOU';
+      else if (question.includes('manipal')) universityName = 'Manipal University';
+      else if (question.includes('jain')) universityName = 'Jain University';
+      else if (question.includes('nmims')) universityName = 'NMIMS';
+      else if (question.includes('symbiosis')) universityName = 'Symbiosis';
+      else if (question.includes('dy patil')) universityName = 'DY Patil University';
+      else if (question.includes('lpu')) universityName = 'LPU';
+      
+      return `Yeah absolutely! We work with ${universityName} and can totally connect you. 😊\n\nHere's what I'll do:\n1. Get one of our admission counselors to call you\n2. They'll share detailed program info, fees, and eligibility\n3. Help you with the entire admission process\n\nJust drop your number in the 'Talk to Experts' section on the homepage, or you can WhatsApp us at +91-9076114175 and say you want info about ${universityName}.\n\nWhich program are you interested in - MBA, B.Tech, BCA, or something else?`;
     }
 
-    // About EduConnect Portal - ENHANCED
-    if (question.includes('educonnect') || question.includes('what is this') || question.includes('about this website') || question.includes('about this platform') || question.includes('what does this site do')) {
-      return "Hey there! Welcome to **EduConnect**! 👋\n\nSo you're probably wondering what this whole thing is about, right? Let me break it down for you:\n\n**What's EduConnect?**\nThink of us as your personal university matchmaker! We're an AI-powered platform that helps you find the perfect university and course for YOUR goals and budget.\n\n**Here's what makes us cool:**\n\n🎯 **Smart Matching System**\nYou answer 9 simple questions, and boom - our AI finds universities that actually fit what you're looking for. No random suggestions!\n\n📊 **Curated Database**\nWe've got info on **166 carefully selected universities** (153 in India, 13 abroad) and 100+ courses across UG, PG, MBA, Engineering - all verified and partnered with us.\n\n⚠️ **Important Note:**\nI only provide information about universities **listed on our EduConnect/Educativo portal**. If you ask about universities not in our database, I can't help with those - but I can guide you to our partnered universities that match your needs!\n\n💰 **Real Talk on Fees**\nWe show you actual fees from our partner universities, help you compare, and can even connect you with loan options if needed.\n\n👥 **Free Expert Help**\nNot sure about something? Our counselors are here to chat - completely free. No charges, no BS.\n\n**Who are we?**\nWe're part of Educativo.in (www.educativo.in), which is under the Audentia Group umbrella. Basically, we're backed by people who've been in the education business for 10+ years and helped over 50,000 students.\n\n**Why trust us?**\n• We're actually unbiased - we recommend from our verified partner universities\n• Everything is transparent - no hidden charges\n• We support you even after admission (yes, really!)\n• 24/7 student support because we know panic doesn't follow office hours 😅\n\n**Where we're based:**\nOur main office is in Mumbai, but we help students all across India!\n\nSo basically, whether you're confused about which MBA to pick, want to compare engineering colleges, or just need someone to explain this whole admission process - we've got you! 💪\n\nWhat would you like help with?";
+    // Navigation & Website Help
+    if (question.includes('navigate') || question.includes('find') && question.includes('page') || question.includes('where is') || question.includes('how to reach') || question.includes('go to')) {
+      return "🧭 **Website Navigation Guide**\n\n**Main Sections:**\n\n1️⃣ **Home Page** - Overview & Features\n   • Hero carousel with programs\n   • Quick course categories\n   • Video testimonials\n\n2️⃣ **University Matcher** (AI-Powered)\n   • Click 'Find Your Match' button\n   • Answer 9 simple questions\n   • Get personalized recommendations\n\n3️⃣ **Browse Categories** - All Courses\n   • PG Programs (MBA, M.Tech, MCA)\n   • UG Programs (BBA, B.Tech, BCA)\n   • Executive Education\n   • Doctorate & Diploma\n\n4️⃣ **Course Details Page**\n   • Universities offering that course\n   • Fees, ratings, locations\n   • Video insights\n   • Loan partner information\n\n5️⃣ **Compare Universities**\n   • Select up to 5 universities\n   • Side-by-side comparison\n   • Detailed fee breakdown\n\n6️⃣ **Expert Counseling**\n   • Scroll to 'Talk to Our Experts'\n   • Fill form or call directly\n   • Free consultation\n\n**Quick Tips:**\n• Use search to find specific courses\n• Header is sticky for easy navigation\n• MBA NINJA button for AI assistance\n• MBANinjAI (that's me!) on every page\n\nWhat specific page are you looking for?";
+    }
+
+    // About MBA NINJA Portal - ENHANCED
+    if (question.includes('mba ninja') || question.includes('what is this') || question.includes('about this website') || question.includes('about this platform') || question.includes('what does this site do')) {
+      return "Hey there! Welcome to **MBA NINJA**! 👋\n\nSo you're probably wondering what this whole thing is about, right? Let me break it down for you:\n\n**What's MBA NINJA?**\nThink of us as your personal university matchmaker! We're an AI-powered platform that helps you find the perfect university and course for YOUR goals and budget.\n\n**Here's what makes us cool:**\n\n🎯 **Smart Matching System**\nYou answer 9 simple questions, and boom - our AI finds universities that actually fit what you're looking for. No random suggestions!\n\n📊 **Curated Database**\nWe've got info on **166 carefully selected universities** (153 in India, 13 abroad) and 100+ courses across UG, PG, MBA, Engineering - all verified and partnered with us.\n\n⚠️ **Important Note:**\nI only provide information about universities **listed on our MBA NINJA portal**. If you ask about universities not in our database, I can't help with those - but I can guide you to our partnered universities that match your needs!\n\n💰 **Real Talk on Fees**\nWe show you actual fees from our partner universities, help you compare, and can even connect you with loan options if needed.\n\n👥 **Free Expert Help**\nNot sure about something? Our counselors are here to chat - completely free. No charges, no BS.\n\n**Who are we?**\nMBA NINJA is powered by Educativo (founded in 2023), which is part of the Audentia Group (established in 2010). So while MBA NINJA itself is new, we're backed by a parent company with 15+ years of experience in the education sector.\n\n**Why trust us?**\n• We're actually unbiased - we recommend from our verified partner universities\n• Everything is transparent - no hidden charges\n• We support you even after admission (yes, really!)\n• 24/7 student support because we know panic doesn't follow office hours 😅\n\n**Where we're based:**\nOur main office is in Mumbai, but we help students all across India!\n\nSo basically, whether you're confused about which MBA to pick, want to compare engineering colleges, or just need someone to explain this whole admission process - we've got you! 💪\n\nWhat would you like help with?";
     }
 
     // About Educativo.in (Parent Company) - ENHANCED
     if (question.includes('educativo') || question.includes('educativo.in') || question.includes('parent company') || question.includes('who owns') || question.includes('company behind') || question.includes('www.educativo')) {
-      return "Hey! So you want to know about Educativo? Let me tell you!\n\nEducativo (www.educativo.in) is basically our parent company - the folks behind this whole EduConnect platform you're using right now. 😊\n\nWhat do they do?\nThey're all about making education accessible for everyone in India. Think of them as your education counselor, admission guide, and career advisor all rolled into one!\n\n• Help students find the right universities and courses\n• Guide you through the entire admission process\n• Connect you with **166 partner universities** (carefully selected and verified!)\n• Assist with education loans and scholarships\n• Even help with study abroad programs\n\n**Important:**\nWe only provide information and admissions support for universities that are **officially partnered** with Educativo/EduConnect. This ensures quality, verified information, and proper admission support.\n\nThe numbers speak:\nThey've been doing this for 10+ years and helped over 50,000 students find their perfect match. Pretty impressive, right?\n\nFun fact: Educativo is actually part of the Audentia Group, which also has:\n- Audentia Research (market research wizards)\n- Audentia Financial Services (tax & accounting experts)\n\nSo basically, whether you need university info, career guidance, or financial help for your education - they've got your back!\n\nWhere are they?\nTheir head office is in Mumbai. We work with students across India though - that's the beauty of online platforms! 🌏\n\nWant to know more about any specific service?";
+      return "Hey! So you want to know about Educativo? Let me tell you!\n\nEducativo (www.educativo.in) is our parent company - they're the team behind this MBA NINJA platform you're using right now. 😊\n\n**When it started:**\nEducativo was founded in **2023** (pretty recent!), but don't let that fool you - the parent company Audentia Group has been around since **2010**, so there's solid experience backing us.\n\n**What they do:**\nThey're all about making education accessible for everyone in India. Think of them as your education counselor, admission guide, and career advisor all rolled into one!\n\n• Help students find the right universities and courses\n• Guide you through the entire admission process\n• Connect you with **166 partner universities** (carefully selected and verified!)\n• Assist with education loans and scholarships\n• Even help with study abroad programs\n\n**Important:**\nWe only provide information and admissions support for universities that are **officially partnered** with Educativo/MBA NINJA. This ensures quality, verified information, and proper admission support.\n\n**The Family:**\nEducativo is part of the Audentia Group (est. 2010), which also has:\n- Audentia Research (market research wizards) - founded 2010\n- Audentia Financial Services (tax & accounting experts)\n\nSo basically, whether you need university info, career guidance, or financial help for your education - they've got your back!\n\n**Where are they?**\nHead office is in Mumbai. We work with students across India though - that's the beauty of online platforms! 🌏\n\nWant to know more about any specific service?";
     }
 
     // About Audentia Group - ENHANCED with better keyword matching
@@ -164,12 +202,12 @@ const EduAI = () => {
         question.includes('tell me about audentia') ||
         question.includes('know about audentia') ||
         question.includes('audentia company')) {
-      return "Oh, Audentia Group! That's the big family we're part of. 🏢\n\nSo here's the story - Audentia Group is basically a group of companies that work together in different fields. Their headquarters is in Mumbai.\n\nThe family has three main businesses:\n\n1. Educativo.in (that's us! 🎓)\nThe education division - helping students like you find universities, get admissions, career guidance, the whole package. Check out www.educativo.in\n\n2. Audentia Research (the data nerds 📊)\nThese guys do market research and analytics. They study education trends, student preferences, university rankings - basically all the data that helps us give you better recommendations!\n\n3. Audentia Financial Services (tax & accounting experts �)\nThey help businesses and individuals with tax consultation, GST compliance, accounting, financial auditing, and business incorporation. Professional CA & tax experts!\n\nWhy does this matter to you?\nBecause we're all working together! When you use EduConnect:\n- You get smart recommendations powered by Audentia Research's data\n- You get end-to-end support from the Educativo team\n- If you need education loans, our counselors connect you with partner banks\n\nIt's like having an entire ecosystem supporting your education journey! Pretty cool, right? 😊\n\nTheir vibe:\n\"Excellence through Innovation, Trust through Transparency\" - basically, they believe in using technology to help people while being completely honest about everything.\n\nWant to know more about any specific part?";
+      return "Oh, Audentia Group! That's the big family we're part of. 🏢\n\n**Founded:** 2010 (so yeah, they've been around for 15 years now!)\n**HQ:** Mumbai\n\nAudentia Group is basically a group of companies working together in different fields.\n\n**The family has three main businesses:**\n\n1. **Audentia Research** (founded 2010 - the OG! 📊)\nThese guys do market research and analytics. They study education trends, student preferences, university rankings - basically all the data that helps us give you better recommendations!\n\n2. **Educativo.in** (founded 2023 - that's us! 🎓)\nThe education division - helping students like you find universities, get admissions, career guidance, the whole package. Check out www.educativo.in\n\n3. **Audentia Financial Services** (tax & accounting experts 💼)\nThey help businesses and individuals with tax consultation, GST compliance, accounting, financial auditing, and business incorporation. Professional CA & tax experts!\n\n**Why does this matter to you?**\nBecause we're all working together! When you use MBA NINJA:\n- You get smart recommendations powered by Audentia Research's data (15 years of research!)\n- You get end-to-end support from the Educativo team\n- If you need education loans, our counselors connect you with partner banks\n\nIt's like having an entire ecosystem supporting your education journey! Pretty cool, right? 😊\n\n**Their vibe:**\n\"Excellence through Innovation, Trust through Transparency\" - basically, they believe in using technology to help people while being completely honest about everything.\n\nWant to know more about any specific part?";
     }
 
     // About Audentia Research - NEW
     if (question.includes('audentia research') || question.includes('research division')) {
-      return "📊 **Audentia Research**\n\n**Division:** Market Research & Business Intelligence\n**Parent:** Audentia Group\n\n**🔍 What Audentia Research Does:**\n\n**Core Services:**\n✓ Market research & consumer behavior analysis\n✓ Industry trend forecasting\n✓ Competitive intelligence\n✓ Data analytics & visualization\n✓ Custom research studies\n✓ Business advisory & consulting\n\n**🎓 Education Sector Focus:**\n• University ranking methodologies\n• Student preference studies\n• Education market trends\n• Course demand analysis\n• Placement trend research\n• Fee benchmarking studies\n\n**💼 Corporate Services:**\n• Brand perception studies\n• Product launch research\n• Customer satisfaction surveys\n• Market sizing & forecasting\n• Strategic advisory\n\n**🤝 Integration with Educativo:**\n• Provides data for EduConnect's AI matching\n• University performance analytics\n• Student outcome tracking\n• Course popularity trends\n• Helps optimize student recommendations\n\n**📈 Research Capabilities:**\n• Quantitative & Qualitative research\n• Big data analytics\n• Predictive modeling\n• Industry reports\n\n**Why Audentia Research Matters to You:**\nTheir insights power EduConnect's smart recommendations, ensuring you get matched with universities based on real data, trends, and student success metrics!\n\nNeed information about our other group companies?";
+      return "📊 **Audentia Research**\n\n**Division:** Market Research & Business Intelligence\n**Parent:** Audentia Group\n\n**🔍 What Audentia Research Does:**\n\n**Core Services:**\n✓ Market research & consumer behavior analysis\n✓ Industry trend forecasting\n✓ Competitive intelligence\n✓ Data analytics & visualization\n✓ Custom research studies\n✓ Business advisory & consulting\n\n**🎓 Education Sector Focus:**\n• University ranking methodologies\n• Student preference studies\n• Education market trends\n• Course demand analysis\n• Placement trend research\n• Fee benchmarking studies\n\n**💼 Corporate Services:**\n• Brand perception studies\n• Product launch research\n• Customer satisfaction surveys\n• Market sizing & forecasting\n• Strategic advisory\n\n**🤝 Integration with Educativo:**\n• Provides data for MBA NINJA's AI matching\n• University performance analytics\n• Student outcome tracking\n• Course popularity trends\n• Helps optimize student recommendations\n\n**📈 Research Capabilities:**\n• Quantitative & Qualitative research\n• Big data analytics\n• Predictive modeling\n• Industry reports\n\n**Why Audentia Research Matters to You:**\nTheir insights power MBA NINJA's smart recommendations, ensuring you get matched with universities based on real data, trends, and student success metrics!\n\nNeed information about our other group companies?";
     }
 
     // About Audentia Financial Services - Tax & Accounting Firm
@@ -179,7 +217,7 @@ const EduAI = () => {
 
     // Contact & Support
     if (question.includes('contact') || question.includes('phone') || question.includes('email') || question.includes('reach you') || question.includes('customer care')) {
-      return "📞 **Contact EduConnect**\n\n**Get in Touch:**\n📱 Phone: +91-XXXX-XXXXXX\n📧 Email: info@educonnect.in\n🌐 Website: www.educonnect.in\n\n**Our Experts:**\nTalk to our education counselors:\n• Arshad Farooqui - Admission Expert\n• Asad Farooqui - Career Advisor\n\n**Working Hours:**\nMon-Sat: 9:00 AM - 7:00 PM\nSun: 10:00 AM - 5:00 PM\n\n**Social Media:**\n• LinkedIn, Facebook, Instagram\n• WhatsApp Support Available\n\nHow can we help you today?";
+      return "📞 **Contact MBA NINJA**\n\n**Get in Touch:**\n📱 Phone: +91-9076114175\n📧 Email: info@educativo.in\n🌐 Website: www.educativo.in\n\n**Our Experts:**\nTalk to our education counselors:\n• Arshad Farooqui - Admission Expert\n• Asad Farooqui - Career Advisor\n\n**Working Hours:**\nMon-Sat: 9:00 AM - 7:00 PM\nSun: 10:00 AM - 5:00 PM\n\n**Social Media:**\n• LinkedIn, Facebook, Instagram\n• WhatsApp Support Available\n\nHow can we help you today?";
     }
 
     // Services Offered
@@ -281,7 +319,7 @@ const EduAI = () => {
 
     // Platform features
     if (question.includes('how') && (question.includes('work') || question.includes('use'))) {
-      return "🎯 How EduConnect Works:\n\n1️⃣ **University Matcher:**\n   Answer 9 simple questions about your preferences\n\n2️⃣ **Smart Matching:**\n   Our AI finds universities that fit your needs\n\n3️⃣ **Compare & Choose:**\n   See fees, ratings, locations, approvals\n\n4️⃣ **Expert Counseling:**\n   Get free guidance from education experts\n\n5️⃣ **Easy Admissions:**\n   We help with the entire process\n\nWant to start matching now?";
+      return "🎯 How MBA NINJA Works:\n\n1️⃣ **University Matcher:**\n   Answer 9 simple questions about your preferences\n\n2️⃣ **Smart Matching:**\n   Our AI finds universities that fit your needs\n\n3️⃣ **Compare & Choose:**\n   See fees, ratings, locations, approvals\n\n4️⃣ **Expert Counseling:**\n   Get free guidance from education experts\n\n5️⃣ **Easy Admissions:**\n   We help with the entire process\n\nWant to start matching now?";
     }
 
     // Admission queries
@@ -323,7 +361,7 @@ const EduAI = () => {
     // PRIORITY 1: Check if question is about our company, Audentia, or Educativo
     // These should ALWAYS use knowledge base (never AI)
     const companyKeywords = [
-      'audentia', 'educativo', 'educonnect', 'parent company', 'who owns',
+      'audentia', 'educativo', 'mba ninja', 'parent company', 'who owns',
       'company behind', 'your company', 'this website', 'this platform',
       'www.educativo', 'educativo.in', 'audentia group', 'audentia research',
       'audentia financial', 'financial services', 'research division',
@@ -364,8 +402,86 @@ const EduAI = () => {
     }
   };
 
+  // Verification handlers
+  const handleVerificationChange = (field, value) => {
+    setVerificationData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  const handleNameSubmit = () => {
+    if (verificationData.firstName.trim() && verificationData.lastName.trim()) {
+      setVerificationStep('phone');
+    }
+  };
+
+  const handlePhoneSendOtp = () => {
+    if (verificationData.phone.trim().length === 10) {
+      // Generate random 6-digit OTP for testing
+      const otp = Math.floor(100000 + Math.random() * 900000).toString();
+      setGeneratedPhoneOtp(otp);
+      console.log('Phone OTP generated:', otp); // For testing
+      alert(`OTP sent to ${verificationData.phone}!\n\nFor testing, OTP is: ${otp}`);
+      setVerificationStep('phone-otp');
+    }
+  };
+
+  const handlePhoneVerifyOtp = () => {
+    // For testing, accept any 6-digit number
+    if (verificationData.phoneOtp.trim().length === 6) {
+      setVerificationStep('email');
+    }
+  };
+
+  const handleEmailSendOtp = () => {
+    if (verificationData.email.trim() && verificationData.email.includes('@')) {
+      // Generate random 6-digit OTP for testing
+      const otp = Math.floor(100000 + Math.random() * 900000).toString();
+      setGeneratedEmailOtp(otp);
+      console.log('Email OTP generated:', otp); // For testing
+      alert(`OTP sent to ${verificationData.email}!\n\nFor testing, OTP is: ${otp}`);
+      setVerificationStep('email-otp');
+    }
+  };
+
+  const handleEmailVerifyOtp = () => {
+    // For testing, accept any 6-digit number
+    if (verificationData.emailOtp.trim().length === 6) {
+      setIsVerified(true);
+      setShowVerification(false); // Hide verification form
+      setVerificationStep('complete');
+      // Add welcome message after verification
+      const welcomeMessage = {
+        type: 'bot',
+        text: `Welcome ${verificationData.firstName}! 👋 Your details have been verified. How can I help you today with your education journey?`,
+        timestamp: new Date()
+      };
+      setMessages([welcomeMessage]);
+    }
+  };
+
   const handleSendMessage = async () => {
     if (!inputValue.trim()) return;
+
+    // If not verified yet, show verification form instead of sending message
+    if (!isVerified) {
+      // Store the question they wanted to ask
+      const pendingQuestion = inputValue;
+      
+      // Show verification form
+      setShowVerification(true);
+      
+      // Clear input
+      setInputValue('');
+      
+      return;
+    }
+
+    // Mark that user has asked their first question
+    if (!hasAskedQuestion) {
+      setHasAskedQuestion(true);
+    }
 
     const userMessage = {
       type: 'user',
@@ -515,7 +631,7 @@ const EduAI = () => {
 
   // Quick suggestion buttons - More comprehensive
   const quickSuggestions = [
-    "What is EduConnect?",
+    "What is MBA NINJA?",
     "Distance MBA fees in Maharashtra",
     "Tell me about Amity University",
     "How does university matcher work?",
@@ -532,12 +648,12 @@ const EduAI = () => {
 
   return (
     <>
-      {/* AskEduAI Button - Robot Icon with Colorful Glow */}
+      {/* MBANinjAI Button - Robot Icon with Colorful Glow */}
       <button 
         className={styles.askEduAIButton}
         onClick={() => setIsOpen(true)}
-        aria-label="Ask EduAI - Your AI Education Assistant"
-        title="AskEduAI"
+        aria-label="MBANinjAI - Your AI Education Assistant"
+        title="MBANinjAI"
       >
         <div className={styles.robotIconContainer}>
           {/* Robot Head SVG Icon */}
@@ -666,7 +782,7 @@ const EduAI = () => {
                   </svg>
                 </div>
                 <div>
-                  <h3>EduAI Assistant</h3>
+                  <h3>MBANinjAI</h3>
                   <div className={styles.status}>
                     <div className={styles.statusDot}></div>
                     <span>Online</span>
@@ -691,11 +807,153 @@ const EduAI = () => {
 
             {/* Chat Body */}
             <div className={styles.chatContainer}>
-              {messages.length === 0 ? (
-                /* Empty State */
+              {showVerification && !isVerified ? (
+                /* Verification Flow */
+                <div className={styles.verificationContainer}>
+                  <div className={styles.verificationIcon}>🔐</div>
+                  <h3 className={styles.verificationTitle}>Before we proceed</h3>
+                  <p className={styles.verificationSubtext}>I need a few details so I can help you in a better way</p>
+                  
+                  {verificationStep === 'name' && (
+                    <div className={styles.verificationStep}>
+                      <div className={styles.formGroup}>
+                        <label>First Name *</label>
+                        <input
+                          type="text"
+                          placeholder="Enter your first name"
+                          value={verificationData.firstName}
+                          onChange={(e) => handleVerificationChange('firstName', e.target.value)}
+                        />
+                      </div>
+                      <div className={styles.formGroup}>
+                        <label>Last Name *</label>
+                        <input
+                          type="text"
+                          placeholder="Enter your last name"
+                          value={verificationData.lastName}
+                          onChange={(e) => handleVerificationChange('lastName', e.target.value)}
+                        />
+                      </div>
+                      <button 
+                        className={styles.verifyButton}
+                        onClick={handleNameSubmit}
+                        disabled={!verificationData.firstName.trim() || !verificationData.lastName.trim()}
+                      >
+                        Continue →
+                      </button>
+                    </div>
+                  )}
+
+                  {verificationStep === 'phone' && (
+                    <div className={styles.verificationStep}>
+                      <p className={styles.stepInfo}>Great! Now let's verify your contact number</p>
+                      <div className={styles.formGroup}>
+                        <label>Contact Number *</label>
+                        <input
+                          type="tel"
+                          placeholder="Enter 10-digit mobile number"
+                          maxLength="10"
+                          value={verificationData.phone}
+                          onChange={(e) => handleVerificationChange('phone', e.target.value.replace(/\D/g, ''))}
+                        />
+                      </div>
+                      <button 
+                        className={styles.verifyButton}
+                        onClick={handlePhoneSendOtp}
+                        disabled={verificationData.phone.trim().length !== 10}
+                      >
+                        Send OTP
+                      </button>
+                    </div>
+                  )}
+
+                  {verificationStep === 'phone-otp' && (
+                    <div className={styles.verificationStep}>
+                      <p className={styles.stepInfo}>📱 OTP sent to {verificationData.phone}</p>
+                      <div className={styles.formGroup}>
+                        <label>Enter OTP *</label>
+                        <input
+                          type="text"
+                          placeholder="Enter 6-digit OTP"
+                          maxLength="6"
+                          value={verificationData.phoneOtp}
+                          onChange={(e) => handleVerificationChange('phoneOtp', e.target.value.replace(/\D/g, ''))}
+                        />
+                      </div>
+                      <button 
+                        className={styles.verifyButton}
+                        onClick={handlePhoneVerifyOtp}
+                        disabled={verificationData.phoneOtp.trim().length !== 6}
+                      >
+                        Verify Phone ✓
+                      </button>
+                      <button 
+                        className={styles.resendButton}
+                        onClick={handlePhoneSendOtp}
+                      >
+                        Resend OTP
+                      </button>
+                    </div>
+                  )}
+
+                  {verificationStep === 'email' && (
+                    <div className={styles.verificationStep}>
+                      <p className={styles.stepInfo}>✅ Phone verified! Now let's verify your email</p>
+                      <div className={styles.formGroup}>
+                        <label>Email Address *</label>
+                        <input
+                          type="email"
+                          placeholder="Enter your email"
+                          value={verificationData.email}
+                          onChange={(e) => handleVerificationChange('email', e.target.value)}
+                        />
+                      </div>
+                      <button 
+                        className={styles.verifyButton}
+                        onClick={handleEmailSendOtp}
+                        disabled={!verificationData.email.trim() || !verificationData.email.includes('@')}
+                      >
+                        Send OTP
+                      </button>
+                    </div>
+                  )}
+
+                  {verificationStep === 'email-otp' && (
+                    <div className={styles.verificationStep}>
+                      <p className={styles.stepInfo}>📧 OTP sent to {verificationData.email}</p>
+                      <div className={styles.formGroup}>
+                        <label>Enter OTP *</label>
+                        <input
+                          type="text"
+                          placeholder="Enter 6-digit OTP"
+                          maxLength="6"
+                          value={verificationData.emailOtp}
+                          onChange={(e) => handleVerificationChange('emailOtp', e.target.value.replace(/\D/g, ''))}
+                        />
+                      </div>
+                      <button 
+                        className={styles.verifyButton}
+                        onClick={handleEmailVerifyOtp}
+                        disabled={verificationData.emailOtp.trim().length !== 6}
+                      >
+                        Verify Email ✓
+                      </button>
+                      <button 
+                        className={styles.resendButton}
+                        onClick={handleEmailSendOtp}
+                      >
+                        Resend OTP
+                      </button>
+                    </div>
+                  )}
+                </div>
+              ) : messages.length === 0 ? (
+                /* Empty State - Initial or after verification */
                 <div className={styles.emptyState}>
                   <div className={styles.emptyStateIcon}>🤖</div>
-                  <h3 className={styles.emptyStateTitle}>Hi there! 👋</h3>
+                  <h3 className={styles.emptyStateTitle}>
+                    {isVerified ? `Hi ${verificationData.firstName}! 👋` : 'Hi there! 👋'}
+                  </h3>
                   <p className={styles.emptyStateText}>
                     How can I help you today?
                   </p>
@@ -873,6 +1131,7 @@ const EduAI = () => {
                     }}
                     placeholder="Ask about courses, fees, universities..."
                     rows={1}
+                    disabled={false}
                   />
                   <button 
                     className={styles.sendButton}

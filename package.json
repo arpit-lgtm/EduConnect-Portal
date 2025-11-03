@@ -1,7 +1,7 @@
 {
-  "name": "educonnect",
+  "name": "mba-ninja",
   "version": "1.0.0",
-  "description": "Educonnect - University and Course Information Platform",
+  "description": "MBA NINJA - University and Course Information Platform",
   "scripts": {
     "dev": "node start-dev.js",
     "build": "next build",
