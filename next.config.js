@@ -3,12 +3,20 @@ const nextConfig = {
   reactStrictMode: true,
 
   images: {
-    domains: ['localhost', 'educonnect-portal.onrender.com'],
+    domains: ['localhost', 'educonnect-portal.onrender.com', 'mbaninja.in', 'www.mbaninja.in'],
     unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
         hostname: '**.onrender.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'mbaninja.in',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.mbaninja.in',
       },
     ],
   },
