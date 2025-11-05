@@ -110,7 +110,7 @@ const Header = ({ courseTitle = null }) => {
             <Link href="/university-matcher" className={styles.universityFinderBtn}>
               <span className={styles.finderIcon}>🤖</span>
               <div className={styles.finderText}>
-                <strong>MBA NINJA - AI DRIVEN</strong>
+                <strong>Ask MBA-NINJA-AI#</strong>
                 <small>Find your perfect university in less than a MINUTE!</small>
               </div>
             </Link>

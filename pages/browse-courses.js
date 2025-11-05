@@ -292,9 +292,10 @@ export default function BrowseCourses() {
 
     console.log(`Found ${matchingUniversities.length} universities offering ${dbCourseName}`);
 
-    // Pick 4 random universities
+    // For PG/UG courses, show random 7 universities. For others, show ALL matching universities
+    const isMainCategory = activeTab === 'PG Courses' || activeTab === 'UG Courses';
     const shuffled = [...matchingUniversities].sort(() => 0.5 - Math.random());
-    const selected = shuffled.slice(0, 4);
+    const selected = isMainCategory ? shuffled.slice(0, 7) : shuffled; // Show all for non-PG/UG
 
     setCourseUniversities(selected);
   };

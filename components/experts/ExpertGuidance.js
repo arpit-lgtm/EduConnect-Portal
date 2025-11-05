@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import styles from './ExpertGuidance.module.css';
 
 const ExpertGuidance = () => {
@@ -15,6 +15,35 @@ const ExpertGuidance = () => {
         state: '',
         currentQualification: ''
     });
+
+    const experts = [
+        { name: 'Imran Ansari', title: 'Manager, Sales', experience: '7+ Years', rating: '4.9', image: '/images/counsellors/Imran Ansari.jpeg' },
+        { name: 'Asif Shaikh', title: 'Team Leader', experience: '5+ Years', rating: '4.8', image: '/images/counsellors/Asif Shaikh.jpeg' },
+        { name: 'Komal Wadekar', title: 'Team Leader', experience: '5+ Years', rating: '4.8', image: '/images/counsellors/Komal Wadekar.jpeg' },
+        { name: 'Athar Khan', title: 'Team Leader', experience: '4+ Years', rating: '4.8', image: '/images/counsellors/Athar Khan.jpeg' },
+        { name: 'Akash Dubey', title: 'Business Development Executive', experience: '2+ Years', rating: '4.6', image: '/images/counsellors/Akash Dubey.jpeg' },
+        { name: 'Monika Barman', title: 'Business Development Executive', experience: '2+ Years', rating: '4.6', image: '/images/counsellors/Monika Barman.jpeg' },
+        { name: 'Priya Prajapati', title: 'Career Counsellor', experience: '2+ Years', rating: '4.6', image: '/images/counsellors/Priya Prajapati.jpeg' },
+        { name: 'Indu Mehta', title: 'Career Counsellor', experience: '2+ Years', rating: '4.6', image: '/images/counsellors/Indu Mehta.jpeg' },
+        { name: 'Prutha Ghag', title: 'Business Development Executive', experience: '1+ Years', rating: '4.5', image: '/images/counsellors/Prutha Ghag.jpeg' },
+        { name: 'Rahul Bane', title: 'Business Development Executive', experience: '1+ Years', rating: '4.5', image: '/images/counsellors/Rahul Bane.jpeg' },
+        { name: 'Sarvesh Poojari', title: 'Business Development Executive', experience: '1+ Years', rating: '4.5', image: '/images/counsellors/Sarvesh Poojari.jpeg' },
+        { name: 'Aishwarya Pavaskar', title: 'Accounts Manager', experience: '1+ Years', rating: '4.5', image: '/images/counsellors/Aishwarya Pavaskar.jpeg' }
+    ];
+
+    // Listen for custom event to open modal from chatbot
+    useEffect(() => {
+        const handleOpenModal = () => {
+            setSelectedExpert(experts[0]); // Default to first expert
+            setShowModal(true);
+        };
+        
+        window.addEventListener('openExpertModal', handleOpenModal);
+        
+        return () => {
+            window.removeEventListener('openExpertModal', handleOpenModal);
+        };
+    }, []);
 
     const scrollLeft = () => {
         if (scrollContainerRef.current) {
@@ -63,21 +92,6 @@ const ExpertGuidance = () => {
         alert(`Thank you! ${selectedExpert?.name} will contact you shortly.`);
         handleCloseModal();
     };
-
-    const experts = [
-        { name: 'Imran Ansari', title: 'Manager, Sales', experience: '7+ Years', rating: '4.9', image: '/images/counsellors/Imran Ansari.jpeg' },
-        { name: 'Asif Shaikh', title: 'Team Leader', experience: '5+ Years', rating: '4.8', image: '/images/counsellors/Asif Shaikh.jpeg' },
-        { name: 'Komal Wadekar', title: 'Team Leader', experience: '5+ Years', rating: '4.8', image: '/images/counsellors/Komal Wadekar.jpeg' },
-        { name: 'Athar Khan', title: 'Team Leader', experience: '4+ Years', rating: '4.8', image: '/images/counsellors/Athar Khan.jpeg' },
-        { name: 'Akash Dubey', title: 'Business Development Executive', experience: '2+ Years', rating: '4.6', image: '/images/counsellors/Akash Dubey.jpeg' },
-        { name: 'Monika Barman', title: 'Business Development Executive', experience: '2+ Years', rating: '4.6', image: '/images/counsellors/Monika Barman.jpeg' },
-        { name: 'Priya Prajapati', title: 'Career Counsellor', experience: '2+ Years', rating: '4.6', image: '/images/counsellors/Priya Prajapati.jpeg' },
-        { name: 'Indu Mehta', title: 'Career Counsellor', experience: '2+ Years', rating: '4.6', image: '/images/counsellors/Indu Mehta.jpeg' },
-        { name: 'Prutha Ghag', title: 'Business Development Executive', experience: '1+ Years', rating: '4.5', image: '/images/counsellors/Prutha Ghag.jpeg' },
-        { name: 'Rahul Bane', title: 'Business Development Executive', experience: '1+ Years', rating: '4.5', image: '/images/counsellors/Rahul Bane.jpeg' },
-        { name: 'Sarvesh Poojari', title: 'Business Development Executive', experience: '1+ Years', rating: '4.5', image: '/images/counsellors/Sarvesh Poojari.jpeg' },
-        { name: 'Aishwarya Pavaskar', title: 'Accounts Manager', experience: '1+ Years', rating: '4.5', image: '/images/counsellors/Aishwarya Pavaskar.jpeg' }
-    ];
 
     return (
         <section id="expert-guidance" className={styles.expertsSection}>
@@ -147,8 +161,8 @@ const ExpertGuidance = () => {
                         </button>
                         
                         <div className={styles.modalHeader}>
-                            <h3>Consult with {selectedExpert?.name}</h3>
-                            <p>{selectedExpert?.title} • {selectedExpert?.experience} experience</p>
+                            <h3>Consult with our expert counsellors</h3>
+                            <p>Fill in your details and we'll get back to you shortly.</p>
                         </div>
 
                         <form onSubmit={handleSubmit} className={styles.consultForm}>

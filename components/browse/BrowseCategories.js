@@ -308,8 +308,14 @@ const BrowseCategories = () => {
                                         className={styles.compareInfo}
                                         onClick={(e) => {
                                             e.preventDefault();
+                                            e.stopPropagation();
+                                            console.log('🎯 COMPARE BUTTON CLICKED!');
+                                            
                                             const courseId = courseNameToId[course.name] || 'Executive-MBA';
                                             const displayName = encodeURIComponent(course.name);
+                                            
+                                            // OPEN NEW TAB IMMEDIATELY - Animation will show when NEW page loads!
+                                            console.log('🚀 OPENING NEW TAB IMMEDIATELY!');
                                             window.open(
                                                 `/course-details?courseId=${courseId}&displayName=${displayName}`,
                                                 '_blank'

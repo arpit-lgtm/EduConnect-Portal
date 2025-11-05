@@ -101,14 +101,46 @@ export default function CourseDetails() {
         // Store course info in state for later use
         setCurrentCourseInfo(courseInfo);
 
-        // Get normalized course type from the title (handle M.Com, M.Tech patterns)
-        // Instead of generic matching, use multiple keywords for better specificity
-        const titleWords = courseInfo.title.toUpperCase().replace(/[^\w\s]/g, '').split(' ');
+        // Get normalized course type from the title (handle M.Com, M.Tech, B.Com patterns)
+        const titleUpper = courseInfo.title.toUpperCase();
         
-        // Extract base course type
-        let courseType = titleWords.find(word => 
-          ['MBA', 'MCA', 'BBA', 'BCA', 'MCOM', 'BCOM', 'MSC', 'BSC', 'MTECH', 'BTECH', 'MA', 'BA', 'PHD', 'PGDM', 'MS'].includes(word)
-        ) || 'MBA';
+        // Extract base course type - check patterns first, then individual words
+        let courseType = 'MBA'; // default
+        
+        // Check for BACHELOR patterns first (BBA, BCA, B.Com, B.Sc, B.Tech)
+        if (titleUpper.includes('BACHELOR') && titleUpper.includes('BUSINESS')) {
+          courseType = 'BBA';
+        } else if (titleUpper.includes('BACHELOR') && titleUpper.includes('COMPUTER')) {
+          courseType = 'BCA';
+        } else if (titleUpper.includes('BACHELOR') && titleUpper.includes('COMMERCE')) {
+          courseType = 'BCOM';
+        } else if (titleUpper.includes('BACHELOR') && titleUpper.includes('SCIENCE')) {
+          courseType = 'BSC';
+        } else if (titleUpper.includes('BACHELOR') && titleUpper.includes('TECH')) {
+          courseType = 'BTECH';
+        } else if (titleUpper.includes('BACHELOR') && titleUpper.includes('ARTS')) {
+          courseType = 'BA';
+        }
+        // Check for compound patterns (M.Com, B.Com, M.Tech, B.Tech, M.Sc, B.Sc)
+        else if (titleUpper.includes('M.COM') || titleUpper.includes('MCOM') || (titleUpper.includes('M COM') && titleUpper.includes('COM'))) {
+          courseType = 'MCOM';
+        } else if (titleUpper.includes('B.COM') || titleUpper.includes('BCOM') || (titleUpper.includes('B COM') && titleUpper.includes('COM'))) {
+          courseType = 'BCOM';
+        } else if (titleUpper.includes('M.TECH') || titleUpper.includes('MTECH') || (titleUpper.includes('M TECH') && titleUpper.includes('TECH'))) {
+          courseType = 'MTECH';
+        } else if (titleUpper.includes('B.TECH') || titleUpper.includes('BTECH') || (titleUpper.includes('B TECH') && titleUpper.includes('TECH'))) {
+          courseType = 'BTECH';
+        } else if (titleUpper.includes('M.SC') || titleUpper.includes('MSC') || (titleUpper.includes('M SC') && titleUpper.includes('SC'))) {
+          courseType = 'MSC';
+        } else if (titleUpper.includes('B.SC') || titleUpper.includes('BSC') || (titleUpper.includes('B SC') && titleUpper.includes('SC'))) {
+          courseType = 'BSC';
+        } else {
+          // Check for standard words
+          const titleWords = titleUpper.replace(/[^\w\s]/g, '').split(' ');
+          courseType = titleWords.find(word => 
+            ['MBA', 'MCA', 'BBA', 'BCA', 'MA', 'BA', 'PHD', 'PGDM', 'MS'].includes(word)
+          ) || 'MBA';
+        }
 
         // Determine course level (UG/PG) - CRITICAL for filtering
         const ugCourses = ['BBA', 'BCA', 'BCOM', 'BSC', 'BTECH', 'BA'];
@@ -116,17 +148,29 @@ export default function CourseDetails() {
         const isUGCourse = ugCourses.includes(courseType);
         const isPGCourse = pgCourses.includes(courseType);
 
-        // Check if course is "Online" mode
-        const isOnlineCourse = courseInfo.title.toLowerCase().includes('online') || 
-                               courseInfo.category?.toLowerCase().includes('online');
+        // Check if course is "Online" or "Distance" mode (both are online learning)
+        const titleLower = courseInfo.title.toLowerCase();
+        const categoryLower = courseInfo.category?.toLowerCase() || '';
+        const isOnlineCourse = titleLower.includes('online') || 
+                               titleLower.includes('distance') ||
+                               categoryLower.includes('online') ||
+                               categoryLower.includes('distance');
 
-        console.log('Course Analysis:', {
+        console.log('🔍 COURSE ANALYSIS:', {
           courseType,
           isUGCourse,
           isPGCourse,
           isOnlineCourse,
-          title: courseInfo.title
+          title: courseInfo.title,
+          category: courseInfo.category
         });
+        
+        if (isUGCourse) {
+          console.log('✅ This is a UG COURSE - IIT/IIM will be EXCLUDED');
+        }
+        if (isOnlineCourse) {
+          console.log('✅ This is an ONLINE COURSE - IIT/IIM will be EXCLUDED');
+        }
 
         // Extract specialization/focus keywords for better matching
         const specializationKeywords = [];
@@ -198,13 +242,13 @@ export default function CourseDetails() {
 
             // RULE 1: For UG courses - EXCLUDE IIMs/IITs (they don't offer UG programs)
             if (isUGCourse && isPremiumInstitute(uni.name)) {
-              console.log(`❌ Excluding ${uni.name} from UG course ${courseType}`);
+              console.log(`❌ FILTERING OUT: ${uni.name} from UG course ${courseType}`);
               return false;
             }
 
             // RULE 2: For Online courses - EXCLUDE IIMs/IITs (show tier-2 universities instead)
             if (isOnlineCourse && isPremiumInstitute(uni.name)) {
-              console.log(`❌ Excluding ${uni.name} from Online course ${courseType}`);
+              console.log(`❌ FILTERING OUT: ${uni.name} from Online course ${courseType}`);
               return false;
             }
 
@@ -402,7 +446,8 @@ export default function CourseDetails() {
       console.log('⚠️ Using displayed universities as fallback');
     }
     
-    // Open comparison page in new tab
+    // OPEN COMPARISON PAGE IMMEDIATELY - Animation shows when NEW page loads!
+    console.log('🚀 OPENING COMPARE PAGE IMMEDIATELY!');
     window.open('/compare-universities', '_blank');
   };
 
@@ -462,9 +507,8 @@ export default function CourseDetails() {
             {/* Course title removed from here - now in header */}
             {/* Subtitle also removed */}
 
-            {loading ? (
-              <div className={styles.loading}>Loading universities...</div>
-            ) : universities.length > 0 ? (
+            {/* REMOVED LOADING MESSAGE - Animation handles the loading state */}
+            {universities.length > 0 ? (
               <div className={styles.mainContentGrid}>
                 {/* Left Column: University Cards */}
                 <div className={styles.universityGrid}>

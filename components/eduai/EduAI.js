@@ -987,11 +987,13 @@ const EduAI = () => {
                          (message.text.toLowerCase().includes('connect with') || 
                           message.text.toLowerCase().includes('talk to') ||
                           message.text.toLowerCase().includes('counselor') ||
-                          message.text.toLowerCase().includes('counsellor')) && 
-                         !showCounselorForm && (
+                          message.text.toLowerCase().includes('counsellor')) && (
                           <button 
                             className={styles.connectButton}
-                            onClick={() => setShowCounselorForm(true)}
+                            onClick={() => {
+                              // Dispatch custom event to open expert modal (same as "Consult Now")
+                              window.dispatchEvent(new Event('openExpertModal'));
+                            }}
                           >
                             📞 Connect with Counselor
                           </button>
@@ -1019,99 +1021,6 @@ const EduAI = () => {
                     </div>
                   )}
                   <div ref={messagesEndRef} />
-                </div>
-              )}
-
-              {/* Counselor Contact Form */}
-              {showCounselorForm && !formSubmitted && (
-                <div className={styles.counselorForm}>
-                  <h4 className={styles.formTitle}>📞 Connect with Our Counselor</h4>
-                  <form onSubmit={handleFormSubmit}>
-                    <div className={styles.formGroup}>
-                      <label htmlFor="name">Full Name *</label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleFormChange}
-                        placeholder="Enter your full name"
-                        required
-                      />
-                    </div>
-                    
-                    <div className={styles.formGroup}>
-                      <label htmlFor="phone">Phone Number *</label>
-                      <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleFormChange}
-                        placeholder="Enter your phone number"
-                        pattern="[0-9]{10}"
-                        required
-                      />
-                    </div>
-                    
-                    <div className={styles.formGroup}>
-                      <label htmlFor="email">Email Address *</label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleFormChange}
-                        placeholder="Enter your email"
-                        required
-                      />
-                    </div>
-                    
-                    <div className={styles.formGroup}>
-                      <label htmlFor="course">Course Interested In *</label>
-                      <input
-                        type="text"
-                        id="course"
-                        name="course"
-                        value={formData.course}
-                        onChange={handleFormChange}
-                        placeholder="e.g., MBA, B.Tech, MCA"
-                        required
-                      />
-                    </div>
-                    
-                    <div className={styles.formRow}>
-                      <div className={styles.formGroup}>
-                        <label htmlFor="city">City *</label>
-                        <input
-                          type="text"
-                          id="city"
-                          name="city"
-                          value={formData.city}
-                          onChange={handleFormChange}
-                          placeholder="Your city"
-                          required
-                        />
-                      </div>
-                      
-                      <div className={styles.formGroup}>
-                        <label htmlFor="state">State *</label>
-                        <input
-                          type="text"
-                          id="state"
-                          name="state"
-                          value={formData.state}
-                          onChange={handleFormChange}
-                          placeholder="Your state"
-                          required
-                        />
-                      </div>
-                    </div>
-                    
-                    <button type="submit" className={styles.submitButton}>
-                      Submit Details
-                    </button>
-                  </form>
                 </div>
               )}
 

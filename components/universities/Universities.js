@@ -248,6 +248,12 @@ export default function Universities() {
               className={styles.universityCard}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={(e) => {
+                // OPEN LINK IMMEDIATELY - Animation shows when external page loads
+                console.log('🎯 UNIVERSITY CARD CLICKED!', university.name);
+                console.log('� OPENING UNIVERSITY PAGE IMMEDIATELY!');
+                // Link opens normally via href attribute
+              }}
             >
               <div className={styles.logoContainer}>
                 <img 
