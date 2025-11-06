@@ -159,11 +159,91 @@ export default function Universities() {
             linkUrl = '/university/mit-university';
           } else if (uniName.includes('mit university')) {
             linkUrl = '/university/mit-university';
+          } else if (uniName.includes('alagappa university') || uniName.includes('alagappa')) {
+            linkUrl = '/university/alagappa-university';
+          } else if (uniName.includes('aligarh muslim university') || uniName.includes('aligarh muslim') || uniId === 'aligarh-muslim-university-online') {
+            linkUrl = '/university/aligarh-muslim-university';
+          } else if (uniName.includes('amrita university') || uniName.includes('amrita') || uniId === 'amrita-university-online') {
+            linkUrl = '/university/amrita-university';
+          } else if (uniName.includes('andhra university') || uniName.includes('andhra') || uniId === 'andhra-university-online') {
+            linkUrl = '/university/andhra-university';
+          } else if (uniName.includes('annamalai university') || uniName.includes('annamalai') || uniId === 'annamalai-university-distance-education') {
+            linkUrl = '/university/annamalai-university';
+          } else if (uniName.includes('anna university') || uniId === 'anna-university-online') {
+            linkUrl = '/university/anna-university';
+          } else if (uniName.includes('anucde') || uniName.includes('acharya nagarjuna') || uniId === 'anucde-acharya-nagarjuna-distance-education') {
+            linkUrl = '/university/anucde-acharya-nagarjuna-university';
+          } else if (uniName.includes('atlas skilltech') || uniName.includes('atlas') || uniId === 'atlas-skilltech-university') {
+            linkUrl = '/university/atlas-skilltech';
+          } else if (uniName.includes('bimtech') || uniName.includes('birla institute of management') || uniId === 'bimtech-greater-noida') {
+            linkUrl = '/university/bimtech-greater-noida';
+          } else if (uniName.includes('bits pilani') || uniName.includes('wilp') || uniId === 'bits-pilani-wilp') {
+            linkUrl = '/university/bits-pilani-wilp';
+          } else if (uniName.includes('biher') || uniName.includes('bharath institute') || uniId === 'biher-bharath-institute') {
+            linkUrl = '/university/biher-bharath-institute';
+          } else if (uniName.includes('bharathiar university') || uniName.includes('bharathiar') || uniId === 'bharathiar-university-distance-education') {
+            linkUrl = '/university/bharathiar-university-online';
+          } else if (uniName.includes('bharathidasan university') || uniName.includes('bharathidasan') || uniId === 'bharathidasan-university-distance-education') {
+            linkUrl = '/university/bharathidasan-university-distance-education';
+          } else if (uniName.includes('birchwood university') || uniName.includes('birchwood') || uniId === 'birchwood-university') {
+            linkUrl = '/university/birchwood-university';
+          } else if (uniName.includes('chandigarh university') && uniName.includes('online') || uniId === 'chandigarh-university-distance') {
+            linkUrl = '/university/chandigarh-university-online';
+          } else if (uniName.includes('chitkara university') || uniName.includes('chitkara') || uniId === 'chitkara-university-online') {
+            linkUrl = '/university/chitkara-university-online';
           }
           
-          // Get accurate course count from database
+          // Custom course counts for universities with detailed pages
+          const customCourseCounts = {
+            'amity university': '12 Courses',
+            'manipal': '10 Courses', 
+            'nmims': '8 Courses',
+            'd.y. patil': '6 Courses',
+            'vivekananda global': '8 Courses',
+            'mit': '7 Courses',
+            'alagappa university': '8 Courses',
+            'alagappa': '8 Courses',
+            'aligarh muslim university': '4 Courses',
+            'aligarh muslim': '4 Courses',
+            'amrita university': '6 Courses',
+            'amrita': '6 Courses',
+            'andhra university': '5 Courses',
+            'andhra': '5 Courses',
+            'annamalai university': '6 Courses',
+            'annamalai': '6 Courses',
+            'anna university': '2 Courses',
+            'anucde': '6 Courses',
+            'acharya nagarjuna': '6 Courses',
+            'atlas skilltech': '5 Courses',
+            'atlas': '5 Courses',
+            'bimtech': '5 Courses',
+            'birla institute of management': '5 Courses',
+            'bits pilani': '4 Courses',
+            'wilp': '4 Courses',
+            'biher': '4 Courses',
+            'bharath institute': '4 Courses',
+            'bharathiar university': '1 Course',
+            'bharathiar': '1 Course',
+            'bharathidasan university': '42 Courses',
+            'bharathidasan': '42 Courses',
+            'birchwood university': '9 Courses',
+            'birchwood': '9 Courses',
+            'chandigarh university': '11 Courses',
+            'chitkara university': '1 Course',
+            'chitkara': '1 Course'
+          };
+          
+          // Get accurate course count - check custom counts first, then database
           let courseCount = '0 Courses';
-          if (uni.courses) {
+          
+          // Check if this university has a custom course count
+          const customCount = Object.keys(customCourseCounts).find(key => 
+            uniName.includes(key.toLowerCase())
+          );
+          
+          if (customCount) {
+            courseCount = customCourseCounts[customCount];
+          } else if (uni.courses) {
             if (Array.isArray(uni.courses)) {
               courseCount = `${uni.courses.length} Courses`;
             } else if (typeof uni.courses === 'object') {

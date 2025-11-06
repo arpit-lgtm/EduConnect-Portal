@@ -27,68 +27,44 @@ if (typeof universityDatabase === 'undefined') {
     "courses": {
       "MBA": {
         "specializations": [
-          "General"
-        ]
-      },
-      "MCA": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "M.Sc": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "BBA": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "BCA": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "B.Sc": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "M.Com": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "B.Com": {
-        "specializations": [
-          "General"
+          "General (8 specializations)"
         ]
       },
       "MA": {
         "specializations": [
-          "English",
+          "Journalism and Mass Communication",
           "Tamil",
-          "Journalism and Mass Communication"
+          "English"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "General (3 specializations)"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General (4 specializations)"
         ]
       },
       "BA": {
         "specializations": [
           "Tamil"
         ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General (5 specializations)"
+        ]
       }
     },
     "fees": {
-      "MBA": 37000,
-      "MCA": 30000,
-      "BBA": 15000,
-      "BCA": 20000,
-      "M.Com": 12000,
-      "M.Sc": 45000,
-      "B.Sc": 35000,
-      "B.Com": 10000,
-      "MA": 8000,
-      "BA": 6000
+      "MBA": 80300,
+      "MA": 60300,
+      "M.Com": 60300,
+      "BBA": 60100,
+      "BA": 30100,
+      "B.Com": 60100
     },
     "specializations": [
       "Management",
@@ -127,39 +103,9 @@ if (typeof universityDatabase === 'undefined') {
     "accreditation": "NAAC A++",
     "establishedYear": 1875,
     "courses": {
-      "MBA": {
+      "BA": {
         "specializations": [
-          "General"
-        ]
-      },
-      "MCA": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "M.Sc": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "BBA": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "BCA": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "B.Sc": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "M.Com": {
-        "specializations": [
-          "General"
+          "General (6 specializations)"
         ]
       },
       "B.Com": {
@@ -169,34 +115,20 @@ if (typeof universityDatabase === 'undefined') {
       },
       "MA": {
         "specializations": [
-          "Economics",
-          "Hindi",
-          "History",
-          "Political Science",
-          "Urdu"
+          "General (6 specializations)"
         ]
       },
-      "BA": {
+      "M.Com": {
         "specializations": [
-          "Economics",
-          "Hindi",
-          "History",
-          "Political Science",
-          "Urdu"
+          "General"
         ]
       }
     },
     "fees": {
-      "MBA": 45000,
-      "MCA": 38000,
-      "BBA": 25000,
-      "BCA": 30000,
-      "M.Com": 18000,
-      "M.Sc": 45000,
-      "B.Sc": 35000,
-      "B.Com": 15000,
-      "MA": 12000,
-      "BA": 10000
+      "BA": 27000,
+      "B.Com": 43800,
+      "MA": 31000,
+      "M.Com": 33000
     },
     "specializations": [
       "Management",
@@ -430,73 +362,44 @@ if (typeof universityDatabase === 'undefined') {
     "accreditation": "NAAC A++",
     "establishedYear": 2003,
     "courses": {
-      "MBA": {
-        "specializations": [
-          "Finance Management",
-          "Marketing Management",
-          "HR Management",
-          "Operations Management",
-          "General",
-          "International Business"
-        ]
-      },
-      "MCA": {
-        "specializations": [
-          "Artificial Intelligence",
-          "Cyber Security",
-          "Data Science",
-          "General"
-        ]
-      },
-      "M.Sc": {
-        "specializations": [
-          "General"
-        ]
-      },
       "BBA": {
         "specializations": [
-          "General Management",
-          "FinTech & Banking",
-          "Digital Marketing & Sale"
+          "General Management (4 specializations)"
         ]
       },
       "BCA": {
         "specializations": [
-          "Data Science and Analytics",
-          "Cybersecurity and Applications",
-          "Mobile Application and Web Technology",
-          "General"
-        ]
-      },
-      "B.Sc": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "M.Com": {
-        "specializations": [
-          "Finance & Accounting",
-          "General",
-          "International Financial Management"
+          "Data Science and Analytics (4 specializations)"
         ]
       },
       "B.Com": {
         "specializations": [
-          "General",
-          "Accounting and Finance",
-          "Banking Management and Financial Services"
+          "General (4 specializations)"
         ]
       },
-      "MA": {
+      "MBA": {
         "specializations": [
-          "General"
+          "Finance Management (6 specializations)"
         ]
       },
-      "BA": {
+      "MCA": {
         "specializations": [
-          "General"
+          "Artificial Intelligence (4 specializations)"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "Finance & Accounting (4 specializations)"
         ]
       }
+    },
+    "fees": {
+      "BBA": 135000,
+      "BCA": 135000,
+      "B.Com": 120000,
+      "MBA": 170000,
+      "MCA": 140000,
+      "M.Com": 90000
     },
     "fees": {
       "MBA": 98000,
@@ -548,13 +451,19 @@ if (typeof universityDatabase === 'undefined') {
     "accreditation": "NAAC A+",
     "establishedYear": 1926,
     "courses": {
+      "MBA Plus": {
+        "specializations": [
+          "General (6 specializations)"
+        ]
+      },
       "MBA": {
         "specializations": [
-          "Finance",
-          "Human Resource Management",
-          "Marketing",
-          "Hospital Administration",
-          "Banking & Insurance Management"
+          "General (4 specializations)"
+        ]
+      },
+      "B.Com": {
+        "specializations": [
+          "General"
         ]
       },
       "MCA": {
@@ -562,59 +471,18 @@ if (typeof universityDatabase === 'undefined') {
           "General"
         ]
       },
-      "M.Sc": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "BBA": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "BCA": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "B.Sc": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "M.Com": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "B.Com": {
-        "specializations": [
-          "Accountancy"
-        ]
-      },
       "MA": {
         "specializations": [
-          "English",
-          "Sociology"
-        ]
-      },
-      "BA": {
-        "specializations": [
-          "General"
+          "General (2 specializations)"
         ]
       }
     },
     "fees": {
-      "MBA": 42000,
-      "MCA": 35000,
-      "BBA": 22000,
-      "BCA": 28000,
-      "M.Com": 16000,
-      "M.Sc": 45000,
-      "B.Sc": 35000,
-      "B.Com": 14000,
-      "MA": 11000,
-      "BA": 9000
+      "MBA Plus": 87200,
+      "MBA": 62200,
+      "B.Com": 60000,
+      "MCA": 76200,
+      "MA": 57500
     },
     "specializations": [
       "Management",
@@ -656,63 +524,12 @@ if (typeof universityDatabase === 'undefined') {
     "courses": {
       "MBA": {
         "specializations": [
-          "General",
-          "E-Business",
-          "International Business",
-          "Human Resource Management",
-          "Marketing Management",
-          "Financial Management",
-          "Information System",
-          "Hospital Management",
-          "Project Management",
-          "Supply Chain Management"
-        ]
-      },
-      "MCA": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "M.Sc": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "BBA": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "BCA": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "B.Sc": {
-        "specializations": [
-          "General"
+          "General (12 specializations)"
         ]
       },
       "M.Com": {
         "specializations": [
-          "General",
-          "Accounting and Finance",
-          "Education Management",
-          "Marketing Management",
-          "Entrepreneurship",
-          "Co-operative Management",
-          "Banking & Insurance Management",
-          "Computer Application"
-        ]
-      },
-      "B.Com": {
-        "specializations": [
-          "General",
-          "Computer Application",
-          "Business Studies",
-          "International Business",
-          "Accounting and Finance",
-          "Marketing Management"
+          "General (8 specializations)"
         ]
       },
       "MA": {
@@ -720,41 +537,29 @@ if (typeof universityDatabase === 'undefined') {
           "English"
         ]
       },
+      "B.Com": {
+        "specializations": [
+          "General (6 specializations)"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "General"
+        ]
+      },
       "BA": {
         "specializations": [
-          "General",
-          "Social and Civic Studies",
-          "Computer Applications",
-          "Human Rights",
-          "English",
-          "Social Welfare Administration",
-          "History",
-          "Population Studies",
-          "History and Heritage Management",
-          "Economics",
-          "Business Economics",
-          "Sociology",
-          "Political Science",
-          "Public Administration",
-          "Police Administration",
-          "Tamil",
-          "Functional Tamil",
-          "Social Work",
-          "English & Communication"
+          "General (15 specializations)"
         ]
       }
     },
     "fees": {
-      "MBA": 35000,
-      "MCA": 30000,
-      "BBA": 15000,
+      "MBA": 25000,
+      "M.Com": 18000,
+      "MA": 15000,
+      "B.Com": 12000,
       "BCA": 20000,
-      "M.Com": 12000,
-      "M.Sc": 45000,
-      "B.Sc": 35000,
-      "B.Com": 10000,
-      "MA": 8000,
-      "BA": 6000
+      "BA": 10000
     },
     "specializations": [
       "Management",
@@ -793,81 +598,20 @@ if (typeof universityDatabase === 'undefined') {
     "accreditation": "NAAC A",
     "establishedYear": 2000,
     "courses": {
-      "MBA": {
-        "specializations": [
-          "General",
-          "Finance",
-          "Marketing",
-          "HR",
-          "Operations"
-        ]
-      },
-      "MCA": {
+      "PhD Regular": {
         "specializations": [
           "General"
         ]
       },
-      "M.Sc": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "BBA": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "BCA": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "B.Sc": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "M.Com": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "B.Com": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "MA": {
-        "specializations": [
-          "English",
-          "History"
-        ]
-      },
-      "BA": {
+      "PhD Part Time": {
         "specializations": [
           "General"
         ]
       }
     },
-    "specializations": [
-      "Management",
-      "Technology",
-      "Commerce",
-      "Arts",
-      "Science"
-    ],
-    "nirfRanking": null,
     "fees": {
-      "MBA": 82000,
-      "MCA": 82000,
-      "BBA": 56150,
-      "BCA": 56150,
-      "M.Com": 56150,
-      "M.Sc": 45000,
-      "B.Sc": 35000,
-      "B.Com": 56150,
-      "MA": 56150,
-      "BA": 56150
+      "PhD Regular": 183000,
+      "PhD Part Time": 183000
     },
     "placements": {
       "averagePackage": 250000,
@@ -878,6 +622,85 @@ if (typeof universityDatabase === 'undefined') {
     "onlineClasses": true,
     "duration": "PG:2 years / UG:3 years / PhD:N/A / Adv Diploma:1 year / Skilling Cert:6 months",
     "eligibility": "Graduation with 50% / 10+2 with 45%"
+  },
+  {
+    "id": "atlas-skilltech-university",
+    "name": "Atlas SkillTech University",
+    "icon": "??",
+    "type": "Private University",
+    "location": "Mumbai, Maharashtra",
+    "mode": [
+      "Part-time",
+      "Executive",
+      "Online"
+    ],
+    "approvals": [
+      "UGC-DEB",
+      "AICTE",
+      "AIU"
+    ],
+    "rating": 4.2,
+    "reviews": 332,
+    "accreditation": "UGC Approved",
+    "establishedYear": 2015,
+    "courses": {
+      "BBA": {
+        "specializations": [
+          "General Management",
+          "Digital Business",
+          "Innovation Management",
+          "Entrepreneurship"
+        ]
+      },
+      "MBA": {
+        "specializations": [
+          "General Management",
+          "Digital Marketing",
+          "Innovation & Strategy",
+          "Finance & Analytics"
+        ]
+      },
+      "B.Des": {
+        "specializations": [
+          "Communication Design",
+          "Fashion Design",
+          "Product Design",
+          "Digital Design"
+        ]
+      },
+      "B.Tech": {
+        "specializations": [
+          "Computer Science",
+          "Information Technology",
+          "Data Science",
+          "Digital Media Technology"
+        ]
+      },
+      "B.Sc Finance": {
+        "specializations": [
+          "Financial Analytics",
+          "Investment Banking",
+          "Risk Management",
+          "Corporate Finance"
+        ]
+      }
+    },
+    "fees": {
+      "BBA": 1200000,
+      "MBA": 800000,
+      "B.Des": 1400000,
+      "B.Tech": 1600000,
+      "B.Sc Finance": 1000000
+    },
+    "placements": {
+      "averagePackage": 750000,
+      "highestPackage": 1800000,
+      "offered": true
+    },
+    "studentsRating": "4.2/5",
+    "onlineClasses": true,
+    "duration": "Executive MBA:1.5-2 years / PG:1 year / Certificate:3-6 months / Diploma:6-12 months",
+    "eligibility": "Graduation with 50% + 2-3 years work experience"
   },
   {
     "id": "anucde-acharya-nagarjuna-distance-education",
@@ -901,66 +724,62 @@ if (typeof universityDatabase === 'undefined') {
     "courses": {
       "MBA": {
         "specializations": [
-          "General"
+          "General Management",
+          "Finance",
+          "Marketing",
+          "HR",
+          "Operations",
+          "International Business"
         ]
       },
       "MCA": {
         "specializations": [
-          "General"
-        ]
-      },
-      "M.Sc": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "BBA": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "BCA": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "B.Sc": {
-        "specializations": [
-          "General"
+          "Software Development",
+          "Data Science",
+          "Web Technologies",
+          "System Administration"
         ]
       },
       "M.Com": {
         "specializations": [
-          "General"
+          "Accounting & Finance",
+          "Banking",
+          "Taxation",
+          "Business Economics"
+        ]
+      },
+      "BBA": {
+        "specializations": [
+          "General Management",
+          "Finance",
+          "Marketing",
+          "HR"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "Programming",
+          "Database Management",
+          "Web Development",
+          "Software Engineering"
         ]
       },
       "B.Com": {
         "specializations": [
-          "General"
-        ]
-      },
-      "MA": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "BA": {
-        "specializations": [
-          "General"
+          "Accounting",
+          "Finance",
+          "Taxation",
+          "Banking"
         ]
       }
     },
     "fees": {
-      "MBA": 35000,
-      "MCA": 28000,
-      "BBA": 18000,
-      "BCA": 22000,
-      "M.Com": 12000,
-      "M.Sc": 45000,
-      "B.Sc": 35000,
-      "B.Com": 10000,
-      "MA": 8000,
-      "BA": 6000
+      "MBA": 25000,
+      "MCA": 22000,
+      "M.Com": 18000,
+      "BBA": 20000,
+      "BCA": 18000,
+      "B.Com": 15000
     },
     "specializations": [
       "Management",
@@ -1237,30 +1056,54 @@ if (typeof universityDatabase === 'undefined') {
     "accreditation": "NAAC A",
     "establishedYear": 1988,
     "courses": {
-      "MBA": {
+      "Online MBA": {
         "specializations": [
-          "Marketing Management",
-          "Logistics and Supply Chain Management",
-          "Operations Management",
-          "Finance Management",
+          "Finance",
+          "Marketing",
+          "HR",
+          "Operations",
           "Information Technology",
-          "BFSI",
-          "Analytics",
-          "General Management",
-          "HR Management",
-          "Insurance Management",
-          "Retail Management"
+          "Business Analytics",
+          "International Business",
+          "Digital Marketing",
+          "Healthcare Management",
+          "Supply Chain Management",
+          "General Management"
         ]
       },
-      "BBA": {
+      "Online MBA (Dual)": {
         "specializations": [
-          "General"
+          "Finance & Marketing",
+          "HR & Operations"
+        ]
+      },
+      "Online PGDM": {
+        "specializations": [
+          "General Management",
+          "Marketing",
+          "Finance",
+          "HR",
+          "Operations",
+          "International Business"
+        ]
+      },
+      "Advanced Certificate in Operations Management": {
+        "specializations": [
+          "Operations Management"
+        ]
+      },
+      "Advanced Certificate in Marketing Management": {
+        "specializations": [
+          "Marketing Management"
         ]
       }
     },
     "fees": {
-      "MBA": 185000,
-      "BBA": 95000
+      "Online MBA": 275000,
+      "Online MBA (Dual)": 275000,
+      "Online PGDM": 275000,
+      "Advanced Certificate in Operations Management": 50000,
+      "Advanced Certificate in Marketing Management": 50000
     },
     "specializations": [
       "Management",
@@ -1365,76 +1208,61 @@ if (typeof universityDatabase === 'undefined') {
     "accreditation": "NAAC A",
     "establishedYear": 2000,
     "courses": {
-      "MBA": {
+      "Online MBA": {
         "specializations": [
-          "General"
+          "General Management",
+          "Finance",
+          "Marketing",
+          "HR",
+          "Operations",
+          "Information Technology",
+          "Business Analytics",
+          "International Business"
         ]
       },
-      "MCA": {
+      "Executive MBA": {
         "specializations": [
-          "General"
+          "General Management",
+          "Strategic Management",
+          "Finance",
+          "Marketing",
+          "Operations",
+          "Technology Management"
         ]
       },
-      "M.Sc": {
+      "Doctor of Philosophy": {
         "specializations": [
-          "General"
+          "Management",
+          "Engineering",
+          "Science",
+          "Technology"
         ]
       },
-      "BBA": {
+      "Part-Time PhD": {
         "specializations": [
-          "General"
-        ]
-      },
-      "BCA": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "B.Sc": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "M.Com": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "B.Com": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "MA": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "BA": {
-        "specializations": [
-          "General"
+          "Management Studies",
+          "Computer Science",
+          "Engineering",
+          "Applied Sciences",
+          "Mathematics",
+          "Physics",
+          "Chemistry",
+          "Economics"
         ]
       }
     },
     "specializations": [
       "Management",
       "Technology",
-      "Commerce",
-      "Arts",
+      "Engineering",
       "Science"
     ],
-    "nirfRanking": null,
+    "nirfRanking": 25,
     "fees": {
-      "MBA": 313000,
-      "MCA": 284000,
-      "BBA": 310000,
-      "BCA": 310000,
-      "M.Com": 284000,
-      "M.Sc": 45000,
-      "B.Sc": 35000,
-      "B.Com": 310000,
-      "MA": 284000,
-      "BA": 310000
+      "Online MBA": 313000,
+      "Executive MBA": 313000,
+      "Doctor of Philosophy": 24500,
+      "Part-Time PhD": 370400
     },
     "placements": {
       "averagePackage": 250000,
@@ -16017,6 +15845,361 @@ if (typeof universityDatabase === 'undefined') {
     },
     "isInternational": true,
     "country": "Germany"
+  },
+  {
+    "id": "atlas-skilltech-university",
+    "name": "Atlas SkillTech University",
+    "icon": "🎓",
+    "type": "Private University",
+    "location": "Mumbai, Maharashtra",
+    "mode": [
+      "Regular",
+      "Executive"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE",
+      "NAAC A+",
+      "NBA"
+    ],
+    "rating": 4.2,
+    "reviews": 150,
+    "accreditation": "NAAC A+ Grade",
+    "establishedYear": 2015,
+    "courses": {
+      "BBA": {
+        "specializations": [
+          "Finance",
+          "Marketing", 
+          "Operations",
+          "HR",
+          "International Business",
+          "Digital Marketing"
+        ]
+      },
+      "MBA": {
+        "specializations": [
+          "Finance",
+          "Marketing",
+          "Operations", 
+          "HR",
+          "International Business",
+          "Digital Marketing",
+          "Analytics",
+          "Entrepreneurship"
+        ]
+      },
+      "Executive MBA": {
+        "specializations": [
+          "General Management",
+          "Finance",
+          "Marketing",
+          "Operations"
+        ]
+      },
+      "PGDM": {
+        "specializations": [
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR", 
+          "International Business"
+        ]
+      }
+    },
+    "fees": {
+      "BBA": 450000,
+      "MBA": 680000,
+      "Executive MBA": 850000,
+      "PGDM": 520000
+    },
+    "specializations": [
+      "Management",
+      "Business Administration",
+      "Executive Education"
+    ],
+    "nirfRanking": "Leading Private University",
+    "placements": {
+      "averagePackage": 850000,
+      "highestPackage": 2500000,
+      "offered": true
+    },
+    "studentsRating": "4.2/5",
+    "onlineClasses": false,
+    "duration": "UG:3 years / PG:2 years / Executive:18 months",
+    "eligibility": "Graduation for PG / 10+2 for UG / Work experience for Executive"
+  },
+  {
+    "id": "bimtech-greater-noida",
+    "name": "BIMTECH Greater Noida",
+    "icon": "🎓",
+    "type": "Private Institute",
+    "location": "Greater Noida, Uttar Pradesh",
+    "mode": [
+      "Regular"
+    ],
+    "approvals": [
+      "AICTE",
+      "NBA",
+      "AACSB",
+      "SAQS"
+    ],
+    "rating": 4.4,
+    "reviews": 320,
+    "accreditation": "AACSB Accredited",
+    "establishedYear": 1988,
+    "courses": {
+      "PGDM": {
+        "specializations": [
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR",
+          "International Business",
+          "Analytics",
+          "Insurance",
+          "Retail",
+          "Healthcare",
+          "Banking",
+          "Digital Marketing",
+          "Supply Chain"
+        ]
+      },
+      "PGDM-IB": {
+        "specializations": [
+          "International Finance",
+          "Global Marketing",
+          "International Trade",
+          "Cross-cultural Management",
+          "Global Supply Chain",
+          "International Business Law"
+        ]
+      },
+      "PGDM-IBM": {
+        "specializations": [
+          "Life Insurance",
+          "General Insurance",
+          "Health Insurance",
+          "Reinsurance"
+        ]
+      },
+      "PGDM-RM": {
+        "specializations": [
+          "Retail Operations",
+          "Visual Merchandising",
+          "Category Management",
+          "Customer Experience",
+          "E-commerce"
+        ]
+      }
+    },
+    "fees": {
+      "PGDM": 1625000,
+      "PGDM-IB": 1625000,
+      "PGDM-IBM": 1450000,
+      "PGDM-RM": 1450000
+    },
+    "specializations": [
+      "Management",
+      "International Business",
+      "Insurance",
+      "Retail"
+    ],
+    "nirfRanking": "NIRF Management 35",
+    "placements": {
+      "averagePackage": 1250000,
+      "highestPackage": 3500000,
+      "offered": true
+    },
+    "studentsRating": "4.4/5",
+    "onlineClasses": false,
+    "duration": "PG:2 years",
+    "eligibility": "Graduation with 50% + Entrance Exam (CAT/XAT/GMAT/CMAT)"
+  },
+  {
+    "id": "bits-pilani-wilp",
+    "name": "BITS Pilani (WILP)",
+    "icon": "🎓",
+    "type": "Private University",
+    "location": "Pilani, Rajasthan (Multiple Centers)",
+    "mode": [
+      "Work Integrated"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE",
+      "NAAC A++",
+      "NBA"
+    ],
+    "rating": 4.6,
+    "reviews": 450,
+    "accreditation": "NAAC A++ Grade",
+    "establishedYear": 1964,
+    "courses": {
+      "M.Tech WILP": {
+        "specializations": [
+          "Computer Science",
+          "Information Technology",
+          "Electronics",
+          "Mechanical",
+          "Chemical",
+          "Civil",
+          "Biotechnology",
+          "Software Engineering",
+          "Data Science",
+          "Cybersecurity",
+          "AI & ML",
+          "VLSI",
+          "Embedded Systems",
+          "Manufacturing",
+          "Environmental"
+        ]
+      },
+      "MBA WILP": {
+        "specializations": [
+          "Finance",
+          "Marketing",
+          "Operations",
+          "HR",
+          "Technology Management",
+          "Healthcare Management",
+          "Energy Management",
+          "International Business"
+        ]
+      },
+      "M.Sc WILP": {
+        "specializations": [
+          "Mathematics",
+          "Physics",
+          "Chemistry",
+          "Biology",
+          "Statistics",
+          "Economics"
+        ]
+      },
+      "B.E WILP": {
+        "specializations": [
+          "Computer Science",
+          "Information Technology",
+          "Electronics",
+          "Mechanical",
+          "Chemical",
+          "Civil",
+          "Manufacturing",
+          "Software Engineering",
+          "Data Science",
+          "Cybersecurity",
+          "AI & ML",
+          "VLSI"
+        ]
+      }
+    },
+    "fees": {
+      "M.Tech WILP": 360000,
+      "MBA WILP": 480000,
+      "M.Sc WILP": 288000,
+      "B.E WILP": 432000
+    },
+    "specializations": [
+      "Engineering",
+      "Management",
+      "Sciences",
+      "Technology"
+    ],
+    "nirfRanking": "NIRF Overall 24, Engineering 25",
+    "placements": {
+      "averagePackage": 1800000,
+      "highestPackage": 4500000,
+      "offered": true
+    },
+    "studentsRating": "4.6/5",
+    "onlineClasses": true,
+    "duration": "PG:2-3 years / UG:4 years",
+    "eligibility": "Work experience required + Graduation for PG / 10+2 for UG"
+  },
+  {
+    "id": "biher-bharath-institute",
+    "name": "BIHER (Bharath Institute)",
+    "icon": "🎓",
+    "type": "Deemed University",
+    "location": "Chennai, Tamil Nadu",
+    "mode": [
+      "Distance",
+      "Online"
+    ],
+    "approvals": [
+      "UGC",
+      "AICTE",
+      "NAAC A",
+      "DEC-CDE"
+    ],
+    "rating": 3.8,
+    "reviews": 240,
+    "accreditation": "NAAC A Grade",
+    "establishedYear": 1984,
+    "courses": {
+      "Bachelor of Business Administration": {
+        "specializations": [
+          "General Management",
+          "Finance",
+          "Marketing",
+          "HR",
+          "Operations",
+          "Digital Business"
+        ]
+      },
+      "Bachelor of Arts in English Literature": {
+        "specializations": [
+          "Literature Studies",
+          "Creative Writing",
+          "Communication",
+          "Journalism"
+        ]
+      },
+      "Bachelor of Commerce": {
+        "specializations": [
+          "Accounting",
+          "Finance",
+          "Banking",
+          "Taxation",
+          "Business Economics",
+          "Corporate Finance",
+          "International Commerce",
+          "E-Commerce"
+        ]
+      },
+      "Master of Commerce": {
+        "specializations": [
+          "Accounting & Finance",
+          "Banking",
+          "Taxation",
+          "Business Economics",
+          "International Commerce",
+          "Financial Management"
+        ]
+      }
+    },
+    "fees": {
+      "Bachelor of Business Administration": 36000,
+      "Bachelor of Arts in English Literature": 30000,
+      "Bachelor of Commerce": 33000,
+      "Master of Commerce": 40000
+    },
+    "specializations": [
+      "Management",
+      "Computer Applications",
+      "Business Administration"
+    ],
+    "nirfRanking": "State University Recognition",
+    "placements": {
+      "averagePackage": 650000,
+      "highestPackage": 1800000,
+      "offered": true
+    },
+    "studentsRating": "3.8/5",
+    "onlineClasses": true,
+    "duration": "PG:2 years / UG:3 years",
+    "eligibility": "Graduation for PG / 10+2 for UG"
   }
 ];
 }

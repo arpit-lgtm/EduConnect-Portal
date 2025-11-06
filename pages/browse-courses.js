@@ -1,11 +1,11 @@
-﻿import Head from 'next/head';
+import Head from 'next/head';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import styles from '../styles/BrowseCourses.module.css';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import dynamic from 'next/dynamic';
-import universityLogoMap from '../utils/universityLogoMap';
+import universityLogoMap, { getUniversityLogo } from '../utils/universityLogoMap';
 
 const AskEduAI = dynamic(() => import('../components/eduai/EduAI'), {
   ssr: false
@@ -38,7 +38,7 @@ export default function BrowseCourses() {
       try {
         if (window.universityDatabase && Array.isArray(window.universityDatabase)) {
           setUniversityDatabase(window.universityDatabase);
-          console.log('✅ University database already loaded:', window.universityDatabase.length);
+          console.log('? University database already loaded:', window.universityDatabase.length);
           return;
         }
 
@@ -50,10 +50,10 @@ export default function BrowseCourses() {
 
         if (window.universityDatabase && Array.isArray(window.universityDatabase)) {
           setUniversityDatabase(window.universityDatabase);
-          console.log('✅ Loaded university database:', window.universityDatabase.length);
+          console.log('? Loaded university database:', window.universityDatabase.length);
         }
       } catch (error) {
-        console.error('❌ Error loading university database:', error);
+        console.error('? Error loading university database:', error);
       }
     };
 
@@ -292,10 +292,10 @@ export default function BrowseCourses() {
 
     console.log(`Found ${matchingUniversities.length} universities offering ${dbCourseName}`);
 
-    // For PG/UG courses, show random 7 universities. For others, show ALL matching universities
+    // For PG/UG courses, show random 4 universities. For others, show ALL matching universities
     const isMainCategory = activeTab === 'PG Courses' || activeTab === 'UG Courses';
     const shuffled = [...matchingUniversities].sort(() => 0.5 - Math.random());
-    const selected = isMainCategory ? shuffled.slice(0, 7) : shuffled; // Show all for non-PG/UG
+    const selected = isMainCategory ? shuffled.slice(0, 4) : shuffled; // Show 4 for PG/UG
 
     setCourseUniversities(selected);
   };
@@ -532,29 +532,29 @@ export default function BrowseCourses() {
                                 <div className={styles.detailsContent}>
                                   <div className={styles.detailsStack}>
                                     <div className={styles.detailItem}>
-                                      <span className={styles.detailLabel}>📝 Course Description</span>
+                                      <span className={styles.detailLabel}>?? Course Description</span>
                                       <span className={styles.detailValue}>{getCourseDescription(selectedCourse.name)}</span>
                                     </div>
                                     <div className={styles.detailItem}>
-                                      <span className={styles.detailLabel}>📂 Category</span>
+                                      <span className={styles.detailLabel}>?? Category</span>
                                       <span className={styles.detailValue}>{selectedCourse.category}</span>
                                     </div>
                                     <div className={styles.detailItem}>
-                                      <span className={styles.detailLabel}>🎓 Specializations</span>
+                                      <span className={styles.detailLabel}>?? Specializations</span>
                                       <span className={styles.detailValue}>
                                         {selectedCourse.specializations && selectedCourse.specializations.length > 0 
-                                          ? selectedCourse.specializations.join(' • ') 
+                                          ? selectedCourse.specializations.join(' � ') 
                                           : 'General'}
                                       </span>
                                     </div>
                                     <div className={styles.detailItem}>
-                                      <span className={styles.detailLabel}>📅 Duration</span>
+                                      <span className={styles.detailLabel}>?? Duration</span>
                                       <span className={styles.detailValue}>{selectedCourse.duration}</span>
                                     </div>
                                     <div className={styles.detailItem}>
-                                      <span className={styles.detailLabel}>💰 Fee Range</span>
+                                      <span className={styles.detailLabel}>?? Fee Range</span>
                                       <span className={styles.detailValue}>
-                                        ₹{selectedCourse.fees?.min?.toLocaleString()} - ₹{selectedCourse.fees?.max?.toLocaleString()}
+                                        ?{selectedCourse.fees?.min?.toLocaleString()} - ?{selectedCourse.fees?.max?.toLocaleString()}
                                       </span>
                                     </div>
                                   </div>
@@ -565,8 +565,8 @@ export default function BrowseCourses() {
                                   <div className={styles.logoGrid}>
                                     {courseUniversities && courseUniversities.length > 0 ? (
                                       courseUniversities.map((uni, idx) => {
-                                        const logoFile = universityLogoMap[uni.name];
-                                        if (!logoFile) {
+                                        const logoPath = getUniversityLogo(uni.name);
+                                        if (!logoPath) {
                                           console.warn(`Missing logo for university: "${uni.name}"`);
                                           // Show a placeholder if logo not found
                                           return (
@@ -578,11 +578,11 @@ export default function BrowseCourses() {
                                         return (
                                           <img 
                                             key={idx} 
-                                            src={`/images/universities/${logoFile}`} 
+                                            src={`${logoPath}`} 
                                             alt={uni.name} 
                                             title={uni.name}
                                             onError={(e) => {
-                                              console.error(`Failed to load logo: ${logoFile}`);
+                                              console.error(`Failed to load logo for: ${uni.name}`);
                                               e.target.style.display = 'none';
                                             }}
                                           />
@@ -640,29 +640,29 @@ export default function BrowseCourses() {
                                 <div className={styles.detailsContent}>
                                   <div className={styles.detailsStack}>
                                     <div className={styles.detailItem}>
-                                      <span className={styles.detailLabel}>📝 Course Description</span>
+                                      <span className={styles.detailLabel}>?? Course Description</span>
                                       <span className={styles.detailValue}>{getCourseDescription(selectedCourse.name)}</span>
                                     </div>
                                     <div className={styles.detailItem}>
-                                      <span className={styles.detailLabel}>📂 Category</span>
+                                      <span className={styles.detailLabel}>?? Category</span>
                                       <span className={styles.detailValue}>{selectedCourse.category}</span>
                                     </div>
                                     <div className={styles.detailItem}>
-                                      <span className={styles.detailLabel}>🎓 Specializations</span>
+                                      <span className={styles.detailLabel}>?? Specializations</span>
                                       <span className={styles.detailValue}>
                                         {selectedCourse.specializations && selectedCourse.specializations.length > 0 
-                                          ? selectedCourse.specializations.join(' • ') 
+                                          ? selectedCourse.specializations.join(' � ') 
                                           : 'General'}
                                       </span>
                                     </div>
                                     <div className={styles.detailItem}>
-                                      <span className={styles.detailLabel}>📅 Duration</span>
+                                      <span className={styles.detailLabel}>?? Duration</span>
                                       <span className={styles.detailValue}>{selectedCourse.duration}</span>
                                     </div>
                                     <div className={styles.detailItem}>
-                                      <span className={styles.detailLabel}>💰 Fee Range</span>
+                                      <span className={styles.detailLabel}>?? Fee Range</span>
                                       <span className={styles.detailValue}>
-                                        ₹{selectedCourse.fees?.min?.toLocaleString()} - ₹{selectedCourse.fees?.max?.toLocaleString()}
+                                        ?{selectedCourse.fees?.min?.toLocaleString()} - ?{selectedCourse.fees?.max?.toLocaleString()}
                                       </span>
                                     </div>
                                   </div>
@@ -673,8 +673,8 @@ export default function BrowseCourses() {
                                   <div className={styles.logoGrid}>
                                     {courseUniversities && courseUniversities.length > 0 ? (
                                       courseUniversities.map((uni, idx) => {
-                                        const logoFile = universityLogoMap[uni.name];
-                                        if (!logoFile) {
+                                        const logoPath = getUniversityLogo(uni.name);
+                                        if (!logoPath) {
                                           console.warn(`Missing logo for university: "${uni.name}"`);
                                           // Show a placeholder if logo not found
                                           return (
@@ -686,11 +686,11 @@ export default function BrowseCourses() {
                                         return (
                                           <img 
                                             key={idx} 
-                                            src={`/images/universities/${logoFile}`} 
+                                            src={`${logoPath}`} 
                                             alt={uni.name} 
                                             title={uni.name}
                                             onError={(e) => {
-                                              console.error(`Failed to load logo: ${logoFile}`);
+                                              console.error(`Failed to load logo for: ${uni.name}`);
                                               e.target.style.display = 'none';
                                             }}
                                           />
