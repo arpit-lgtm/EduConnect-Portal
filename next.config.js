@@ -1,13 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  output: 'export',
-  trailingSlash: true,
-  basePath: '',
 
   images: {
     domains: ['localhost', 'educonnect-portal.onrender.com', 'mbaninja.in', 'www.mbaninja.in'],
-    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
