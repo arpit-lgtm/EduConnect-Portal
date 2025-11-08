@@ -50,9 +50,10 @@ const BharathiarUniversity = () => {
     'Multiple undergraduate and postgraduate programs in distance mode'
   ];
 
-  const approvals = ['UGC', 'NAAC A++'];
-  const nirfRank = 'Top 10 Universities in India';
-  const accreditation = 'NAAC A++ Grade';
+  const approvals = ['UGC', 'NAAC A++', 'DEB', 'State University'];
+  
+  const accreditation = 'NAAC A++ (CGPA 3.65)';
+  const nirfRank = 'NIRF Ranking 501-600';
 
   const placementPartners = [
     'Accenture', 'American Express', 'IndiaMART', 'ISRO', 'Moglix', 
@@ -129,7 +130,7 @@ const BharathiarUniversity = () => {
                   </div>
                 </div>
                 <div className={styles.infoRow}>
-                  <span className={styles.infoLabel}>NIRF Ranking:</span>
+                  <span className={styles.infoLabel}>Ranking:</span>
                   <span className={styles.infoValue}>{nirfRank}</span>
                 </div>
                 <div className={styles.infoRow}>

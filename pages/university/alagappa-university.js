@@ -140,7 +140,7 @@ const AlagappaUniversity = () => {
                   </div>
                 </div>
                 <div className={styles.infoRow}>
-                  <span className={styles.infoLabel}>MHRD Status:</span>
+                  <span className={styles.infoLabel}>Ranking:</span>
                   <span className={styles.infoValue}>{nirfRank}</span>
                 </div>
                 <div className={styles.infoRow}>

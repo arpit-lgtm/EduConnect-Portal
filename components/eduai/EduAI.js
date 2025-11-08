@@ -1,8 +1,13 @@
 import { useState, useRef, useEffect } from 'react';
 import styles from './EduAI.module.css';
+import LoginModal from '../login/LoginModal';
+import { useAuth } from '../../contexts/AuthContext';
 import { getAIResponse, shouldUseAI, formatConversationHistory, isAIEnabled } from '../../lib/huggingface-client';
+import { trackChatbotUsage } from '../../utils/activityTracker';
 
 const EduAI = () => {
+  const { isLoggedIn } = useAuth();
+  const [showLoginModal, setShowLoginModal] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState('');
@@ -24,21 +29,6 @@ const EduAI = () => {
   const [videoExpanded, setVideoExpanded] = useState(false);
   const [isMuted, setIsMuted] = useState(true); // Voice control - START MUTED
   const [videoVisible, setVideoVisible] = useState(true); // Video widget visibility - open by default
-  
-  // Verification flow state
-  const [isVerified, setIsVerified] = useState(false);
-  const [showVerification, setShowVerification] = useState(false); // Only show after first question attempt
-  const [verificationStep, setVerificationStep] = useState('name'); // 'name', 'phone', 'phone-otp', 'email', 'email-otp', 'complete'
-  const [verificationData, setVerificationData] = useState({
-    firstName: '',
-    lastName: '',
-    phone: '',
-    phoneOtp: '',
-    email: '',
-    emailOtp: ''
-  });
-  const [generatedPhoneOtp, setGeneratedPhoneOtp] = useState('');
-  const [generatedEmailOtp, setGeneratedEmailOtp] = useState('');
   
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
@@ -416,65 +406,12 @@ const EduAI = () => {
     }
   };
 
-  const handlePhoneSendOtp = () => {
-    if (verificationData.phone.trim().length === 10) {
-      // Generate random 6-digit OTP for testing
-      const otp = Math.floor(100000 + Math.random() * 900000).toString();
-      setGeneratedPhoneOtp(otp);
-      console.log('Phone OTP generated:', otp); // For testing
-      alert(`OTP sent to ${verificationData.phone}!\n\nFor testing, OTP is: ${otp}`);
-      setVerificationStep('phone-otp');
-    }
-  };
-
-  const handlePhoneVerifyOtp = () => {
-    // For testing, accept any 6-digit number
-    if (verificationData.phoneOtp.trim().length === 6) {
-      setVerificationStep('email');
-    }
-  };
-
-  const handleEmailSendOtp = () => {
-    if (verificationData.email.trim() && verificationData.email.includes('@')) {
-      // Generate random 6-digit OTP for testing
-      const otp = Math.floor(100000 + Math.random() * 900000).toString();
-      setGeneratedEmailOtp(otp);
-      console.log('Email OTP generated:', otp); // For testing
-      alert(`OTP sent to ${verificationData.email}!\n\nFor testing, OTP is: ${otp}`);
-      setVerificationStep('email-otp');
-    }
-  };
-
-  const handleEmailVerifyOtp = () => {
-    // For testing, accept any 6-digit number
-    if (verificationData.emailOtp.trim().length === 6) {
-      setIsVerified(true);
-      setShowVerification(false); // Hide verification form
-      setVerificationStep('complete');
-      // Add welcome message after verification
-      const welcomeMessage = {
-        type: 'bot',
-        text: `Welcome ${verificationData.firstName}! 👋 Your details have been verified. How can I help you today with your education journey?`,
-        timestamp: new Date()
-      };
-      setMessages([welcomeMessage]);
-    }
-  };
-
   const handleSendMessage = async () => {
     if (!inputValue.trim()) return;
 
-    // If not verified yet, show verification form instead of sending message
-    if (!isVerified) {
-      // Store the question they wanted to ask
-      const pendingQuestion = inputValue;
-      
-      // Show verification form
-      setShowVerification(true);
-      
-      // Clear input
-      setInputValue('');
-      
+    // If not logged in, show login modal
+    if (!isLoggedIn) {
+      setShowLoginModal(true);
       return;
     }
 
@@ -488,6 +425,12 @@ const EduAI = () => {
       text: inputValue,
       timestamp: new Date()
     };
+
+    // Track chatbot usage
+    trackChatbotUsage({ 
+      message: inputValue,
+      messageCount: messages.length + 1
+    });
 
     // Get the last bot message for context
     const lastBotMessage = messages.length > 0 && messages[messages.length - 1].type === 'bot' 
@@ -807,152 +750,25 @@ const EduAI = () => {
 
             {/* Chat Body */}
             <div className={styles.chatContainer}>
-              {showVerification && !isVerified ? (
-                /* Verification Flow */
+              {!isLoggedIn ? (
+                /* Login Required Message */
                 <div className={styles.verificationContainer}>
-                  <div className={styles.verificationIcon}>🔐</div>
-                  <h3 className={styles.verificationTitle}>Before we proceed</h3>
-                  <p className={styles.verificationSubtext}>I need a few details so I can help you in a better way</p>
-                  
-                  {verificationStep === 'name' && (
-                    <div className={styles.verificationStep}>
-                      <div className={styles.formGroup}>
-                        <label>First Name *</label>
-                        <input
-                          type="text"
-                          placeholder="Enter your first name"
-                          value={verificationData.firstName}
-                          onChange={(e) => handleVerificationChange('firstName', e.target.value)}
-                        />
-                      </div>
-                      <div className={styles.formGroup}>
-                        <label>Last Name *</label>
-                        <input
-                          type="text"
-                          placeholder="Enter your last name"
-                          value={verificationData.lastName}
-                          onChange={(e) => handleVerificationChange('lastName', e.target.value)}
-                        />
-                      </div>
-                      <button 
-                        className={styles.verifyButton}
-                        onClick={handleNameSubmit}
-                        disabled={!verificationData.firstName.trim() || !verificationData.lastName.trim()}
-                      >
-                        Continue →
-                      </button>
-                    </div>
-                  )}
-
-                  {verificationStep === 'phone' && (
-                    <div className={styles.verificationStep}>
-                      <p className={styles.stepInfo}>Great! Now let's verify your contact number</p>
-                      <div className={styles.formGroup}>
-                        <label>Contact Number *</label>
-                        <input
-                          type="tel"
-                          placeholder="Enter 10-digit mobile number"
-                          maxLength="10"
-                          value={verificationData.phone}
-                          onChange={(e) => handleVerificationChange('phone', e.target.value.replace(/\D/g, ''))}
-                        />
-                      </div>
-                      <button 
-                        className={styles.verifyButton}
-                        onClick={handlePhoneSendOtp}
-                        disabled={verificationData.phone.trim().length !== 10}
-                      >
-                        Send OTP
-                      </button>
-                    </div>
-                  )}
-
-                  {verificationStep === 'phone-otp' && (
-                    <div className={styles.verificationStep}>
-                      <p className={styles.stepInfo}>📱 OTP sent to {verificationData.phone}</p>
-                      <div className={styles.formGroup}>
-                        <label>Enter OTP *</label>
-                        <input
-                          type="text"
-                          placeholder="Enter 6-digit OTP"
-                          maxLength="6"
-                          value={verificationData.phoneOtp}
-                          onChange={(e) => handleVerificationChange('phoneOtp', e.target.value.replace(/\D/g, ''))}
-                        />
-                      </div>
-                      <button 
-                        className={styles.verifyButton}
-                        onClick={handlePhoneVerifyOtp}
-                        disabled={verificationData.phoneOtp.trim().length !== 6}
-                      >
-                        Verify Phone ✓
-                      </button>
-                      <button 
-                        className={styles.resendButton}
-                        onClick={handlePhoneSendOtp}
-                      >
-                        Resend OTP
-                      </button>
-                    </div>
-                  )}
-
-                  {verificationStep === 'email' && (
-                    <div className={styles.verificationStep}>
-                      <p className={styles.stepInfo}>✅ Phone verified! Now let's verify your email</p>
-                      <div className={styles.formGroup}>
-                        <label>Email Address *</label>
-                        <input
-                          type="email"
-                          placeholder="Enter your email"
-                          value={verificationData.email}
-                          onChange={(e) => handleVerificationChange('email', e.target.value)}
-                        />
-                      </div>
-                      <button 
-                        className={styles.verifyButton}
-                        onClick={handleEmailSendOtp}
-                        disabled={!verificationData.email.trim() || !verificationData.email.includes('@')}
-                      >
-                        Send OTP
-                      </button>
-                    </div>
-                  )}
-
-                  {verificationStep === 'email-otp' && (
-                    <div className={styles.verificationStep}>
-                      <p className={styles.stepInfo}>📧 OTP sent to {verificationData.email}</p>
-                      <div className={styles.formGroup}>
-                        <label>Enter OTP *</label>
-                        <input
-                          type="text"
-                          placeholder="Enter 6-digit OTP"
-                          maxLength="6"
-                          value={verificationData.emailOtp}
-                          onChange={(e) => handleVerificationChange('emailOtp', e.target.value.replace(/\D/g, ''))}
-                        />
-                      </div>
-                      <button 
-                        className={styles.verifyButton}
-                        onClick={handleEmailVerifyOtp}
-                        disabled={verificationData.emailOtp.trim().length !== 6}
-                      >
-                        Verify Email ✓
-                      </button>
-                      <button 
-                        className={styles.resendButton}
-                        onClick={handleEmailSendOtp}
-                      >
-                        Resend OTP
-                      </button>
-                    </div>
-                  )}
+                  <div className={styles.verificationIcon}>🔒</div>
+                  <h3 className={styles.verificationTitle}>Login Required</h3>
+                  <p className={styles.verificationSubtext}>Please login to start chatting with our AI assistant</p>
+                  <button 
+                    className={styles.verifyButton}
+                    onClick={() => setShowLoginModal(true)}
+                  >
+                    Login to Continue
+                  </button>
                 </div>
               ) : messages.length === 0 ? (
-                /* Empty State - Initial or after verification */
+                /* Empty State - Initial */
                 <div className={styles.emptyState}>
                   <div className={styles.emptyStateIcon}>🤖</div>
                   <h3 className={styles.emptyStateTitle}>
-                    {isVerified ? `Hi ${verificationData.firstName}! 👋` : 'Hi there! 👋'}
+                    Hi there! 👋
                   </h3>
                   <p className={styles.emptyStateText}>
                     How can I help you today?
@@ -1040,12 +856,12 @@ const EduAI = () => {
                     }}
                     placeholder="Ask about courses, fees, universities..."
                     rows={1}
-                    disabled={false}
+                    disabled={!isLoggedIn}
                   />
                   <button 
                     className={styles.sendButton}
                     onClick={handleSendMessage}
-                    disabled={isTyping || !inputValue.trim()}
+                    disabled={isTyping || !inputValue.trim() || !isLoggedIn}
                   >
                     <svg viewBox="0 0 24 24" fill="currentColor">
                       <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
@@ -1057,6 +873,15 @@ const EduAI = () => {
           </div>
         </div>
       )}
+      
+      {/* Login Modal */}
+      <LoginModal 
+        isOpen={showLoginModal} 
+        onClose={() => setShowLoginModal(false)}
+        onLoginSuccess={() => {
+          setShowLoginModal(false);
+        }}
+      />
     </>
   );
 };

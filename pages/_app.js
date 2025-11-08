@@ -1,12 +1,18 @@
 import { useEffect, useState } from 'react';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import '../styles/globals.css';
 import '../utils/fontawesome';
+import { AuthProvider } from '../contexts/AuthContext';
 import EduAI from '../components/eduai/EduAI';
 import Loading from '../components/loading/Loading';
 
 function MyApp({ Component, pageProps }) {
+  const router = useRouter();
   const [showLoading, setShowLoading] = useState(true); // Start with TRUE - show on initial load
+  
+  // Check if current page is admin
+  const isAdminPage = router.pathname === '/admin-leads';
 
   useEffect(() => {
     let loadingTimer = null;
@@ -48,52 +54,55 @@ function MyApp({ Component, pageProps }) {
   }, []);
 
   return (
-    <>
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Head>
-      
-      {/* Loading Animation - ONLY shows when clicking COMPARE buttons */}
-      <Loading show={showLoading} />
-      
-      <Component {...pageProps} />
-      {/* MBANinjAI Button - Available on ALL pages */}
-      <EduAI />
-      
-      <style jsx global>{`
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
+    <AuthProvider>
+      <>
+        <Head>
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+        </Head>
         
-        @keyframes logoGlow {
-          0% {
-            transform: scale(0.95);
-            opacity: 0.7;
-            filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.4));
+        {/* Loading Animation - ONLY shows when clicking COMPARE buttons (not on admin page) */}
+        {!isAdminPage && <Loading show={showLoading} />}
+        
+        <Component {...pageProps} />
+        
+        {/* MBANinjAI Button - Available on ALL pages except admin */}
+        {!isAdminPage && <EduAI />}
+        
+        <style jsx global>{`
+          @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
           }
-          30% {
-            transform: scale(1.05);
-            opacity: 1;
-            filter: drop-shadow(0 0 30px rgba(102, 126, 234, 0.9)) 
-                    drop-shadow(0 0 50px rgba(118, 75, 162, 0.7))
-                    drop-shadow(0 0 70px rgba(102, 126, 234, 0.5));
+          
+          @keyframes logoGlow {
+            0% {
+              transform: scale(0.95);
+              opacity: 0.7;
+              filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.4));
+            }
+            30% {
+              transform: scale(1.05);
+              opacity: 1;
+              filter: drop-shadow(0 0 30px rgba(102, 126, 234, 0.9)) 
+                      drop-shadow(0 0 50px rgba(118, 75, 162, 0.7))
+                      drop-shadow(0 0 70px rgba(102, 126, 234, 0.5));
+            }
+            60% {
+              transform: scale(1.08);
+              opacity: 1;
+              filter: drop-shadow(0 0 45px rgba(102, 126, 234, 1)) 
+                      drop-shadow(0 0 70px rgba(118, 75, 162, 0.9))
+                      drop-shadow(0 0 90px rgba(102, 126, 234, 0.7));
+            }
+            100% {
+              transform: scale(1);
+              opacity: 1;
+              filter: drop-shadow(0 0 15px rgba(102, 126, 234, 0.5));
+            }
           }
-          60% {
-            transform: scale(1.08);
-            opacity: 1;
-            filter: drop-shadow(0 0 45px rgba(102, 126, 234, 1)) 
-                    drop-shadow(0 0 70px rgba(118, 75, 162, 0.9))
-                    drop-shadow(0 0 90px rgba(102, 126, 234, 0.7));
-          }
-          100% {
-            transform: scale(1);
-            opacity: 1;
-            filter: drop-shadow(0 0 15px rgba(102, 126, 234, 0.5));
-          }
-        }
-      `}</style>
-    </>
+        `}</style>
+      </>
+    </AuthProvider>
   )
 }
 

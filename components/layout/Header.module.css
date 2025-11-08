@@ -23,10 +23,49 @@
   position: relative;
 }
 
+/* Admin container - center everything */
+.adminContainer {
+  justify-content: center;
+  position: relative;
+}
+
+/* Logout button - positioned on right */
+.logoutButton {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logoutButton:hover {
+  background: linear-gradient(135deg, #b91c1c 0%, #7f1d1d 100%);
+  transform: translateY(-50%) translateY(-2px);
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
+}
+
 @media (max-width: 768px) {
   .container {
     padding: 0 15px;
     gap: 15px;
+  }
+  
+  .logoutButton {
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+    right: 10px;
   }
 }
 
@@ -42,7 +81,19 @@
   flex-shrink: 0;
 }
 
-.logo img {
+/* Logo - CENTERED (for admin) */
+.logoCenter {
+  display: block;
+  position: relative;
+  height: 60px;
+  width: 220px;
+  padding: 10px 0;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.logo img,
+.logoCenter img {
   object-fit: contain;
   width: 100% !important;
   height: 100% !important;
@@ -110,6 +161,12 @@
 
 .navItem a:hover {
   color: #0074d7;
+}
+
+/* Login Button - Blue */
+.navItem a[href="#"]:last-of-type {
+  color: #0074d7;
+  font-weight: 600;
 }
 
 /* Header Actions - EXTREME RIGHT */
@@ -252,6 +309,48 @@
   background: #005bb0;
 }
 
+/* User Welcome Section */
+.userWelcome {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  border-radius: 8px;
+  border: 1px solid #0074d7;
+}
+
+.welcomeText {
+  color: #1e293b;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.welcomeText strong {
+  color: #0074d7;
+  font-weight: 700;
+}
+
+.logoutBtn {
+  background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.logoutBtn:hover {
+  background: linear-gradient(135deg, #b91c1c 0%, #7f1d1d 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(220, 38, 38, 0.3);
+}
+
 /* Submenu */
 .submenu {
   position: absolute;
@@ -386,5 +485,23 @@
 
   .finderIcon {
     font-size: 16px;
+  }
+
+  /* Mobile Welcome Message */
+  .userWelcome {
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px;
+    width: 100%;
+  }
+
+  .welcomeText {
+    font-size: 13px;
+    text-align: center;
+  }
+
+  .logoutBtn {
+    width: 100%;
+    padding: 8px 12px;
   }
 }

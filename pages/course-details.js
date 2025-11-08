@@ -482,6 +482,41 @@ export default function CourseDetails() {
     return name.split(' ').map(word => word[0]).join('').substring(0, 2).toUpperCase();
   };
 
+  // Map university names to their page URLs
+  const getUniversityPageURL = (universityName) => {
+    const nameToURLMap = {
+      'Amity University': '/university/amity-university',
+      'Manipal University': '/university/manipal-university',
+      'NMIMS University': '/university/nmims',
+      'MIT School of Distance Education Pune': '/university/mit-university',
+      'DY Patil University Navi Mumbai': '/university/dy-patil-navi-mumbai',
+      'DY Patil University Pune': '/university/dy-patil-pune',
+      'Vivekananda Global': '/university/vivekananda-global',
+      'Bharathiar University (Distance Education)': '/university/bharathiar-university-online',
+      'Bharathidasan University (Distance Education)': '/university/bharathidasan-university-distance-education',
+      'Annamalai (Distance Education)': '/university/annamalai-university',
+      'Anna University (Distance Education)': '/university/anna-university',
+      'Andhra University (Distance Education)': '/university/andhra-university',
+      'ANUCDE Acharya Nagarjuna (Distance Education)': '/university/anucde-acharya-nagarjuna-university',
+      'BIHER Bharath Institute': '/university/biher-bharath-institute',
+      'BITS Pilani WILP': '/university/bits-pilani-wilp',
+      'BIMTECH Greater Noida': '/university/bimtech-greater-noida',
+      'Birchwood University': '/university/birchwood-university',
+      'Chandigarh University (Online)': '/university/chandigarh-university-online',
+      'Chitkara University (Online)': '/university/chitkara-university-online',
+      'Atlas SkillTech': '/university/atlas-skilltech',
+      'Amrita University': '/university/amrita-university',
+      'DDU Gorakhpur University': '/university/ddu-gorakhpur-university',
+      'Deakin University Melbourne': '/university/deakin-university-melbourne',
+      'Dibrugarh University (Distance Education)': '/university/dibrugarh-university-distance-education',
+      'DU SOL': '/university/du-sol-school-of-open-learning',
+      'GLA University': '/university/gla-university-online',
+      // Add more mappings as needed
+    };
+    
+    return nameToURLMap[universityName] || null;
+  };
+
   // Get the actual courseId being used - only on client side
   const [courseTitle, setCourseTitle] = useState('');
   const [courseCategory, setCourseCategory] = useState('');
@@ -531,6 +566,15 @@ export default function CourseDetails() {
                     <div
                       key={uni.id}
                       className={styles.collegeVidyaCard}
+                      onClick={() => {
+                        const universityURL = getUniversityPageURL(uni.name);
+                        if (universityURL) {
+                          window.open(universityURL, '_blank');
+                        } else {
+                          console.log('No URL mapped for university:', uni.name);
+                        }
+                      }}
+                      style={{ cursor: getUniversityPageURL(uni.name) ? 'pointer' : 'default' }}
                     >
                       {/* Compare Button - Top Right */}
                       <button

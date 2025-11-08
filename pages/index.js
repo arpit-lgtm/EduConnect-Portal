@@ -4,6 +4,7 @@ import Header from '../components/layout/Header';
 import HeroCarousel from '../components/carousel/HeroCarousel';
 import Stats from '../components/stats/Stats';
 import BrowseCategories from '../components/browse/BrowseCategories';
+import CourseExplorer from '../components/browse/CourseExplorer';
 import ExpertGuidance from '../components/experts/ExpertGuidance';
 import Leadership from '../components/leadership/Leadership';
 import Universities from '../components/universities/Universities';
@@ -32,13 +33,26 @@ export default function Home() {
       <main className={styles.main}>
         <HeroCarousel />
         <Stats />
-        <BrowseCategories />
+        <div id="browse-courses">
+          <BrowseCategories />
+        </div>
         <VideoTestimonials />
-        <Universities />
+        <div id="course-explorer">
+          <CourseExplorer />
+        </div>
+        <div id="universities">
+          <Universities />
+        </div>
         <FAQ />
-        <Leadership />
-        <ExpertGuidance />
-        <TalkToExperts />
+        <div id="leadership">
+          <Leadership />
+        </div>
+        <div id="expert-guidance">
+          <ExpertGuidance />
+        </div>
+        <div id="talk-to-experts">
+          <TalkToExperts />
+        </div>
       </main>
       
       <Footer />

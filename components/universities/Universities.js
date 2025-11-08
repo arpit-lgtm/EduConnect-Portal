@@ -191,6 +191,16 @@ export default function Universities() {
             linkUrl = '/university/chandigarh-university-online';
           } else if (uniName.includes('chitkara university') || uniName.includes('chitkara') || uniId === 'chitkara-university-online') {
             linkUrl = '/university/chitkara-university-online';
+          } else if (uniName.includes('deen dayal upadhyay gorakhpur') || uniName.includes('deen dayal upadhyay') || uniName.includes('ddu gorakhpur') || uniId === 'ddu-gorakhpur-university') {
+            linkUrl = '/university/ddu-gorakhpur-university';
+          } else if (uniName.includes('deakin university') || uniName.includes('deakin melbourne') || uniId === 'deakin-university-melbourne') {
+            linkUrl = '/university/deakin-university-melbourne';
+          } else if (uniName.includes('dibrugarh university') || uniName.includes('dibrugarh') || uniId === 'dibrugarh-university-distance-education') {
+            linkUrl = '/university/dibrugarh-university-distance-education';
+          } else if (uniName.includes('du sol') || uniName.includes('delhi university') || uniName.includes('school of open learning') || uniId === 'du-sol-school-of-open-learning') {
+            linkUrl = '/university/du-sol-school-of-open-learning';
+          } else if (uniName.includes('gla university') || uniName.includes('gla') || uniId === 'gla-university-online') {
+            linkUrl = '/university/gla-university-online';
           }
           
           // Custom course counts for universities with detailed pages
@@ -230,7 +240,19 @@ export default function Universities() {
             'birchwood': '9 Courses',
             'chandigarh university': '11 Courses',
             'chitkara university': '1 Course',
-            'chitkara': '1 Course'
+            'chitkara': '1 Course',
+            'deen dayal upadhyay gorakhpur': '6 Courses',
+            'deen dayal upadhyay': '6 Courses',
+            'ddu gorakhpur': '6 Courses',
+            'deakin university': '4 Courses',
+            'deakin melbourne': '4 Courses',
+            'dibrugarh university': '1 Course',
+            'dibrugarh': '1 Course',
+            'du sol': '26 Courses',
+            'delhi university': '12 Courses',
+            'school of open learning': '12 Courses',
+            'gla university': '12 Courses',
+            'gla': '12 Courses'
           };
           
           // Get accurate course count - check custom counts first, then database

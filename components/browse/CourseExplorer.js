@@ -1,195 +1,94 @@
-import Head from 'next/head';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import styles from '../styles/BrowseCourses.module.css';
-import Header from '../components/layout/Header';
-import Footer from '../components/layout/Footer';
-import dynamic from 'next/dynamic';
-import universityLogoMap, { getUniversityLogo } from '../utils/universityLogoMap';
-import { trackCourseExplorer } from '../utils/activityTracker';
+import styles from '../../styles/BrowseCourses.module.css';
+import { getUniversityLogo } from '../../utils/universityLogoMap';
 
-const AskEduAI = dynamic(() => import('../components/eduai/EduAI'), {
-  ssr: false
-});
-
-export default function BrowseCourses() {
+export default function CourseExplorer() {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState('PG Courses');
   const [activeStream, setActiveStream] = useState('Commerce');
   const [coursesData, setCoursesData] = useState({});
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [universityDatabase, setUniversityDatabase] = useState([]);
-
-  // Map university names to their page URLs
-  const getUniversityPageURL = (universityName) => {
-    const nameToURLMap = {
-      'Amity University': '/university/amity-university',
-      'Manipal University': '/university/manipal-university',
-      'NMIMS University': '/university/nmims',
-      'MIT School of Distance Education Pune': '/university/mit-university',
-      'DY Patil University Navi Mumbai': '/university/dy-patil-navi-mumbai',
-      'DY Patil University Pune': '/university/dy-patil-pune',
-      'Vivekananda Global': '/university/vivekananda-global',
-      'Bharathiar University (Distance Education)': '/university/bharathiar-university-online',
-      'Bharathidasan University (Distance Education)': '/university/bharathidasan-university-distance-education',
-      'Annamalai (Distance Education)': '/university/annamalai-university',
-      'Anna University (Distance Education)': '/university/anna-university',
-      'Andhra University (Distance Education)': '/university/andhra-university',
-      'ANUCDE Acharya Nagarjuna (Distance Education)': '/university/anucde-acharya-nagarjuna-university',
-      'BIHER Bharath Institute': '/university/biher-bharath-institute',
-      'BITS Pilani WILP': '/university/bits-pilani-wilp',
-      'BIMTECH Greater Noida': '/university/bimtech-greater-noida',
-      'Birchwood University': '/university/birchwood-university',
-      'Chandigarh University (Online)': '/university/chandigarh-university-online',
-      'Chitkara University (Online)': '/university/chitkara-university-online',
-      'Atlas SkillTech': '/university/atlas-skilltech',
-      'Amrita University': '/university/amrita-university',
-      'DDU Gorakhpur University': '/university/ddu-gorakhpur-university',
-      'Deakin University Melbourne': '/university/deakin-university-melbourne',
-      'Dibrugarh University (Distance Education)': '/university/dibrugarh-university-distance-education',
-      'DU SOL': '/university/du-sol-school-of-open-learning',
-      'GLA University': '/university/gla-university-online',
-      // Add more mappings as needed
-    };
-    
-    return nameToURLMap[universityName] || null;
-  };
-
-  // Helper function to render clickable university logo
-  const renderUniversityLogo = (uni, idx, fallbackMode = false) => {
-    if (!fallbackMode) {
-      const logoPath = getUniversityLogo(uni.name);
-      if (!logoPath) {
-        console.warn(`Missing logo for university: "${uni.name}"`);
-        return (
-          <div key={idx} className={styles.logoPlaceholder} title={uni.name}>
-            {uni.name?.substring(0, 3).toUpperCase()}
-          </div>
-        );
-      }
-      return (
-        <img 
-          key={idx} 
-          src={`${logoPath}`} 
-          alt={uni.name} 
-          title={uni.name}
-          onClick={() => {
-            const universityURL = getUniversityPageURL(uni.name);
-            if (universityURL) {
-              window.open(universityURL, '_blank');
-            } else {
-              console.log('No URL mapped for university:', uni.name);
-            }
-          }}
-          style={{ cursor: getUniversityPageURL(uni.name) ? 'pointer' : 'default' }}
-          onError={(e) => {
-            console.error(`Failed to load logo for: ${uni.name}`);
-            e.target.style.display = 'none';
-          }}
-        />
-      );
-    } else {
-      // Fallback mode for hardcoded popular logos
-      const universityURL = getUniversityPageURL(uni.alt);
-      return (
-        <img 
-          key={idx}
-          src={uni.src} 
-          alt={uni.alt} 
-          title={uni.alt}
-          onClick={() => {
-            if (universityURL) {
-              window.open(universityURL, '_blank');
-            } else {
-              console.log('No URL mapped for university:', uni.alt);
-            }
-          }}
-          style={{ cursor: universityURL ? 'pointer' : 'default' }}
-        />
-      );
-    }
-  };
   const [courseUniversities, setCourseUniversities] = useState([]);
 
   const handleKnowMore = (course) => {
-    // Toggle: if same course clicked, collapse it
     if (selectedCourse && selectedCourse.id === course.id) {
       setSelectedCourse(null);
       setCourseUniversities([]);
     } else {
       setSelectedCourse(course);
-      // Track course exploration
-      trackCourseExplorer({
-        courseName: course.name,
-        courseId: course.id,
-        stream: activeStream,
-        tab: activeTab
-      });
-      // Find universities that offer this course
       findUniversitiesForCourse(course);
     }
   };
 
-  // Load university database
   useEffect(() => {
     const loadUniversityData = async () => {
       try {
         if (window.universityDatabase && Array.isArray(window.universityDatabase)) {
           setUniversityDatabase(window.universityDatabase);
-          console.log('? University database already loaded:', window.universityDatabase.length);
           return;
         }
-
         const response = await fetch('/assets/js/comprehensive-unified-database-COMPLETE.js');
         const text = await response.text();
         const modifiedText = text.replace(/const universityDatabase/g, 'var universityDatabase');
         const executeGlobal = new Function(modifiedText);
         executeGlobal.call(window);
-
         if (window.universityDatabase && Array.isArray(window.universityDatabase)) {
           setUniversityDatabase(window.universityDatabase);
-          console.log('? Loaded university database:', window.universityDatabase.length);
         }
       } catch (error) {
-        console.error('? Error loading university database:', error);
+        console.error('Error loading university database:', error);
       }
     };
-
     loadUniversityData();
   }, []);
 
   useEffect(() => {
-    // Load courses immediately - no database fetch needed
     categorizeCourses();
   }, []);
 
-  // Reset selected course when switching tabs or streams
   useEffect(() => {
     setSelectedCourse(null);
     setCourseUniversities([]);
   }, [activeTab, activeStream]);
 
-  // Get course description
   const getCourseDescription = (courseName) => {
     const descriptions = {
-      'Online MBA': 'A flexible master\'s program in business administration delivered virtually. It builds leadership and strategic management skills for modern business environments.',
-      '1 Year MBA Online': 'An accelerated, intensive MBA program completed entirely online in one year. Designed for professionals seeking a fast-track career advancement.',
-      'Distance MBA': 'A self-paced MBA program conducted via correspondence or online study centers. Offers flexibility for those who cannot attend regular classes.',
-      'Executive MBA for Working Professionals': 'A premium MBA tailored for experienced managers and leaders. Blends executive-level coursework with real-world business challenges to enhance decision-making and strategic thinking.',
-      'Online Global MBA': 'An international MBA program focusing on global markets, cross-border management, and multinational strategies. Prepares graduates to lead in a globalized economy.',
-      'Dual MBA Online': 'A unique program offering two MBA specializations simultaneously. Expands career options and provides a competitive edge in multiple business domains.',
-      'Online MBA after Diploma': 'An MBA pathway for diploma holders seeking advanced management education. Bridges the gap between vocational training and managerial roles.',
-      'Online MBA Plus': 'An enhanced MBA program with added certifications, industry projects, and skill modules. Offers more than a standard MBA for comprehensive career preparation.',
-      'MBA in Business Analytics': 'An MBA focused on data-driven decision-making and analytics tools. Combines business acumen with statistical modeling, data mining, and predictive analytics.',
+      // PG Courses
+      '1 Year MBA Online': 'An accelerated MBA that condenses coursework into 12 months. Ideal for professionals looking to advance quickly without career interruptions.',
+      'Distance MBA': 'A master\'s degree in business administration delivered via distance learning. Ideal for working professionals to gain management expertise without classroom attendance.',
+      'Executive MBA for Working Professionals': 'A specialized MBA for experienced professionals and mid-senior managers. Combines leadership development with practical business strategy.',
+      'Online Global MBA': 'An internationally-focused MBA with global curriculum and networking. Prepares graduates for leadership roles in multinational corporations and cross-border business.',
+      'Dual MBA Online': 'An MBA offering dual specializations for comprehensive business expertise. Allows students to master two complementary domains like Finance & Marketing.',
+      'Online MBA after Diploma': 'An MBA program designed for diploma holders seeking postgraduate management education. Bridges the gap between diploma and master\'s qualifications.',
+      'Online MBA Plus': 'An enhanced MBA with additional certifications and skill modules. Offers broader business education with industry-specific knowledge.',
+      'MBA in Business Analytics': 'An MBA specializing in data analytics, business intelligence, and predictive modeling. Combines business acumen with data science for data-driven decision making.',
+      'Online MBA & Doctorate': 'A dual-degree program combining an MBA with a doctoral qualification. Prepares graduates for leadership roles in academia, research, and consulting.',
+      'Online Master of Management Studies': 'A master\'s program focusing on management theory, organizational behavior, and strategic leadership. Similar to an MBA with emphasis on academic rigor.',
+      'Blended MBA': 'A hybrid MBA combining online learning with occasional in-person sessions. Offers flexibility while maintaining interactive and networking opportunities.',
+      'Online MBA': 'A flexible master\'s degree in business administration delivered virtually. Covers all core business functions from marketing to finance for comprehensive management education.',
       'Online M.Com': 'A postgraduate commerce program covering advanced accounting, taxation, auditing, and business economics. Ideal for those pursuing finance, banking, or commerce careers.',
       'Distance M.Com': 'A flexible M.Com degree delivered through distance education. Allows working professionals to deepen expertise in commerce and finance without classroom attendance.',
+      'Online PGDM': 'A postgraduate diploma in management equivalent to an MBA. Focuses on management skills, business strategy, and industry-specific knowledge.',
+      'Online PG Diploma & Certificate': 'Short-term postgraduate programs in specialized management areas. Ideal for quick skill development in finance, marketing, HR, or supply chain.',
       'Online MCA': 'A master\'s degree in computer applications focusing on software engineering, programming, and IT systems. Prepares graduates for technical and managerial roles in IT.',
       'M.Tech': 'A postgraduate engineering degree offering specialization in advanced technologies and research. Builds expertise in cutting-edge fields like AI, data science, and more.',
       'Online M.Sc': 'A master\'s degree in science with specializations across disciplines like physics, chemistry, IT, data science, and more. Combines theory with practical applications.',
+      'MS Degree Online': 'A master of science program with focus on research and advanced technical knowledge. Ideal for careers in technology, research, and specialized industries.',
+      'Online Global MCA': 'An internationally recognized MCA with global curriculum and industry partnerships. Prepares graduates for technical roles in multinational IT companies.',
       'Distance MCA': 'An MCA program delivered via distance learning for aspiring IT professionals. Covers programming, databases, networking, and software development.',
       'Distance M.Sc': 'A flexible M.Sc program for working individuals interested in science and technology. Offers specializations in various scientific and applied fields.',
       'Online MA': 'A master\'s in arts covering subjects like English, psychology, sociology, history, and more. Focuses on critical thinking, research, and analytical skills.',
+      'Online Master of Design': 'A master\'s degree in design covering UI/UX, graphic design, and product design. Combines creativity with technical design skills.',
+      'Online Master of Education (M.Ed)': 'A master\'s in education for teachers and education professionals. Focuses on pedagogy, curriculum development, and educational leadership.',
       'Distance MA': 'An MA degree delivered through distance mode, perfect for educators, writers, and humanities enthusiasts. Provides flexibility while pursuing higher education in arts.',
+      'M.A. in Public Policy': 'A master\'s program in public policy, governance, and policy analysis. Ideal for careers in government, NGOs, and policy research organizations.',
+      'M.A. in International Relations, Security, and Strategy': 'A master\'s in international relations focusing on global politics, security studies, and strategic affairs. Prepares graduates for diplomatic and international careers.',
+      'Online Master of Social Work': 'A master\'s in social work covering community development, counseling, and social welfare. Prepares professionals for roles in NGOs and social services.',
+      'Online M.Ed & Ed.D': 'A dual degree combining master\'s in education with doctoral qualification. Prepares leaders for academic administration and educational research.',
+      
+      // UG Courses
       'Online BBA': 'An undergraduate business degree covering management, marketing, finance, and entrepreneurship. Lays the foundation for careers in business and corporate sectors.',
       'Online B.Com': 'A bachelor\'s in commerce focusing on accounting, taxation, business law, and economics. Prepares students for roles in finance, banking, and commerce industries.',
       'Distance BBA': 'A BBA program offered via distance learning for flexibility and accessibility. Ideal for students balancing work, personal commitments, or geographical constraints.',
@@ -199,80 +98,7 @@ export default function BrowseCourses() {
       'Online B.Sc': 'A bachelor\'s in science with specializations across fields like IT, data science, chemistry, physics, and more. Combines theoretical knowledge with practical learning.',
       'Online BA': 'A bachelor\'s in arts covering diverse subjects like literature, history, sociology, and political science. Encourages critical thinking and creative expression.',
       'Distance BA': 'A BA degree through distance education for flexible learning. Ideal for students pursuing higher education while managing other responsibilities.',
-      'Online PGDM': 'A postgraduate diploma in management equivalent to an MBA. Focuses on management skills, business strategy, and industry-specific knowledge.',
-      'Online MBA & Doctorate': 'A dual-degree program combining an MBA with a doctoral qualification. Prepares graduates for leadership roles in academia, research, and consulting.',
-      'Online Master of Management Studies': 'A master\'s program focusing on management theory, organizational behavior, and strategic leadership. Similar to an MBA with emphasis on academic rigor.',
-      'Blended MBA': 'A hybrid MBA combining online learning with occasional in-person sessions. Offers flexibility while maintaining interactive and networking opportunities.',
-      'Online PGPM (Post Graduate Program in Management)': 'A management program focusing on practical skills and industry readiness. Prepares students for mid to senior-level management roles.',
-      'Online PGP in Management': 'A postgraduate program in management designed for working professionals. Focuses on leadership, strategy, and decision-making in business contexts.',
-      'One Year Online MBA': 'An accelerated MBA that condenses coursework into 12 months. Ideal for professionals looking to advance quickly without career interruptions.',
-      'PGP in General Management': 'A general management program covering all aspects of business from marketing to finance. Suitable for those seeking versatile managerial skills.',
-      'Online MBA in HR Management': 'An MBA specializing in human resources, talent management, and organizational behavior. Prepares graduates for HR leadership roles.',
-      'Online MBA in Finance': 'An MBA focused on financial analysis, investment strategies, and corporate finance. Ideal for careers in banking, investment, and financial planning.',
-      'Online MBA in Marketing': 'An MBA specializing in brand management, consumer behavior, and digital marketing. Prepares students for roles in advertising, sales, and product management.',
-      'Online MBA in Operations Management': 'An MBA focusing on supply chain, production, and logistics management. Equips students with skills to optimize business operations.',
-      'Online MBA in International Business': 'An MBA specializing in global trade, cross-border strategy, and international markets. Prepares students for roles in multinational corporations.',
-      'Online MBA in IT Management': 'An MBA combining business and IT knowledge, focusing on technology management and digital transformation. Ideal for IT professionals moving into leadership.',
-      'Online MBA in Entrepreneurship': 'An MBA for aspiring entrepreneurs focusing on startup management, innovation, and business planning. Helps turn business ideas into reality.',
-      'Online MBA in Project Management': 'An MBA specializing in project planning, execution, and risk management. Prepares graduates for project leadership roles across industries.',
-      'Online MBA in Healthcare Management': 'An MBA focused on managing healthcare organizations, hospital administration, and health policy. Prepares leaders for the healthcare sector.',
-      'Online MBA in Supply Chain Management': 'An MBA specializing in logistics, procurement, and supply chain optimization. Equips professionals to manage end-to-end supply chains.',
-      'Online MBA in Banking & Finance': 'An MBA focusing on banking operations, financial markets, and investment banking. Prepares students for leadership in the banking sector.',
-      'Online MBA in Digital Marketing': 'An MBA specializing in SEO, social media, content marketing, and digital strategy. Ideal for those pursuing careers in online marketing.',
-      'Online MBA in Retail Management': 'An MBA focused on retail operations, merchandising, and customer experience. Prepares graduates for leadership roles in retail chains.',
-      'Online MBA in Hospitality Management': 'An MBA specializing in hotel management, tourism, and service excellence. Ideal for careers in the hospitality and travel industries.',
-      'Online MBA in Media & Communication': 'An MBA focusing on media strategy, communication planning, and content management. Prepares students for roles in media companies and PR firms.',
-      'Online MBA in Sports Management': 'An MBA specializing in sports marketing, event management, and athlete representation. Prepares professionals for leadership in the sports industry.',
-      'Online MBA in Agribusiness Management': 'An MBA focused on agriculture, agritech, and rural business management. Ideal for those interested in the agricultural sector.',
-      'Online MBA in Real Estate Management': 'An MBA specializing in property development, real estate finance, and urban planning. Prepares graduates for careers in real estate firms.',
-      'Online MBA in Energy Management': 'An MBA focused on renewable energy, energy policy, and sustainable business practices. Ideal for careers in the energy sector.',
-      'Online MBA in Aviation Management': 'An MBA specializing in airline operations, airport management, and aviation strategy. Prepares students for leadership roles in aviation.',
-      'Online MBA in Tourism Management': 'An MBA focused on travel planning, destination marketing, and tourism economics. Ideal for careers in travel agencies and tourism boards.',
-      'Online MBA in Logistics Management': 'An MBA specializing in transportation, warehousing, and distribution networks. Equips professionals to manage complex logistics operations.',
-      'Online MBA in Insurance Management': 'An MBA focused on risk assessment, underwriting, and insurance operations. Prepares graduates for careers in insurance companies.',
-      'Online MBA in Event Management': 'An MBA specializing in planning, executing, and managing corporate and personal events. Ideal for careers in event planning firms.',
-      'Online MBA in Fashion Management': 'An MBA focused on fashion marketing, retail, and brand management. Prepares students for leadership roles in the fashion industry.',
-      'Online MBA in Pharmaceutical Management': 'An MBA specializing in pharma marketing, drug development, and healthcare regulations. Ideal for careers in pharmaceutical companies.',
-      'Online MBA in Construction Management': 'An MBA focused on construction planning, project execution, and infrastructure development. Prepares leaders for construction and real estate.',
-      'Online MBA in Public Administration': 'An MBA specializing in government operations, policy-making, and public sector management. Ideal for careers in public service.',
-      'Online MBA in NGO Management': 'An MBA focused on nonprofit organizations, fundraising, and social impact management. Prepares leaders for NGO and development sectors.',
-      'Online MBA in Environmental Management': 'An MBA specializing in sustainability, environmental policy, and green business practices. Ideal for careers in environmental consulting.',
-      'Online MBA in Quality Management': 'An MBA focused on Six Sigma, total quality management, and process improvement. Prepares professionals to drive quality initiatives.',
-      'Online MBA in Export-Import Management': 'An MBA specializing in international trade, customs regulations, and cross-border logistics. Prepares students for careers in export-import firms.',
-      'Online MBA in Corporate Social Responsibility': 'An MBA focused on CSR strategy, social impact, and ethical business practices. Ideal for those passionate about sustainable business.',
-      'Online MBA in Family Business Management': 'An MBA tailored for family-run businesses focusing on succession planning and governance. Helps next-gen leaders manage and grow family enterprises.',
-      'Online MBA in Artificial Intelligence': 'An MBA combining AI, machine learning, and business strategy. Prepares leaders to drive AI adoption in organizations.',
-      'Online MBA in Data Science': 'An MBA focused on big data, analytics, and data-driven decision-making. Equips professionals to lead data initiatives in business.',
-      'Online MBA in Cyber Security Management': 'An MBA specializing in information security, risk management, and cybersecurity strategy. Prepares leaders to protect organizations from cyber threats.',
-      'Online MBA in Blockchain Management': 'An MBA focused on blockchain technology, cryptocurrency, and decentralized systems. Ideal for careers in fintech and blockchain firms.',
-      'Online MBA in E-Commerce Management': 'An MBA specializing in online retail, digital platforms, and e-commerce strategy. Prepares students for leadership in e-commerce companies.',
-      'Online MBA in Content Management': 'An MBA focused on content strategy, digital publishing, and media production. Ideal for careers in content-driven businesses.',
-      'Online MBA in Product Management': 'An MBA specializing in product development, lifecycle management, and user experience. Prepares students for product management roles.',
-      'Online MBA in Business Consulting': 'An MBA focused on consulting methodologies, problem-solving, and client management. Prepares graduates for careers in consulting firms.',
-      'Online MBA in Wealth Management': 'An MBA specializing in investment advisory, portfolio management, and financial planning. Ideal for careers in wealth management and private banking.',
-      'Online MBA in Compliance Management': 'An MBA focused on regulatory compliance, corporate governance, and risk mitigation. Prepares professionals to manage compliance functions.',
-      'Online MBA in Crisis Management': 'An MBA specializing in emergency response, reputation management, and business continuity. Ideal for careers in risk and crisis management.',
-      'Online MBA in Brand Management': 'An MBA focused on brand strategy, positioning, and identity management. Prepares students for brand management roles in corporations.',
-      'Online MBA in Customer Relationship Management': 'An MBA specializing in CRM systems, customer retention, and loyalty programs. Ideal for careers in customer success and sales.',
-      'Online MBA in Social Media Management': 'An MBA focused on social media strategy, influencer marketing, and online engagement. Prepares students for roles in digital marketing.',
-      'Online MBA in Change Management': 'An MBA specializing in organizational change, transformation, and leadership. Prepares professionals to lead change initiatives in companies.',
-      'Online MBA in Diversity & Inclusion Management': 'An MBA focused on workplace diversity, equity, and inclusion strategies. Ideal for HR leaders passionate about inclusive workplaces.',
-      'Online MBA in Strategy Management': 'An MBA specializing in corporate strategy, competitive analysis, and long-term planning. Prepares graduates for strategic leadership roles.',
-      'Online MBA in Sales Management': 'An MBA focused on sales strategy, team management, and revenue growth. Ideal for careers in sales leadership and business development.',
-      'Online MBA in Business Development': 'An MBA specializing in growth strategies, partnerships, and market expansion. Prepares professionals for business development roles.',
-      'Online MBA in Innovation Management': 'An MBA focused on fostering innovation, R&D management, and creative problem-solving. Ideal for roles in product innovation and technology.',
-      'Online MBA in Leadership': 'An MBA specializing in executive leadership, team management, and organizational culture. Prepares graduates for C-suite and senior leadership roles.',
-      'Online MBA in General Management': 'An MBA covering all functional areas of business from marketing to operations. Ideal for those seeking versatile management skills and broad career options.',
-      'B.Tech': 'An undergraduate engineering degree offering specializations in fields like computer science, mechanical, civil, and electrical engineering. Combines theoretical knowledge with hands-on projects.',
-      'Online B.Tech': 'A flexible bachelor\'s in technology delivered online for working professionals or remote learners. Covers engineering fundamentals and industry-relevant skills.',
-      'Online B.Sc in Data Science': 'A bachelor\'s degree specializing in data analysis, machine learning, and statistical modeling. Prepares students for careers in data-driven industries.',
-      'Online B.Sc in Computer Science': 'A bachelor\'s in computer science covering programming, algorithms, databases, and software development. Ideal for aspiring software engineers and developers.',
-      'Online B.Sc in IT': 'A bachelor\'s in information technology focusing on systems management, networking, and IT infrastructure. Prepares graduates for IT support and admin roles.',
-      'Online B.Sc in Mathematics': 'A bachelor\'s in mathematics covering algebra, calculus, statistics, and applied math. Ideal for careers in research, teaching, or analytics.',
-      'Online B.Sc in Physics': 'A bachelor\'s in physics focusing on mechanics, quantum physics, and experimental science. Prepares students for research, engineering, or teaching roles.',
-      'Online B.Sc in Chemistry': 'A bachelor\'s in chemistry covering organic, inorganic, and physical chemistry. Ideal for careers in pharmaceuticals, research, or teaching.',
-      'Online B.Sc in Biotechnology': 'A bachelor\'s in biotechnology focusing on genetics, molecular biology, and bio-processes. Prepares students for careers in biotech firms and research.',
-      'Online B.Sc in Psychology': 'A bachelor\'s in psychology covering human behavior, cognitive science, and mental health. Ideal for careers in counseling, HR, or social work.',
+      'Bachelor of Design': 'An undergraduate design degree covering UI/UX, graphic design, product design, and fashion design. Combines creativity with technical design skills.',
       
       // Executive Education
       'IIM Online Courses': 'Short-term executive programs from IIMs focusing on leadership, strategy, and management. Designed for working professionals seeking skill enhancement from premier institutions.',
@@ -328,19 +154,23 @@ export default function BrowseCourses() {
       'PG Diploma in Data Science': 'Postgraduate diploma in machine learning, data analytics, and AI. Hands-on training for data science and analytics roles.',
       'PG Diploma in Finance': 'Postgraduate diploma in investment banking, financial analysis, and portfolio management. Ideal for finance professionals seeking specialization.',
       'PG Diploma in HR Management': 'Postgraduate diploma in talent management, recruitment, and HR analytics. Prepares professionals for modern HR practices.',
+      'Advanced Diploma in IT': 'One-year diploma in information technology covering software development, networking, and cloud computing. Quick path to IT careers.',
       
       // Skilling & Certificate
       'Digital Marketing Certificate': 'Short-term certification in SEO, PPC, social media, and email marketing. Quick skill development for digital marketing roles.',
       'Financial Modeling': 'Professional certification in Excel modeling, valuation, and financial forecasting. Essential skills for finance and investment professionals.',
       'Project Management': 'Certification program covering Agile, Scrum, and PMP methodologies. Prepares professionals for project management roles across industries.',
       'Python Programming': 'Programming certification covering core Python, data structures, and applications. Foundation for software development and data science careers.',
-      'Full Stack Development': 'Comprehensive program in MERN/MEAN stack and web development. Prepares developers for full stack engineering roles.'
+      'Full Stack Development': 'Comprehensive program in MERN/MEAN stack and web development. Prepares developers for full stack engineering roles.',
+      'Graphic Design': 'Professional certification in Photoshop, Illustrator, and design principles. Ideal for careers in design, branding, and creative industries.',
+      'Content Writing': 'Certification in SEO writing, copywriting, and content strategy. Prepares professionals for content marketing and writing careers.',
+      'SEO & SEM': 'Specialized program in search engine optimization and search engine marketing. Covers on-page, off-page SEO, and Google Ads.',
+      'Social Media Marketing': 'Professional program in social media strategy, Facebook Ads, and Instagram marketing. Ideal for digital marketing and social media roles.',
+      'Excel Advanced': 'Advanced certification in Excel covering pivot tables, VBA, macros, and data analysis. Essential for finance, analytics, and business professionals.'
     };
-
     return descriptions[courseName] || 'Comprehensive program designed to enhance your skills and advance your career in this field.';
   };
 
-  // Find 4 random universities that offer the selected course
   const findUniversitiesForCourse = (course) => {
     if (!universityDatabase || universityDatabase.length === 0) {
       console.warn('University database not loaded yet');
@@ -364,13 +194,22 @@ export default function BrowseCourses() {
       'Online M.Com': 'M.Com',
       'Distance M.Com': 'M.Com',
       'Online PGDM': 'MBA',
+      'Online PG Diploma & Certificate': 'MBA',
       'Online MCA': 'MCA',
       'M.Tech': 'M.Tech',
       'Online M.Sc': 'M.Sc',
+      'MS Degree Online': 'M.Sc',
+      'Online Global MCA': 'MCA',
       'Distance MCA': 'MCA',
       'Distance M.Sc': 'M.Sc',
       'Online MA': 'MA',
+      'Online Master of Design': 'MA',
+      'Online Master of Education (M.Ed)': 'MA',
       'Distance MA': 'MA',
+      'M.A. in Public Policy': 'MA',
+      'M.A. in International Relations, Security, and Strategy': 'MA',
+      'Online Master of Social Work': 'MA',
+      'Online M.Ed & Ed.D': 'MA',
       'Online BBA': 'BBA',
       'Online B.Com': 'B.Com',
       'Distance BBA': 'BBA',
@@ -379,40 +218,117 @@ export default function BrowseCourses() {
       'Distance BCA': 'BCA',
       'Online B.Sc': 'B.Sc',
       'Online BA': 'BA',
-      'Distance BA': 'BA'
+      'Distance BA': 'BA',
+      'Bachelor of Design': 'BA',
+      'IIM Online Courses': 'MBA',
+      'IIIT Online Courses': 'MCA',
+      'Data Science & Analytics': 'MCA',
+      'Executive M.Tech for Working Professionals': 'M.Tech',
+      'AI and Machine Learning': 'MCA',
+      'Generative AI': 'MCA',
+      'UI UX Certificate Program': 'BCA',
+      'Leadership & Management': 'MBA',
+      'Finance': 'MBA',
+      'Marketing': 'MBA',
+      'Human Resource (HR)': 'MBA',
+      'Healthcare': 'MBA',
+      'Operations': 'MBA',
+      'Business Analytics': 'MBA',
+      'Software & Technology': 'MCA',
+      'PG Diploma Applied Statistics': 'M.Sc',
+      'IIT Courses Online': 'M.Tech',
+      'Blockchain': 'MCA',
+      'Cloud Computing': 'MCA',
+      'PG Program In Technology Management': 'MBA',
+      'Big Data Engineering': 'MCA',
+      'DevOps': 'MCA',
+      'Quantum Computing': 'M.Tech',
+      'Digital Transformation and Innovation': 'MBA',
+      'Public Policy Management': 'MBA',
+      'Cyber Security': 'MCA',
+      'Executive Program in Retail Management': 'MBA',
+      'Online Executive Program in Emerging Technologies': 'M.Tech',
+      'Online Executive PG Diploma in Sports Management': 'MBA',
+      'Online PhD Programs': 'Ph.D.',
+      'Doctor of Business Administration': 'Ph.D.',
+      'PhD in Management': 'Ph.D.',
+      'PhD in Computer Science': 'Ph.D.',
+      'Integrated MBA & Doctorate': 'MBA',
+      'Study in USA': 'MBA',
+      'Study in UK': 'MBA',
+      'Study in Canada': 'MBA',
+      'Study in Australia': 'MBA',
+      'Study in Germany': 'MBA',
+      'Study in Ireland': 'MBA',
+      'Study in Singapore': 'MBA',
+      'Global MBA Programs': 'MBA',
+      'Advanced Diploma in Management': 'MBA',
+      'PG Diploma in Digital Marketing': 'MBA',
+      'PG Diploma in Data Science': 'MCA',
+      'PG Diploma in Finance': 'MBA',
+      'PG Diploma in HR Management': 'MBA',
+      'Advanced Diploma in IT': 'MCA',
+      'Digital Marketing Certificate': 'BBA',
+      'Financial Modeling': 'MBA',
+      'Project Management': 'MBA',
+      'Python Programming': 'BCA',
+      'Full Stack Development': 'BCA',
+      'Graphic Design': 'BCA',
+      'Content Writing': 'BA',
+      'SEO & SEM': 'BBA',
+      'Social Media Marketing': 'BBA',
+      'Excel Advanced': 'B.Com'
     };
 
     const dbCourseName = courseNameMap[course.name] || course.name;
 
-    const matchingUniversities = universityDatabase.filter(uni => {
-      return uni.courses && uni.courses[dbCourseName];
-    });
+    let matchingUniversities = [];
+    
+    // Special handling for Study Abroad courses - filter by country from database
+    if (course.name.includes('Study in USA')) {
+      matchingUniversities = universityDatabase.filter(uni => uni.country === 'USA');
+    } else if (course.name.includes('Study in UK')) {
+      matchingUniversities = universityDatabase.filter(uni => uni.country === 'UK');
+    } else if (course.name.includes('Study in Canada')) {
+      matchingUniversities = universityDatabase.filter(uni => uni.country === 'Canada');
+    } else if (course.name.includes('Study in Australia')) {
+      matchingUniversities = universityDatabase.filter(uni => uni.country === 'Australia');
+    } else if (course.name.includes('Study in Germany')) {
+      matchingUniversities = universityDatabase.filter(uni => uni.country === 'Germany');
+    } else if (course.name.includes('Study in Ireland')) {
+      matchingUniversities = universityDatabase.filter(uni => uni.country === 'Ireland');
+    } else if (course.name.includes('Study in Singapore')) {
+      matchingUniversities = universityDatabase.filter(uni => uni.country === 'Singapore');
+    } else if (course.name.includes('Global MBA')) {
+      // For Global MBA, show international universities (excluding India)
+      matchingUniversities = universityDatabase.filter(uni => 
+        uni.isInternational === true && uni.country !== 'India'
+      );
+    } else if (course.name.includes('PhD') || course.name.includes('Doctor')) {
+      // For PhD programs, look for universities with Ph.D. courses in database
+      matchingUniversities = universityDatabase.filter(uni => {
+        return uni.courses && (uni.courses['Ph.D.'] || uni.courses['PhD'] || uni.courses['DBA']);
+      });
+    } else {
+      // Default: match by course name from database
+      matchingUniversities = universityDatabase.filter(uni => {
+        return uni.courses && uni.courses[dbCourseName];
+      });
+    }
 
-    console.log(`Found ${matchingUniversities.length} universities offering ${dbCourseName}`);
+    console.log(`Found ${matchingUniversities.length} universities offering ${dbCourseName} for ${course.name}`);
 
-    // For PG/UG courses, show random 4 universities. For others, show ALL matching universities
-    const isMainCategory = activeTab === 'PG Courses' || activeTab === 'UG Courses';
+    // Shuffle and select random 12 universities for each click
     const shuffled = [...matchingUniversities].sort(() => 0.5 - Math.random());
-    const selected = isMainCategory ? shuffled.slice(0, 4) : shuffled; // Show 4 for PG/UG
-
-    setCourseUniversities(selected);
+    setCourseUniversities(shuffled.slice(0, 12));
   };
 
   const openMatcherWithCourse = (course) => {
-    // Map activeTab to degreeType expected by matcher
-    const degreeType = activeTab;
-    // Use course id (or name) as preferredCourse - matcher expects name or id depending on implementation
-    const preferredCourse = course.id || course.name;
-
-    // Push to matcher with query params
-    router.push({
-      pathname: '/university-matcher',
-      query: { degreeType, preferredCourse }
-    });
+    router.push({ pathname: '/university-matcher', query: { degreeType: activeTab, preferredCourse: course.id || course.name } });
   };
 
   const categorizeCourses = () => {
-    // EXACT same courses as main page BrowseCategories component
+    // EXACT same courses as browse-courses page
     const categorized = {
       'PG Courses': {
         'Commerce': [
@@ -449,7 +365,7 @@ export default function BrowseCourses() {
           { name: 'Distance MA', id: 'distance-ma', category: 'Arts', duration: '2 years', fees: { min: 25000, max: 120000 }, specializations: ['English', 'History', 'Political Science', 'Economics', 'Public Administration'] },
           { name: 'M.A. in Public Policy', id: 'ma-public-policy', category: 'Arts', duration: '2 years', fees: { min: 80000, max: 300000 }, specializations: ['Public Administration', 'Policy Analysis', 'Development Studies', 'Governance'] },
           { name: 'M.A. in International Relations, Security, and Strategy', id: 'ma-international-relations', category: 'Arts', duration: '2 years', fees: { min: 100000, max: 350000 }, specializations: ['International Relations', 'Security Studies', 'Strategic Studies', 'Diplomacy'] },
-          { name: 'Online Master of Social Work', id: 'online-msw', category: 'Arts', duration: '2 years', fees: { min: 60000, max: 250000 }, specializations: ['Community Development', 'Medical & Psychiatric Social Work', 'Human Resources', 'Counseling'] },
+          { name: 'Online Master of Social Work', id: 'online-msw', category: 'Arts', duration: '2 years', fees: { min: 60000, max: 250000 }, specializations: ['Community Development', 'Medical & Psychiatric Social Work', 'HR Management', 'Counseling'] },
           { name: 'Online M.Ed & Ed.D', id: 'dual-med-edd', category: 'Education', duration: '3-5 years', fees: { min: 200000, max: 600000 }, specializations: ['Educational Leadership', 'Curriculum & Instruction', 'Higher Education Administration'] }
         ]
       },
@@ -540,305 +456,140 @@ export default function BrowseCourses() {
         { name: 'Excel Advanced', id: 'excel-advanced', category: 'General', duration: '2-3 months', fees: { min: 10000, max: 50000 }, specializations: ['Pivot Tables', 'VBA', 'Macros', 'Data Analysis'] }
       ]
     };
-
-    console.log('Loaded courses:', {
-      'PG Commerce': categorized['PG Courses']['Commerce'].length,
-      'PG Science': categorized['PG Courses']['Science'].length,
-      'PG Arts': categorized['PG Courses']['Arts'].length,
-      'UG Commerce': categorized['UG Courses']['Commerce'].length,
-      'UG Science': categorized['UG Courses']['Science'].length,
-      'UG Arts': categorized['UG Courses']['Arts'].length,
-      'Executive': categorized['Executive Education'].length,
-      'PhD': categorized['Doctorate/Ph.D.'].length,
-      'Study Abroad': categorized['Study Abroad'].length,
-      'Advanced Diploma': categorized['Advanced Diploma'].length,
-      'Skilling & Certificate': categorized['Skilling & Certificate'].length
-    });
-
     setCoursesData(categorized);
   };
 
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Browse All Courses - EduConnect</title>
-        <meta name="description" content="Explore all available courses across universities" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <Header />
-
-      <main className={styles.main}>
-        <section className={styles.coursesSection}>
-          <div className={styles.containerInner}>
-            <div className={styles.topTabsRow}>
-              {['PG Courses', 'UG Courses', 'Executive Education', 'Doctorate/Ph.D.', 'Study Abroad', 'Advanced Diploma', 'Skilling & Certificate'].map((tab) => (
-                <button
-                  key={tab}
-                  className={`${styles.topTab} ${activeTab === tab ? styles.activeTopTab : ''}`}
-                  onClick={() => setActiveTab(tab)}
-                >
-                  {tab}
-                </button>
+    <section className={styles.coursesSection}>
+      <div className={styles.containerInner}>
+        <div className={styles.topTabsRow}>
+          {['PG Courses', 'UG Courses', 'Executive Education', 'Doctorate/Ph.D.', 'Study Abroad', 'Advanced Diploma', 'Skilling & Certificate'].map((tab) => (
+            <button key={tab} className={`${styles.topTab} ${activeTab === tab ? styles.activeTopTab : ''}`} onClick={() => setActiveTab(tab)}>{tab}</button>
+          ))}
+        </div>
+        <div className={styles.mainLayout}>
+          {(activeTab === 'PG Courses' || activeTab === 'UG Courses') && (
+            <div className={styles.tabsColumn}>
+              {['Commerce', 'Science', 'Arts'].map((stream) => (
+                <button key={stream} className={`${styles.tab} ${activeStream === stream ? styles.activeTab : ''}`} onClick={() => setActiveStream(stream)}>{stream}</button>
               ))}
             </div>
-
-            <div className={styles.mainLayout}>
-              {(activeTab === 'PG Courses' || activeTab === 'UG Courses') && (
-                <div className={styles.tabsColumn}>
-                  {['Commerce', 'Science', 'Arts'].map((stream) => (
-                    <button
-                      key={stream}
-                      className={`${styles.tab} ${activeStream === stream ? styles.activeTab : ''}`}
-                      onClick={() => setActiveStream(stream)}
-                    >
-                      {stream}
-                    </button>
-                  ))}
-                </div>
-              )}
-
-              <div className={styles.contentColumn}>
-                {coursesData[activeTab] ? (
-                  <>
-                    {(activeTab === 'PG Courses' || activeTab === 'UG Courses') && 
-                     coursesData[activeTab][activeStream] && 
-                     coursesData[activeTab][activeStream].length > 0 ? (
-                      <div className={styles.streamSection}>
-                        <div className={styles.courseGrid}>
-                          {coursesData[activeTab][activeStream].map((course, index) => (
-                            <div 
-                              key={index} 
-                              className={`${styles.courseCard} ${selectedCourse?.id === course.id ? styles.courseCardActive : ''}`}
-                              onClick={() => handleKnowMore(course)}
-                            >
-                              <div className={styles.courseHeader}>
-                                <h3 className={styles.courseName}>{course.name}</h3>
-                              </div>
-                              <div className={styles.compareInfo}>
-                                <span className={styles.compareText}>Know More</span>
-                              </div>
-                            </div>
-                          ))}
+          )}
+          <div className={styles.contentColumn}>
+            {Object.keys(coursesData).length > 0 ? (
+              <>
+                {(activeTab === 'PG Courses' || activeTab === 'UG Courses') && coursesData[activeTab]?.[activeStream] ? (
+                  <div className={styles.streamSection}>
+                    <div className={styles.courseGrid}>
+                      {coursesData[activeTab][activeStream].map((course, index) => (
+                        <div key={index} className={`${styles.courseCard} ${selectedCourse?.id === course.id ? styles.courseCardActive : ''}`} onClick={() => handleKnowMore(course)}>
+                          <div className={styles.courseHeader}><h3 className={styles.courseName}>{course.name}</h3></div>
+                          <div className={styles.compareInfo}><span className={styles.compareText}>Know More</span></div>
                         </div>
-                        
-                        {/* Course Details Section Below Cards */}
-                        {selectedCourse && (
-                          <div className={styles.courseDetails}>
-                            <div className={styles.detailsCard}>
-                              <div className={styles.detailsMain}>
-                                <div className={styles.detailsContent}>
-                                  <div className={styles.detailsStack}>
-                                    <div className={styles.detailItem}>
-                                      <span className={styles.detailLabel}>?? Course Description</span>
-                                      <span className={styles.detailValue}>{getCourseDescription(selectedCourse.name)}</span>
-                                    </div>
-                                    <div className={styles.detailItem}>
-                                      <span className={styles.detailLabel}>?? Category</span>
-                                      <span className={styles.detailValue}>{selectedCourse.category}</span>
-                                    </div>
-                                    <div className={styles.detailItem}>
-                                      <span className={styles.detailLabel}>?? Specializations</span>
-                                      <span className={styles.detailValue}>
-                                        {selectedCourse.specializations && selectedCourse.specializations.length > 0 
-                                          ? selectedCourse.specializations.join(' � ') 
-                                          : 'General'}
-                                      </span>
-                                    </div>
-                                    <div className={styles.detailItem}>
-                                      <span className={styles.detailLabel}>?? Duration</span>
-                                      <span className={styles.detailValue}>{selectedCourse.duration}</span>
-                                    </div>
-                                    <div className={styles.detailItem}>
-                                      <span className={styles.detailLabel}>?? Fee Range</span>
-                                      <span className={styles.detailValue}>
-                                        ?{selectedCourse.fees?.min?.toLocaleString()} - ?{selectedCourse.fees?.max?.toLocaleString()}
-                                      </span>
-                                    </div>
-                                  </div>
+                      ))}
+                    </div>
+                    {selectedCourse && (
+                      <div className={styles.courseDetails}>
+                        <div className={styles.detailsCard}>
+                          <div className={styles.detailsMain}>
+                            <div className={styles.detailsContent}>
+                              <div className={styles.detailsStack}>
+                                <div className={styles.detailItem}><span className={styles.detailLabel}>📖 Description</span><span className={styles.detailValue}>{getCourseDescription(selectedCourse.name)}</span></div>
+                                <div className={styles.detailsRow}>
+                                  <div className={styles.detailItemCompact}><span className={styles.detailLabel}>📂 Category</span><span className={styles.detailValue}>{selectedCourse.category}</span></div>
+                                  <div className={styles.detailItemCompact}><span className={styles.detailLabel}>⏱️ Duration</span><span className={styles.detailValue}>{selectedCourse.duration}</span></div>
+                                  <div className={styles.detailItemCompact}><span className={styles.detailLabel}>💰 Fee Range</span><span className={styles.detailValue}>₹{selectedCourse.fees?.min?.toLocaleString()} - ₹{selectedCourse.fees?.max?.toLocaleString()}</span></div>
                                 </div>
-
-                                <aside className={styles.detailsLogos}>
-                                  <p className={styles.logoLabel}>Universities offering this course</p>
-                                  <div className={styles.logoGrid}>
-                                    {courseUniversities && courseUniversities.length > 0 ? (
-                                      courseUniversities.map((uni, idx) => {
-                                        const logoPath = getUniversityLogo(uni.name);
-                                        if (!logoPath) {
-                                          console.warn(`Missing logo for university: "${uni.name}"`);
-                                          // Show a placeholder if logo not found
-                                          return (
-                                            <div key={idx} className={styles.logoPlaceholder} title={uni.name}>
-                                              {uni.name?.substring(0, 3).toUpperCase()}
-                                            </div>
-                                          );
-                                        }
-                                        return (
-                                          <img 
-                                            key={idx} 
-                                            src={`${logoPath}`} 
-                                            alt={uni.name} 
-                                            title={uni.name}
-                                            onError={(e) => {
-                                              console.error(`Failed to load logo for: ${uni.name}`);
-                                              e.target.style.display = 'none';
-                                            }}
-                                          />
-                                        );
-                                      })
-                                    ) : (
-                                      // fallback to 4 popular university logos
-                                      <>
-                                        <img src="/images/universities/Amity University.png" alt="Amity University" title="Amity University" />
-                                        <img src="/images/universities/Manipal University Jaipur.png" alt="Manipal University" title="Manipal University" />
-                                        <img src="/images/universities/Chandigarh University.png" alt="Chandigarh University" title="Chandigarh University" />
-                                        <img src="/images/universities/DY Patil University Navi Mumbai.png" alt="DY Patil University" title="DY Patil University" />
-                                      </>
-                                    )}
-                                  </div>
-                                  <div style={{marginTop: '1rem', width: '100%'}}>
-                                    <button className={styles.findButton} onClick={() => openMatcherWithCourse(selectedCourse)}>
-                                      FIND THE RIGHT UNIVERSITY
-                                    </button>
-                                  </div>
-                                </aside>
+                                <div className={styles.buttonContainer}>
+                                  <button className={styles.findButton} onClick={() => openMatcherWithCourse(selectedCourse)}>FIND THE RIGHT UNIVERSITY</button>
+                                </div>
                               </div>
                             </div>
+                            <aside className={styles.detailsLogos}>
+                              <p className={styles.logoLabel}>Universities offering this course</p>
+                              <div className={styles.logoGrid}>
+                                {courseUniversities.length > 0 ? courseUniversities.slice(0, 6).map((uni, idx) => {
+                                  const logoPath = getUniversityLogo(uni.name);
+                                  return logoPath ? (
+                                    <div key={idx} className={styles.logoContainer}>
+                                      <div className={styles.logoImageWrapper}>
+                                        <img src={logoPath} alt={uni.name} title={uni.name} className={styles.universityLogo} />
+                                      </div>
+                                      <p className={styles.universityName}>{uni.name}</p>
+                                    </div>
+                                  ) : null;
+                                }) : (
+                                  <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '2rem', color: '#64748b', fontSize: '0.875rem' }}>
+                                    <p style={{ margin: 0, fontWeight: 600 }}>🌍 No universities found in our database for this program</p>
+                                    <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.8125rem' }}>Please check back later or contact us for more information</p>
+                                  </div>
+                                )}
+                              </div>
+                            </aside>
                           </div>
-                        )}
-                      </div>
-                    ) : null}
-
-                    {activeTab !== 'PG Courses' && activeTab !== 'UG Courses' && 
-                     Array.isArray(coursesData[activeTab]) && 
-                     coursesData[activeTab].length > 0 ? (
-                      <div className={styles.streamSection}>
-                        <div className={`${styles.courseGrid} ${styles.courseGridCentered}`}>
-                          {coursesData[activeTab].map((course, index) => (
-                            <div 
-                              key={index} 
-                              className={`${styles.courseCard} ${selectedCourse?.id === course.id ? styles.courseCardActive : ''}`}
-                              onClick={() => handleKnowMore(course)}
-                            >
-                              <div className={styles.courseHeader}>
-                                <h3 className={styles.courseName}>{course.name}</h3>
-                              </div>
-                              <div className={styles.compareInfo}>
-                                <span className={styles.compareText}>Know More</span>
-                              </div>
-                            </div>
-                          ))}
                         </div>
-                        
-                        {/* Course Details Section Below Cards */}
-                        {selectedCourse && (
-                          <div className={styles.courseDetails}>
-                            <div className={styles.detailsCard}>
-                              <div className={styles.detailsMain}>
-                                <div className={styles.detailsContent}>
-                                  <div className={styles.detailsStack}>
-                                    <div className={styles.detailItem}>
-                                      <span className={styles.detailLabel}>?? Course Description</span>
-                                      <span className={styles.detailValue}>{getCourseDescription(selectedCourse.name)}</span>
-                                    </div>
-                                    <div className={styles.detailItem}>
-                                      <span className={styles.detailLabel}>?? Category</span>
-                                      <span className={styles.detailValue}>{selectedCourse.category}</span>
-                                    </div>
-                                    <div className={styles.detailItem}>
-                                      <span className={styles.detailLabel}>?? Specializations</span>
-                                      <span className={styles.detailValue}>
-                                        {selectedCourse.specializations && selectedCourse.specializations.length > 0 
-                                          ? selectedCourse.specializations.join(' � ') 
-                                          : 'General'}
-                                      </span>
-                                    </div>
-                                    <div className={styles.detailItem}>
-                                      <span className={styles.detailLabel}>?? Duration</span>
-                                      <span className={styles.detailValue}>{selectedCourse.duration}</span>
-                                    </div>
-                                    <div className={styles.detailItem}>
-                                      <span className={styles.detailLabel}>?? Fee Range</span>
-                                      <span className={styles.detailValue}>
-                                        ?{selectedCourse.fees?.min?.toLocaleString()} - ?{selectedCourse.fees?.max?.toLocaleString()}
-                                      </span>
-                                    </div>
-                                  </div>
-                                </div>
-
-                                <aside className={styles.detailsLogos}>
-                                  <p className={styles.logoLabel}>Universities offering this course</p>
-                                  <div className={styles.logoGrid}>
-                                    {courseUniversities && courseUniversities.length > 0 ? (
-                                      courseUniversities.map((uni, idx) => {
-                                        const logoPath = getUniversityLogo(uni.name);
-                                        if (!logoPath) {
-                                          console.warn(`Missing logo for university: "${uni.name}"`);
-                                          // Show a placeholder if logo not found
-                                          return (
-                                            <div key={idx} className={styles.logoPlaceholder} title={uni.name}>
-                                              {uni.name?.substring(0, 3).toUpperCase()}
-                                            </div>
-                                          );
-                                        }
-                                        return (
-                                          <img 
-                                            key={idx} 
-                                            src={`${logoPath}`} 
-                                            alt={uni.name} 
-                                            title={uni.name}
-                                            onError={(e) => {
-                                              console.error(`Failed to load logo for: ${uni.name}`);
-                                              e.target.style.display = 'none';
-                                            }}
-                                          />
-                                        );
-                                      })
-                                    ) : (
-                                      // fallback to 4 popular university logos
-                                      <>
-                                        <img src="/images/universities/Amity University.png" alt="Amity University" title="Amity University" />
-                                        <img src="/images/universities/Manipal University Jaipur.png" alt="Manipal University" title="Manipal University" />
-                                        <img src="/images/universities/Chandigarh University.png" alt="Chandigarh University" title="Chandigarh University" />
-                                        <img src="/images/universities/DY Patil University Navi Mumbai.png" alt="DY Patil University" title="DY Patil University" />
-                                      </>
-                                    )}
-                                  </div>
-                                  <div style={{marginTop: '1rem', width: '100%'}}>
-                                    <button className={styles.findButton} onClick={() => openMatcherWithCourse(selectedCourse)}>
-                                      FIND THE RIGHT UNIVERSITY
-                                    </button>
-                                  </div>
-                                </aside>
-                              </div>
-                            </div>
-                          </div>
-                        )}
                       </div>
-                    ) : null}
-
-                    {((activeTab === 'PG Courses' || activeTab === 'UG Courses') && 
-                      (!coursesData[activeTab][activeStream] || coursesData[activeTab][activeStream].length === 0)) ||
-                     (activeTab !== 'PG Courses' && activeTab !== 'UG Courses' && 
-                      (!coursesData[activeTab] || coursesData[activeTab].length === 0)) ? (
-                      <div className={styles.loadingState}>
-                        <p>No courses available in this category</p>
-                      </div>
-                    ) : null}
-                  </>
-                ) : (
-                  <div className={styles.loadingState}>
-                    <p>Loading courses...</p>
+                    )}
                   </div>
-                )}
-              </div>
-            </div>
+                ) : activeTab !== 'PG Courses' && activeTab !== 'UG Courses' && Array.isArray(coursesData[activeTab]) ? (
+                  <div className={styles.streamSection}>
+                    <div className={`${styles.courseGrid} ${styles.courseGridCentered}`}>
+                      {coursesData[activeTab].map((course, index) => (
+                        <div key={index} className={`${styles.courseCard} ${selectedCourse?.id === course.id ? styles.courseCardActive : ''}`} onClick={() => handleKnowMore(course)}>
+                          <div className={styles.courseHeader}><h3 className={styles.courseName}>{course.name}</h3></div>
+                          <div className={styles.compareInfo}><span className={styles.compareText}>Know More</span></div>
+                        </div>
+                      ))}
+                    </div>
+                    {selectedCourse && (
+                      <div className={styles.courseDetailsCentered}>
+                        <div className={styles.detailsCard}>
+                          <div className={styles.detailsMain}>
+                            <div className={styles.detailsContent}>
+                              <div className={styles.detailsStack}>
+                                <div className={styles.detailItem}><span className={styles.detailLabel}>📖 Description</span><span className={styles.detailValue}>{getCourseDescription(selectedCourse.name)}</span></div>
+                                <div className={styles.detailsRow}>
+                                  <div className={styles.detailItemCompact}><span className={styles.detailLabel}>📂 Category</span><span className={styles.detailValue}>{selectedCourse.category}</span></div>
+                                  <div className={styles.detailItemCompact}><span className={styles.detailLabel}>⏱️ Duration</span><span className={styles.detailValue}>{selectedCourse.duration}</span></div>
+                                  <div className={styles.detailItemCompact}><span className={styles.detailLabel}>💰 Fee Range</span><span className={styles.detailValue}>₹{selectedCourse.fees?.min?.toLocaleString()} - ₹{selectedCourse.fees?.max?.toLocaleString()}</span></div>
+                                </div>
+                                <div className={styles.buttonContainer}>
+                                  <button className={styles.findButton} onClick={() => openMatcherWithCourse(selectedCourse)}>FIND THE RIGHT UNIVERSITY</button>
+                                </div>
+                              </div>
+                            </div>
+                            <aside className={styles.detailsLogos}>
+                              <p className={styles.logoLabel}>Universities offering this course</p>
+                              <div className={styles.logoGrid}>
+                                {courseUniversities.length > 0 ? courseUniversities.slice(0, 6).map((uni, idx) => {
+                                  const logoPath = getUniversityLogo(uni.name);
+                                  return logoPath ? (
+                                    <div key={idx} className={styles.logoContainer}>
+                                      <div className={styles.logoImageWrapper}>
+                                        <img src={logoPath} alt={uni.name} title={uni.name} className={styles.universityLogo} />
+                                      </div>
+                                      <p className={styles.universityName}>{uni.name}</p>
+                                    </div>
+                                  ) : null;
+                                }) : (
+                                  <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '2rem', color: '#64748b', fontSize: '0.875rem' }}>
+                                    <p style={{ margin: 0, fontWeight: 600 }}>🌍 No universities found in our database for this program</p>
+                                    <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.8125rem' }}>Please check back later or contact us for more information</p>
+                                  </div>
+                                )}
+                              </div>
+                            </aside>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ) : null}
+              </>
+            ) : <div className={styles.loadingState}><p>Loading courses...</p></div>}
           </div>
-        </section>
-      </main>
-
-      <Footer />
-      <AskEduAI />
-    </div>
+        </div>
+      </div>
+    </section>
   );
 }

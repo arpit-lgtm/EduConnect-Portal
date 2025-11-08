@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import styles from '../styles/UniversityMatcher.module.css';
+import { trackQuestionnaireStart, trackQuestionnaireComplete } from '../utils/activityTracker';
 
 const UniversityMatcher = () => {
   const router = useRouter();
@@ -146,6 +147,9 @@ const UniversityMatcher = () => {
   // Filter courses when degree type OR courses data changes
   useEffect(() => {
     if (formData.degreeType && courses.length > 0) {
+      // Track questionnaire start when user selects first option
+      trackQuestionnaireStart({ degreeType: formData.degreeType });
+      
       const value = formData.degreeType;
       const filtered = courses.filter(course => {
         const level = course.level;
@@ -190,7 +194,9 @@ const UniversityMatcher = () => {
       [field]: value
     }));
     
-    // Auto-advance to next step when degree type is selected
+    // Auto-advance to next step after any selection
+    const autoAdvanceDelay = 800; // 800ms delay for user to see their selection
+    
     if (field === 'degreeType' && currentStep === 1) {
       // Filter courses immediately before advancing
       if (courses.length > 0) {
@@ -233,15 +239,67 @@ const UniversityMatcher = () => {
         // Set filtered courses FIRST, then advance
         setFilteredCourses(filtered);
         
-        // Wait longer to ensure state update completes
+        // Auto-advance after delay
         setTimeout(() => {
-          console.log(`🚀 Advancing to step 2 with ${filtered.length} courses`);
+          console.log(`🚀 Auto-advancing to step 2 with ${filtered.length} courses`);
           setCurrentStep(2);
-        }, 500); // Increased delay for state to update
+        }, autoAdvanceDelay);
       } else {
         console.warn('⚠️ No courses loaded yet, cannot filter');
       }
+    } else if (field === 'preferredCourse' && currentStep === 2) {
+      // Auto-advance after course selection
+      setTimeout(() => {
+        console.log(`🚀 Auto-advancing to step 3 after course selection: ${value}`);
+        setCurrentStep(3);
+      }, autoAdvanceDelay);
+    } else if (field === 'specialization' && currentStep === 3) {
+      // Auto-advance after specialization selection
+      setTimeout(() => {
+        console.log(`🚀 Auto-advancing to step 4 after specialization selection: ${value}`);
+        setCurrentStep(4);
+      }, autoAdvanceDelay);
+    } else if (field === 'currentEducation' && currentStep === 4) {
+      // Auto-advance after education status selection
+      setTimeout(() => {
+        console.log(`🚀 Auto-advancing to step 5 after education selection: ${value}`);
+        setCurrentStep(5);
+      }, autoAdvanceDelay);
+    } else if (field === 'workExperience' && currentStep === 4) {
+      // Auto-advance after work experience selection
+      setTimeout(() => {
+        console.log(`🚀 Auto-advancing to step 5 after work experience selection: ${value}`);
+        setCurrentStep(5);
+      }, autoAdvanceDelay);
+    } else if (field === 'studyMode' && currentStep === 5) {
+      // Auto-advance after study mode selection
+      setTimeout(() => {
+        console.log(`🚀 Auto-advancing to step 6 after study mode selection: ${value}`);
+        setCurrentStep(6);
+      }, autoAdvanceDelay);
+    } else if (field === 'preferredLocation' && currentStep === 6) {
+      // Auto-advance after location selection
+      setTimeout(() => {
+        console.log(`🚀 Auto-advancing to step 7 after location selection: ${value}`);
+        setCurrentStep(7);
+      }, autoAdvanceDelay);
+    } else if (field === 'budgetRange' && currentStep === 7) {
+      // Auto-advance after budget selection
+      setTimeout(() => {
+        console.log(`🚀 Auto-advancing to step 8 after budget selection: ${value}`);
+        setCurrentStep(8);
+      }, autoAdvanceDelay);
+    } else if ((field === 'careerObjective' || field === 'targetIndustry' || field === 'salaryExpectation') && currentStep === 8) {
+      // Check if all 3 step 8 questions are answered, then auto-advance
+      const updatedFormData = { ...formData, [field]: value };
+      if (updatedFormData.careerObjective && updatedFormData.targetIndustry && updatedFormData.salaryExpectation) {
+        setTimeout(() => {
+          console.log(`🚀 Auto-advancing to step 9 - all career questions answered`);
+          setCurrentStep(9);
+        }, autoAdvanceDelay);
+      }
     }
+    // Step 9 is the last step, no auto-advance needed
   };
 
   const handleServiceChange = (service, checked) => {
@@ -323,12 +381,70 @@ const UniversityMatcher = () => {
 
   const prevStep = () => {
     if (currentStep > 1) {
+      // Reset current page selections before going back
+      setErrorMessage('');
+      
+      // Clear formData for the current step
+      const clearedFields = {};
+      switch(currentStep) {
+        case 2:
+          clearedFields.preferredCourse = '';
+          clearedFields.specialization = '';
+          break;
+        case 3:
+          clearedFields.currentEducation = '';
+          clearedFields.workExperience = '';
+          break;
+        case 4:
+          clearedFields.studyMode = '';
+          clearedFields.learningFormat = '';
+          clearedFields.classTiming = '';
+          break;
+        case 5:
+          clearedFields.preferredLocation = '';
+          clearedFields.locationFlexibility = '';
+          break;
+        case 6:
+          clearedFields.budgetRange = '';
+          clearedFields.feePaymentMode = '';
+          clearedFields.emiPreference = '';
+          break;
+        case 7:
+          clearedFields.careerObjective = '';
+          clearedFields.currentJobRole = '';
+          clearedFields.targetIndustry = '';
+          clearedFields.salaryExpectation = '';
+          break;
+        case 8:
+          clearedFields.whenToStart = '';
+          clearedFields.studyTimeAvailable = '';
+          break;
+        case 9:
+          clearedFields.universityType = '';
+          clearedFields.accreditationImportant = '';
+          clearedFields.placementImportant = '';
+          clearedFields.facultyExperience = '';
+          clearedFields.entranceExamPreference = '';
+          clearedFields.scholarshipRequired = '';
+          clearedFields.additionalServices = [];
+          break;
+      }
+      
+      // Update formData with cleared fields
+      setFormData(prev => ({
+        ...prev,
+        ...clearedFields
+      }));
+      
       setCurrentStep(currentStep - 1);
     }
   };
 
   const handleSubmit = () => {
     setIsLoading(true);
+    
+    // Track questionnaire completion
+    trackQuestionnaireComplete(formData);
     
     // Clear any existing data and store fresh form data
     localStorage.removeItem('universityMatcherData');
@@ -405,16 +521,16 @@ const UniversityMatcher = () => {
   const courseSpecializationMap = {
     // MBA Specializations (already in database, but keeping as backup)
     'MBA': [
-      'Finance Management', 'Marketing Management', 'Human Resource Management',
-      'Operations Management', 'Business Analytics', 'Digital Marketing',
+      'Finance', 'Marketing', 'Human Resources',
+      'Operations', 'Business Analytics', 'Digital Marketing',
       'International Business', 'Entrepreneurship', 'Supply Chain Management',
       'Project Management', 'Healthcare Management', 'IT Management',
-      'Hospitality Management', 'Banking & Financial Services', 'Retail Management',
-      'Strategic Management', 'Data Science & Analytics', 'Financial Analytics',
-      'Leadership & Management', 'Innovation Management', 'E-Commerce'
+      'Hospitality Management', 'Banking & Insurance', 'Retail Management',
+      'Strategy', 'Data Science & Analytics', 'Financial Analytics',
+      'Leadership', 'Innovation Management', 'E-Commerce', 'Investment Banking'
     ],
     'Executive MBA': ['Executive Leadership', 'Strategic Management', 'Global Business', 'Innovation'],
-    'PGDM': ['Finance', 'Marketing', 'HR', 'Operations', 'Business Analytics', 'Digital Business'],
+    'PGDM': ['Finance', 'Marketing', 'Human Resources', 'Operations', 'Business Analytics', 'Digital Business'],
     
     // MCA Specializations
     'MCA': [
@@ -439,7 +555,7 @@ const UniversityMatcher = () => {
     
     // M.Com Specializations
     'M.Com': [
-      'Accounting & Taxation', 'Banking & Finance', 'Financial Management',
+      'Accounting & Taxation', 'Banking & Insurance', 'Finance',
       'Business Economics', 'E-Commerce', 'International Finance',
       'Corporate Accounting', 'Auditing', 'Cost Accounting', 'Investment Management'
     ],
@@ -457,7 +573,7 @@ const UniversityMatcher = () => {
       'Public Policy', 'Criminology and Police Administration',
       'Political Science and Public Administration', 'English Literature'
     ],
-    'MSW': ['Community Development', 'Medical & Psychiatry', 'HR Management', 'Rural Development'],
+    'MSW': ['Community Development', 'Medical & Psychiatry', 'Human Resources', 'Rural Development'],
     
     // BBA Specializations
     'BBA': [
@@ -640,6 +756,50 @@ const UniversityMatcher = () => {
     
     console.log(`📊 Found ${universitiesWithCourse} universities offering ${baseCourse}`);
     console.log(`📊 Specializations from database: ${specializations.length}`);
+    
+    // CLEANUP: Remove duplicate finance/HR/management terms
+    const cleanupSpecializations = (specs) => {
+      const cleanedSet = new Set();
+      const excludePatterns = [
+        'Finance Management',
+        'Financial Management', 
+        'Financial Services',
+        'Banking & Financial Services',
+        'Banking & Finance',
+        'Finance & Accounting',
+        'Financial Markets',
+        'HR Management',
+        'Human Resource Management',
+        'Marketing Management',
+        'Operations Management',
+        'Strategic Management',
+        'Leadership & Management',
+        'Supply Chain' // Keep "Supply Chain Management" but remove just "Supply Chain"
+      ];
+      
+      specs.forEach(spec => {
+        // Skip if it's an exact match to excluded patterns
+        if (excludePatterns.includes(spec)) {
+          console.log(`❌ Filtering out duplicate: "${spec}"`);
+          return;
+        }
+        
+        // Replace HR with Human Resources
+        if (spec === 'HR' || spec === 'Human Resource' || spec === 'HR & Operations') {
+          cleanedSet.add('Human Resources');
+          return;
+        }
+        
+        // Keep the spec as-is if not filtered
+        cleanedSet.add(spec);
+      });
+      
+      return Array.from(cleanedSet).sort();
+    };
+    
+    // Apply cleanup to remove duplicates
+    specializations = cleanupSpecializations(specializations);
+    console.log(`✅ After cleanup: ${specializations.length} unique specializations`);
     
     // If we got very few specializations from database (less than 3), use our comprehensive fallback
     if (specializations.length < 3) {
@@ -1274,19 +1434,11 @@ const UniversityMatcher = () => {
               </button>
             )}
             
-            {currentStep < 9 ? (
-              <button 
-                type="button" 
-                onClick={nextStep}
-                className={styles.nextButton}
-              >
-                Next →
-              </button>
-            ) : (
+            {currentStep === 9 && (
               <button 
                 type="button" 
                 onClick={handleSubmit}
-                className={styles.submitButton}
+                className={`${styles.submitButton} ${isLoading ? styles.loading : ''}`}
                 disabled={isLoading}
               >
                 {isLoading ? 'Finding Matches...' : '🎯 Find My Perfect Matches'}

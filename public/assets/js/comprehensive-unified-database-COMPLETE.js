@@ -2036,71 +2036,106 @@ if (typeof universityDatabase === 'undefined') {
     "eligibility": "Graduation with 60%"
   },
   {
-    "id": "du-sol",
-    "name": "Du Sol",
+    "id": "du-sol-school-of-open-learning",
+    "name": "DU SOL - Delhi University School of Open Learning",
     "icon": "??",
     "type": "University",
-    "location": "Delhi",
+    "location": "New Delhi, India",
     "mode": [
-      "Regular"
+      "Distance",
+      "Online"
     ],
     "approvals": [
-      "UGC",
-      "AICTE"
+      "UGC-DEB",
+      "AICTE",
+      "AIU",
+      "NAAC A++",
+      "Central University"
     ],
-    "rating": 3.5,
-    "reviews": 150,
-    "accreditation": "NAAC A",
-    "establishedYear": 2000,
+    "rating": 4.6,
+    "reviews": 852,
+    "accreditation": "NAAC A++ (CGPA 3.6)",
+    "establishedYear": 1962,
     "courses": {
       "MBA": {
         "specializations": [
-          "General"
-        ]
-      },
-      "MCA": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "M.Sc": {
-        "specializations": [
-          "General"
+          "Distance MBA (45 specializations)",
+          "Online MBA (25 specializations)"
         ]
       },
       "BBA": {
         "specializations": [
-          "General"
-        ]
-      },
-      "BCA": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "B.Sc": {
-        "specializations": [
-          "General"
-        ]
-      },
-      "M.Com": {
-        "specializations": [
-          "General"
+          "Online BBA (25 specializations)"
         ]
       },
       "B.Com": {
         "specializations": [
-          "General"
+          "Online B.Com (9 specializations)",
+          "Distance B.Com",
+          "Online B.Com (Hons)"
+        ]
+      },
+      "M.Com": {
+        "specializations": [
+          "Online M.Com (6 specializations)",
+          "Distance M.Com"
         ]
       },
       "MA": {
         "specializations": [
-          "General"
+          "Online MA (8 specializations)",
+          "Distance MA"
         ]
       },
       "BA": {
         "specializations": [
-          "General"
+          "Online BA (12 specializations)",
+          "Distance BA"
+        ]
+      },
+      "BCA": {
+        "specializations": [
+          "Online BCA (10 specializations)",
+          "Distance BCA"
+        ]
+      },
+      "MCA": {
+        "specializations": [
+          "Online MCA (8 specializations)",
+          "Distance MCA"
+        ]
+      },
+      "M.Sc": {
+        "specializations": [
+          "Online M.Sc (11 specializations)",
+          "Distance M.Sc"
+        ]
+      },
+      "B.Sc": {
+        "specializations": [
+          "Distance B.Sc"
+        ]
+      },
+      "M.Tech": {
+        "specializations": [
+          "M.Tech for Working Professionals (21 specializations)",
+          "Distance M.Tech"
+        ]
+      },
+      "B.Tech": {
+        "specializations": [
+          "B.Tech For Working Professionals (14 specializations)",
+          "Distance B.Tech"
+        ]
+      },
+      "Ph.D": {
+        "specializations": [
+          "Ph.D Program"
+        ]
+      },
+      "Executive MBA": {
+        "specializations": [
+          "Online Executive MBA (6 specializations)"
         ]
       }
     },

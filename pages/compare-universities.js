@@ -2,11 +2,18 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
+import LoginModal from '../components/login/LoginModal';
+import Toast from '../components/common/Toast';
+import { useAuth } from '../contexts/AuthContext';
 import styles from '../styles/CompareUniversities.module.css';
 import { getUniversityLogo } from '../utils/universityLogoMap';
+import { trackCompareUniversities, trackUniversityContact } from '../utils/activityTracker';
 
 export default function CompareUniversities() {
   const router = useRouter();
+  const { isLoggedIn, userData } = useAuth();
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showToast, setShowToast] = useState(false);
   const [universities, setUniversities] = useState([]);
   const [courseName, setCourseName] = useState('');
   const [loading, setLoading] = useState(true);
@@ -347,8 +354,11 @@ export default function CompareUniversities() {
   const handleContactFormSubmit = (e) => {
     e.preventDefault();
     console.log('Contact form submitted:', contactFormData);
-    alert('Thank you! Our expert counsellors will contact you shortly.');
+    
+    // Show toast notification instead of alert
+    setShowToast(true);
     setShowContactModal(false);
+    
     setContactFormData({
       fullName: '',
       contactNumber: '',
@@ -619,7 +629,20 @@ export default function CompareUniversities() {
             <button 
               className={styles.mainCompareButton}
               disabled={selectedUniversities.filter(uni => uni !== null).length < 2}
-              onClick={() => setShowComparison(true)}
+              onClick={() => {
+                if (!isLoggedIn) {
+                  setShowLoginModal(true);
+                } else {
+                  const selectedUnis = selectedUniversities.filter(uni => uni !== null);
+                  // Track comparison activity
+                  trackCompareUniversities({
+                    universities: selectedUnis.map(uni => uni.name),
+                    courseName: courseName,
+                    count: selectedUnis.length
+                  });
+                  setShowComparison(true);
+                }
+              }}
             >
               Compare Universities ({selectedUniversities.filter(uni => uni !== null).length})
             </button>
@@ -667,9 +690,46 @@ export default function CompareUniversities() {
                 {uni && (
                   <button 
                     className={styles.contactButton}
-                    onClick={(e) => {
+                    onClick={async (e) => {
                       e.stopPropagation();
-                      setShowContactModal(true);
+                      
+                      // Check if user is logged in
+                      if (!isLoggedIn) {
+                        setShowLoginModal(true);
+                        return;
+                      }
+                      
+                      // Save lead data
+                      try {
+                        const leadData = {
+                          ...userData,
+                          universities: selectedUniversities.filter(u => u !== null).map(u => u.name),
+                          source: 'Compare Universities'
+                        };
+                        
+                        await fetch('/api/save-lead', {
+                          method: 'POST',
+                          headers: { 'Content-Type': 'application/json' },
+                          body: JSON.stringify(leadData)
+                        });
+                        
+                        // Track activity
+                        trackUniversityContact({
+                          universityName: uni.name,
+                          source: 'Compare Universities',
+                          formData: userData
+                        });
+                      } catch (error) {
+                        console.error('Failed to save lead:', error);
+                      }
+                      
+                      // Show toast
+                      setShowToast(true);
+                      
+                      // Redirect to homepage after 4 seconds
+                      setTimeout(() => {
+                        router.push('/');
+                      }, 4000);
                     }}
                   >
                     <span className={styles.contactText}>CONTACT US</span>
@@ -946,6 +1006,26 @@ export default function CompareUniversities() {
           </div>
         </div>
       )}
+      
+      {/* Toast Notification */}
+      {showToast && (
+        <Toast 
+          message="Thank you for your interest! Our expert counselors will contact you shortly."
+          type="success"
+          onClose={() => setShowToast(false)}
+          duration={4000}
+        />
+      )}
+      
+      {/* Login Modal */}
+      <LoginModal 
+        isOpen={showLoginModal} 
+        onClose={() => setShowLoginModal(false)}
+        onLoginSuccess={() => {
+          setShowLoginModal(false);
+          setShowComparison(true);
+        }}
+      />
     </div>
   );
 }

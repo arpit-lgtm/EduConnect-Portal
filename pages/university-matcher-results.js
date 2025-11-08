@@ -3,11 +3,18 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
+import LoginModal from '../components/login/LoginModal';
+import Toast from '../components/common/Toast';
+import { useAuth } from '../contexts/AuthContext';
+import { trackUniversityContact } from '../utils/activityTracker';
 import styles from '../styles/UniversityMatcherResults.module.css';
 import { getUniversityLogo } from '../utils/universityLogoMap';
 
 const UniversityMatcherResults = () => {
   const router = useRouter();
+  const { isLoggedIn, isLoading: authLoading, userData } = useAuth();
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showToast, setShowToast] = useState(false);
   const [formData, setFormData] = useState(null);
   const [universities, setUniversities] = useState([]);
   const [matchedUniversities, setMatchedUniversities] = useState([]);
@@ -37,6 +44,16 @@ const UniversityMatcherResults = () => {
 
 
   useEffect(() => {
+    // Wait for auth to load
+    if (authLoading) return;
+    
+    // Check if user is logged in
+    if (!isLoggedIn) {
+      setShowLoginModal(true);
+      setIsLoading(false);
+      return;
+    }
+    
     // Load form data from localStorage
     const storedData = localStorage.getItem('universityMatcherData');
     if (storedData) {
@@ -89,7 +106,7 @@ const UniversityMatcherResults = () => {
       // No data found, redirect back to matcher
       router.push('/university-matcher');
     }
-  }, []);
+  }, [isLoggedIn, authLoading]);
 
   // Apply filters when filter states change
   useEffect(() => {
@@ -107,11 +124,71 @@ const UniversityMatcherResults = () => {
     }));
   };
 
+  const handleContactClick = async (university) => {
+    if (!isLoggedIn || !userData) {
+      alert('Please log in to express interest in universities');
+      return;
+    }
+
+    try {
+      // Prepare lead data with all questionnaire responses
+      const leadData = {
+        userData: userData,
+        questionnaireData: formData,
+        universityName: university.name,
+        universityLocation: university.location,
+        courseDetails: {
+          courseName: formData?.courseType,
+          specialization: formData?.specialization
+        }
+      };
+
+      // Send to API
+      const response = await fetch('/api/save-lead', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(leadData)
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        // Track this activity
+        await trackUniversityContact(university.name, formData);
+        
+        // Show toast notification
+        setShowToast(true);
+        console.log('Lead saved successfully:', result.leadId);
+        
+        // Redirect to homepage after 4 seconds
+        setTimeout(() => {
+          router.push('/');
+        }, 4000);
+      } else {
+        throw new Error('Failed to save lead');
+      }
+    } catch (error) {
+      console.error('Error saving lead:', error);
+      // Show toast even on error
+      setShowToast(true);
+      
+      // Redirect to homepage after 4 seconds
+      setTimeout(() => {
+        router.push('/');
+      }, 4000);
+    }
+  };
+
   const handleContactFormSubmit = (e) => {
     e.preventDefault();
     console.log('Contact form submitted:', contactFormData);
-    alert('Thank you! Our expert counsellors will contact you soon.');
+    
+    // Show toast notification instead of alert
+    setShowToast(true);
     setShowContactModal(false);
+    
     setContactFormData({
       fullName: '',
       contactNumber: '',
@@ -636,6 +713,43 @@ const UniversityMatcherResults = () => {
     );
   }
 
+  // Show login modal if not authenticated
+  if (!isLoggedIn) {
+    return (
+      <>
+        <Head>
+          <title>Login Required | EduConnect</title>
+        </Head>
+        <Header />
+        <div className={styles.loginRequiredContainer}>
+          <div className={styles.loginRequiredContent}>
+            <div className={styles.loginIcon}>🔒</div>
+            <h2>Login Required</h2>
+            <p>Please login to view your personalized university matches</p>
+            <button 
+              className={styles.loginButton}
+              onClick={() => setShowLoginModal(true)}
+            >
+              Login to Continue
+            </button>
+          </div>
+        </div>
+        <LoginModal 
+          isOpen={showLoginModal} 
+          onClose={() => {
+            setShowLoginModal(false);
+            // Reload page after login to show results
+          }}
+          onLoginSuccess={() => {
+            setShowLoginModal(false);
+            window.location.reload();
+          }}
+        />
+        <Footer />
+      </>
+    );
+  }
+
   return (
     <>
       <Head>
@@ -732,7 +846,7 @@ const UniversityMatcherResults = () => {
                       {/* CONTACT Button - Always show */}
                       <button 
                         className={styles.contactButton}
-                        onClick={() => setShowContactModal(true)}
+                        onClick={() => handleContactClick(university)}
                       >
                         <span className={styles.contactText}>CONTACT US</span>
                         <span className={styles.contactTextAlt}>KNOW MORE</span>
@@ -1005,6 +1119,16 @@ const UniversityMatcherResults = () => {
             </form>
           </div>
         </div>
+      )}
+
+      {/* Toast Notification */}
+      {showToast && (
+        <Toast 
+          message="Thank you for your interest! Our expert counselors will contact you shortly."
+          type="success"
+          onClose={() => setShowToast(false)}
+          duration={4000}
+        />
       )}
 
       <Footer />

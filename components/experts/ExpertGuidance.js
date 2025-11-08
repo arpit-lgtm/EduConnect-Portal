@@ -1,10 +1,15 @@
 import { useState, useRef, useEffect } from 'react';
 import styles from './ExpertGuidance.module.css';
+import Toast from '../common/Toast';
+import { useAuth } from '../../contexts/AuthContext';
+import { trackUniversityContact } from '../../utils/activityTracker';
 
 const ExpertGuidance = () => {
     const scrollContainerRef = useRef(null);
     const [showModal, setShowModal] = useState(false);
     const [selectedExpert, setSelectedExpert] = useState(null);
+    const [showToast, setShowToast] = useState(false);
+    const { userData, isLoggedIn } = useAuth();
     const [formData, setFormData] = useState({
         fullName: '',
         contactNumber: '',
@@ -57,9 +62,45 @@ const ExpertGuidance = () => {
         }
     };
 
-    const handleConsultClick = (expert) => {
+    const handleConsultClick = async (expert) => {
         setSelectedExpert(expert);
-        setShowModal(true);
+        
+        // If user is logged in, skip the form and directly save & show toast
+        if (isLoggedIn && userData) {
+            try {
+                const leadData = {
+                    ...userData,
+                    expertCounselor: expert.name,
+                    source: 'Expert Counselor Carousel'
+                };
+                
+                await fetch('/api/save-lead', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(leadData)
+                });
+                
+                // Track activity
+                trackUniversityContact({
+                    universityName: 'N/A',
+                    source: 'Expert Counselor Carousel',
+                    formData: { ...userData, expertCounselor: expert.name }
+                });
+            } catch (error) {
+                console.error('Failed to save lead:', error);
+            }
+            
+            // Show toast
+            setShowToast(true);
+            
+            // Refresh page after 4 seconds
+            setTimeout(() => {
+                window.location.reload();
+            }, 4000);
+        } else {
+            // Not logged in, show the form modal
+            setShowModal(true);
+        }
     };
 
     const handleCloseModal = () => {
@@ -85,12 +126,43 @@ const ExpertGuidance = () => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Form submitted:', { ...formData, expert: selectedExpert?.name });
-        // TODO: Send data to backend
-        alert(`Thank you! ${selectedExpert?.name} will contact you shortly.`);
+        
+        // Save lead data
+        try {
+            const leadData = {
+                ...formData,
+                expertCounselor: selectedExpert?.name,
+                source: 'Expert Counselor Carousel'
+            };
+            
+            await fetch('/api/save-lead', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(leadData)
+            });
+            
+            // Track activity
+            trackUniversityContact({
+                universityName: 'N/A',
+                source: 'Expert Counselor Carousel',
+                formData: { ...formData, expertCounselor: selectedExpert?.name }
+            });
+        } catch (error) {
+            console.error('Failed to save lead:', error);
+        }
+        
+        // Close modal
         handleCloseModal();
+        
+        // Show toast
+        setShowToast(true);
+        
+        // Refresh page after 4 seconds
+        setTimeout(() => {
+            window.location.reload();
+        }, 4000);
     };
 
     return (
@@ -288,6 +360,15 @@ const ExpertGuidance = () => {
                         </form>
                     </div>
                 </div>
+            )}
+            
+            {showToast && (
+                <Toast
+                    message="Thank you for your interest! Our expert counselors will contact you shortly."
+                    type="success"
+                    onClose={() => setShowToast(false)}
+                    duration={4000}
+                />
             )}
         </section>
     );

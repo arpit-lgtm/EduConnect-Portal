@@ -465,8 +465,21 @@
 /* Expandable Course Details Section - Distinct Design */
 .courseDetails {
   margin-top: 2.5rem;
+  margin-left: calc(-180px - 1.5rem - 1rem); /* Pull left to cover tabs column + gap + left padding */
+  margin-right: -1rem; /* Extend to right edge */
   padding: 0;
   animation: expandDown 0.4s ease-out;
+  width: auto;
+}
+
+/* Course details for non-stream tabs (Executive Education, PhD, etc.) */
+.courseDetailsCentered {
+  margin-top: 2.5rem;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0 2rem;
+  animation: expandDown 0.4s ease-out;
+  width: 100%;
 }
 
 @keyframes expandDown {
@@ -483,13 +496,13 @@
 }
 
 .detailsCard {
-  background: #ffffff;
-  border-radius: 12px;
+  background: transparent;
+  border-radius: 0;
   padding: 1.75rem;
-  box-shadow: 0 6px 20px rgba(16, 24, 40, 0.08);
-  border: 1px solid #e6eef8;
+  box-shadow: none;
+  border: none;
   width: 100%;
-  margin: 0;
+  margin: 0 1rem;
   position: relative;
   overflow: visible;
   display: block;
@@ -507,17 +520,17 @@
 /* Layout inside the details card: main content + logos on right */
 .detailsMain {
   display: flex;
-  gap: 1.25rem;
+  gap: 2rem;
   align-items: flex-start;
 }
 
 .detailsContent {
-  flex: 1 1 0;
-  max-width: 50%;
+  flex: 0 0 60%;
+  max-width: 60%;
 }
 
 .courseDescription {
-  font-size: 0.95rem;
+  font-size: 0.875rem;
   color: #334155;
   margin: 0 0 1rem 0;
   display: -webkit-box;
@@ -529,13 +542,24 @@
 }
 
 .detailsLogos {
-  flex: 1;
+  flex: 0 0 40%;
+  max-width: 40%;
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 1.5rem;
-  justify-content: flex-start;
-  padding-left: 2rem;
+  gap: 1rem;
+  justify-content: space-between;
+  padding-left: 1rem;
+  min-height: 100%;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0 0 0;
+  width: 100%;
+  margin-top: 0.75rem;
 }
 
 .logoLabel {
@@ -550,41 +574,82 @@
 
 .logoGrid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
   width: 100%;
   margin-bottom: 1rem;
+  max-width: 600px;
 }
 
-.logoGrid img {
-  width: 100%;
-  height: 220px;
-  object-fit: contain;
+/* Logo container - EXACT match to Universities carousel */
+.logoContainer {
   background: #ffffff;
-  border-radius: 12px;
-  padding: 20px;
-  border: 2px solid #e2e8f0;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 0.875rem 0.75rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  width: 100%;
 }
 
-.logoGrid img:hover {
-  border-color: #0074d7;
-  box-shadow: 0 6px 20px rgba(0, 116, 215, 0.2);
+.logoContainer:hover {
   transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 116, 215, 0.15);
+  border-color: #0074d7;
+}
+
+.logoImageWrapper {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+  padding: 0.25rem;
+}
+
+/* Logo image - exactly like carousel Universities.module.css */
+.universityLogo {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logoContainer:hover .universityLogo {
+  transform: scale(1.05);
+}
+
+.universityName {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  line-height: 1.3;
+  margin: 0;
+  transition: color 0.3s ease;
+  width: 100%;
+}
+
+.logoContainer:hover .universityName {
+  color: #0074d7;
 }
 
 .logoPlaceholder {
   width: 100%;
-  height: 220px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-  border-radius: 12px;
-  border: 2px dashed #cbd5e1;
-  font-size: 2rem;
-  font-weight: 700;
+  border-radius: 8px;
+  border: 1px dashed #cbd5e1;
+  font-size: 0.75rem;
+  font-weight: 600;
   color: #94a3b8;
   transition: all 0.3s ease;
 }
@@ -598,16 +663,17 @@
 .findButton {
   background: #0074d7;
   color: white;
-  padding: 1.25rem 1.5rem;
-  border-radius: 12px;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
   border: none;
-  font-weight: 800;
-  font-size: 0.95rem;
-  letter-spacing: 0.8px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
   cursor: pointer;
-  width: 100%;
+  width: auto;
   transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(0, 116, 215, 0.2);
+  white-space: nowrap;
 }
 
 .findButton:hover {
@@ -630,6 +696,13 @@
   width: 100%;
 }
 
+/* Horizontal row for small details */
+.detailsRow {
+  display: flex;
+  gap: 0.75rem;
+  width: 100%;
+}
+
 .detailItem {
   display: flex;
   flex-direction: column;
@@ -641,28 +714,50 @@
   transition: all 0.3s ease;
   width: 100%;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  align-items: center;
+  text-align: center;
 }
 
-.detailItem:hover {
+/* Compact detail item for horizontal layout */
+.detailItemCompact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.875rem 1rem;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  border: none;
+  transition: all 0.3s ease;
+  flex: 1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  min-width: 0;
+  align-items: center;
+  text-align: center;
+}
+
+.detailItem:hover,
+.detailItemCompact:hover {
   background: white;
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 .detailLabel {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 800;
   color: #0074d7;
   text-transform: uppercase;
   letter-spacing: 1px;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
 }
 
 .detailValue {
-  font-size: 0.95rem;
+  font-size: 0.875rem;
   font-weight: 600;
   color: #1e293b;
   line-height: 1.6;
+  text-align: center;
 }
