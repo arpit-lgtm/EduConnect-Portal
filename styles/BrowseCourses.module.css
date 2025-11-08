@@ -13,7 +13,7 @@
   padding: 0;
   background: #ffffff;
   position: relative;
-  min-height: calc(100vh - 80px);
+  /* Removed min-height to eliminate empty space */
 }
 
 /* Top Horizontal Tabs (PG/UG Courses) */
@@ -578,10 +578,9 @@
   gap: 1rem;
   width: 100%;
   margin-bottom: 1rem;
-  max-width: 600px;
 }
 
-/* Logo container - EXACT match to Universities carousel */
+/* Logo container - EXACT MATCH to carousel university cards */
 .logoContainer {
   background: #ffffff;
   border: 1px solid #e5e7eb;
@@ -613,7 +612,7 @@
   padding: 0.25rem;
 }
 
-/* Logo image - exactly like carousel Universities.module.css */
+/* Logo image - EXACT MATCH to carousel */
 .universityLogo {
   max-width: 100%;
   max-height: 100%;
@@ -625,6 +624,7 @@
   transform: scale(1.05);
 }
 
+/* University name styling - EXACT MATCH to carousel */
 .universityName {
   font-size: 0.8125rem;
   font-weight: 600;
@@ -760,4 +760,144 @@
   color: #1e293b;
   line-height: 1.6;
   text-align: center;
+}
+
+/* Course Details Section Styles */
+.courseDetails {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  animation: slideDown 0.3s ease;
+}
+
+.courseDetailsCentered {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  animation: slideDown 0.3s ease;
+}
+
+.detailsCard {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e5e7eb;
+}
+
+.detailsMain {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.5rem;
+}
+
+.detailsContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.detailsLogos {
+  flex: 0 0 300px;
+  padding: 1rem;
+  background: #f9fafb;
+  border-left: 1px solid #e5e7eb;
+}
+
+.logoLabel {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.buttonContainer {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+/* Stream Section */
+.streamSection {
+  /* Remove any min-height that creates empty space */
+  padding-bottom: 1rem;
+}
+
+/* Animation for course details appearing */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .logoGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.6rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .detailsMain {
+    flex-direction: column;
+  }
+  
+  .detailsLogos {
+    flex: none;
+    border-left: none;
+    border-top: 1px solid #e5e7eb;
+  }
+  
+  .courseDetails,
+  .courseDetailsCentered {
+    padding: 1rem;
+  }
+
+  .logoGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+
+  .logoContainer {
+    padding: 0.4rem 0.3rem;
+    min-height: 65px;
+  }
+
+  .logoImageWrapper {
+    height: 28px;
+  }
+
+  .universityName {
+    font-size: 0.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .logoGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+
+  .logoContainer {
+    padding: 0.4rem 0.3rem;
+    min-height: 65px;
+  }
+
+  .logoImageWrapper {
+    height: 28px;
+  }
+
+  .universityName {
+    font-size: 0.6rem;
+  }
 }

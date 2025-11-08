@@ -30,9 +30,15 @@ const EduAI = () => {
   const [isMuted, setIsMuted] = useState(true); // Voice control - START MUTED
   const [videoVisible, setVideoVisible] = useState(true); // Video widget visibility - open by default
   
+  // Draggable button states
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
+  const [position, setPosition] = useState({ x: 30, y: 50 }); // right: 30px, top: 50%
+  
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
   const videoRef = useRef(null); // Video element ref
+  const buttonRef = useRef(null); // Button ref for dragging
 
   // Force video to play when component mounts
   useEffect(() => {
@@ -59,6 +65,81 @@ const EduAI = () => {
       }, 100);
     }
   }, [isOpen]);
+
+  // Drag functionality for the button
+  const handleMouseDown = (e) => {
+    if (e.target.closest('.close-button') || isOpen) return; // Don't drag if clicking close or chat is open
+    
+    setIsDragging(true);
+    const rect = buttonRef.current.getBoundingClientRect();
+    setDragOffset({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
+    });
+    e.preventDefault();
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging) return;
+    
+    const newX = window.innerWidth - e.clientX - dragOffset.x + 40; // Convert to right positioning
+    const newY = (e.clientY - dragOffset.y) / window.innerHeight * 100; // Convert to percentage
+    
+    // Constrain to viewport
+    const constrainedX = Math.max(0, Math.min(newX, window.innerWidth - 80));
+    const constrainedY = Math.max(5, Math.min(newY, 95));
+    
+    setPosition({ x: constrainedX, y: constrainedY });
+    e.preventDefault();
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  // Mouse event listeners for dragging
+  useEffect(() => {
+    if (isDragging) {
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseup', handleMouseUp);
+      return () => {
+        document.removeEventListener('mousemove', handleMouseMove);
+        document.removeEventListener('mouseup', handleMouseUp);
+      };
+    }
+  }, [isDragging, dragOffset]);
+
+  // Touch events for mobile dragging
+  const handleTouchStart = (e) => {
+    if (e.target.closest('.close-button') || isOpen) return;
+    
+    setIsDragging(true);
+    const rect = buttonRef.current.getBoundingClientRect();
+    const touch = e.touches[0];
+    setDragOffset({
+      x: touch.clientX - rect.left,
+      y: touch.clientY - rect.top
+    });
+    e.preventDefault();
+  };
+
+  const handleTouchMove = (e) => {
+    if (!isDragging) return;
+    
+    const touch = e.touches[0];
+    const newX = window.innerWidth - touch.clientX - dragOffset.x + 40;
+    const newY = (touch.clientY - dragOffset.y) / window.innerHeight * 100;
+    
+    const constrainedX = Math.max(0, Math.min(newX, window.innerWidth - 80));
+    const constrainedY = Math.max(5, Math.min(newY, 95));
+    
+    setPosition({ x: constrainedX, y: constrainedY });
+    e.preventDefault();
+  };
+
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+  };
 
   // Knowledge Base Response Function
   const getKnowledgeBaseResponse = async (userQuestion, lastBotMessage) => {
@@ -591,14 +672,54 @@ const EduAI = () => {
 
   return (
     <>
-      {/* MBANinjAI Button - Robot Icon with Colorful Glow */}
+      {/* MBANinjAI Button - Robot Icon with Curved Text Labels */}
       <button 
+        ref={buttonRef}
         className={styles.askEduAIButton}
-        onClick={() => setIsOpen(true)}
+        style={{
+          right: `${position.x}px`,
+          top: `${position.y}%`,
+          cursor: isDragging ? 'grabbing' : 'grab'
+        }}
+        onClick={() => !isDragging && setIsOpen(true)}
+        onMouseDown={handleMouseDown}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
         aria-label="MBANinjAI - Your AI Education Assistant"
-        title="MBANinjAI"
       >
         <div className={styles.robotIconContainer}>
+          {/* SVG Container for Curved Text and Robot */}
+          <svg className={styles.buttonSVG} viewBox="0 0 140 140" width="140" height="140">
+            {/* Define circular paths for curved text */}
+            <defs>
+              <path 
+                id="topArc" 
+                d="M 25 70 A 45 45 0 0 1 115 70"
+                fill="none"
+              />
+              <path 
+                id="bottomArc" 
+                d="M 25 70 A 45 45 0 0 0 115 70"
+                fill="none"
+              />
+            </defs>
+            
+            {/* Top Curved Text - MBANinjAI */}
+            <text className={styles.topCurvedText}>
+              <textPath href="#topArc" startOffset="50%">
+                MBANinjAI
+              </textPath>
+            </text>
+            
+            {/* Bottom Curved Text - Chat Bot */}
+            <text className={styles.bottomCurvedText}>
+              <textPath href="#bottomArc" startOffset="50%">
+                Chat Bot
+              </textPath>
+            </text>
+          </svg>
+
           {/* Robot Head SVG Icon */}
           <svg className={styles.robotIcon} viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
             {/* Antenna */}

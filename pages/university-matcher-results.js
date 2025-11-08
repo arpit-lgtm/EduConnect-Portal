@@ -401,6 +401,8 @@ const UniversityMatcherResults = () => {
     // Filter universities based on the form criteria
     console.log('🔍 Total universities to check:', universitiesData.length);
     console.log('🔍 Looking for course:', courseNameToMatch);
+    console.log('🔍 Looking for specialization:', formData.specialization);
+    console.log('🔍 Looking for location:', formData.preferredLocation);
     
     let filtered = universitiesData.map(uni => {
       let score = 0;
@@ -433,6 +435,53 @@ const UniversityMatcherResults = () => {
         if (hasCourse) {
           score += 40; // High weight for course match
           console.log(`✅ ${uni.name} has course ${courseNameToMatch}`);
+          
+          // Check for specialization match - MORE FLEXIBLE APPROACH
+          if (formData.specialization && uni.courses && typeof uni.courses === 'object') {
+            const courseData = uni.courses[courseNameToMatch] || 
+                              Object.values(uni.courses).find(course => course && course.specializations);
+            
+            if (courseData && courseData.specializations) {
+              const targetSpec = formData.specialization.toLowerCase();
+              const hasSpecialization = courseData.specializations.some(spec => {
+                const specLower = spec.toLowerCase();
+                
+                // Flexible HR matching
+                if (targetSpec.includes('hr') || targetSpec.includes('human resources')) {
+                  return specLower.includes('hr') || 
+                         specLower.includes('human resource') ||
+                         specLower.includes('human resources') ||
+                         specLower.includes('personnel');
+                }
+                
+                // Flexible Finance matching
+                if (targetSpec.includes('finance')) {
+                  return specLower.includes('finance') || 
+                         specLower.includes('banking') ||
+                         specLower.includes('financial');
+                }
+                
+                // Flexible Marketing matching
+                if (targetSpec.includes('marketing')) {
+                  return specLower.includes('marketing') ||
+                         specLower.includes('sales') ||
+                         specLower.includes('digital marketing');
+                }
+                
+                // General flexible matching
+                return specLower.includes(targetSpec) || 
+                       targetSpec.includes(specLower) ||
+                       specLower === 'general'; // Accept "General" specializations
+              });
+              
+              if (hasSpecialization) {
+                score += 20; // Bonus for specialization match
+                console.log(`✅ ${uni.name} has specialization match`);
+              } else {
+                console.log(`⚠️ ${uni.name} specializations:`, courseData.specializations, 'looking for:', formData.specialization);
+              }
+            }
+          }
         }
       }
 
@@ -468,9 +517,14 @@ const UniversityMatcherResults = () => {
                              targetLocation.includes(uniLocation);
         
         if (!locationMatch) {
+          console.log(`❌ Location mismatch for ${uni.name}: ${uni.location} vs ${formData.preferredLocation}`);
           return null; // Will be filtered out
         }
         score += 15; // Bonus for matching location
+        console.log(`✅ ${uni.name} matches location: ${uni.location}`);
+      } else {
+        // If no location preference, give small bonus to encourage diverse results
+        score += 5;
       }
 
       // Match study mode (check both uni.mode array and uni.programs)
@@ -511,7 +565,10 @@ const UniversityMatcherResults = () => {
         if (hasMatchingMode) {
           score += 20;
         } else {
-          return null; // Filter out if study mode doesn't match
+          // Don't filter out - just give lower score if mode doesn't match
+          // This allows more universities to show up
+          console.log(`⚠️ ${uni.name} mode mismatch - target: ${targetMode}, available:`, uni.mode);
+          score -= 5; // Small penalty instead of elimination
         }
       }
 
@@ -572,9 +629,17 @@ const UniversityMatcherResults = () => {
 
     // Sort by match score
     filtered.sort((a, b) => b.matchScore - a.matchScore);
+    
+    // Log results for debugging
+    console.log(`📊 Filtered ${filtered.length} universities after all filters`);
+    if (formData.preferredLocation === 'maharashtra') {
+      console.log('🏙️ Maharashtra universities found:', filtered.filter(uni => 
+        uni.location && uni.location.toLowerCase().includes('maharashtra')
+      ).map(uni => uni.name));
+    }
 
-    // Return top 50 results
-    return filtered.slice(0, 50);
+    // Return top 100 results (increased from 50 to show more options)
+    return filtered.slice(0, 100);
   };
 
   const extractAvailableLocations = (universities) => {
@@ -992,8 +1057,34 @@ const UniversityMatcherResults = () => {
             {/* Right Content Area - For Videos & Additional Content */}
             <div className={styles.rightContent}>
               <h3>📹 Featured Content</h3>
-              <div className={styles.rightContentPlaceholder}>
-                <p>Videos and additional content will be displayed here</p>
+              <div className={styles.rightContentContainer}>
+                <div className={styles.videoContainer}>
+                  <video 
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className={styles.featuredVideo}
+                  >
+                    <source src="/videos/DPU 1.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                  <div className={styles.videoOverlay}>
+                    <h4>DY Patil University Online</h4>
+                    <p>Discover World-Class Education & Career Opportunities</p>
+                  </div>
+                </div>
+                
+                <div className={styles.additionalContent}>
+                  <div className={styles.contentCard}>
+                    <h5>🎓 Career Guidance</h5>
+                    <p>Expert counselors available to guide your educational journey</p>
+                  </div>
+                  <div className={styles.contentCard}>
+                    <h5>📚 Course Resources</h5>
+                    <p>Access comprehensive study materials and industry insights</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

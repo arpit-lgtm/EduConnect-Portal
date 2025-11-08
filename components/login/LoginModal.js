@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import styles from './LoginModal.module.css';
 import { useAuth } from '../../contexts/AuthContext';
 import { trackLogin } from '../../utils/activityTracker';
@@ -7,80 +8,131 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
     const { login } = useAuth();
     const [loginType, setLoginType] = useState(null); // 'student' or 'admin' or null
     const [formData, setFormData] = useState({
-        fullName: 'Abdul Sayed',
-        contactNumber: '9029444175',
-        emailAddress: 'abdul.sayed@gmail.com',
-        gender: 'male',
-        dateOfBirth: '1980-01-01',
-        city: 'Mumbai',
-        state: 'Maharashtra',
-        currentQualification: 'bachelors',
-        courseInterest: 'mba',
-        studyMode: 'online'
+        fullName: '',
+        contactNumber: '',
+        emailAddress: '',
+        gender: '',
+        dateOfBirth: '',
+        city: '',
+        state: '',
+        currentQualification: '',
+        courseInterest: '',
+        studyMode: ''
     });
-    const [adminFormData, setAdminFormData] = useState({
-        name: 'Admin',
-        mobile: '9029444175'
-    });
-
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [consentGiven, setConsentGiven] = useState(false);
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({
-            ...prev,
-            [name]: value
-        }));
-    };
+    // OTP-related state
+    const [otpFormData, setOtpFormData] = useState({
+        name: '',
+        contact: '',
+        otp: ''
+    });
+    const [otpSent, setOtpSent] = useState(false);
+    const [otpVerified, setOtpVerified] = useState(false);
 
-    const handleAdminInputChange = (e) => {
-        const { name, value } = e.target;
-        setAdminFormData(prev => ({
-            ...prev,
-            [name]: value
-        }));
-    };
-
-    const handleAdminSubmit = async (e) => {
-        e.preventDefault();
-        setIsSubmitting(true);
-
-        try {
-            // Hardcoded admin credentials
-            const validCredentials = {
-                name: 'Admin',
-                mobile: '9029444175'
-            };
-
-            // Check credentials
-            if (adminFormData.name === validCredentials.name && 
-                adminFormData.mobile === validCredentials.mobile) {
-                
-                // Store admin session
-                localStorage.setItem('mba_ninja_admin', 'true');
-                
-                alert('✅ Admin access granted!');
-                
-                // Open admin dashboard in new tab
-                window.open('/admin-leads', '_blank');
-                
-                // Reset and close
-                setLoginType(null);
-                setAdminFormData({
-                    name: 'Admin',
-                    mobile: '9029444175'
-                });
-                onClose();
-            } else {
-                alert('❌ Invalid admin credentials!');
-            }
-        } catch (error) {
-            console.error('Admin login error:', error);
-            alert('Something went wrong. Please try again.');
-        } finally {
+    // Reset modal state when it closes
+    useEffect(() => {
+        if (!isOpen) {
+            setLoginType(null);
             setIsSubmitting(false);
         }
+    }, [isOpen]);
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => {
+            const newData = { ...prev, [name]: value };
+            
+            // If qualification changes, clear course interest if it's no longer valid
+            if (name === 'currentQualification') {
+                const availableCourses = getAvailableCoursesForQualification(value);
+                const currentCourseInterest = prev.courseInterest;
+                
+                // Check if current course interest is still valid for new qualification
+                if (currentCourseInterest && !availableCourses.some(course => course.value === currentCourseInterest)) {
+                    newData.courseInterest = ''; // Clear invalid selection
+                }
+            }
+            
+            return newData;
+        });
+    };
+
+    // Function to get available courses based on qualification level
+    const getAvailableCoursesForQualification = (qualification) => {
+        const courseMap = {
+            '10th': [
+                { value: '', label: 'Select Course' },
+                { value: 'other', label: 'Complete 12th to proceed' }
+            ],
+            '12th': [
+                { value: '', label: 'Select Course' },
+                { value: 'bba', label: 'BBA - Bachelor of Business Administration' },
+                { value: 'bca', label: 'BCA - Bachelor of Computer Applications' },
+                { value: 'ba', label: 'BA - Bachelor of Arts' },
+                { value: 'bsc', label: 'B.Sc - Bachelor of Science' },
+                { value: 'bcom', label: 'B.Com - Bachelor of Commerce' },
+                { value: 'other', label: 'Other Undergraduate Course' }
+            ],
+            'diploma': [
+                { value: '', label: 'Select Course' },
+                { value: 'bba', label: 'BBA - Bachelor of Business Administration' },
+                { value: 'bca', label: 'BCA - Bachelor of Computer Applications' },
+                { value: 'ba', label: 'BA - Bachelor of Arts' },
+                { value: 'bsc', label: 'B.Sc - Bachelor of Science' },
+                { value: 'bcom', label: 'B.Com - Bachelor of Commerce' },
+                { value: 'other', label: 'Other Undergraduate Course' }
+            ],
+            'bachelors': [
+                { value: '', label: 'Select Course' },
+                { value: 'mba', label: 'MBA - Master of Business Administration' },
+                { value: 'mca', label: 'MCA - Master of Computer Applications' },
+                { value: 'ma', label: 'MA - Master of Arts' },
+                { value: 'msc', label: 'M.Sc - Master of Science' },
+                { value: 'mcom', label: 'M.Com - Master of Commerce' },
+                { value: 'other', label: 'Other Postgraduate Course' }
+            ],
+            'masters': [
+                { value: '', label: 'Select Course' },
+                { value: 'phd', label: 'PhD - Doctor of Philosophy' },
+                { value: 'other', label: 'Other Doctoral Course' }
+            ],
+            'phd': [
+                { value: '', label: 'Select Course' },
+                { value: 'other', label: 'Post-Doctoral Research' }
+            ]
+        };
+
+        return courseMap[qualification] || [
+            { value: '', label: 'Select qualification first' },
+        ];
+    };
+
+    const handlePhoneChange = (e) => {
+        const value = e.target.value;
+        // Remove all non-digit characters
+        const numericValue = value.replace(/\D/g, '');
+        // Limit to 10 digits
+        const limitedValue = numericValue.slice(0, 10);
+        
+        setFormData(prev => ({
+            ...prev,
+            contactNumber: limitedValue
+        }));
+    };
+
+    const handleOtpPhoneChange = (e) => {
+        const value = e.target.value;
+        // Remove all non-digit characters
+        const numericValue = value.replace(/\D/g, '');
+        // Limit to 10 digits
+        const limitedValue = numericValue.slice(0, 10);
+        
+        setOtpFormData(prev => ({
+            ...prev,
+            contact: limitedValue
+        }));
     };
 
     const handleSubmit = async (e) => {
@@ -93,20 +145,28 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
             
             console.log('Login form submitted:', formData);
             
-            // Get IP address
-            let ipAddress = 'Unknown';
+            // Get IP address and location info
+            let ipInfo = { ip: 'Unknown', location: null };
             try {
                 const ipResponse = await fetch('/api/get-ip');
                 const ipData = await ipResponse.json();
-                ipAddress = ipData.ip;
+                ipInfo = {
+                    ip: ipData.ip,
+                    location: ipData.location,
+                    userAgent: ipData.userAgent,
+                    isLocalhost: ipData.isLocalhost
+                };
             } catch (error) {
                 console.error('Error fetching IP:', error);
             }
             
-            // Add IP to form data
+            // Add enhanced IP info to form data
             const userDataWithIP = {
                 ...formData,
-                ipAddress: ipAddress,
+                ipAddress: ipInfo.ip,
+                locationInfo: ipInfo.location,
+                userAgent: ipInfo.userAgent,
+                isLocalhost: ipInfo.isLocalhost,
                 loginTimestamp: new Date().toISOString()
             };
             
@@ -116,20 +176,37 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
             // Track login activity
             await trackLogin(userDataWithIP);
             
-            alert('Welcome! You have been successfully logged in. You now have access to all our educational tools and features.');
+            // Also save as a lead automatically
+            try {
+                const leadData = {
+                    userData: userDataWithIP,
+                    source: 'Student Login',
+                    universityName: 'N/A - Direct Login'
+                };
+                
+                await fetch('/api/save-lead', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(leadData)
+                });
+                
+                console.log('✅ Login automatically saved as lead');
+            } catch (error) {
+                console.error('Failed to save login as lead:', error);
+            }
             
             // Reset form, loginType and close modal
             setFormData({
-                fullName: 'Abdul Sayed',
-                contactNumber: '9029444175',
-                emailAddress: 'abdul.sayed@gmail.com',
-                gender: 'male',
-                dateOfBirth: '1980-01-01',
-                city: 'Mumbai',
-                state: 'Maharashtra',
-                currentQualification: 'bachelors',
-                courseInterest: 'mba',
-                studyMode: 'online'
+                fullName: '',
+                contactNumber: '',
+                emailAddress: '',
+                gender: '',
+                dateOfBirth: '',
+                city: '',
+                state: '',
+                currentQualification: '',
+                courseInterest: '',
+                studyMode: ''
             });
             setConsentGiven(false);
             setLoginType(null);
@@ -145,6 +222,126 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
             alert('Something went wrong. Please try again.');
         } finally {
             setIsSubmitting(false);
+        }
+    };
+
+    // OTP handling functions
+    const handleOTPLogin = async (e) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+
+        try {
+            if (!otpSent) {
+                // Step 1: Send OTP
+                const response = await fetch('/api/send-otp', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name: otpFormData.name,
+                        contact: otpFormData.contact
+                    })
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    setOtpSent(true);
+                    alert(`OTP sent to ${otpFormData.contact}`);
+                } else {
+                    alert(data.message || 'Failed to send OTP');
+                }
+            } else {
+                // Step 2: Verify OTP
+                const response = await fetch('/api/verify-otp', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name: otpFormData.name,
+                        contact: otpFormData.contact,
+                        otp: otpFormData.otp
+                    })
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Get IP address and location info
+                    let ipInfo = { ip: 'Unknown', location: null };
+                    try {
+                        const ipResponse = await fetch('/api/get-ip');
+                        const ipData = await ipResponse.json();
+                        ipInfo = {
+                            ip: ipData.ip,
+                            location: ipData.location,
+                            userAgent: ipData.userAgent,
+                            isLocalhost: ipData.isLocalhost
+                        };
+                    } catch (error) {
+                        console.error('Error fetching IP:', error);
+                    }
+
+                    // Create user data with existing details
+                    const userData = {
+                        ...data.userData, // Existing user data from server
+                        ipAddress: ipInfo.ip,
+                        locationInfo: ipInfo.location,
+                        userAgent: ipInfo.userAgent,
+                        isLocalhost: ipInfo.isLocalhost,
+                        loginTimestamp: new Date().toISOString(),
+                        loginType: 'returning-user'
+                    };
+
+                    // Login user
+                    login(userData);
+                    
+                    // Track login activity
+                    await trackLogin(userData);
+
+                    alert('Welcome back! You have been successfully logged in.');
+                    
+                    // Reset OTP form and close modal
+                    setOtpFormData({ name: '', contact: '', otp: '' });
+                    setOtpSent(false);
+                    setLoginType(null);
+                    
+                    if (onLoginSuccess) {
+                        onLoginSuccess();
+                    }
+                    
+                    onClose();
+                } else {
+                    alert(data.message || 'Invalid OTP');
+                }
+            }
+        } catch (error) {
+            console.error('OTP login error:', error);
+            alert('Something went wrong. Please try again.');
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    const handleResendOTP = async () => {
+        try {
+            const response = await fetch('/api/send-otp', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: otpFormData.name,
+                    contact: otpFormData.contact
+                })
+            });
+
+            const data = await response.json();
+            
+            if (data.success) {
+                alert(`OTP resent to ${otpFormData.contact}`);
+            } else {
+                alert('Failed to resend OTP');
+            }
+        } catch (error) {
+            console.error('Error resending OTP:', error);
+            alert('Failed to resend OTP');
         }
     };
 
@@ -171,17 +368,35 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
                             onClick={() => setLoginType('student')}
                         >
                             <div className={styles.loginTypeIcon}>👨‍🎓</div>
-                            <h4>Student Login</h4>
-                            <p>Access educational tools and guidance</p>
+                            <div>
+                                <h4>New User</h4>
+                                <p>Complete registration form</p>
+                            </div>
                         </button>
 
                         <button 
                             className={styles.loginTypeButton}
-                            onClick={() => setLoginType('admin')}
+                            onClick={() => setLoginType('returning-student')}
+                        >
+                            <div className={styles.loginTypeIcon}>🔄</div>
+                            <div>
+                                <h4>Registered User</h4>
+                                <p>Quick login with OTP</p>
+                            </div>
+                        </button>
+
+                        <button 
+                            className={styles.loginTypeButton}
+                            onClick={() => {
+                                // Open admin login page in new tab
+                                window.open('/admin-login', '_blank');
+                            }}
                         >
                             <div className={styles.loginTypeIcon}>👨‍💼</div>
-                            <h4>Admin Login</h4>
-                            <p>Access leads dashboard</p>
+                            <div>
+                                <h4>Admin</h4>
+                                <p>Access dashboard</p>
+                            </div>
                         </button>
                     </div>
                 </div>
@@ -189,81 +404,109 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
         );
     }
 
-    // Admin Login Form
-    if (loginType === 'admin') {
+    // Returning Student OTP Login Form
+    if (loginType === 'returning-student') {
         return (
             <div className={styles.modalOverlay} onClick={onClose}>
-                <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+                <div className={`${styles.modalContent} ${styles.large}`} onClick={(e) => e.stopPropagation()}>
                     <button className={styles.closeButton} onClick={onClose}>
                         ✕
                     </button>
                     
                     <button 
                         className={styles.backButton} 
-                        onClick={() => setLoginType(null)}
+                        onClick={() => setLoginType('')}
                     >
                         ← Back
                     </button>
                     
                     <div className={styles.modalHeader}>
                         <div className={styles.headerIcon}>🔐</div>
-                        <h3>Admin Access</h3>
-                        <p>Enter admin credentials to access the leads dashboard</p>
+                        <h3>Registered User Login</h3>
+                        <p>Enter your details to receive OTP verification</p>
                     </div>
 
-                    <form onSubmit={handleAdminSubmit} className={styles.adminForm}>
-                        <div className={styles.formGroup}>
-                            <label htmlFor="name">Admin Name *</label>
-                            <input
-                                type="text"
-                                id="name"
-                                name="name"
-                                value={adminFormData.name}
-                                onChange={handleAdminInputChange}
-                                required
-                                placeholder="Enter admin name"
-                            />
+                    <form onSubmit={handleOTPLogin} className={styles.loginForm}>
+                        <div className={styles.formRow}>
+                            <div className={styles.formGroup}>
+                                <label htmlFor="otpName">Full Name *</label>
+                                <input
+                                    type="text"
+                                    id="otpName"
+                                    value={otpFormData.name}
+                                    onChange={(e) => setOtpFormData({...otpFormData, name: e.target.value})}
+                                    required
+                                    className={styles.input}
+                                    placeholder="Enter your full name"
+                                />
+                            </div>
+
+                            <div className={styles.formGroup}>
+                                <label htmlFor="otpContact">Mobile Number *</label>
+                                <div className={styles.phoneInputContainer}>
+                                    <span className={styles.countryCode}>+91</span>
+                                    <input
+                                        type="tel"
+                                        id="otpContact"
+                                        value={otpFormData.contact}
+                                        onChange={handleOtpPhoneChange}
+                                        required
+                                        className={styles.input}
+                                        placeholder="Enter 10-digit mobile number"
+                                        maxLength="10"
+                                        pattern="[0-9]{10}"
+                                    />
+                                </div>
+                            </div>
                         </div>
 
-                        <div className={styles.formGroup}>
-                            <label htmlFor="mobile">Mobile Number *</label>
-                            <input
-                                type="tel"
-                                id="mobile"
-                                name="mobile"
-                                value={adminFormData.mobile}
-                                onChange={handleAdminInputChange}
-                                required
-                                placeholder="Enter mobile number"
-                                pattern="[0-9]{10}"
-                            />
-                        </div>
+                        {otpSent && (
+                            <div className={styles.formRow}>
+                                <div className={styles.formGroup}>
+                                    <label htmlFor="otpCode">Enter OTP *</label>
+                                    <input
+                                        type="text"
+                                        id="otpCode"
+                                        value={otpFormData.otp}
+                                        onChange={(e) => setOtpFormData({...otpFormData, otp: e.target.value})}
+                                        required
+                                        className={styles.input}
+                                        placeholder="Enter 6-digit OTP"
+                                        maxLength="6"
+                                    />
+                                    <div className={styles.otpInfo}>
+                                        OTP sent to {otpFormData.contact}
+                                        <button 
+                                            type="button" 
+                                            className={styles.resendOTP}
+                                            onClick={handleResendOTP}
+                                        >
+                                            Resend OTP
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
 
-                        <div className={styles.devNote}>
-                            <p><strong>🔧 Dev Mode:</strong> Credentials are pre-filled for testing</p>
-                            <p className={styles.credentials}>
-                                Name: <code>Admin</code><br />
-                                Mobile: <code>9029444175</code>
-                            </p>
+                        <div className={styles.buttonGroup}>
+                            <button 
+                                type="submit" 
+                                className={`${styles.submitButton} ${isSubmitting ? styles.loading : ''}`}
+                                disabled={isSubmitting}
+                            >
+                                {isSubmitting ? 'Please wait...' : otpSent ? 'Verify OTP & Login' : 'Send OTP'}
+                            </button>
                         </div>
-
-                        <button 
-                            type="submit" 
-                            className={`${styles.submitButton} ${isSubmitting ? styles.loading : ''}`}
-                            disabled={isSubmitting}
-                        >
-                            {isSubmitting ? 'Logging in...' : 'Access Dashboard'}
-                        </button>
                     </form>
                 </div>
             </div>
         );
     }
 
-    // Student Login Form
+    // Student Registration Form
     return (
         <div className={styles.modalOverlay} onClick={onClose}>
-            <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+            <div className={`${styles.modalContent} ${styles.large}`} onClick={(e) => e.stopPropagation()}>
                 <button className={styles.closeButton} onClick={onClose}>
                     ✕
                 </button>
@@ -277,7 +520,7 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
                 
                 <div className={styles.modalHeader}>
                     <div className={styles.headerIcon}>🔐</div>
-                    <h3>Welcome to MBA NINJA</h3>
+                    <h3>New User Registration</h3>
                     <p>Create your account to access premium educational tools including AI Chatbot, University Matcher, Course Comparison, and personalized guidance from expert counsellors.</p>
                 </div>
 
@@ -298,16 +541,20 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
 
                         <div className={styles.formGroup}>
                             <label htmlFor="contactNumber">Contact Number *</label>
-                            <input
-                                type="tel"
-                                id="contactNumber"
-                                name="contactNumber"
-                                value={formData.contactNumber}
-                                onChange={handleInputChange}
-                                required
-                                placeholder="Enter your contact number"
-                                pattern="[0-9]{10}"
-                            />
+                            <div className={styles.phoneInputContainer}>
+                                <span className={styles.countryCode}>+91</span>
+                                <input
+                                    type="tel"
+                                    id="contactNumber"
+                                    name="contactNumber"
+                                    value={formData.contactNumber}
+                                    onChange={handlePhoneChange}
+                                    required
+                                    placeholder="Enter 10-digit mobile number"
+                                    maxLength="10"
+                                    pattern="[0-9]{10}"
+                                />
+                            </div>
                         </div>
                     </div>
 
@@ -401,26 +648,32 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
 
                     <div className={styles.formRow}>
                         <div className={styles.formGroup}>
-                            <label htmlFor="courseInterest">Course Interest</label>
+                            <label htmlFor="courseInterest">
+                                Course Interest
+                                {formData.currentQualification && (
+                                    <small style={{ color: '#64748b', fontWeight: 400, marginLeft: '0.5rem' }}>
+                                        (filtered by qualification)
+                                    </small>
+                                )}
+                            </label>
                             <select
                                 id="courseInterest"
                                 name="courseInterest"
                                 value={formData.courseInterest}
                                 onChange={handleInputChange}
+                                disabled={!formData.currentQualification}
                             >
-                                <option value="">Select Course</option>
-                                <option value="mba">MBA</option>
-                                <option value="mca">MCA</option>
-                                <option value="ma">MA</option>
-                                <option value="msc">M.Sc</option>
-                                <option value="mcom">M.Com</option>
-                                <option value="bba">BBA</option>
-                                <option value="bca">BCA</option>
-                                <option value="ba">BA</option>
-                                <option value="bsc">B.Sc</option>
-                                <option value="bcom">B.Com</option>
-                                <option value="other">Other</option>
+                                {getAvailableCoursesForQualification(formData.currentQualification).map(course => (
+                                    <option key={course.value} value={course.value}>
+                                        {course.label}
+                                    </option>
+                                ))}
                             </select>
+                            {!formData.currentQualification && (
+                                <small style={{ color: '#ef4444', fontSize: '0.8rem', marginTop: '0.25rem', display: 'block' }}>
+                                    Please select qualification first
+                                </small>
+                            )}
                         </div>
 
                         <div className={styles.formGroup}>

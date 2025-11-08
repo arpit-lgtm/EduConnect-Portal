@@ -5,6 +5,11 @@ export default function VideoTestimonials() {
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [playingVideo, setPlayingVideo] = useState(null);
   const [thumbnails, setThumbnails] = useState({});
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [volume, setVolume] = useState(1);
+  const videoRef = useRef(null);
   const scrollContainerRef = useRef(null);
 
   const scrollLeft = () => {
@@ -201,6 +206,56 @@ export default function VideoTestimonials() {
   const closeVideoModal = () => {
     setSelectedVideo(null);
     setPlayingVideo(null);
+    setIsPlaying(true);
+    setCurrentTime(0);
+    setDuration(0);
+  };
+
+  const togglePlayPause = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const handleTimeUpdate = () => {
+    if (videoRef.current) {
+      setCurrentTime(videoRef.current.currentTime);
+    }
+  };
+
+  const handleLoadedData = () => {
+    if (videoRef.current) {
+      setDuration(videoRef.current.duration);
+    }
+  };
+
+  const handleSeek = (e) => {
+    if (videoRef.current) {
+      const progressBar = e.currentTarget;
+      const clickPosition = (e.clientX - progressBar.offsetLeft) / progressBar.offsetWidth;
+      const newTime = clickPosition * duration;
+      videoRef.current.currentTime = newTime;
+      setCurrentTime(newTime);
+    }
+  };
+
+  const handleVolumeChange = (e) => {
+    const newVolume = parseFloat(e.target.value);
+    setVolume(newVolume);
+    if (videoRef.current) {
+      videoRef.current.volume = newVolume;
+    }
+  };
+
+  const formatTime = (time) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
   };
 
   return (
@@ -274,14 +329,75 @@ export default function VideoTestimonials() {
             <button className={styles.closeButton} onClick={closeVideoModal}>
               ×
             </button>
-            <video 
-              controls 
-              autoPlay
-              className={`${styles.modalVideo} ${selectedVideo?.orientation === 'portrait' ? styles.portraitVideo : styles.landscapeVideo}`}
-              src={selectedVideo.videoUrl}
-            >
-              Your browser does not support the video tag.
-            </video>
+            <div className={styles.videoContainer}>
+              <video 
+                ref={videoRef}
+                autoPlay
+                className={`${styles.modalVideo} ${selectedVideo?.orientation === 'portrait' ? styles.portraitVideo : styles.landscapeVideo}`}
+                src={selectedVideo.videoUrl}
+                onTimeUpdate={handleTimeUpdate}
+                onLoadedData={handleLoadedData}
+                onPlay={() => setIsPlaying(true)}
+                onPause={() => setIsPlaying(false)}
+                controlsList="nodownload nofullscreen noremoteplayback"
+                disablePictureInPicture
+                onContextMenu={(e) => e.preventDefault()}
+              >
+                Your browser does not support the video tag.
+              </video>
+              
+              {/* Custom Controls */}
+              <div className={styles.customControls}>
+                <div className={styles.progressContainer}>
+                  <div 
+                    className={styles.progressBar}
+                    onClick={handleSeek}
+                  >
+                    <div 
+                      className={styles.progressFill}
+                      style={{ width: `${(currentTime / duration) * 100}%` }}
+                    />
+                  </div>
+                </div>
+                
+                <div className={styles.controlsRow}>
+                  <div className={styles.leftControls}>
+                    <button className={styles.playPauseBtn} onClick={togglePlayPause}>
+                      {isPlaying ? (
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                          <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                        </svg>
+                      ) : (
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                          <path d="M8 5v14l11-7z"/>
+                        </svg>
+                      )}
+                    </button>
+                    
+                    <div className={styles.timeDisplay}>
+                      <span>{formatTime(currentTime)} / {formatTime(duration)}</span>
+                    </div>
+                  </div>
+                  
+                  <div className={styles.rightControls}>
+                    <div className={styles.volumeControl}>
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>
+                      </svg>
+                      <input
+                        type="range"
+                        min="0"
+                        max="1"
+                        step="0.1"
+                        value={volume}
+                        onChange={handleVolumeChange}
+                        className={styles.volumeSlider}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       )}

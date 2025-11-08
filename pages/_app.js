@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }) {
   const [showLoading, setShowLoading] = useState(true); // Start with TRUE - show on initial load
   
   // Check if current page is admin
-  const isAdminPage = router.pathname === '/admin-leads';
+  const isAdminPage = router.pathname === '/admin-leads' || router.pathname === '/admin-login';
 
   useEffect(() => {
     let loadingTimer = null;

@@ -95,14 +95,14 @@
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  /* ALL cards IDENTICAL size - uniform layout like CollegeVidya */
-  width: 260px;
-  min-width: 260px;
+  /* ALL cards IDENTICAL size - uniform layout like CollegeVidya - Reduced by 1 notch */
+  width: 220px; /* Reduced from 260px */
+  min-width: 220px; /* Reduced from 260px */
 }
 
 .portraitCard .thumbnailContainer,
 .landscapeCard .thumbnailContainer {
-  height: 340px; /* SAME height for ALL videos - uniform like CollegeVidya */
+  height: 290px; /* SAME height for ALL videos - uniform like CollegeVidya - Reduced from 340px */
 }
 
 .videoCard:hover {
@@ -409,21 +409,21 @@
 /* Responsive Styles */
 @media (max-width: 1024px) {
   .landscapeCard {
-    width: 280px;
-    min-width: 280px;
+    width: 240px; /* Reduced from 280px */
+    min-width: 240px; /* Reduced from 280px */
   }
 
   .portraitCard {
-    width: 280px;
-    min-width: 280px;
+    width: 240px; /* Reduced from 280px */
+    min-width: 240px; /* Reduced from 280px */
   }
 
   .portraitCard .thumbnailContainer {
-    height: 180px;
+    height: 155px; /* Reduced from 180px */
   }
 
   .landscapeCard .thumbnailContainer {
-    height: 180px;
+    height: 155px; /* Reduced from 180px */
   }
 
   .title {
@@ -445,21 +445,21 @@
   }
 
   .landscapeCard {
-    width: 260px;
-    min-width: 260px;
+    width: 220px; /* Reduced from 260px */
+    min-width: 220px; /* Reduced from 260px */
   }
 
   .portraitCard {
-    width: 260px;
-    min-width: 260px;
+    width: 220px; /* Reduced from 260px */
+    min-width: 220px; /* Reduced from 260px */
   }
 
   .portraitCard .thumbnailContainer {
-    height: 160px;
+    height: 135px; /* Reduced from 160px */
   }
 
   .landscapeCard .thumbnailContainer {
-    height: 160px;
+    height: 135px; /* Reduced from 160px */
   }
 
   .playButton {
@@ -494,21 +494,21 @@
   }
 
   .landscapeCard {
-    width: 240px;
-    min-width: 240px;
+    width: 200px; /* Reduced from 240px */
+    min-width: 200px; /* Reduced from 240px */
   }
 
   .portraitCard {
-    width: 240px;
-    min-width: 240px;
+    width: 200px; /* Reduced from 240px */
+    min-width: 200px; /* Reduced from 240px */
   }
 
   .portraitCard .thumbnailContainer {
-    height: 140px;
+    height: 120px; /* Reduced from 140px */
   }
 
   .landscapeCard .thumbnailContainer {
-    height: 140px;
+    height: 120px; /* Reduced from 140px */
   }
 
   .videoInfo {
@@ -528,4 +528,120 @@
     max-width: calc(100vw - 2rem);
     max-height: calc(100vh - 2rem);
   }
+}
+
+/* Custom Video Controls */
+.videoContainer {
+  position: relative;
+  width: 100%;
+}
+
+.customControls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.videoContainer:hover .customControls,
+.customControls:hover {
+  opacity: 1;
+}
+
+.progressContainer {
+  margin-bottom: 12px;
+}
+
+.progressBar {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: #0074d7;
+  border-radius: 3px;
+  transition: width 0.1s ease;
+}
+
+.controlsRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.leftControls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.rightControls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.playPauseBtn {
+  background: none;
+  border: none;
+  color: white;
+  padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+
+.playPauseBtn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.timeDisplay {
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.volumeControl {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.volumeSlider {
+  width: 60px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+.volumeSlider::-webkit-slider-thumb {
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  background: #0074d7;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.volumeSlider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  background: #0074d7;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
 }

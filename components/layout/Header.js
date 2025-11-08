@@ -15,7 +15,7 @@ const Header = ({ courseTitle = null, adminMode = false, onLogout = null }) => {
   const navigationLinks = [
     {
       title: 'Courses',
-      href: '/#browse-courses'
+      href: '/#course-explorer'
     },
     {
       title: 'Universities',
@@ -174,8 +174,9 @@ const Header = ({ courseTitle = null, adminMode = false, onLogout = null }) => {
                 </nav>
               )}
 
-              {/* Header Actions with University Finder and Social Links */}
-              <div className={styles.headerActions}>
+              {/* Header Actions with University Finder and Social Links - Hide in admin mode */}
+              {!adminMode && (
+                <div className={styles.headerActions}>
                 {/* University Finder Button */}
                 <Link href="/university-matcher" className={styles.universityFinderBtn}>
                   <span className={styles.finderIcon}>🤖</span>
@@ -200,6 +201,7 @@ const Header = ({ courseTitle = null, adminMode = false, onLogout = null }) => {
                   </a>
                 </div>
               </div>
+              )}
 
               {/* Mobile menu button */}
               <button 

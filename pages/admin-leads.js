@@ -8,7 +8,7 @@ export default function AdminLeads() {
   const router = useRouter();
   const [leads, setLeads] = useState([]);
   const [activities, setActivities] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [filter, setFilter] = useState('all'); // all, today, week, month
   const [searchTerm, setSearchTerm] = useState('');
   const [isAdmin, setIsAdmin] = useState(false);
@@ -16,8 +16,7 @@ export default function AdminLeads() {
 
   const handleLogout = () => {
     localStorage.removeItem('mba_ninja_admin');
-    alert('✅ Logged out successfully!');
-    window.close(); // Close the admin tab
+    router.push('/'); // Redirect to homepage instead of closing tab
   };
 
   useEffect(() => {
@@ -28,7 +27,6 @@ export default function AdminLeads() {
       fetchLeads();
     } else {
       setIsAdmin(false);
-      setLoading(false);
     }
   }, []);
 
@@ -46,8 +44,6 @@ export default function AdminLeads() {
       setActivities(activitiesData.activities || []);
     } catch (error) {
       console.error('Error fetching data:', error);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -127,22 +123,8 @@ export default function AdminLeads() {
 
   const filteredLeads = filterLeads();
 
-  if (loading) {
-    return (
-      <>
-        <Head>
-          <title>Loading... | MBA Ninja Admin</title>
-        </Head>
-        <Header adminMode={true} onLogout={handleLogout} />
-        <div className={styles.container}>
-          <div className={styles.loading}>Loading leads...</div>
-        </div>
-      </>
-    );
-  }
-
-  // Check if admin is authenticated
-  if (!isAdmin) {
+  // Check if admin is authenticated first, no loading screen
+  if (!isAdmin && !loading) {
     return (
       <>
         <Head>
@@ -164,6 +146,11 @@ export default function AdminLeads() {
         </div>
       </>
     );
+  }
+
+  // Don't show loading, go straight to content
+  if (!isAdmin) {
+    return null;
   }
 
   return (

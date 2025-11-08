@@ -641,7 +641,7 @@ export default function BrowseCourses() {
                                       <span className={styles.detailLabel}>?? Specializations</span>
                                       <span className={styles.detailValue}>
                                         {selectedCourse.specializations && selectedCourse.specializations.length > 0 
-                                          ? selectedCourse.specializations.join(' � ') 
+                                          ? selectedCourse.specializations.join(' ´┐¢ ') 
                                           : 'General'}
                                       </span>
                                     </div>
@@ -659,7 +659,7 @@ export default function BrowseCourses() {
                                 </div>
 
                                 <aside className={styles.detailsLogos}>
-                                  <p className={styles.logoLabel}>Universities offering this course</p>
+                                  <p className={styles.logoLabel} style={{ textAlign: "center", width: "100%", display: "block" }}>Universities offering this course</p>
                                   <div className={styles.logoGrid}>
                                     {courseUniversities && courseUniversities.length > 0 ? (
                                       courseUniversities.map((uni, idx) => {
@@ -749,7 +749,7 @@ export default function BrowseCourses() {
                                       <span className={styles.detailLabel}>?? Specializations</span>
                                       <span className={styles.detailValue}>
                                         {selectedCourse.specializations && selectedCourse.specializations.length > 0 
-                                          ? selectedCourse.specializations.join(' � ') 
+                                          ? selectedCourse.specializations.join(' ´┐¢ ') 
                                           : 'General'}
                                       </span>
                                     </div>
@@ -767,7 +767,7 @@ export default function BrowseCourses() {
                                 </div>
 
                                 <aside className={styles.detailsLogos}>
-                                  <p className={styles.logoLabel}>Universities offering this course</p>
+                                  <p className={styles.logoLabel} style={{ textAlign: "center", width: "100%", display: "block" }}>Universities offering this course</p>
                                   <div className={styles.logoGrid}>
                                     {courseUniversities && courseUniversities.length > 0 ? (
                                       courseUniversities.map((uni, idx) => {
