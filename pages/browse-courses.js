@@ -20,6 +20,8 @@ export default function BrowseCourses() {
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [universityDatabase, setUniversityDatabase] = useState([]);
 
+  console.log('🔥🔥🔥 BROWSE COURSES PAGE LOADED - TAGLINE SHOULD BE VISIBLE 🔥🔥🔥');
+
   // Map university names to their page URLs
   const getUniversityPageURL = (universityName) => {
     const nameToURLMap = {
@@ -571,6 +573,13 @@ export default function BrowseCourses() {
       <main className={styles.main}>
         <section className={styles.coursesSection}>
           <div className={styles.containerInner}>
+            {/* Tagline */}
+            <div className={styles.taglineContainer}>
+              <p className={styles.tagline}>
+                Streamline your search and discover your ideal fit with our advanced "Course Browser".
+              </p>
+            </div>
+
             <div className={styles.topTabsRow}>
               {['PG Courses', 'UG Courses', 'Executive Education', 'Doctorate/Ph.D.', 'Study Abroad', 'Advanced Diploma', 'Skilling & Certificate'].map((tab) => (
                 <button

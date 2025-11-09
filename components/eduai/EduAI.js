@@ -700,7 +700,7 @@ const EduAI = () => {
               />
               <path 
                 id="bottomArc" 
-                d="M 25 70 A 45 45 0 0 0 115 70"
+                d="M 25 75 A 45 45 0 0 0 115 75"
                 fill="none"
               />
             </defs>

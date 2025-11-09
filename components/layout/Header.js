@@ -6,11 +6,15 @@ import styles from './Header.module.css';
 import LoginModal from '../login/LoginModal';
 import { useAuth } from '../../contexts/AuthContext';
 
-const Header = ({ courseTitle = null, adminMode = false, onLogout = null }) => {
+const Header = ({ courseTitle = null, adminMode = false, onLogout = null, showLoginModal: externalShowLoginModal, setShowLoginModal: externalSetShowLoginModal }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [internalShowLoginModal, setInternalShowLoginModal] = useState(false);
   const router = useRouter();
   const { isLoggedIn, userData, logout } = useAuth();
+
+  // Use external state if provided, otherwise use internal state
+  const showLoginModal = externalShowLoginModal !== undefined ? externalShowLoginModal : internalShowLoginModal;
+  const setShowLoginModal = externalSetShowLoginModal !== undefined ? externalSetShowLoginModal : setInternalShowLoginModal;
 
   const navigationLinks = [
     {

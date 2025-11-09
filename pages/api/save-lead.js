@@ -1,7 +1,9 @@
+import connectDB from '../../lib/mongodb';
+import User from '../../models/User';
 import fs from 'fs';
 import path from 'path';
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' });
   }
@@ -23,29 +25,47 @@ export default function handler(req, res) {
       id: Date.now().toString()
     };
 
-    // Path to store leads
+    console.log('📊 Lead data structure:', JSON.stringify(leadData, null, 2));
+
+    // Try MongoDB first
+    const db = await connectDB();
+    
+    if (db) {
+      // Save to MongoDB
+      try {
+        const newUser = await User.create(leadData);
+        console.log('✅ Lead saved to MongoDB:', newUser._id);
+        
+        return res.status(200).json({ 
+          success: true, 
+          message: 'Lead saved successfully to database',
+          leadId: newUser._id
+        });
+      } catch (dbError) {
+        console.error('❌ MongoDB save error:', dbError);
+        // Fall through to file-based backup
+      }
+    }
+
+    // Fallback to file-based storage if MongoDB fails or not configured
+    console.log('⚠️ Using file-based storage (fallback)');
     const leadsDir = path.join(process.cwd(), 'data');
     const leadsFile = path.join(leadsDir, 'leads.json');
 
-    // Create data directory if it doesn't exist
     if (!fs.existsSync(leadsDir)) {
       fs.mkdirSync(leadsDir, { recursive: true });
     }
 
-    // Read existing leads
     let leads = [];
     if (fs.existsSync(leadsFile)) {
       const fileContent = fs.readFileSync(leadsFile, 'utf-8');
       leads = JSON.parse(fileContent);
     }
 
-    // Add new lead
     leads.push(leadData);
-
-    // Save updated leads
     fs.writeFileSync(leadsFile, JSON.stringify(leads, null, 2));
 
-    console.log('✅ Lead saved successfully:', leadData.id);
+    console.log('✅ Lead saved to file:', leadData.id);
 
     return res.status(200).json({ 
       success: true, 

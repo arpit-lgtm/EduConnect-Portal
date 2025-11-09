@@ -2,9 +2,11 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import styles from '../../styles/BrowseCourses.module.css';
 import { getUniversityLogo } from '../../utils/universityLogoMap';
+import { useAuth } from '../../contexts/AuthContext';
 
-export default function CourseExplorer() {
+export default function CourseExplorer({ onLoginRequired }) {
   const router = useRouter();
+  const { isLoggedIn } = useAuth();
   const [activeTab, setActiveTab] = useState('PG Courses');
   const [activeStream, setActiveStream] = useState('Commerce');
   const [coursesData, setCoursesData] = useState({});
@@ -13,6 +15,16 @@ export default function CourseExplorer() {
   const [courseUniversities, setCourseUniversities] = useState([]);
 
   const handleKnowMore = (course) => {
+    // Check if user is logged in
+    if (!isLoggedIn) {
+      // Show login popup
+      if (onLoginRequired) {
+        onLoginRequired();
+      }
+      return;
+    }
+
+    // If logged in, proceed with normal functionality
     if (selectedCourse && selectedCourse.id === course.id) {
       setSelectedCourse(null);
       setCourseUniversities([]);
@@ -462,6 +474,13 @@ export default function CourseExplorer() {
   return (
     <section className={styles.coursesSection}>
       <div className={styles.containerInner}>
+        {/* Tagline */}
+        <div className={styles.taglineContainer}>
+          <p className={styles.tagline}>
+            Streamline your search and discover your ideal fit with our advanced "COURSE BROWSER"
+          </p>
+        </div>
+
         <div className={styles.topTabsRow}>
           {['PG Courses', 'UG Courses', 'Executive Education', 'Doctorate/Ph.D.', 'Study Abroad', 'Advanced Diploma', 'Skilling & Certificate'].map((tab) => (
             <button key={tab} className={`${styles.topTab} ${activeTab === tab ? styles.activeTopTab : ''}`} onClick={() => setActiveTab(tab)}>{tab}</button>

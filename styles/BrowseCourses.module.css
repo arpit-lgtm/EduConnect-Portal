@@ -16,6 +16,31 @@
   /* Removed min-height to eliminate empty space */
 }
 
+/* Tagline Section */
+.taglineContainer {
+  text-align: center;
+  padding: 2rem 3rem;
+  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+  margin-bottom: 2rem;
+  width: 100%;
+  pointer-events: none;
+}
+
+.tagline {
+  font-size: 1.1rem;
+  font-style: normal;
+  color: #1e293b;
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+  cursor: default;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 /* Top Horizontal Tabs (PG/UG Courses) */
 .topTabsRow {
   display: flex;
@@ -496,13 +521,13 @@
 }
 
 .detailsCard {
-  background: transparent;
+  background: none;
   border-radius: 0;
-  padding: 1.75rem;
+  padding: 0;
   box-shadow: none;
   border: none;
   width: 100%;
-  margin: 0 1rem;
+  margin: 0;
   position: relative;
   overflow: visible;
   display: block;
@@ -549,7 +574,7 @@
   align-items: stretch;
   gap: 1rem;
   justify-content: space-between;
-  padding-left: 1rem;
+  padding: 0;
   min-height: 100%;
 }
 
@@ -574,7 +599,7 @@
 
 .logoGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(200px, 1fr));
   gap: 1rem;
   width: 100%;
   margin-bottom: 1rem;
@@ -594,6 +619,7 @@
   text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
   width: 100%;
+  min-height: 120px;
 }
 
 .logoContainer:hover {
@@ -765,34 +791,34 @@
 /* Course Details Section Styles */
 .courseDetails {
   margin-top: 1.5rem;
-  padding: 1.5rem;
-  background: #f8fafc;
-  border-radius: 12px;
-  border: 1px solid #e2e8f0;
+  padding: 0;
+  background: none;
+  border-radius: 0;
+  border: none;
   animation: slideDown 0.3s ease;
 }
 
 .courseDetailsCentered {
   margin-top: 1.5rem;
-  padding: 1.5rem;
-  background: #f8fafc;
-  border-radius: 12px;
-  border: 1px solid #e2e8f0;
+  padding: 0;
+  background: none;
+  border-radius: 0;
+  border: none;
   animation: slideDown 0.3s ease;
 }
 
 .detailsCard {
-  background: white;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  border: 1px solid #e5e7eb;
+  background: none;
+  border-radius: 0;
+  overflow: visible;
+  box-shadow: none;
+  border: none;
 }
 
 .detailsMain {
   display: flex;
   gap: 1.5rem;
-  padding: 1.5rem;
+  padding: 0;
 }
 
 .detailsContent {
@@ -802,9 +828,9 @@
 
 .detailsLogos {
   flex: 0 0 300px;
-  padding: 1rem;
-  background: #f9fafb;
-  border-left: 1px solid #e5e7eb;
+  padding: 0;
+  background: none;
+  border-left: none;
 }
 
 .logoLabel {

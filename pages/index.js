@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { useState } from 'react';
 import styles from '../styles/Home.module.css';
 import Header from '../components/layout/Header';
 import HeroCarousel from '../components/carousel/HeroCarousel';
@@ -19,6 +20,8 @@ const TalkToExperts = dynamic(() => import('../components/contact/TalkToExperts'
 });
 
 export default function Home() {
+  const [showLoginModal, setShowLoginModal] = useState(false);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -28,7 +31,7 @@ export default function Home() {
         <script src="/assets/js/comprehensive-unified-database-COMPLETE.js" async />
       </Head>
 
-      <Header />
+      <Header showLoginModal={showLoginModal} setShowLoginModal={setShowLoginModal} />
 
       <main className={styles.main}>
         <HeroCarousel />
@@ -38,7 +41,7 @@ export default function Home() {
         </div>
         <VideoTestimonials />
         <div id="course-explorer">
-          <CourseExplorer />
+          <CourseExplorer onLoginRequired={() => setShowLoginModal(true)} />
         </div>
         <div id="universities">
           <Universities />
