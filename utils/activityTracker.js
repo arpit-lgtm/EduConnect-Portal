@@ -6,6 +6,12 @@ export const trackActivity = async (action, details = {}) => {
     const userData = localStorage.getItem('mba_ninja_user');
     const parsedUser = userData ? JSON.parse(userData) : null;
 
+    // ⚠️ SECURITY: ONLY track activities for logged-in users
+    if (!parsedUser || !parsedUser.emailAddress) {
+      console.log('⏭️ Skipping activity tracking - User not logged in');
+      return; // Don't track anonymous users
+    }
+
     // Get IP address
     let ipData = { ip: 'Unknown', userAgent: 'Unknown' };
     try {
@@ -15,15 +21,15 @@ export const trackActivity = async (action, details = {}) => {
       console.error('Error fetching IP:', error);
     }
 
-    // Prepare activity data
+    // Prepare activity data (user is guaranteed to exist at this point)
     const activityData = {
       action, // e.g., 'login', 'questionnaire_started', 'university_contacted', 'chatbot_used'
       details, // Additional info specific to the action
-      user: parsedUser ? {
+      user: {
         name: parsedUser.fullName,
         email: parsedUser.emailAddress,
         phone: parsedUser.contactNumber
-      } : null,
+      },
       ipAddress: ipData.ip,
       userAgent: ipData.userAgent,
       page: window.location.pathname,
@@ -39,7 +45,7 @@ export const trackActivity = async (action, details = {}) => {
       body: JSON.stringify(activityData)
     });
 
-    console.log('📊 Activity tracked:', action);
+    console.log('✅ Activity tracked:', action, '| User:', parsedUser.emailAddress);
   } catch (error) {
     console.error('Error tracking activity:', error);
   }

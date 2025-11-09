@@ -9,8 +9,30 @@ export default async function handler(req, res) {
   }
 
   try {
+    // ⚠️ SECURITY: Reject tracking for anonymous/non-logged-in users
+    if (!req.body.user || !req.body.user.email) {
+      console.log('⏭️ Skipped activity tracking - No valid user data');
+      return res.status(200).json({ 
+        success: true, 
+        message: 'Skipped - User not logged in'
+      });
+    }
+
+    // FLATTEN the details object to top level for easier access in admin dashboard
     const activityData = {
-      ...req.body,
+      action: req.body.action,
+      page: req.body.page,
+      ipAddress: req.body.ipAddress,
+      userAgent: req.body.userAgent,
+      
+      // User info at top level
+      userEmail: req.body.user.email,
+      userName: req.body.user.name,
+      userPhone: req.body.user.phone,
+      
+      // FLATTEN all details fields to top level
+      ...req.body.details, // This spreads universities, courseName, questionnaireResponses, etc.
+      
       timestamp: new Date().toISOString(),
       id: Date.now().toString() + Math.random().toString(36).substr(2, 9)
     };
@@ -21,7 +43,7 @@ export default async function handler(req, res) {
     if (db) {
       try {
         const newActivity = await Activity.create(activityData);
-        console.log('✅ Activity tracked in MongoDB:', newActivity._id);
+        console.log('✅ Activity tracked in MongoDB:', newActivity._id, '| User:', activityData.userEmail);
         
         return res.status(200).json({ 
           success: true, 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Image from 'next/image';
@@ -11,6 +11,11 @@ const AdminLogin = () => {
         password: ''
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
+
+    // Security: Clear any existing admin session when login page loads
+    useEffect(() => {
+        localStorage.removeItem('mba_ninja_admin');
+    }, []);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;

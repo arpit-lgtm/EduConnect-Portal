@@ -8,81 +8,161 @@ export default function AdminLeads() {
   const router = useRouter();
   const [leads, setLeads] = useState([]);
   const [activities, setActivities] = useState([]);
+  const [fraudAlerts, setFraudAlerts] = useState([]);
+  const [userVisits, setUserVisits] = useState({}); // Store visit counts by email
   const [loading, setLoading] = useState(false);
-  const [filter, setFilter] = useState('all'); // all, today, week, month
+  const [filter, setFilter] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [isAdmin, setIsAdmin] = useState(false);
-  const [expandedLead, setExpandedLead] = useState(null); // Track which lead's activities are expanded
+  const [showActivityModal, setShowActivityModal] = useState(false);
+  const [selectedUserActivities, setSelectedUserActivities] = useState([]);
+  const [selectedUserName, setSelectedUserName] = useState('');
+  const [showFraudAlerts, setShowFraudAlerts] = useState(false);
+  const [showVisitHistory, setShowVisitHistory] = useState(false);
+  const [selectedUserVisits, setSelectedUserVisits] = useState([]);
+  const [selectedVisitUserName, setSelectedVisitUserName] = useState('');
 
   const handleLogout = () => {
     localStorage.removeItem('mba_ninja_admin');
-    router.push('/'); // Redirect to homepage instead of closing tab
+    router.push('/');
   };
 
   useEffect(() => {
-    // Check if admin is logged in
     const adminStatus = localStorage.getItem('mba_ninja_admin');
     if (adminStatus === 'true') {
       setIsAdmin(true);
       fetchLeads();
     } else {
       setIsAdmin(false);
+      router.replace('/admin-login');
+      return;
     }
-  }, []);
+
+    const handlePopState = (event) => {
+      localStorage.removeItem('mba_ninja_admin');
+      router.replace('/admin-login');
+    };
+
+    window.addEventListener('popstate', handlePopState);
+
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, [router]);
 
   const fetchLeads = async () => {
     try {
-      const [leadsResponse, activitiesResponse] = await Promise.all([
+      const [leadsResponse, activitiesResponse, fraudResponse] = await Promise.all([
         fetch('/api/get-leads'),
-        fetch('/api/get-activities')
+        fetch('/api/get-activities'),
+        fetch('/api/get-fraud-alerts')
       ]);
       
       const leadsData = await leadsResponse.json();
       const activitiesData = await activitiesResponse.json();
+      const fraudData = await fraudResponse.json();
       
       setLeads(leadsData.leads || []);
       setActivities(activitiesData.activities || []);
+      setFraudAlerts(fraudData.alerts || []);
+
+      // Fetch visit counts for all unique user emails
+      const uniqueEmails = [...new Set((leadsData.leads || []).map(lead => lead.email).filter(Boolean))];
+      const visitCounts = {};
+      
+      await Promise.all(
+        uniqueEmails.map(async (email) => {
+          try {
+            const visitResponse = await fetch(`/api/get-user-visits?email=${encodeURIComponent(email)}`);
+            const visitData = await visitResponse.json();
+            visitCounts[email] = visitData.totalVisits || 0;
+          } catch (error) {
+            console.error(`Error fetching visits for ${email}:`, error);
+            visitCounts[email] = 0;
+          }
+        })
+      );
+      
+      setUserVisits(visitCounts);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
   };
 
   const getUserActivities = (userEmail) => {
-    return activities.filter(activity => 
-      activity.user?.email === userEmail
-    ).sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+    if (!userEmail) return [];
+    
+    const matchedActivities = activities.filter(activity => {
+      const activityEmail = activity.userEmail || 
+                           activity.user?.email || 
+                           activity.user?.emailAddress ||
+                           activity.emailAddress ||
+                           activity.email;
+      
+      return activityEmail === userEmail;
+    }).sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+    
+    return matchedActivities;
+  };
+
+  const openActivityModal = (userEmail, userName) => {
+    const activities = getUserActivities(userEmail);
+    setSelectedUserActivities(activities);
+    setSelectedUserName(userName);
+    setShowActivityModal(true);
+  };
+
+  const closeActivityModal = () => {
+    setShowActivityModal(false);
+    setSelectedUserActivities([]);
+    setSelectedUserName('');
+  };
+
+  const openVisitHistoryModal = async (userEmail, userName) => {
+    try {
+      const response = await fetch(`/api/get-user-visits?email=${encodeURIComponent(userEmail)}`);
+      const data = await response.json();
+      
+      setSelectedUserVisits(data.visits || []);
+      setSelectedVisitUserName(userName);
+      setShowVisitHistory(true);
+    } catch (error) {
+      console.error('Error fetching visit history:', error);
+      setSelectedUserVisits([]);
+    }
+  };
+
+  const closeVisitHistoryModal = () => {
+    setShowVisitHistory(false);
+    setSelectedUserVisits([]);
+    setSelectedVisitUserName('');
   };
 
   const exportToCSV = () => {
     if (leads.length === 0) return;
 
     const headers = [
-      'ID', 'Timestamp', 'User Name', 'Email', 'Contact', 'IP Address',
-      'Course', 'Specialization', 'Budget', 'Location', 'Study Mode',
-      'University Interested', 'Gender', 'DOB', 'City', 'State', 'Qualification'
+      'Date', 'Time', 'Name', 'Contact Number', 'Email', 'City', 'State', 
+      'Gender', 'DOB', 'Qualification'
     ];
 
     const csvContent = [
       headers.join(','),
-      ...leads.map(lead => [
-        lead.id,
-        lead.timestamp,
-        lead.userData?.fullName || '',
-        lead.userData?.emailAddress || '',
-        lead.userData?.contactNumber || '',
-        lead.userData?.ipAddress || lead.ipAddress || 'Unknown',
-        lead.questionnaireData?.courseType || '',
-        lead.questionnaireData?.specialization || '',
-        lead.questionnaireData?.budget || '',
-        lead.questionnaireData?.preferredLocation || '',
-        lead.questionnaireData?.studyMode || '',
-        lead.universityName || '',
-        lead.userData?.gender || '',
-        lead.userData?.dateOfBirth || '',
-        lead.userData?.city || '',
-        lead.userData?.state || '',
-        lead.userData?.currentQualification || ''
-      ].map(field => `"${field}"`).join(','))
+      ...filteredLeads.map(lead => {
+        const date = new Date(lead.timestamp);
+        return [
+          date.toLocaleDateString(),
+          date.toLocaleTimeString(),
+          lead.userData?.fullName || lead.fullName || '',
+          lead.userData?.contactNumber || lead.contactNumber || '',
+          lead.userData?.emailAddress || lead.emailAddress || lead.email || '',
+          lead.userData?.city || lead.city || '',
+          lead.userData?.state || lead.state || '',
+          lead.userData?.gender || lead.gender || '',
+          lead.userData?.dateOfBirth || lead.dateOfBirth || '',
+          lead.userData?.currentQualification || lead.qualification || ''
+        ].map(field => `"${field}"`).join(',');
+      })
     ].join('\n');
 
     const blob = new Blob([csvContent], { type: 'text/csv' });
@@ -96,7 +176,27 @@ export default function AdminLeads() {
   const filterLeads = () => {
     let filtered = [...leads];
 
-    // Time-based filter
+    // FILTER 1: Only show users who actually registered (have complete userData)
+    filtered = filtered.filter(lead => {
+      const hasEmail = lead.userData?.emailAddress || lead.emailAddress || lead.email;
+      const hasName = lead.userData?.fullName || lead.fullName;
+      return hasEmail && hasName; // Must have both email and name to be a real registration
+    });
+
+    // FILTER 2: Remove duplicates based on email
+    const uniqueLeads = [];
+    const seenEmails = new Set();
+    
+    filtered.forEach(lead => {
+      const email = lead.userData?.emailAddress || lead.emailAddress || lead.email;
+      if (email && !seenEmails.has(email)) {
+        seenEmails.add(email);
+        uniqueLeads.push(lead);
+      }
+    });
+    
+    filtered = uniqueLeads;
+
     const now = new Date();
     if (filter === 'today') {
       filtered = filtered.filter(lead => {
@@ -111,7 +211,6 @@ export default function AdminLeads() {
       filtered = filtered.filter(lead => new Date(lead.timestamp) >= monthAgo);
     }
 
-    // Search filter
     if (searchTerm) {
       filtered = filtered.filter(lead => 
         JSON.stringify(lead).toLowerCase().includes(searchTerm.toLowerCase())
@@ -123,7 +222,6 @@ export default function AdminLeads() {
 
   const filteredLeads = filterLeads();
 
-  // Check if admin is authenticated first, no loading screen
   if (!isAdmin && !loading) {
     return (
       <>
@@ -148,7 +246,6 @@ export default function AdminLeads() {
     );
   }
 
-  // Don't show loading, go straight to content
   if (!isAdmin) {
     return null;
   }
@@ -163,8 +260,19 @@ export default function AdminLeads() {
 
       <div className={styles.container}>
         <header className={styles.header}>
-          <h1>📊 Leads Dashboard</h1>
-          <p>Total Leads: {leads.length}</p>
+          <div>
+            <h1>📊 Leads Dashboard</h1>
+            <p>Total Leads: {leads.length}</p>
+          </div>
+          {fraudAlerts.length > 0 && (
+            <button 
+              onClick={() => setShowFraudAlerts(!showFraudAlerts)}
+              className={styles.fraudAlertButton}
+              title="View fraud alerts"
+            >
+              🚨 {fraudAlerts.length} Security Alert{fraudAlerts.length !== 1 ? 's' : ''}
+            </button>
+          )}
         </header>
 
         <div className={styles.controls}>
@@ -209,119 +317,397 @@ export default function AdminLeads() {
           </div>
         </div>
 
-        <div className={styles.leadsContainer}>
+        <div className={styles.tableWrapper}>
           {filteredLeads.length === 0 ? (
             <div className={styles.emptyState}>
               <p>No leads found</p>
             </div>
           ) : (
-            filteredLeads.map(lead => (
-              <div key={lead.id} className={styles.leadCard}>
-                <div className={styles.leadHeader}>
-                  <div>
-                    <h3>{lead.userData?.fullName || 'Unknown'}</h3>
-                    <p className={styles.timestamp}>
-                      {new Date(lead.timestamp).toLocaleString()}
-                    </p>
-                  </div>
-                  <div className={styles.universityBadge}>
-                    {lead.universityName}
-                  </div>
-                </div>
-
-                <div className={styles.leadBody}>
-                  <div className={styles.section}>
-                    <h4>👤 Contact Information</h4>
-                    <div className={styles.infoGrid}>
-                      <div><strong>Email:</strong> {lead.userData?.emailAddress}</div>
-                      <div><strong>Phone:</strong> {lead.userData?.contactNumber}</div>
-                      <div><strong>IP Address:</strong> {lead.userData?.ipAddress || lead.ipAddress || 'Unknown'}</div>
-                      <div><strong>City:</strong> {lead.userData?.city || 'N/A'}</div>
-                      <div><strong>State:</strong> {lead.userData?.state || 'N/A'}</div>
-                      <div><strong>Gender:</strong> {lead.userData?.gender || 'N/A'}</div>
-                      <div><strong>DOB:</strong> {lead.userData?.dateOfBirth || 'N/A'}</div>
-                      <div><strong>Qualification:</strong> {lead.userData?.currentQualification}</div>
-                    </div>
-                  </div>
-
-                  <div className={styles.section}>
-                    <h4>📚 Course Preferences</h4>
-                    <div className={styles.infoGrid}>
-                      <div><strong>Course:</strong> {lead.questionnaireData?.courseType}</div>
-                      <div><strong>Specialization:</strong> {lead.questionnaireData?.specialization}</div>
-                      <div><strong>Study Mode:</strong> {lead.questionnaireData?.studyMode}</div>
-                      <div><strong>Budget:</strong> {lead.questionnaireData?.budget}</div>
-                      <div><strong>Location:</strong> {lead.questionnaireData?.preferredLocation}</div>
-                      <div><strong>Work Experience:</strong> {lead.questionnaireData?.workExperience || 'N/A'}</div>
-                    </div>
-                  </div>
-
-                  {lead.questionnaireData?.additionalPreferences && (
-                    <div className={styles.section}>
-                      <h4>✨ Additional Preferences</h4>
-                      <p>{lead.questionnaireData.additionalPreferences}</p>
-                    </div>
-                  )}
-
-                  {/* Activity Timeline */}
-                  <div className={styles.section}>
-                    <div className={styles.activityHeader}>
-                      <h4>📈 User Activity Log</h4>
-                      <button 
-                        className={styles.toggleButton}
-                        onClick={() => setExpandedLead(expandedLead === lead.id ? null : lead.id)}
-                      >
-                        {expandedLead === lead.id ? '▼ Hide' : `▶ Show (${getUserActivities(lead.userData?.emailAddress).length} activities)`}
-                      </button>
-                    </div>
-                    
-                    {expandedLead === lead.id && (
-                      <div className={styles.activityTimeline}>
-                        {getUserActivities(lead.userData?.emailAddress).length === 0 ? (
-                          <p className={styles.noActivity}>No activity recorded yet</p>
-                        ) : (
-                          getUserActivities(lead.userData?.emailAddress).map((activity, idx) => (
-                            <div key={activity.id || idx} className={styles.activityItem}>
-                              <div className={styles.activityIcon}>
-                                {activity.action === 'login' && '🔐'}
-                                {activity.action === 'university_contact' && '📧'}
-                                {activity.action === 'questionnaire_start' && '📝'}
-                                {activity.action === 'questionnaire_complete' && '✅'}
-                                {activity.action === 'chatbot_usage' && '💬'}
-                                {activity.action === 'compare_universities' && '⚖️'}
-                                {activity.action === 'course_explorer' && '🔍'}
-                              </div>
-                              <div className={styles.activityContent}>
-                                <div className={styles.activityAction}>
-                                  <strong>{activity.action.replace(/_/g, ' ').toUpperCase()}</strong>
-                                  <span className={styles.activityTime}>
-                                    {new Date(activity.timestamp).toLocaleString()}
-                                  </span>
-                                </div>
-                                {activity.details && (
-                                  <div className={styles.activityDetails}>
-                                    {typeof activity.details === 'object' 
-                                      ? JSON.stringify(activity.details, null, 2)
-                                      : activity.details
-                                    }
-                                  </div>
-                                )}
-                                <div className={styles.activityMeta}>
-                                  <span>📍 Page: {activity.page || 'Unknown'}</span>
-                                  <span>🌐 IP: {activity.ipAddress || 'Unknown'}</span>
-                                </div>
-                              </div>
-                            </div>
-                          ))
+            <table className={styles.leadsTable}>
+              <thead>
+                <tr>
+                  <th>🔒</th>
+                  <th>Visits</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Name</th>
+                  <th>Contact Number</th>
+                  <th>Email</th>
+                  <th>City</th>
+                  <th>State</th>
+                  <th>Gender</th>
+                  <th>DOB</th>
+                  <th>Qualification</th>
+                  <th>Activity Log</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredLeads.map(lead => {
+                  const date = new Date(lead.timestamp);
+                  const userActivities = getUserActivities(lead.userData?.emailAddress || lead.emailAddress || lead.email);
+                  
+                  // Check if user is flagged in fraud alerts
+                  const userEmail = lead.userData?.emailAddress || lead.emailAddress || lead.email;
+                  const userPhone = lead.userData?.contactNumber || lead.contactNumber;
+                  const isFlagged = fraudAlerts.some(alert => 
+                    alert.attemptedEmail === userEmail || 
+                    alert.attemptedPhone === userPhone ||
+                    alert.existingEmail === userEmail ||
+                    alert.existingPhone === userPhone
+                  );
+                  
+                  return (
+                    <tr key={lead.id} className={isFlagged ? styles.flaggedRow : ''}>
+                      <td>
+                        {isFlagged && (
+                          <span className={styles.securityFlag} title="Security Alert">🚨</span>
                         )}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-            ))
+                      </td>
+                      <td>
+                        <button 
+                          className={styles.visitCountButton}
+                          onClick={() => openVisitHistoryModal(
+                            lead.userData?.emailAddress || lead.emailAddress || lead.email,
+                            lead.userData?.fullName || lead.fullName || 'User'
+                          )}
+                          title="Click to view visit history"
+                        >
+                          {userVisits[lead.userData?.emailAddress || lead.emailAddress || lead.email] || 0}
+                        </button>
+                      </td>
+                      <td>{date.toLocaleDateString()}</td>
+                      <td>{date.toLocaleTimeString()}</td>
+                      <td>{lead.userData?.fullName || lead.fullName || 'N/A'}</td>
+                      <td>{lead.userData?.contactNumber || lead.contactNumber || 'N/A'}</td>
+                      <td>{lead.userData?.emailAddress || lead.emailAddress || lead.email || 'N/A'}</td>
+                      <td>{lead.userData?.city || lead.city || 'N/A'}</td>
+                      <td>{lead.userData?.state || lead.state || 'N/A'}</td>
+                      <td>{lead.userData?.gender || lead.gender || 'N/A'}</td>
+                      <td>{lead.userData?.dateOfBirth || lead.dateOfBirth || 'N/A'}</td>
+                      <td>{lead.userData?.currentQualification || lead.qualification || 'N/A'}</td>
+                      <td>
+                        <button 
+                          className={styles.activityButton}
+                          onClick={() => openActivityModal(
+                            lead.userData?.emailAddress || lead.emailAddress || lead.email,
+                            lead.userData?.fullName || lead.fullName || 'User'
+                          )}
+                        >
+                          📊 View ({userActivities.length})
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
           )}
         </div>
+
+        {/* Activity Modal - SHOWS ALL DETAILS */}
+        {showActivityModal && (
+          <div className={styles.modalOverlay} onClick={closeActivityModal}>
+            <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+              <div className={styles.modalHeader}>
+                <h2>📈 Activity Log - {selectedUserName}</h2>
+                <button className={styles.modalClose} onClick={closeActivityModal}>✕</button>
+              </div>
+              
+              <div className={styles.modalBody}>
+                {selectedUserActivities.length === 0 ? (
+                  <p className={styles.noActivity}>No activities recorded yet</p>
+                ) : (
+                  <div className={styles.activityTimeline}>
+                    {selectedUserActivities.map((activity, idx) => {
+                      // Get icon based on activity type
+                      const getActivityIcon = (action) => {
+                        if (action?.includes('compare')) return '🏛️';
+                        if (action?.includes('course') || action?.includes('explorer')) return '📚';
+                        if (action?.includes('questionnaire')) return '📝';
+                        if (action?.includes('university') || action?.includes('contact')) return '📞';
+                        if (action?.includes('chatbot') || action?.includes('chat')) return '💬';
+                        if (action?.includes('login')) return '👤';
+                        return '📊';
+                      };
+                      
+                      return (
+                        <div key={activity.id || idx} className={styles.timelineItem}>
+                          <div className={styles.timelineDot}>{getActivityIcon(activity.action)}</div>
+                          <div className={styles.timelineContent}>
+                            <div className={styles.timelineHeader}>
+                              <strong className={styles.timelineAction}>
+                                {activity.action?.replace(/_/g, ' ')}
+                              </strong>
+                              <span className={styles.timelineTime}>
+                                {new Date(activity.timestamp).toLocaleString()}
+                              </span>
+                            </div>
+                          
+                          <div className={styles.timelineDetails}>
+                            
+                            {/* Universities Compared */}
+                            {activity.universities && activity.universities.length > 0 && (
+                              <div className={styles.detailSection}>
+                                <strong>🏛️ Universities Selected for Comparison:</strong>
+                                <ul className={styles.detailList}>
+                                  {activity.universities.map((uni, i) => (
+                                    <li key={i}>{uni}</li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
+                            
+                            {/* Course Information */}
+                            {activity.course && (
+                              <div className={styles.detailSection}>
+                                <strong>📚 Course Clicked:</strong> {activity.course}
+                              </div>
+                            )}
+                            {activity.courseName && (
+                              <div className={styles.detailSection}>
+                                <strong>📚 Course Name:</strong> {activity.courseName}
+                              </div>
+                            )}
+                            {activity.category && (
+                              <div className={styles.detailSection}>
+                                <strong>📂 Category:</strong> {activity.category}
+                              </div>
+                            )}
+                            {activity.count && (
+                              <div className={styles.detailSection}>
+                                <strong>🔢 Total Selected:</strong> {activity.count} universities
+                              </div>
+                            )}
+                            
+                            {/* University Matcher Questionnaire */}
+                            {activity.questionnaireResponses && Object.keys(activity.questionnaireResponses).length > 0 && (
+                              <div className={styles.detailSection}>
+                                <strong>📝 University Matcher - User Selections:</strong>
+                                <div className={styles.questionnaireBox}>
+                                  {Object.entries(activity.questionnaireResponses).map(([key, value]) => {
+                                    if (!value || value === '') return null;
+                                    
+                                    // Format the key nicely
+                                    const formattedKey = key
+                                      .replace(/([A-Z])/g, ' $1')
+                                      .trim()
+                                      .split(' ')
+                                      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                                      .join(' ');
+                                    
+                                    return (
+                                      <div key={key} className={styles.questionnaireItem}>
+                                        <span className={styles.qLabel}>{formattedKey}:</span>
+                                        <span className={styles.qValue}>
+                                          {typeof value === 'object' ? JSON.stringify(value, null, 2) : value}
+                                        </span>
+                                      </div>
+                                    );
+                                  })}
+                                </div>
+                              </div>
+                            )}
+                            
+                            {/* University */}
+                            {activity.university && (
+                              <div className={styles.detailSection}>
+                                <strong>🏛️ University Contacted:</strong> 
+                                {typeof activity.university === 'string' 
+                                  ? activity.university 
+                                  : activity.university.universityName || JSON.stringify(activity.university)
+                                }
+                              </div>
+                            )}
+                            {activity.universityName && !activity.university && (
+                              <div className={styles.detailSection}>
+                                <strong>🏛️ University:</strong> {activity.universityName}
+                              </div>
+                            )}
+                            
+                            {/* Chatbot Conversation */}
+                            {activity.userMessage && (
+                              <div className={styles.detailSection}>
+                                <strong>💬 User Asked:</strong> "{activity.userMessage}"
+                              </div>
+                            )}
+                            {activity.botResponse && (
+                              <div className={styles.detailSection}>
+                                <strong>🤖 AI Response:</strong> {activity.botResponse}
+                              </div>
+                            )}
+                            
+                            {/* Login Info */}
+                            {activity.courseInterest && (
+                              <div className={styles.detailSection}>
+                                <strong>🎯 Course Interest:</strong> {activity.courseInterest}
+                              </div>
+                            )}
+                            {activity.studyMode && (
+                              <div className={styles.detailSection}>
+                                <strong>📖 Study Mode:</strong> {activity.studyMode}
+                              </div>
+                            )}
+                            
+                            {/* Tool Used */}
+                            {activity.tool && (
+                              <div className={styles.detailSection}>
+                                <strong>🛠️ Tool Used:</strong> {activity.tool}
+                              </div>
+                            )}
+                            
+                            {/* Page Visited */}
+                            {activity.page && (
+                              <div className={styles.detailSection}>
+                                <strong>📍 Page:</strong> {activity.page}
+                              </div>
+                            )}
+                            
+                          </div>
+                        </div>
+                      </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Fraud Alerts Panel */}
+        {showFraudAlerts && fraudAlerts.length > 0 && (
+          <div className={styles.modalOverlay} onClick={() => setShowFraudAlerts(false)}>
+            <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+              <div className={styles.modalHeader}>
+                <h2>🚨 Security & Fraud Alerts</h2>
+                <button className={styles.modalClose} onClick={() => setShowFraudAlerts(false)}>✕</button>
+              </div>
+              
+              <div className={styles.modalBody}>
+                <div className={styles.fraudAlertsGrid}>
+                  {fraudAlerts.map((alert, idx) => (
+                    <div key={alert._id || idx} className={`${styles.fraudCard} ${styles[alert.severity]}`}>
+                      <div className={styles.fraudHeader}>
+                        <span className={styles.fraudType}>{alert.fraudType.replace(/_/g, ' ').toUpperCase()}</span>
+                        <span className={`${styles.severityBadge} ${styles[alert.severity]}`}>
+                          {alert.severity}
+                        </span>
+                      </div>
+                      
+                      <div className={styles.fraudDetails}>
+                        <div className={styles.fraudSection}>
+                          <strong>🔍 Attempted Registration:</strong>
+                          <p>Name: {alert.attemptedName}</p>
+                          <p>Email: {alert.attemptedEmail}</p>
+                          <p>Phone: {alert.attemptedPhone}</p>
+                        </div>
+                        
+                        <div className={styles.fraudSection}>
+                          <strong>✅ Existing User:</strong>
+                          <p>Name: {alert.existingName}</p>
+                          <p>Email: {alert.existingEmail}</p>
+                          <p>Phone: {alert.existingPhone}</p>
+                        </div>
+                        
+                        <div className={styles.fraudSection}>
+                          <strong>📝 Description:</strong>
+                          <p>{alert.description}</p>
+                        </div>
+                        
+                        <div className={styles.fraudMeta}>
+                          <span>🕒 {new Date(alert.lastAttempt).toLocaleString()}</span>
+                          <span>📍 IP: {alert.ipAddress}</span>
+                          {alert.attemptCount > 1 && (
+                            <span className={styles.attemptCount}>
+                              🔄 {alert.attemptCount} attempts
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Visit History Modal */}
+        {showVisitHistory && (
+          <div className={styles.modalOverlay} onClick={closeVisitHistoryModal}>
+            <div className={styles.visitHistoryModal} onClick={(e) => e.stopPropagation()}>
+              <div className={styles.modalHeader}>
+                <h2>🕒 Visit History - {selectedVisitUserName}</h2>
+                <button className={styles.modalClose} onClick={closeVisitHistoryModal}>✕</button>
+              </div>
+              
+              <div className={styles.modalBody}>
+                {selectedUserVisits.length === 0 ? (
+                  <p className={styles.noData}>No visit history found</p>
+                ) : (
+                  <div className={styles.visitHistoryList}>
+                    <div className={styles.visitSummary}>
+                      <h3>Total Visits: <span className={styles.visitCount}>{selectedUserVisits.length}</span></h3>
+                    </div>
+                    
+                    {selectedUserVisits.map((visit, index) => (
+                      <div key={visit._id || index} className={styles.visitCard}>
+                        <div className={styles.visitHeader}>
+                          <span className={styles.visitNumber}>Visit #{selectedUserVisits.length - index}</span>
+                          <span className={styles.visitDevice}>{visit.deviceInfo || 'Desktop'}</span>
+                        </div>
+                        
+                        <div className={styles.visitDetails}>
+                          <div className={styles.visitRow}>
+                            <span className={styles.visitLabel}>📅 Date:</span>
+                            <span className={styles.visitValue}>
+                              {new Date(visit.visitDate).toLocaleDateString('en-US', {
+                                weekday: 'long',
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric'
+                              })}
+                            </span>
+                          </div>
+                          
+                          <div className={styles.visitRow}>
+                            <span className={styles.visitLabel}>🕐 Time:</span>
+                            <span className={styles.visitValue}>
+                              {new Date(visit.visitDate).toLocaleTimeString('en-US', {
+                                hour: '2-digit',
+                                minute: '2-digit',
+                                second: '2-digit'
+                              })}
+                            </span>
+                          </div>
+                          
+                          <div className={styles.visitRow}>
+                            <span className={styles.visitLabel}>📍 IP Address:</span>
+                            <span className={styles.visitValue}>{visit.ipAddress || 'Unknown'}</span>
+                          </div>
+                          
+                          <div className={styles.visitRow}>
+                            <span className={styles.visitLabel}>💻 Device:</span>
+                            <span className={styles.visitValue}>{visit.deviceInfo || 'Desktop'}</span>
+                          </div>
+                          
+                          {visit.userAgent && visit.userAgent !== 'unknown' && (
+                            <div className={styles.visitRow}>
+                              <span className={styles.visitLabel}>🌐 Browser:</span>
+                              <span className={styles.visitValue} title={visit.userAgent}>
+                                {visit.userAgent.substring(0, 60)}...
+                              </span>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );

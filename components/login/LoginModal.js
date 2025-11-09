@@ -21,8 +21,23 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [consentGiven, setConsentGiven] = useState(false);
+    const [formError, setFormError] = useState('');
 
-    // OTP-related state
+    // OTP-related state for new user registration
+    const [phoneOtp, setPhoneOtp] = useState('');
+    const [emailOtp, setEmailOtp] = useState('');
+    const [phoneOtpSent, setPhoneOtpSent] = useState(false);
+    const [emailOtpSent, setEmailOtpSent] = useState(false);
+    const [phoneVerified, setPhoneVerified] = useState(false);
+    const [emailVerified, setEmailVerified] = useState(false);
+    const [phoneOtpTimer, setPhoneOtpTimer] = useState(0);
+    const [emailOtpTimer, setEmailOtpTimer] = useState(0);
+    const [sendingPhoneOtp, setSendingPhoneOtp] = useState(false);
+    const [sendingEmailOtp, setSendingEmailOtp] = useState(false);
+    const [verifyingPhoneOtp, setVerifyingPhoneOtp] = useState(false);
+    const [verifyingEmailOtp, setVerifyingEmailOtp] = useState(false);
+
+    // OTP-related state for quick OTP login
     const [otpFormData, setOtpFormData] = useState({
         name: '',
         contact: '',
@@ -36,8 +51,37 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
         if (!isOpen) {
             setLoginType(null);
             setIsSubmitting(false);
+            resetOtpStates();
         }
     }, [isOpen]);
+
+    // Timer countdown for phone OTP
+    useEffect(() => {
+        if (phoneOtpTimer > 0) {
+            const timer = setTimeout(() => setPhoneOtpTimer(phoneOtpTimer - 1), 1000);
+            return () => clearTimeout(timer);
+        }
+    }, [phoneOtpTimer]);
+
+    // Timer countdown for email OTP
+    useEffect(() => {
+        if (emailOtpTimer > 0) {
+            const timer = setTimeout(() => setEmailOtpTimer(emailOtpTimer - 1), 1000);
+            return () => clearTimeout(timer);
+        }
+    }, [emailOtpTimer]);
+
+    const resetOtpStates = () => {
+        setPhoneOtp('');
+        setEmailOtp('');
+        setPhoneOtpSent(false);
+        setEmailOtpSent(false);
+        setPhoneVerified(false);
+        setEmailVerified(false);
+        setPhoneOtpTimer(0);
+        setEmailOtpTimer(0);
+        setFormError('');
+    };
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -135,17 +179,180 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
         }));
     };
 
+    // Send Phone OTP
+    const sendPhoneOTP = async () => {
+        if (!formData.contactNumber || formData.contactNumber.length !== 10) {
+            setFormError('Please enter a valid 10-digit phone number');
+            return;
+        }
+
+        setSendingPhoneOtp(true);
+        setFormError('');
+
+        try {
+            const response = await fetch('/api/send-verification-otp', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    type: 'phone',
+                    value: formData.contactNumber
+                })
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                setPhoneOtpSent(true);
+                setPhoneOtpTimer(300); // 5 minutes
+                // In development, show OTP
+                if (data.devOTP) {
+                    console.log('📱 Phone OTP:', data.devOTP);
+                    alert(`Development Mode - Phone OTP: ${data.devOTP}`);
+                }
+            } else {
+                setFormError(data.message || 'Failed to send OTP');
+            }
+        } catch (error) {
+            console.error('Error sending phone OTP:', error);
+            setFormError('Failed to send OTP. Please try again.');
+        } finally {
+            setSendingPhoneOtp(false);
+        }
+    };
+
+    // Send Email OTP
+    const sendEmailOTP = async () => {
+        if (!formData.emailAddress || !formData.emailAddress.includes('@')) {
+            setFormError('Please enter a valid email address');
+            return;
+        }
+
+        setSendingEmailOtp(true);
+        setFormError('');
+
+        try {
+            const response = await fetch('/api/send-verification-otp', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    type: 'email',
+                    value: formData.emailAddress
+                })
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                setEmailOtpSent(true);
+                setEmailOtpTimer(300); // 5 minutes
+                // In development, show OTP
+                if (data.devOTP) {
+                    console.log('📧 Email OTP:', data.devOTP);
+                    alert(`Development Mode - Email OTP: ${data.devOTP}`);
+                }
+            } else {
+                setFormError(data.message || 'Failed to send OTP');
+            }
+        } catch (error) {
+            console.error('Error sending email OTP:', error);
+            setFormError('Failed to send OTP. Please try again.');
+        } finally {
+            setSendingEmailOtp(false);
+        }
+    };
+
+    // Verify Phone OTP
+    const verifyPhoneOTP = async () => {
+        if (!phoneOtp || phoneOtp.length !== 6) {
+            setFormError('Please enter a valid 6-digit OTP');
+            return;
+        }
+
+        setVerifyingPhoneOtp(true);
+        setFormError('');
+
+        try {
+            const response = await fetch('/api/verify-verification-otp', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    type: 'phone',
+                    value: formData.contactNumber,
+                    otp: phoneOtp
+                })
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                setPhoneVerified(true);
+                setPhoneOtpTimer(0);
+            } else {
+                setFormError(data.message || 'Invalid OTP');
+            }
+        } catch (error) {
+            console.error('Error verifying phone OTP:', error);
+            setFormError('Failed to verify OTP. Please try again.');
+        } finally {
+            setVerifyingPhoneOtp(false);
+        }
+    };
+
+    // Verify Email OTP
+    const verifyEmailOTP = async () => {
+        if (!emailOtp || emailOtp.length !== 6) {
+            setFormError('Please enter a valid 6-digit OTP');
+            return;
+        }
+
+        setVerifyingEmailOtp(true);
+        setFormError('');
+
+        try {
+            const response = await fetch('/api/verify-verification-otp', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    type: 'email',
+                    value: formData.emailAddress,
+                    otp: emailOtp
+                })
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                setEmailVerified(true);
+                setEmailOtpTimer(0);
+            } else {
+                setFormError(data.message || 'Invalid OTP');
+            }
+        } catch (error) {
+            console.error('Error verifying email OTP:', error);
+            setFormError('Failed to verify OTP. Please try again.');
+        } finally {
+            setVerifyingEmailOtp(false);
+        }
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        // Check if both phone and email are verified
+        if (!phoneVerified) {
+            setFormError('Please verify your phone number first');
+            return;
+        }
+
+        if (!emailVerified) {
+            setFormError('Please verify your email address first');
+            return;
+        }
+
         setIsSubmitting(true);
 
         try {
-            // Simulate API call
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            
-            console.log('Login form submitted:', formData);
-            
-            // Get IP address and location info
+            // Get IP address and location info first
             let ipInfo = { ip: 'Unknown', location: null };
             try {
                 const ipResponse = await fetch('/api/get-ip');
@@ -159,6 +366,35 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
             } catch (error) {
                 console.error('Error fetching IP:', error);
             }
+
+            // SECURITY: Verify user before allowing login
+            const verifyResponse = await fetch('/api/verify-user', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    fullName: formData.fullName,
+                    emailAddress: formData.emailAddress,
+                    contactNumber: formData.contactNumber,
+                    ipAddress: ipInfo.ip,
+                    userAgent: ipInfo.userAgent
+                })
+            });
+
+            const verifyData = await verifyResponse.json();
+
+            // Block if fraud detected
+            if (!verifyData.allowed) {
+                setFormError(verifyData.message);
+                setIsSubmitting(false);
+                return;
+            }
+
+            // Show returning user message
+            if (verifyData.status === 'returning_user') {
+                console.log('✅ Returning user verified:', verifyData.message);
+            }
+            
+            console.log('Login form submitted:', formData);
             
             // Add enhanced IP info to form data
             const userDataWithIP = {
@@ -167,7 +403,9 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
                 locationInfo: ipInfo.location,
                 userAgent: ipInfo.userAgent,
                 isLocalhost: ipInfo.isLocalhost,
-                loginTimestamp: new Date().toISOString()
+                loginTimestamp: new Date().toISOString(),
+                userStatus: verifyData.status, // new_user or returning_user
+                flagged: verifyData.flagged || false
             };
             
             // Store user data in auth context and localStorage
@@ -175,6 +413,24 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
             
             // Track login activity
             await trackLogin(userDataWithIP);
+
+            // Track visit for admin dashboard
+            try {
+                const visitResponse = await fetch('/api/track-visit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: formData.emailAddress,
+                        name: formData.fullName,
+                        phone: formData.contactNumber
+                    })
+                });
+                
+                const visitData = await visitResponse.json();
+                console.log('✅ Visit tracked:', visitData.message);
+            } catch (error) {
+                console.error('Failed to track visit:', error);
+            }
             
             // Also save as a lead automatically
             try {
@@ -553,7 +809,61 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
                                     placeholder="Enter 10-digit mobile number"
                                     maxLength="10"
                                     pattern="[0-9]{10}"
+                                    disabled={phoneVerified}
                                 />
+                            </div>
+                            
+                            {/* Phone OTP Section */}
+                            <div className={styles.otpSection}>
+                                {!phoneVerified && (
+                                    <>
+                                        {!phoneOtpSent ? (
+                                            <button
+                                                type="button"
+                                                onClick={sendPhoneOTP}
+                                                disabled={!formData.contactNumber || formData.contactNumber.length !== 10 || sendingPhoneOtp}
+                                                className={styles.sendOtpButton}
+                                            >
+                                                {sendingPhoneOtp ? '⏳ Sending...' : '📱 Send OTP'}
+                                            </button>
+                                        ) : (
+                                            <div className={styles.otpVerificationBox}>
+                                                <input
+                                                    type="text"
+                                                    placeholder="Enter 6-digit OTP"
+                                                    value={phoneOtp}
+                                                    onChange={(e) => setPhoneOtp(e.target.value.replace(/\D/g, '').slice(0, 6))}
+                                                    maxLength="6"
+                                                    className={styles.otpInput}
+                                                />
+                                                <button
+                                                    type="button"
+                                                    onClick={verifyPhoneOTP}
+                                                    disabled={phoneOtp.length !== 6 || verifyingPhoneOtp}
+                                                    className={styles.verifyOtpButton}
+                                                >
+                                                    {verifyingPhoneOtp ? '⏳' : '✓'} Verify
+                                                </button>
+                                                {phoneOtpTimer > 0 ? (
+                                                    <span className={styles.otpTimer}>⏱ {Math.floor(phoneOtpTimer / 60)}:{(phoneOtpTimer % 60).toString().padStart(2, '0')}</span>
+                                                ) : (
+                                                    <button
+                                                        type="button"
+                                                        onClick={sendPhoneOTP}
+                                                        className={styles.resendOtpButton}
+                                                    >
+                                                        🔄 Resend
+                                                    </button>
+                                                )}
+                                            </div>
+                                        )}
+                                    </>
+                                )}
+                                {phoneVerified && (
+                                    <div className={styles.verifiedBadge}>
+                                        ✅ Phone Verified
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -569,7 +879,61 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
                                 onChange={handleInputChange}
                                 required
                                 placeholder="Enter your email address"
+                                disabled={emailVerified}
                             />
+                            
+                            {/* Email OTP Section */}
+                            <div className={styles.otpSection}>
+                                {!emailVerified && (
+                                    <>
+                                        {!emailOtpSent ? (
+                                            <button
+                                                type="button"
+                                                onClick={sendEmailOTP}
+                                                disabled={!formData.emailAddress || !formData.emailAddress.includes('@') || sendingEmailOtp}
+                                                className={styles.sendOtpButton}
+                                            >
+                                                {sendingEmailOtp ? '⏳ Sending...' : '📧 Send OTP'}
+                                            </button>
+                                        ) : (
+                                            <div className={styles.otpVerificationBox}>
+                                                <input
+                                                    type="text"
+                                                    placeholder="Enter 6-digit OTP"
+                                                    value={emailOtp}
+                                                    onChange={(e) => setEmailOtp(e.target.value.replace(/\D/g, '').slice(0, 6))}
+                                                    maxLength="6"
+                                                    className={styles.otpInput}
+                                                />
+                                                <button
+                                                    type="button"
+                                                    onClick={verifyEmailOTP}
+                                                    disabled={emailOtp.length !== 6 || verifyingEmailOtp}
+                                                    className={styles.verifyOtpButton}
+                                                >
+                                                    {verifyingEmailOtp ? '⏳' : '✓'} Verify
+                                                </button>
+                                                {emailOtpTimer > 0 ? (
+                                                    <span className={styles.otpTimer}>⏱ {Math.floor(emailOtpTimer / 60)}:{(emailOtpTimer % 60).toString().padStart(2, '0')}</span>
+                                                ) : (
+                                                    <button
+                                                        type="button"
+                                                        onClick={sendEmailOTP}
+                                                        className={styles.resendOtpButton}
+                                                    >
+                                                        🔄 Resend
+                                                    </button>
+                                                )}
+                                            </div>
+                                        )}
+                                    </>
+                                )}
+                                {emailVerified && (
+                                    <div className={styles.verifiedBadge}>
+                                        ✅ Email Verified
+                                    </div>
+                                )}
+                            </div>
                         </div>
 
                         <div className={styles.formGroup}>
@@ -710,12 +1074,26 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
                         </label>
                     </div>
 
+                    {formError && (
+                        <div className={styles.errorMessage}>
+                            ⚠️ {formError}
+                        </div>
+                    )}
+
+                    {/* Verification Status Message */}
+                    {(!phoneVerified || !emailVerified) && (
+                        <div className={styles.verificationWarning}>
+                            🔒 Please verify {!phoneVerified && !emailVerified ? 'both phone number and email' : !phoneVerified ? 'phone number' : 'email address'} to enable login
+                        </div>
+                    )}
+
                     <button 
                         type="submit" 
-                        className={`${styles.submitButton} ${isSubmitting ? styles.loading : ''}`}
-                        disabled={isSubmitting || !consentGiven}
+                        className={`${styles.submitButton} ${isSubmitting ? styles.loading : ''} ${(!phoneVerified || !emailVerified) ? styles.disabled : ''}`}
+                        disabled={isSubmitting || !consentGiven || !phoneVerified || !emailVerified}
+                        title={(!phoneVerified || !emailVerified) ? 'Please verify both phone and email to proceed' : 'Click to login'}
                     >
-                        {isSubmitting ? 'Creating Account...' : 'LOGIN'}
+                        {isSubmitting ? 'Creating Account...' : (!phoneVerified || !emailVerified) ? '🔒 VERIFY TO LOGIN' : '✓ LOGIN'}
                     </button>
                 </form>
             </div>

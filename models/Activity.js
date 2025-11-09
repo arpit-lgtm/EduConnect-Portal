@@ -17,6 +17,7 @@ const ActivitySchema = new mongoose.Schema({
   
   // Source Tracking
   source: String,
+  tool: String,
   
   // Technical Data
   ipAddress: String,
@@ -40,6 +41,7 @@ const ActivitySchema = new mongoose.Schema({
   },
 }, {
   timestamps: true,
+  strict: false  // IMPORTANT: Allow any fields to be saved
 });
 
 // Create indexes

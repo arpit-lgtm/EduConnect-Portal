@@ -80,11 +80,10 @@ const ExpertGuidance = () => {
                     body: JSON.stringify(leadData)
                 });
                 
-                // Track activity
-                trackUniversityContact({
-                    universityName: 'N/A',
-                    source: 'Expert Counselor Carousel',
-                    formData: { ...userData, expertCounselor: expert.name }
+                // Track activity - university contact with questionnaire data
+                trackUniversityContact('Expert Counselor - ' + expert.name, { 
+                    ...userData, 
+                    source: 'Expert Counselor Carousel' 
                 });
             } catch (error) {
                 console.error('Failed to save lead:', error);
@@ -143,11 +142,10 @@ const ExpertGuidance = () => {
                 body: JSON.stringify(leadData)
             });
             
-            // Track activity
-            trackUniversityContact({
-                universityName: 'N/A',
-                source: 'Expert Counselor Carousel',
-                formData: { ...formData, expertCounselor: selectedExpert?.name }
+            // Track activity - university contact with questionnaire data
+            trackUniversityContact('Expert Counselor - ' + (selectedExpert?.name || 'Unknown'), { 
+                ...formData, 
+                source: 'Expert Counselor Carousel' 
             });
         } catch (error) {
             console.error('Failed to save lead:', error);

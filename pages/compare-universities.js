@@ -713,12 +713,8 @@ export default function CompareUniversities() {
                           body: JSON.stringify(leadData)
                         });
                         
-                        // Track activity
-                        trackUniversityContact({
-                          universityName: uni.name,
-                          source: 'Compare Universities',
-                          formData: userData
-                        });
+                        // Track activity  - Send university name and user's questionnaire data if any
+                        trackUniversityContact(uni.name, userData);
                       } catch (error) {
                         console.error('Failed to save lead:', error);
                       }
