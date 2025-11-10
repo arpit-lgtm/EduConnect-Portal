@@ -185,8 +185,11 @@ const Header = ({ courseTitle = null, adminMode = false, onLogout = null, showLo
                 <Link href="/university-matcher" className={styles.universityFinderBtn}>
                   <span className={styles.finderIcon}>🤖</span>
                   <div className={styles.finderText}>
-                    <strong>Ask MBA-NINJA-AI#</strong>
-                    <small>Find your perfect university in less than a MINUTE!</small>
+                    <small className={styles.flashMessage}>Find the right University within a MINUTE !!</small>
+                    <strong className={styles.mainLabel}>
+                      <span>Ask</span>
+                      <span>MBA NINJA-AI</span>
+                    </strong>
                   </div>
                 </Link>
 

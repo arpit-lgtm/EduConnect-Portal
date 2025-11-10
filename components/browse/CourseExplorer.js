@@ -476,8 +476,9 @@ export default function CourseExplorer({ onLoginRequired }) {
       <div className={styles.containerInner}>
         {/* Tagline */}
         <div className={styles.taglineContainer}>
+          <h3 className={styles.taglineHeading}>COURSE CATALOG</h3>
           <p className={styles.tagline}>
-            Streamline your search and discover your ideal fit with our advanced "COURSE BROWSER"
+            Streamline your search and discover your ideal fit with our advanced "course browser"
           </p>
         </div>
 

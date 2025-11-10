@@ -36,6 +36,12 @@ export default function Home() {
       <main className={styles.main}>
         <HeroCarousel />
         <Stats />
+        <div className={styles.compareTaglineContainer}>
+          <h3 className={styles.compareTaglineHeading}>UNIVERSITY COMPASS</h3>
+          <p className={styles.compareTagline}>
+            Don't Just Choose a University. Choose Your Future. - Use our tool to make a strategic and informed decision.
+          </p>
+        </div>
         <div id="browse-courses">
           <BrowseCategories />
         </div>

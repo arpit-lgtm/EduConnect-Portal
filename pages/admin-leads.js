@@ -259,22 +259,6 @@ export default function AdminLeads() {
       <Header adminMode={true} onLogout={handleLogout} />
 
       <div className={styles.container}>
-        <header className={styles.header}>
-          <div>
-            <h1>📊 Leads Dashboard</h1>
-            <p>Total Leads: {leads.length}</p>
-          </div>
-          {fraudAlerts.length > 0 && (
-            <button 
-              onClick={() => setShowFraudAlerts(!showFraudAlerts)}
-              className={styles.fraudAlertButton}
-              title="View fraud alerts"
-            >
-              🚨 {fraudAlerts.length} Security Alert{fraudAlerts.length !== 1 ? 's' : ''}
-            </button>
-          )}
-        </header>
-
         <div className={styles.controls}>
           <div className={styles.filters}>
             <button 

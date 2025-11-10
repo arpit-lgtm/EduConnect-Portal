@@ -26,8 +26,23 @@
   pointer-events: none;
 }
 
+.taglineHeading {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 1rem 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: default;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  
+}
+
 .tagline {
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   font-style: normal;
   color: #1e293b;
   margin: 0;
@@ -39,6 +54,7 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  
 }
 
 /* Top Horizontal Tabs (PG/UG Courses) */
@@ -927,3 +943,4 @@
     font-size: 0.6rem;
   }
 }
+

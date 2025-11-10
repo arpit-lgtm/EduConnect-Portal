@@ -475,6 +475,14 @@
     border-radius: 6px;
   }
 
+  .flashMessage {
+    font-size: 10px;
+  }
+
+  .mainLabel {
+    font-size: 13px;
+  }
+
   .finderText strong {
     font-size: 14px;
   }
