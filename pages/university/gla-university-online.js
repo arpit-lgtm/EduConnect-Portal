@@ -32,18 +32,16 @@ export default function GLAUniversityOnline() {
   }, []);
 
   const coursesData = [
-    { name: 'MBA', fee: 120000, duration: '2 Years', specializations: '12 Specializations' },
-    { name: 'MBA (Executive)', fee: 140000, duration: '2 Years', specializations: '8 Specializations' },
-    { name: 'MCA', fee: 180000, duration: '2 Years', specializations: '6 Specializations' },
-    { name: 'MA', fee: 60000, duration: '2 Years', specializations: '15 Subjects' },
-    { name: 'MSc', fee: 80000, duration: '2 Years', specializations: '10 Specializations' },
-    { name: 'MCom', fee: 70000, duration: '2 Years', specializations: '5 Specializations' },
-    { name: 'BBA', fee: 150000, duration: '3 Years', specializations: '8 Specializations' },
-    { name: 'BCA', fee: 165000, duration: '3 Years', specializations: '5 Specializations' },
-    { name: 'BCom', fee: 90000, duration: '3 Years', specializations: '6 Specializations' },
-    { name: 'BA', fee: 75000, duration: '3 Years', specializations: '12 Subjects' },
-    { name: 'BSc', fee: 120000, duration: '3 Years', specializations: '8 Specializations' },
-    { name: 'Diploma Programs', fee: 45000, duration: '1 Year', specializations: '10 Programs' }
+    { name: 'Online BBA', fee: 84000, duration: '3 Years', specializations: '4 Specializations' },
+    { name: 'Online MBA', fee: 210000, duration: '2 Years', specializations: '12 Specializations' },
+    { name: 'Online B.Com', fee: 84000, duration: '3 Years', specializations: '5 Specializations' },
+    { name: 'Online PG Diploma', fee: 35000, duration: '1 Year', specializations: '1 Specialization' },
+    { name: 'Online MBA Dual', fee: 543000, duration: '2 Years', specializations: '1 Specialization' },
+    { name: 'Online B.Com Honours', fee: 120000, duration: '3 Years', specializations: '1 Specialization' },
+    { name: 'Online BCA', fee: 120000, duration: '3 Years', specializations: '1 Specialization' },
+    { name: 'Online MCA', fee: 210000, duration: '2 Years', specializations: '1 Specialization' },
+    { name: 'Online Certificate Program', fee: 20000, duration: '6 Months', specializations: '6 Specializations' },
+    { name: 'B.Tech', fee: 80000, duration: '4 Years', specializations: '1 Specialization' }
   ];
 
   const placementPartners = [

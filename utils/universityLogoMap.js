@@ -67,9 +67,13 @@ const universityLogoMap = {
 
   // English And Foreign Languages
   'English And Foreign Languages University (Distance Education)': 'English And Foreign Languages Universit.png',
+  'English and Foreign Languages University': 'English And Foreign Languages Universit.png',
+  'EFLU': 'English And Foreign Languages Universit.png',
 
   // ESGCI
   'ESGCI - École Supérieure de Gestion et Commerce International': 'ESGCI School of Business.png',
+  'ESGCI School of Business': 'ESGCI School of Business.png',
+  'ESGCI': 'ESGCI School of Business.png',
 
   // Alagappa
   'Alagappa University (Distance Education)': 'Alagappa University.png',
@@ -107,6 +111,8 @@ const universityLogoMap = {
 
   // Bharath
   'Bharath Institute of Higher Education and Research': 'Bharath Institute of Higher Education and Research.png',
+  'BIHER (Bharath Institute)': 'Bharath Institute of Higher Education and Research.png',
+  'BIHER': 'Bharath Institute of Higher Education and Research.png',
 
   // Bharathiar
   'Bharathiar University (Distance Education)': 'Bharathiar University.png',
@@ -444,9 +450,12 @@ const universityLogoMap = {
   'Edgewood University': 'Edgewood University.png',
   'Galgotia University': 'Galgotia University.png',
   'Galgotias University': 'Galgotia University.png', // Database has "Galgotias" but logo is "Galgotia"
+  'Galgotias University Online': 'Galgotia University.png',
+  'Galgotias Online': 'Galgotia University.png',
   'GIM': 'GIM.png',
   'GLA University': 'GLA University.png',
   'Golden Gate University': 'Golden Gate University.png',
+  'GGU': 'Golden Gate University.png',
   'Graphic Era University': 'Graphic Era University.png',
   'Guru Kashi University': 'Guru Kashi University.png',
   'Harappa School of Leadership': 'Harappa School of Leadership.png',

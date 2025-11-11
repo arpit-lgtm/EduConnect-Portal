@@ -73,7 +73,8 @@ export default function Universities() {
           'Mahe Manipal',
           'Kuk Dde',
           'Jain University (Distance Education)', // Keep only Online version
-          'Jgu (Online) Coursera' // Keep only O P Jindal Global University
+          'Jgu (Online) Coursera', // Keep only O P Jindal Global University
+          'BITS Pilani (WILP)' // Keep only BITS Pilani
         ];
 
         // Filter out excluded universities
@@ -82,6 +83,18 @@ export default function Universities() {
           return !excludeUniversities.some(excluded => 
             nameLower.includes(excluded.toLowerCase())
           );
+        });
+
+        // Remove duplicate universities by name (keep first occurrence only)
+        const seenNames = new Set();
+        const deduplicatedDatabase = filteredDatabase.filter(uni => {
+          const normalizedName = uni.name.toLowerCase().trim();
+          if (seenNames.has(normalizedName)) {
+            console.log(`🗑️ Removing duplicate: ${uni.name}`);
+            return false;
+          }
+          seenNames.add(normalizedName);
+          return true;
         });
 
         // Add new universities for carousel (only those NOT in database)
@@ -123,8 +136,8 @@ export default function Universities() {
           }
         ];
 
-        // Combine filtered database with new universities
-        const combinedDatabase = [...filteredDatabase, ...newUniversities];
+        // Combine deduplicated database with new universities
+        const combinedDatabase = [...deduplicatedDatabase, ...newUniversities];
 
         // Transform database format to component format
         const transformedUniversities = combinedDatabase.map((uni, index) => {
@@ -197,10 +210,48 @@ export default function Universities() {
             linkUrl = '/university/deakin-university-melbourne';
           } else if (uniName.includes('dibrugarh university') || uniName.includes('dibrugarh') || uniId === 'dibrugarh-university-distance-education') {
             linkUrl = '/university/dibrugarh-university-distance-education';
+          } else if (uniName.includes('durham university') || uniName.includes('durham') || uniId === 'durham-university') {
+            linkUrl = '/university/durham-university';
+          } else if (uniName.includes('edgewood university') || uniName.includes('edgewood') || uniId === 'edgewood-university') {
+            linkUrl = '/university/edgewood-university';
+          } else if (uniName.includes('eflu') || uniName.includes('english and foreign languages university') || uniId === 'eflu-distance-education') {
+            linkUrl = '/university/eflu-distance-education';
+          } else if (uniName.includes('esgci') || uniName.includes('école supérieure de gestion') || uniId === 'esgci-school-of-business') {
+            linkUrl = '/university/esgci-school-of-business';
           } else if (uniName.includes('du sol') || uniName.includes('delhi university') || uniName.includes('school of open learning') || uniId === 'du-sol-school-of-open-learning') {
             linkUrl = '/university/du-sol-school-of-open-learning';
+          } else if (uniName.includes('galgotias university') && uniName.includes('online') || uniId === 'galgotias-university-online') {
+            linkUrl = '/university/galgotias-university-online';
           } else if (uniName.includes('gla university') || uniName.includes('gla') || uniId === 'gla-university-online') {
             linkUrl = '/university/gla-university-online';
+          } else if (uniName.includes('golden gate') || uniId === 'golden-gate-university') {
+            linkUrl = '/university/golden-gate-university';
+          } else if (uniName.includes('graphic era') || uniId === 'graphic-era-university-online') {
+            linkUrl = '/university/graphic-era-university-online';
+          } else if (uniName.includes('guru kashi') || uniId === 'guru-kashi-university-online') {
+            linkUrl = '/university/guru-kashi-university-online';
+          } else if (uniName.includes('gitam') || uniId === 'gitam-university-distance-education') {
+            linkUrl = '/university/gitam-university-distance-education';
+          } else if (uniName.includes('harvard') || uniId === 'harvard-university-online') {
+            linkUrl = '/university/harvard-university-online';
+          } else if (uniName.includes('himachal pradesh university') || uniName.includes('hpu') || uniId === 'hpu-himachal-pradesh-university-distance-education') {
+            linkUrl = '/university/hpu-himachal-pradesh-university-distance-education';
+          } else if (uniName.includes('kerala university') || uniName.includes('ideku') || uniId === 'ideku-kerala-university-distance-education') {
+            linkUrl = '/university/ideku-kerala-university-distance-education';
+          } else if (uniName.includes('ignou') || uniName.includes('indira gandhi') || uniId === 'ignou') {
+            linkUrl = '/university/ignou';
+          } else if (uniName.includes('iiit bangalore') || uniName.includes('iiitb') || uniId === 'iiit-bangalore') {
+            linkUrl = '/university/iiit-bangalore';
+          } else if (uniName.includes('iit dharwad') || uniId === 'iit-dharwad') {
+            linkUrl = '/university/iit-dharwad';
+          } else if (uniName.includes('iim ahmedabad') || uniName.includes('iima') || uniId === 'iim-ahmedabad') {
+            linkUrl = '/university/iim-ahmedabad';
+          } else if (uniName.includes('iim amritsar') || uniId === 'iim-amritsar') {
+            linkUrl = '/university/iim-amritsar';
+          } else if (uniName.includes('iim bangalore') || uniName.includes('iimb') || uniId === 'iim-bangalore') {
+            linkUrl = '/university/iim-bangalore';
+          } else if (uniName.includes('iim bodh gaya') || uniName.includes('iim bodhgaya') || uniId === 'iim-bodh-gaya') {
+            linkUrl = '/university/iim-bodh-gaya';
           }
           
           // Custom course counts for universities with detailed pages
@@ -248,11 +299,48 @@ export default function Universities() {
             'deakin melbourne': '4 Courses',
             'dibrugarh university': '1 Course',
             'dibrugarh': '1 Course',
+            'durham university': '1 Course',
+            'durham': '1 Course',
+            'edgewood university': '13 Courses',
+            'edgewood': '13 Courses',
+            'eflu': '3 Courses',
+            'english and foreign languages university': '3 Courses',
+            'esgci': '2 Courses',
+            'école supérieure de gestion': '2 Courses',
             'du sol': '26 Courses',
             'delhi university': '12 Courses',
             'school of open learning': '12 Courses',
-            'gla university': '12 Courses',
-            'gla': '12 Courses'
+            'galgotias university online': '8 Courses',
+            'galgotias online': '8 Courses',
+            'gla university': '10 Courses',
+            'gla': '10 Courses',
+            'golden gate university': '11 Courses',
+            'golden gate': '11 Courses',
+            'ggu': '11 Courses',
+            'graphic era university': '6 Courses',
+            'graphic era': '6 Courses',
+            'guru kashi university': '8 Courses',
+            'guru kashi': '8 Courses',
+            'gitam university': '11 Courses',
+            'gitam': '11 Courses',
+            'harvard university': '2 Courses',
+            'harvard': '2 Courses',
+            'himachal pradesh university': '17 Courses',
+            'hpu': '17 Courses',
+            'kerala university': '26 Courses',
+            'ideku': '26 Courses',
+            'ignou': '36 Courses',
+            'indira gandhi national open university': '36 Courses',
+            'iiit bangalore': '9 Courses',
+            'iiitb': '9 Courses',
+            'iit dharwad': '1 Course',
+            'iim ahmedabad': '7 Courses',
+            'iima': '7 Courses',
+            'iim amritsar': '3 Courses',
+            'iim bangalore': '5 Courses',
+            'iimb': '5 Courses',
+            'iim bodh gaya': '2 Courses',
+            'iim bodhgaya': '2 Courses'
           };
           
           // Get accurate course count - check custom counts first, then database
@@ -309,11 +397,7 @@ export default function Universities() {
 
         setUniversities(sortedUniversities);
         setLoading(false);
-        console.log(`Loaded ${sortedUniversities.length} universities from database`);
-
-        setUniversities(transformedUniversities);
-        setLoading(false);
-        console.log(`Loaded ${transformedUniversities.length} universities from database`);
+        console.log(`✅ Loaded ${sortedUniversities.length} universities from database`);
       } catch (error) {
         console.error('Error loading universities:', error);
         setLoading(false);
@@ -343,39 +427,42 @@ export default function Universities() {
         </h2>
         
         <div className={styles.universitiesGrid}>
-          {displayedUniversities.map(university => (
-            <a 
-              href={university.link} 
-              key={university.id}
-              className={styles.universityCard}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => {
-                // OPEN LINK IMMEDIATELY - Animation shows when external page loads
-                console.log('🎯 UNIVERSITY CARD CLICKED!', university.name);
-                console.log('� OPENING UNIVERSITY PAGE IMMEDIATELY!');
-                // Link opens normally via href attribute
-              }}
-            >
-              <div className={styles.logoContainer}>
-                <img 
-                  src={university.logo} 
-                  alt={university.name}
-                  className={styles.universityLogo}
-                  onError={(e) => {
-                    // Fallback to a default logo if image fails to load
-                    e.target.onerror = null; // Prevent infinite loop
-                    e.target.src = '/images/universities/default-university-logo.png';
-                    e.target.style.objectFit = 'contain';
-                  }}
-                />
-              </div>
-              <div className={styles.universityInfo}>
-                <p className={styles.coursesCount}>{university.courses}</p>
-                <h3 className={styles.universityName}>{university.name}</h3>
-              </div>
-            </a>
-          ))}
+          {displayedUniversities.map(university => {
+            // Check if link is internal (starts with /)
+            const isInternalLink = university.link && university.link.startsWith('/');
+            
+            return (
+              <a 
+                href={university.link} 
+                key={university.id}
+                className={styles.universityCard}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => {
+                  // OPEN LINK IMMEDIATELY - Animation shows when external page loads
+                  console.log('🎯 UNIVERSITY CARD CLICKED!', university.name);
+                  console.log('🔗 Link:', university.link, 'Internal:', isInternalLink);
+                  // Link opens normally via href attribute
+                }}
+              >
+                <div className={styles.logoContainer}>
+                  <img 
+                    src={university.logo} 
+                    alt={university.name}
+                    className={styles.universityLogo}
+                    onError={(e) => {
+                      // Hide broken images instead of showing fallback
+                      e.target.style.display = 'none';
+                    }}
+                  />
+                </div>
+                <div className={styles.universityInfo}>
+                  <p className={styles.coursesCount}>{university.courses}</p>
+                  <h3 className={styles.universityName}>{university.name}</h3>
+                </div>
+              </a>
+            );
+          })}
         </div>
 
         <div className={styles.viewMoreContainer}>
