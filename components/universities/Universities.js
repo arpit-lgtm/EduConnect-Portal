@@ -252,6 +252,50 @@ export default function Universities() {
             linkUrl = '/university/iim-bangalore';
           } else if (uniName.includes('iim bodh gaya') || uniName.includes('iim bodhgaya') || uniId === 'iim-bodh-gaya') {
             linkUrl = '/university/iim-bodh-gaya';
+          } else if (uniName.includes('iim calcutta') || uniName.includes('iimc') || uniId === 'iim-calcutta') {
+            linkUrl = '/university/iim-calcutta';
+          } else if (uniName.includes('iim indore') || uniId === 'iim-indore') {
+            linkUrl = '/university/iim-indore';
+          } else if (uniName.includes('iim jammu') || uniId === 'iim-jammu') {
+            linkUrl = '/university/iim-jammu';
+          } else if (uniName.includes('iim kashipur') || uniId === 'iim-kashipur') {
+            linkUrl = '/university/iim-kashipur';
+          } else if (uniName.includes('iim kozhikode') || uniName.includes('iimk') || uniId === 'iim-kozhikode') {
+            linkUrl = '/university/iim-kozhikode';
+          } else if (uniName.includes('iim lucknow') || uniName.includes('iiml') || uniId === 'iim-lucknow') {
+            linkUrl = '/university/iim-lucknow';
+          } else if (uniName.includes('iim mumbai') || uniId === 'iim-mumbai') {
+            linkUrl = '/university/iim-mumbai';
+          } else if (uniName.includes('iim nagpur') || uniId === 'iim-nagpur') {
+            linkUrl = '/university/iim-nagpur';
+          } else if (uniName.includes('iim raipur') || uniId === 'iim-raipur') {
+            linkUrl = '/university/iim-raipur';
+          } else if (uniName.includes('iim ranchi') || uniId === 'iim-ranchi') {
+            linkUrl = '/university/iim-ranchi';
+          } else if (uniName.includes('iim rohtak') || uniId === 'iim-rohtak') {
+            linkUrl = '/university/iim-rohtak';
+          } else if (uniName.includes('iim sambalpur') || uniId === 'iim-sambalpur') {
+            linkUrl = '/university/iim-sambalpur';
+          } else if (uniName.includes('iim shillong') || uniId === 'iim-shillong') {
+            linkUrl = '/university/iim-shillong';
+          } else if (uniName.includes('iim sirmaur') || uniId === 'iim-sirmaur') {
+            linkUrl = '/university/iim-sirmaur';
+          } else if (uniName.includes('iim trichy') || uniName.includes('iim tiruchirappalli') || uniId === 'iim-trichy') {
+            linkUrl = '/university/iim-trichy';
+          } else if (uniName.includes('iim udaipur') || uniId === 'iim-udaipur') {
+            linkUrl = '/university/iim-udaipur';
+          } else if (uniName.includes('iim visakhapatnam') || uniName.includes('iim vishakhapatnam') || uniId === 'iim-visakhapatnam') {
+            linkUrl = '/university/iim-visakhapatnam';
+          } else if (uniName.includes('iisc bangalore') || uniName.includes('indian institute of science') || uniId === 'iisc-bangalore') {
+            linkUrl = '/university/iisc-bangalore';
+          } else if (uniName.includes('iit bombay') || uniId === 'iit-bombay') {
+            linkUrl = '/university/iit-bombay';
+          } else if (uniName.includes('iit delhi') || uniId === 'iit-delhi') {
+            linkUrl = '/university/iit-delhi';
+          } else if (uniName.includes('iit guwahati') || uniId === 'iit-guwahati') {
+            linkUrl = '/university/iit-guwahati';
+          } else if (uniName.includes('chaudhary charan singh') || uniName.includes('ccsu meerut') || uniId === 'ccsu-meerut') {
+            linkUrl = '/university/ccsu-meerut';
           }
           
           // Custom course counts for universities with detailed pages
@@ -340,7 +384,36 @@ export default function Universities() {
             'iim bangalore': '5 Courses',
             'iimb': '5 Courses',
             'iim bodh gaya': '2 Courses',
-            'iim bodhgaya': '2 Courses'
+            'iim bodhgaya': '2 Courses',
+            'iim calcutta': '5 Courses',
+            'iimc': '5 Courses',
+            'iim indore': '5 Courses',
+            'iim jammu': '3 Courses',
+            'iim kashipur': '10 Courses',
+            'iim kozhikode': '5 Courses',
+            'iimk': '5 Courses',
+            'iim lucknow': '11 Courses',
+            'iiml': '11 Courses',
+            'iim mumbai': '3 Courses',
+            'iim nagpur': '6 Courses',
+            'iim raipur': '12 Courses',
+            'iim ranchi': '7 Courses',
+            'iim rohtak': '9 Courses',
+            'iim sambalpur': '4 Courses',
+            'iim shillong': '6 Courses',
+            'iim sirmaur': '3 Courses',
+            'iim trichy': '3 Courses',
+            'iim tiruchirappalli': '3 Courses',
+            'iim udaipur': '6 Courses',
+            'iim visakhapatnam': '7 Courses',
+            'iim vishakhapatnam': '7 Courses',
+            'iisc bangalore': '2 Courses',
+            'indian institute of science': '2 Courses',
+            'iit bombay': '3 Courses',
+            'iit delhi': '4 Courses',
+            'iit guwahati': '3 Courses',
+            'chaudhary charan singh': '6 Courses',
+            'ccsu': '6 Courses'
           };
           
           // Get accurate course count - check custom counts first, then database
