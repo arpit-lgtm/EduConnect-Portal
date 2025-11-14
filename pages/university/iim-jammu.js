@@ -89,8 +89,12 @@ const IIMJammu = () => {
                   <span className={styles.infoValue}>📍 Nagrota, Jammu, J&K</span>
                 </div>
                 <div className={styles.infoRow}>
-                  <span className={styles.infoLabel}>Established:</span>
-                  <span className={styles.infoValue}>2016 (Youngest IIM)</span>
+                  <span className={styles.infoLabel}>Ratings:</span>
+                  <div className={styles.rating}>
+                    <span className={styles.stars}>⭐⭐⭐⭐⭐</span>
+                    <span className={styles.ratingText}>4.3/5</span>
+                    <span className={styles.reviews}>(250+ Reviews)</span>
+                  </div>
                 </div>
                 <div className={styles.infoRow}>
                   <span className={styles.infoLabel}>Approvals:</span>
@@ -281,6 +285,22 @@ const IIMJammu = () => {
                     <h3>Final Selection</h3>
                     <p>Final merit determination through composite evaluation of CAT scores, WAT performance, PI assessment, and comprehensive academic profile. Selected candidates receive official admission offers.</p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>MBA Programs:</strong> Bachelor's degree with minimum 50% marks (45% for SC/ST/PWD). Valid CAT score mandatory. Final year students eligible</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Executive MBA:</strong> Graduation with minimum 5 years professional work experience in managerial/leadership positions</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>PhD Programs:</strong> Master's degree with minimum 55% marks and valid research entrance test score (UGC NET/GATE/equivalent)</span>
                 </div>
               </div>
 

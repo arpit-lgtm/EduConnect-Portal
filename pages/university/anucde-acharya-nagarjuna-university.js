@@ -128,7 +128,7 @@ const ANUCDEAcharyaNagarjunaUniversity = () => {
                 className={`${styles.tab} ${activeTab === tab ? styles.activeTab : ''}`}
                 onClick={() => setActiveTab(tab)}
               >
-                {tab === 'faqs' ? 'FAQ' : tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {tab === 'faqs' ? 'FAQ' : tab === 'courses' ? 'Programs' : tab.charAt(0).toUpperCase() + tab.slice(1)}
               </button>
             ))}
           </div>
@@ -277,6 +277,22 @@ const ANUCDEAcharyaNagarjunaUniversity = () => {
                     <h3>Admission Confirmation</h3>
                     <p>Receive official confirmation via email and SMS upon successful document verification and fee processing. Access study materials and examination schedules through student portal.</p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>UG Programs (BA/B.Com/BBA):</strong> 10+2 or equivalent from recognized board with minimum pass marks. No age limit for distance education admissions</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Distance MBA:</strong> Bachelor's degree in any discipline with minimum 50% aggregate marks from UGC recognized university. Work experience preferred but not mandatory</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>PG Programs (MA/M.Com):</strong> Bachelor's degree in relevant subject with minimum 50% marks. Reserved category relaxation as per university norms</span>
                 </div>
               </div>
 

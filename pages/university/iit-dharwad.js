@@ -132,7 +132,7 @@ const IITDharwad = () => {
                 className={`${styles.tab} ${activeTab === tab ? styles.activeTab : ''}`}
                 onClick={() => setActiveTab(tab)}
               >
-                {tab === 'courses' ? 'Programs & Fees' : tab === 'faqs' ? 'FAQ' : tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {tab === 'courses' ? 'Programs & Fees' : tab === 'faqs' ? 'FAQ' : tab === 'courses' ? 'Programs' : tab.charAt(0).toUpperCase() + tab.slice(1)}
               </button>
             ))}
           </div>
@@ -300,6 +300,22 @@ const IITDharwad = () => {
                     <h3>Payment & Submission</h3>
                     <p>With the completion of all steps, proceed with the payment process. After payment, successfully submit your application form. According to latest UGC guidelines, create ABC ID and DEB ID for admission.</p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>M.Tech Programs:</strong> Bachelor's degree in Engineering/Technology with minimum 60% marks (55% for SC/ST/PwD). Valid GATE score mandatory</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>PhD Programs:</strong> Master's degree in relevant discipline with minimum 60% marks. Research proposal, GATE/NET qualification, and interview required</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Executive MBA:</strong> Bachelor's degree with minimum 60% marks and 3-5 years professional work experience in managerial or technical roles</span>
                 </div>
               </div>
 

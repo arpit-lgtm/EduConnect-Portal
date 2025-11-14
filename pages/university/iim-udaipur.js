@@ -109,27 +109,31 @@ const IIMUdaipur = () => {
                   <span className={styles.infoValue}>📍 Udaipur, Rajasthan</span>
                 </div>
                 <div className={styles.infoRow}>
-                  <span className={styles.infoLabel}>Established:</span>
-                  <span className={styles.infoValue}>2011</span>
-                </div>
-                <div className={styles.infoRow}>
-                  <span className={styles.infoLabel}>NIRF Ranking:</span>
-                  <span className={styles.infoValue}>22nd (Management 2024)</span>
-                </div>
-                <div className={styles.infoRow}>
-                  <span className={styles.infoLabel}>Rating:</span>
-                  <span className={styles.infoValue}>⭐ 4.4/5 (339 Reviews)</span>
+                  <span className={styles.infoLabel}>Ratings:</span>
+                  <div className={styles.rating}>
+                    <span className={styles.stars}>⭐⭐⭐⭐⭐</span>
+                    <span className={styles.ratingText}>4.4/5</span>
+                    <span className={styles.reviews}>(339 Reviews)</span>
+                  </div>
                 </div>
                 <div className={styles.infoRow}>
                   <span className={styles.infoLabel}>Approvals:</span>
                   <div className={styles.approvalBadges}>
-                    {['AACSB', 'QS Rankings', 'NIRF'].map((approval, idx) => (
+                    {['UGC', 'AACSB', 'NAAC A'].map((approval, idx) => (
                       <div key={idx} className={styles.badge}>
                         <span className={styles.badgeIcon}>✓</span>
                         <span>{approval}</span>
                       </div>
                     ))}
                   </div>
+                </div>
+                <div className={styles.infoRow}>
+                  <span className={styles.infoLabel}>NIRF Ranking:</span>
+                  <span className={styles.infoValue}>Rank 22 (Management 2024)</span>
+                </div>
+                <div className={styles.infoRow}>
+                  <span className={styles.infoLabel}>Accreditation:</span>
+                  <span className={styles.infoValue}>NAAC A</span>
                 </div>
               </div>
             </div>

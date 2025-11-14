@@ -141,7 +141,7 @@ const ESGCISchoolOfBusiness = () => {
                 className={`${styles.tab} ${activeTab === tab ? styles.activeTab : ''}`}
                 onClick={() => setActiveTab(tab)}
               >
-                {tab === 'faqs' ? 'FAQ' : tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {tab === 'faqs' ? 'FAQ' : tab === 'courses' ? 'Programs' : tab.charAt(0).toUpperCase() + tab.slice(1)}
               </button>
             ))}
           </div>
@@ -306,6 +306,22 @@ const ESGCISchoolOfBusiness = () => {
                     <h3>Enrollment Confirmation</h3>
                     <p>Candidates receiving admission offers can accept by submitting proper acceptance documentation and paying required fees within the specified deadline. Upon completion, the enrollment process is finalized and access to learning resources is granted.</p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Bachelor's Programs:</strong> Higher secondary certificate or equivalent with minimum required grades. International qualifications evaluated for equivalency</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>MBA/Master's Programs:</strong> Bachelor's degree from recognized institution with good academic standing. Work experience preferred for MBA programs</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>International Students:</strong> ABC ID and DEB ID for Indian students per UGC guidelines. Flexible EMI payment options available. 100% fee refund within specified period</span>
                 </div>
               </div>
 

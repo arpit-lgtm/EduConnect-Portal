@@ -38,27 +38,27 @@ const DurhamUniversity = () => {
   const faqs = [
     {
       question: 'Does Durham University hold prestigious recognition globally?',
-      answer: 'Absolutely. Durham University stands as one of the United Kingdom\'s most distinguished academic institutions, established in 1832. It holds triple-crown accreditation from AACSB, AMBA, and EQUIS, and ranks #78 globally in QS World University Rankings 2024. Its membership in the Russell Group further confirms its research excellence and international reputation.'
+      answer: 'Yes, Durham University (established 1832) holds triple-crown accreditation (AACSB, AMBA, EQUIS) and ranks #78 globally in QS 2024.'
     },
     {
       question: 'What is Durham University\'s current global ranking position?',
-      answer: 'Durham University achieves remarkable global standing with #78 position in QS World University Rankings 2024. Within Europe specifically, it ranks #27 in QS World University Rankings 2024: Europe. Additionally, 19 of its academic subjects feature among the world\'s top 100 disciplines according to QS Rankings by Subject 2024.'
+      answer: 'Durham ranks #78 globally (QS 2024), #27 in Europe, with 19 subjects in top 100 disciplines.'
     },
     {
       question: 'Are online degree programs available at Durham University?',
-      answer: 'Yes, Durham University has embraced online education to extend its world-class academic offerings globally. The university delivers comprehensive online programs, particularly designed for working professionals seeking advanced qualifications. These programs maintain identical academic rigor and quality standards as campus-based offerings while providing maximum flexibility.'
+      answer: 'Yes, Durham offers comprehensive online programs for working professionals with the same academic rigor as campus-based offerings.'
     },
     {
       question: 'Is there an application fee required for Durham University admissions?',
-      answer: 'Application fee requirements vary by program and applicant category. International students should expect application fees for certain programs. It\'s recommended to verify specific fee details on the official university website or consult with admissions counselors before submitting your application to ensure accurate payment processing.'
+      answer: 'Application fees vary by program. Verify specific details on the official website before submitting.'
     },
     {
       question: 'What scholarship opportunities and financial assistance does Durham offer?',
-      answer: 'Durham University provides extensive financial support through various channels including the Durham Grant Scheme, merit-based scholarships, instant access hardship funds, government funding options, and dedicated student support funds. These initiatives aim to make world-class education accessible regardless of financial background. Education loans are also available through partner institutions.'
+      answer: 'Durham provides Durham Grant Scheme, merit scholarships, hardship funds, government funding, and education loans through partner institutions.'
     },
     {
       question: 'Does Durham University maintain international accreditation standards?',
-      answer: 'Yes, Durham University holds the prestigious triple-crown accreditation from three globally recognized bodies: AACSB (Association to Advance Collegiate Schools of Business), AMBA (The Association of MBAs), and EFMD/EQUIS (European Foundation for Management Development/Quality Improvement System). This triple accreditation places Durham among the elite business schools worldwide.'
+      answer: 'Yes, Durham holds triple-crown accreditation from AACSB, AMBA, and EFMD/EQUIS, placing it among elite business schools.'
     }
   ];
 
@@ -130,7 +130,7 @@ const DurhamUniversity = () => {
                 className={`${styles.tab} ${activeTab === tab ? styles.activeTab : ''}`}
                 onClick={() => setActiveTab(tab)}
               >
-                {tab === 'faqs' ? 'FAQ' : tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {tab === 'faqs' ? 'FAQ' : tab === 'courses' ? 'Programs' : tab.charAt(0).toUpperCase() + tab.slice(1)}
               </button>
             ))}
           </div>
@@ -285,6 +285,22 @@ const DurhamUniversity = () => {
                     <h3>Admission Confirmation</h3>
                     <p>Upon successful review, receive your official acceptance letter with enrollment details. Access orientation resources and learning platform credentials to commence your Durham experience.</p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Master's/MBA Programs:</strong> Bachelor's degree with good academic standing. IELTS 6.5-7.0 or equivalent TOEFL score. Work experience preferred for MBA</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>PhD/Research Programs:</strong> Master's degree in relevant field with strong academic record. Research proposal and references required</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>International Students:</strong> Valid English proficiency tests (IELTS/TOEFL/PTE). Authentic certified documents. Early applications receive priority scholarship consideration</span>
                 </div>
               </div>
 

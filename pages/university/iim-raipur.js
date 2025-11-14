@@ -46,27 +46,27 @@ const IIMRaipur = () => {
   const faqs = [
     {
       question: 'What comprehensive executive programs does IIM Raipur offer?',
-      answer: 'IIM Raipur offers an extensive portfolio of executive programs including Executive MBA, Executive PG Program in Management, Online MBA, Global Executive PG Program, Doctor of Philosophy, and specialized certifications in Leadership & Management, Finance, Marketing, Operations, Data Science & Machine Learning, and Machine Learning using R and Python. Additionally, IIM Online Courses provide diverse short-term programs in Business Finance, Leadership & Change Management, General Management, Operations Management with Six Sigma, and Digital Marketing, all designed to deliver transformative learning experiences for accomplished professionals.'
+      answer: 'IIM Raipur offers Executive MBA, PG Programs, Online MBA, PhD, and specialized certifications in Leadership, Finance, Marketing, Operations, Data Science, and Digital Marketing.'
     },
     {
       question: 'What global recognition does IIM Raipur command?',
-      answer: 'IIM Raipur holds prestigious triple international accreditation from NIRF, WES, and AACSB, ensuring global recognition and acceptance. Ranked 14th nationally in the NIRF 2024 Management category with an outstanding score of 64.40, the institute has also been awarded the ET Cases Award for Social Initiative/Social Entrepreneurship. Established in 2010, IIM Raipur represents one of India\'s youngest yet most distinguished business schools, pioneering interactive satellite-delivered learning in Asia and maintaining collaborations with premier international management institutes.'
+      answer: 'IIM Raipur holds NIRF, WES, and AACSB accreditation, ranks 14th in NIRF 2024, and received the ET Cases Award for Social Entrepreneurship.'
     },
     {
       question: 'What placement success characterizes IIM Raipur graduates?',
-      answer: 'IIM Raipur maintains exceptional placement records with the highest CTC offered around INR 46.50 lakhs per annum and average CTC approximately INR 67.64 lakhs per year for 2023. The institute has developed excellent relationships with 300+ renowned corporations across banking, consulting, manufacturing, information technology, e-commerce, and other diverse industries. Alumni consistently experience 50% average salary hikes, 3X increase in interview opportunities, and secure leadership positions in reputable firms globally, reflecting the institute\'s strong industry connections and quality education.'
+      answer: 'IIM Raipur reports highest CTC of ₹46.50L, average ₹67.64L with 300+ corporate partners and 50% salary hikes for alumni globally.'
     },
     {
       question: 'Are IIM Raipur\'s online certifications professionally valuable?',
-      answer: 'Absolutely. IIM Raipur\'s online programs are provided via dedicated platforms delivering identical academic rigor and quality as on-campus offerings. The curriculum is designed by skilled teachers with current material and rigorous assessments, offering high-quality learning experiences. Certifications carry the official IIM Raipur seal and prestigious NIRF, WES, and AACSB accreditations, significantly enhancing professional credibility, career advancement prospects, and earning potential. The programs equip learners with knowledge and skills needed to thrive in professional roles while staying current with industry developments.'
+      answer: 'Yes, certifications carry official IIM Raipur seal with NIRF, WES, and AACSB accreditations, enhancing credibility and career advancement prospects.'
     },
     {
       question: 'What makes IIM Raipur\'s learning environment exceptional?',
-      answer: 'IIM Raipur provides cutting-edge amenities including modern classrooms, well-stocked library, computer laboratories, auditorium, sports facilities, dormitories, and leisure spaces. The institute emphasizes experiential learning and industry contacts, regularly hosting guest lectures, workshops, seminars, and conferences to expose students to real-world business issues and possibilities. Strategic collaborations with top national and international universities provide global exposure opportunities, while case-based pedagogy and research-driven curriculum ensure comprehensive skill development for contemporary business challenges.'
+      answer: 'Modern classrooms, library, labs, auditorium, sports facilities, experiential learning through guest lectures, workshops, seminars, and international collaborations.'
     },
     {
       question: 'Can working professionals pursue IIM Raipur programs effectively?',
-      answer: 'Yes, IIM Raipur\'s online certification programs are specifically designed for working professionals, featuring flexible schedules and sophisticated online learning platforms. Programs provide thorough understanding of management principles, tools, and strategies through core courses, optional specializations, case studies, real-world applications, industry insights, and interactive learning activities. This architecture enables participants to balance demanding professional responsibilities with rigorous academic pursuits, ensuring continuous career momentum while acquiring transformative management education from one of India\'s most respected business schools.'
+      answer: 'Yes, programs feature flexible schedules and online platforms with core courses, specializations, case studies, and interactive activities for working professionals.'
     }
   ];
 
@@ -304,6 +304,22 @@ const IIMRaipur = () => {
                     <h3>Program Access</h3>
                     <p>Complete the registration by submitting the enrollment form and paying required fees. Receive program access information via email or other communication methods, enabling you to commence your transformative learning journey at IIM Raipur.</p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>MBA/PGPM Programs:</strong> Bachelor's degree with minimum 50% marks. CAT score with competitive percentile required</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Executive MBA:</strong> Graduation with minimum 3-5 years professional experience in managerial/technical roles</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Online Certificate Programs:</strong> Bachelor's degree from recognized university. ABC ID and DEB ID required as per UGC guidelines</span>
                 </div>
               </div>
 

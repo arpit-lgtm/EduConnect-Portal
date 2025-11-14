@@ -169,7 +169,7 @@ const AmityUniversity = () => {
                 className={`${styles.tab} ${activeTab === tab ? styles.activeTab : ''}`}
                 onClick={() => setActiveTab(tab)}
               >
-                {tab === 'faqs' ? 'FAQ' : tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {tab === 'faqs' ? 'FAQ' : tab === 'courses' ? 'Programs' : tab.charAt(0).toUpperCase() + tab.slice(1)}
               </button>
             ))}
           </div>
@@ -322,6 +322,22 @@ const AmityUniversity = () => {
                     <h3>Start Learning</h3>
                     <p>Access your LMS credentials and begin your academic journey with orientation sessions.</p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>UG Online Programs (BBA/BCA/B.Com):</strong> 10+2 or equivalent examination from recognized board with minimum 50% aggregate marks</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>PG Online Programs (MBA/MCA/M.Com):</strong> Bachelor's degree from UGC recognized university with minimum 50% marks. Work experience preferred for MBA</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Certificate/Diploma Programs:</strong> Graduation degree for PG certificates. 12th pass for UG diplomas. Specific requirements vary by program</span>
                 </div>
               </div>
 

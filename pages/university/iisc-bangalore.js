@@ -53,23 +53,23 @@ const IIScBangalore = () => {
   const faqs = [
     {
       question: 'What are the programs offered at the Indian Institute of Science (IISc), Bangalore?',
-      answer: 'The Indian Institute of Science (IISc) Bangalore offers comprehensive advanced education programs spanning undergraduate, postgraduate, and doctoral levels across science and engineering disciplines. The distinguished program portfolio includes a specialized four-year undergraduate Bachelor of Science (Research) program focused on delivering research-driven education to young learners in fundamental sciences including physics, chemistry, biology, mathematics, and materials science. At the postgraduate level, IISc offers rigorous Master of Science (M.Sc.), Master of Technology (M.Tech), and Master of Management programs across diverse specializations within its 42 departments and centers organized into six academic divisions. The flagship doctoral programs—Doctor of Philosophy (PhD) and Part-Time PhD—enable aspiring scholars to pursue advanced research in cutting-edge areas spanning engineering sciences, physical sciences, chemical sciences, biological sciences, interdisciplinary research, and management. Each program features meticulously designed curriculum combining theoretical depth with intensive research training, delivered by distinguished faculty possessing doctoral degrees from premier global institutions and extensive research expertise.'
+      answer: 'IISc offers B.Sc (Research), M.Sc, M.Tech, Master of Management, PhD, and Part-Time PhD across 42 departments in science and engineering.'
     },
     {
       question: 'Does IISc offer courses in online mode?',
-      answer: 'Currently, the Indian Institute of Science (IISc) Bangalore primarily focuses on delivering intensive research-driven education through on-campus residential programs that maximize student-faculty interaction, laboratory access, collaborative research opportunities, and immersive learning experiences essential for advanced scientific and technological education. While traditional degree programs like undergraduate, master\'s, and doctoral offerings require campus attendance to facilitate hands-on laboratory work, research project engagement, and collaborative investigations central to IISc\'s educational philosophy, the institute has been progressively exploring online and hybrid learning modalities for specific continuing education programs, executive education offerings, and specialized certificate courses. These emerging online initiatives leverage sophisticated technology platforms to extend IISc\'s expertise to working professionals and researchers who cannot relocate for full-time residential programs. For authoritative information regarding current online program availability, specific offerings, eligibility criteria, and enrollment procedures, prospective students should visit the official IISc Bangalore website or contact the admissions office directly for comprehensive guidance aligned with their educational aspirations and professional circumstances.'
+      answer: 'IISc focuses on residential programs but offers emerging online continuing education, executive programs, and specialized certificate courses. Check official website.'
     },
     {
       question: 'What are the qualifications required for admission at IISc?',
-      answer: 'Admission qualifications at the Indian Institute of Science (IISc) Bangalore vary significantly across program levels, reflecting the institute\'s commitment to admitting exceptionally talented students with strong academic foundations and research aptitude. For the four-year undergraduate Bachelor of Science (Research) program, students must demonstrate outstanding performance in national-level entrance examinations including JEE Advanced, KVPY (Kishore Vaigyanik Protsahan Yojana), NEET-UG, or equivalent assessments, combined with exceptional academic records in 10+2 examinations. Master\'s program applicants typically require a bachelor\'s degree in relevant disciplines with specified minimum academic performance standards, along with valid scores in entrance examinations such as GATE (Graduate Aptitude Test in Engineering), CEED (Common Entrance Examination for Design), or IISc-specific entrance tests depending on the chosen specialization. Doctoral program candidates must possess a master\'s degree with strong academic credentials and demonstrate research potential through GATE scores, UGC-NET qualification, CSIR-NET certification, or equivalent national-level examination performance, followed by rigorous interviews assessing research aptitude, domain knowledge, problem-solving capabilities, and alignment with available faculty research interests. International applicants may submit GRE scores along with appropriate academic credentials from recognized institutions.'
+      answer: 'UG: JEE Advanced/KVPY/NEET-UG. PG: Bachelor\'s degree + GATE/CEED. PhD: Master\'s + GATE/UGC-NET/CSIR-NET. International: GRE scores accepted.'
     },
     {
       question: 'What are the ranking and accreditation of IISc Bangalore?',
-      answer: 'The Indian Institute of Science (IISc) Bangalore commands extraordinary recognition as India\'s premier research institution, validated through exceptional rankings and prestigious accreditations from national and international assessment bodies. In NIRF (National Institutional Ranking Framework) 2024 rankings conducted by the Ministry of Education, Government of India, IISc achieved the remarkable distinction of securing #1 position in the University Category, demonstrating absolute leadership among Indian research universities, while simultaneously achieving the prestigious #2 position in the Overall Category across all higher education institutions nationwide. This exceptional performance reflects IISc\'s comprehensive excellence spanning research output, teaching quality, learning resources, graduation outcomes, outreach initiatives, inclusivity, and perceived reputation among academic peers and industry stakeholders. IISc received the distinguished Institute of Eminence (IOE) designation in 2018 from the Government of India, acknowledging its potential to achieve global eminence in research and education. Additionally, the National Assessment and Accreditation Council (NAAC) awarded IISc the highest A+ grade, validating superior standards in infrastructure, faculty qualifications, research productivity, student support services, and governance mechanisms. These remarkable achievements position IISc among the world\'s leading research institutions, attracting exceptional students, accomplished faculty, substantial research funding, and prestigious international collaborations.'
+      answer: 'IISc ranks #1 NIRF 2024 University, #2 Overall, Institute of Eminence (IOE) 2018, NAAC A+, premier research institution globally.'
     },
     {
       question: 'How to contact IISc for program information?',
-      answer: 'Prospective students seeking comprehensive information regarding programs, admission processes, eligibility criteria, research opportunities, financial assistance, and application procedures at the Indian Institute of Science (IISc) Bangalore have multiple accessible channels for obtaining authoritative guidance. The official IISc Bangalore website (www.iisc.ac.in) serves as the primary information resource, providing extensive details about all academic programs, admission requirements, application timelines, faculty profiles, research centers, facilities, campus life, and student support services. The website features dedicated sections for undergraduate admissions, postgraduate admissions, and doctoral admissions, each offering specific information, downloadable application forms, important dates, and frequently asked questions addressing common inquiries. Prospective applicants can directly contact the IISc Admissions Office through official communication channels including designated email addresses and telephone numbers published on the website for personalized assistance, query resolution, and comprehensive guidance throughout the application journey. The institute\'s scenic 440-acre campus is located in the heart of Bengaluru, Karnataka, India\'s technology hub, providing an inspiring environment conducive to focused learning, collaborative research, and holistic development. For international applicants, IISc provides dedicated support addressing visa procedures, documentation requirements, and transition assistance, ensuring smooth admission processes for talented students worldwide seeking to join India\'s most prestigious research institution.'
+      answer: 'Visit www.iisc.ac.in for programs, admissions, eligibility. Contact admissions office via email/phone. Campus: 440-acre, Bengaluru, Karnataka.'
     }
   ];
 
@@ -101,16 +101,12 @@ const IIScBangalore = () => {
                   <span className={styles.infoValue}>📍 Bengaluru, Karnataka</span>
                 </div>
                 <div className={styles.infoRow}>
-                  <span className={styles.infoLabel}>Established:</span>
-                  <span className={styles.infoValue}>1909</span>
-                </div>
-                <div className={styles.infoRow}>
-                  <span className={styles.infoLabel}>NIRF Ranking:</span>
-                  <span className={styles.infoValue}>1st University, 2nd Overall 2024</span>
-                </div>
-                <div className={styles.infoRow}>
-                  <span className={styles.infoLabel}>Rating:</span>
-                  <span className={styles.infoValue}>⭐ 3.7/5 (263 Reviews)</span>
+                  <span className={styles.infoLabel}>Ratings:</span>
+                  <div className={styles.rating}>
+                    <span className={styles.stars}>⭐⭐⭐⭐</span>
+                    <span className={styles.ratingText}>3.7/5</span>
+                    <span className={styles.reviews}>(263 Reviews)</span>
+                  </div>
                 </div>
                 <div className={styles.infoRow}>
                   <span className={styles.infoLabel}>Approvals:</span>
@@ -122,6 +118,14 @@ const IIScBangalore = () => {
                       </div>
                     ))}
                   </div>
+                </div>
+                <div className={styles.infoRow}>
+                  <span className={styles.infoLabel}>NIRF Ranking:</span>
+                  <span className={styles.infoValue}>Rank 1 (University 2024)</span>
+                </div>
+                <div className={styles.infoRow}>
+                  <span className={styles.infoLabel}>Accreditation:</span>
+                  <span className={styles.infoValue}>NAAC A+</span>
                 </div>
               </div>
             </div>
@@ -288,6 +292,18 @@ const IIScBangalore = () => {
                   <li>Fellowships and research assistantships available for doctoral students</li>
                   <li>Merit-based scholarships and government fellowships accessible</li>
                 </ul>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>PhD in Science:</strong> Master's degree in Science with minimum 60% marks or first class. CSIR/UGC NET, GATE, or equivalent national examination qualification preferred</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>PhD in Engineering:</strong> M.Tech/M.E. with minimum 60% marks or Bachelor's with exceptional GATE score. Research proposal and interview mandatory for selection</span>
+                </div>
+              </div>
               </div>
             </div>
           )}

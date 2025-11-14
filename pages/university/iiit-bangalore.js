@@ -303,6 +303,22 @@ const IIITBangalore = () => {
                   </div>
                 </div>
               </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>M.Tech Programs:</strong> Bachelor's degree in Engineering/Technology with minimum 60% marks. Valid GATE score required for most specializations</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>PGP/MBA Programs:</strong> Bachelor's degree from recognized university with minimum 50% marks. CAT/GMAT score or relevant entrance exam qualification</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>PhD Programs:</strong> Master's degree with 60% marks. Research aptitude demonstrated through GATE/NET or equivalent. Interview and proposal required</span>
+                </div>
+              </div>
             </div>
           )}
 

@@ -166,7 +166,7 @@ const BharathidasanUniversity = () => {
                 className={`${styles.tab} ${activeTab === tab ? styles.activeTab : ''}`}
                 onClick={() => setActiveTab(tab)}
               >
-                {tab === 'faqs' ? 'FAQ' : tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {tab === 'faqs' ? 'FAQ' : tab === 'courses' ? 'Programs' : tab.charAt(0).toUpperCase() + tab.slice(1)}
               </button>
             ))}
           </div>
@@ -318,6 +318,22 @@ const BharathidasanUniversity = () => {
                     <h3>Start Learning</h3>
                     <p>Join weekend classes at the designated study center and access comprehensive learning resources.</p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>UG Distance Programs (BA/B.Com/BBA/BCA):</strong> 12th pass from recognized board with minimum pass marks. 60+ programs including 15 UG courses available</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>PG Distance Programs (MBA/MCA/M.Com/MA):</strong> Bachelor's degree in relevant stream with minimum 50% from UGC recognized university. 26 PG courses offered</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Diploma/Certificate Programs:</strong> Specific requirements per program. Degrees equivalent to regular mode with same academic value. Weekend classes available</span>
                 </div>
               </div>
 

@@ -136,7 +136,7 @@ const MITUniversity = () => {
                 className={`${styles.tab} ${activeTab === tab ? styles.activeTab : ''}`}
                 onClick={() => setActiveTab(tab)}
               >
-                {tab === 'faqs' ? 'FAQ' : tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {tab === 'faqs' ? 'FAQ' : tab === 'courses' ? 'Programs' : tab.charAt(0).toUpperCase() + tab.slice(1)}
               </button>
             ))}
           </div>
@@ -286,6 +286,22 @@ const MITUniversity = () => {
                     <h3>Enrollment Confirmation</h3>
                     <p>Receive admission confirmation with LMS credentials, orientation schedule, and welcome kit details.</p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>UG Programs (BBA/BCA/B.Com):</strong> 10+2 from recognized board with minimum qualifying marks. Rolling admissions throughout the year</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>PG Programs (MBA/MCA/M.Com):</strong> Bachelor's degree from recognized university with minimum 50% marks. No entrance examination for most programs</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Scholarships Available:</strong> Merit-based scholarships for exceptional candidates. Orientation program for online learning tools and LMS platform</span>
                 </div>
               </div>
 

@@ -139,7 +139,7 @@ const GalgotiasUniversityOnline = () => {
                 className={`${styles.tab} ${activeTab === tab ? styles.activeTab : ''}`}
                 onClick={() => setActiveTab(tab)}
               >
-                {tab === 'faqs' ? 'FAQ' : tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {tab === 'faqs' ? 'FAQ' : tab === 'courses' ? 'Programs' : tab.charAt(0).toUpperCase() + tab.slice(1)}
               </button>
             ))}
           </div>
@@ -309,6 +309,22 @@ const GalgotiasUniversityOnline = () => {
                     <h3>Fee Payment & Confirmation</h3>
                     <p>Complete the fee payment through the secure online payment portal. Download and save the payment receipt for future reference. Upon successful payment, your admission process will be finalized and confirmed.</p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>UG Online Programs (BBA/BCA/B.Com):</strong> 10+2 from recognized board with minimum 50% marks. ABC ID and DEB ID mandatory per UGC guidelines</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>PG Online Programs (MBA/MCA/M.Com):</strong> Bachelor's degree from UGC recognized university with 50% aggregate. Admissions twice annually (July/August, January/February)</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Online Recognition:</strong> Online degrees equivalent to on-campus degrees. 100% fee refund policy within specified period per UGC guidelines</span>
                 </div>
               </div>
 

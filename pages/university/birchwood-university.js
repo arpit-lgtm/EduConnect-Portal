@@ -160,7 +160,7 @@ const BirchwoodUniversity = () => {
                 className={`${styles.tab} ${activeTab === tab ? styles.activeTab : ''}`}
                 onClick={() => setActiveTab(tab)}
               >
-                {tab === 'faqs' ? 'FAQ' : tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {tab === 'faqs' ? 'FAQ' : tab === 'courses' ? 'Programs' : tab.charAt(0).toUpperCase() + tab.slice(1)}
               </button>
             ))}
           </div>
@@ -314,6 +314,22 @@ const BirchwoodUniversity = () => {
                     <h3>Start Learning</h3>
                     <p>Access your online learning platform, course materials, and begin your global education journey.</p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>MBA/PGDM Programs:</strong> Bachelor's degree from recognized university with minimum 50% marks. TOEFL/IELTS scores required for English proficiency</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>BBA/B.Com Programs:</strong> 10+2 from recognized board with minimum 50% marks. English language proficiency demonstrated through test scores</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>International Students:</strong> Valid passport, English proficiency scores, transcripts apostilled, work experience certificates (for MBA). CIE accredited programs with global recognition</span>
                 </div>
               </div>
 

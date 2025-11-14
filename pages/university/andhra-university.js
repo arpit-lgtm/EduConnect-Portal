@@ -152,7 +152,7 @@ const AndhraUniversity = () => {
                 className={`${styles.tab} ${activeTab === tab ? styles.activeTab : ''}`}
                 onClick={() => setActiveTab(tab)}
               >
-                {tab === 'faqs' ? 'FAQ' : tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {tab === 'faqs' ? 'FAQ' : tab === 'courses' ? 'Programs' : tab.charAt(0).toUpperCase() + tab.slice(1)}
               </button>
             ))}
           </div>
@@ -301,6 +301,22 @@ const AndhraUniversity = () => {
                     <h3>Confirmation Documentation</h3>
                     <p>Receive payment confirmation and preserve application documentation for future reference. Access Learning Management System credentials upon successful enrollment completion.</p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>UG Distance Programs (BA/B.Com/BBA):</strong> 12th pass from recognized board with minimum 50% marks. Age relaxation available for distance education</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>PG Distance Programs (MA/M.Com/MBA):</strong> Bachelor's degree in relevant stream with minimum 50% aggregate from UGC recognized university</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Diploma/Certificate Programs:</strong> Graduation for PG diplomas, 12th pass for UG certificates. Specific requirements as per program specifications</span>
                 </div>
               </div>
 

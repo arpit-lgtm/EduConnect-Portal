@@ -162,7 +162,7 @@ const ChandigarhUniversity = () => {
                 className={`${styles.tab} ${activeTab === tab ? styles.activeTab : ''}`}
                 onClick={() => setActiveTab(tab)}
               >
-                {tab === 'faqs' ? 'FAQ' : tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {tab === 'faqs' ? 'FAQ' : tab === 'courses' ? 'Programs' : tab.charAt(0).toUpperCase() + tab.slice(1)}
               </button>
             ))}
           </div>
@@ -317,6 +317,22 @@ const ChandigarhUniversity = () => {
                     <h3>Start Learning</h3>
                     <p>Access the Learning Management System, course materials, and begin your academic journey with global collaborations.</p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>UG Online Programs (BBA/BCA/B.Com):</strong> 10+2 or equivalent from recognized board with minimum 50% marks. No entrance examination required</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>PG Online Programs (MBA/MCA/M.Com):</strong> Bachelor's degree from UGC recognized university with 50% aggregate. Work experience preferred for MBA specializations</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Certificate/Diploma Programs:</strong> Graduation for PG programs, 12th for UG programs. NIRF Rank 20 with 411 global tie-ups including Harvard, MIT, Stanford collaborations</span>
                 </div>
               </div>
 

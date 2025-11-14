@@ -300,6 +300,26 @@ const IIMLucknow = () => {
                 </div>
               </div>
 
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>MBA/PGPM Programs:</strong> Bachelor's degree with minimum 50% marks (45% for SC/ST/PwD). High CAT score required with minimum 90 percentile for shortlisting. Work experience advantageous but not mandatory for certain programs</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Executive MBA Programs:</strong> Bachelor's degree from recognized university with minimum 3-5 years of substantial professional experience. CAT/GMAT scores may be required for certain tracks. Leadership roles and managerial responsibilities preferred</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Online Programs:</strong> Bachelor's degree with relevant academic background. Direct admission process for online courses. ABC ID creation mandatory as per UGC regulations. Working professionals and fresh graduates both eligible</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Fellow Programs (Ph.D.):</strong> Master's degree with excellent academic record and minimum 55% marks. Research aptitude demonstrated through NET/GATE or equivalent. Prior research publications highly valued</span>
+                </div>
+              </div>
+
               <div className={styles.importantNote}>
                 <h3>Important Information</h3>
                 <ul>

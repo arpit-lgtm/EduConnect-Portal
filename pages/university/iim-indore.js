@@ -91,8 +91,12 @@ const IIMIndore = () => {
                   <span className={styles.infoValue}>📍 Indore, Madhya Pradesh</span>
                 </div>
                 <div className={styles.infoRow}>
-                  <span className={styles.infoLabel}>Established:</span>
-                  <span className={styles.infoValue}>1996</span>
+                  <span className={styles.infoLabel}>Ratings:</span>
+                  <div className={styles.rating}>
+                    <span className={styles.stars}>⭐⭐⭐⭐⭐</span>
+                    <span className={styles.ratingText}>4.6/5</span>
+                    <span className={styles.reviews}>(500+ Reviews)</span>
+                  </div>
                 </div>
                 <div className={styles.infoRow}>
                   <span className={styles.infoLabel}>Approvals:</span>
@@ -283,6 +287,26 @@ const IIMIndore = () => {
                     <h3>Fee Payment</h3>
                     <p>Selected candidates receive official offer letters. Finalize admission by completing fee payment within designated timelines using available payment methods.</p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>MBA/PGP Programs:</strong> Bachelor's degree with minimum 50% marks. CAT score required with percentile cutoffs varying by category</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Executive MBA/PGPX:</strong> Graduation with minimum 5 years full-time post-qualification work experience in executive/managerial positions</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Online Certificate Programs:</strong> Bachelor's degree from UGC recognized university. Working professionals and fresh graduates eligible</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Fellow Program in Management:</strong> Master's degree with minimum 55% marks and demonstrated research aptitude</span>
                 </div>
               </div>
 

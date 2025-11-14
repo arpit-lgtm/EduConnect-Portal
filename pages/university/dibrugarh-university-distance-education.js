@@ -157,7 +157,7 @@ export default function DibругarhUniversityDistanceEducation() {
                 className={`${styles.tab} ${activeTab === tab ? styles.activeTab : ''}`}
                 onClick={() => setActiveTab(tab)}
               >
-                {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {tab === 'courses' ? 'Programs' : tab === 'faqs' ? 'FAQ' : tab.charAt(0).toUpperCase() + tab.slice(1)}
               </button>
             ))}
           </div>
@@ -311,6 +311,22 @@ export default function DibругarhUniversityDistanceEducation() {
                     <h3>Academic Support</h3>
                     <p>Attend orientation sessions, contact classes, and access academic counseling services for successful completion.</p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>UG Distance Programs (BA/B.Com):</strong> 12th pass from recognized board with minimum pass marks. Courses available in English and Assamese languages</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>PG Distance Programs (MA/M.Com/MBA):</strong> Bachelor's degree in relevant subject with minimum 50% marks from UGC recognized university</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Regional Benefits:</strong> Study centers across seven sister states of Northeast India. Regional quota benefits and cultural integration for local students</span>
                 </div>
               </div>
 

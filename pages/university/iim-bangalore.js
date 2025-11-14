@@ -158,7 +158,7 @@ const IIMBangalore = () => {
                 className={`${styles.tab} ${activeTab === tab ? styles.activeTab : ''}`}
                 onClick={() => setActiveTab(tab)}
               >
-                {tab === 'faqs' ? 'FAQ' : tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {tab === 'faqs' ? 'FAQ' : tab === 'courses' ? 'Programs' : tab.charAt(0).toUpperCase() + tab.slice(1)}
               </button>
             ))}
           </div>
@@ -321,6 +321,26 @@ const IIMBangalore = () => {
                     <h3>Pay Fee & Submit Application</h3>
                     <p>Complete the application fee payment through the secure online payment gateway. Download the fee receipt and application form for future reference. Your admission will be confirmed upon successful payment.</p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Full-Time MBA/PGPM Programs:</strong> Bachelor's degree from a recognized university with minimum 50% marks. High CAT score (90+ percentile) required. Selection based on CAT score, academic credentials, interview, and overall profile assessment</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Executive MBA/Online Programs:</strong> Bachelor's degree from a recognized university. Minimum 3-5 years of work experience required depending on the program. No CAT score required for Executive and Online programs</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Online Programs:</strong> Direct admission process for online programs. ABC ID and DEB ID creation mandatory as per UGC guidelines. Working professionals and fresh graduates eligible with relevant educational qualifications</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Fellow Programs (Ph.D.):</strong> Master's degree with excellent academic record. Research aptitude and relevant publications preferred. Competitive written test and interview conducted for final selection</span>
                 </div>
               </div>
 

@@ -152,7 +152,7 @@ const ChitkaraUniversity = () => {
                 className={`${styles.tab} ${activeTab === tab ? styles.activeTab : ''}`}
                 onClick={() => setActiveTab(tab)}
               >
-                {tab === 'faqs' ? 'FAQ' : tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {tab === 'faqs' ? 'FAQ' : tab === 'courses' ? 'Programs' : tab.charAt(0).toUpperCase() + tab.slice(1)}
               </button>
             ))}
           </div>
@@ -305,6 +305,22 @@ const ChitkaraUniversity = () => {
                     <h3>Begin Studies</h3>
                     <p>Access Learning Management System, attend orientation, and start your academic journey with dedicated student support.</p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>UG Online Programs (BBA/BCA/B.Com):</strong> 10+2 from recognized board with minimum 50% marks. Weekend live sessions for working professionals</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>PG Online Programs (MBA/MCA):</strong> Bachelor's degree from UGC recognized university with 50% aggregate. Work experience preferred for MBA specializations</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Certificate/Diploma Programs:</strong> Graduation for PG programs. Industry partnerships for internships. NIRF Rank 64 in Management category</span>
                 </div>
               </div>
 

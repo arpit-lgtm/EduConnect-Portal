@@ -43,27 +43,27 @@ const IIMRanchi = () => {
   const faqs = [
     {
       question: 'Which online programs are available at IIM Ranchi?',
-      answer: 'IIM Ranchi offers a comprehensive portfolio of online management programs designed for ambitious professionals seeking transformative career advancement. Our distinguished offerings include Advanced General Management, Leadership & Management, Global MBA, Executive MBA, specialized HR Management programs, Online MBA, and the prestigious Fellow Program in Management (PhD equivalent). Each program features meticulously crafted, research-based curriculum delivered by accomplished faculty, ensuring participants gain cutting-edge management knowledge and strategic decision-making capabilities essential for leadership excellence in today\'s dynamic business landscape.'
+      answer: 'IIM Ranchi offers Advanced General Management, Leadership & Management, Global MBA, Executive MBA, HR Management, Online MBA, and Fellow Program (PhD equivalent).'
     },
     {
       question: 'How can an online certification from IIM Ranchi benefit me?',
-      answer: 'An online certification from IIM Ranchi provides transformative professional advantages that extend far beyond traditional credentials. You gain prestigious global recognition through WES and AACSB accreditation, positioning yourself among an elite cohort of management professionals. Our research-intensive curriculum, designed by renowned faculty and industry experts, significantly enhances your strategic thinking, analytical capabilities, and leadership acumen. As the ninth member of India\'s premier IIM ecosystem, we deliver academic excellence that opens doors to lucrative career opportunities with leading multinational corporations, consulting firms, and emerging startups across global markets.'
+      answer: 'IIM Ranchi certifications provide WES and AACSB accreditation, enhancing strategic thinking and opening doors to multinational corporations and global career opportunities.'
     },
     {
       question: 'Is a Student Exchange Program provided in online courses at IIM Ranchi?',
-      answer: 'While traditional student exchange programs are structured primarily for residential campus experiences, IIM Ranchi\'s online programs offer sophisticated virtual international collaboration opportunities that transcend geographical boundaries. Through our prestigious EMFD Global membership and strategic partnerships with leading international business schools, participants engage in global case study analyses, cross-cultural management simulations, and collaborative projects with diverse international cohorts. These virtual global learning experiences provide invaluable exposure to international business practices, diverse management perspectives, and contemporary global industry trends without requiring physical relocation.'
+      answer: 'IIM Ranchi offers virtual international collaboration through EMFD Global partnerships with global case studies, simulations, and projects with international cohorts.'
     },
     {
       question: 'Who are eligible for online courses available at IIM Ranchi?',
-      answer: 'Eligibility criteria are thoughtfully designed to ensure participants possess the foundational knowledge necessary for advanced management education success. Generally, candidates must hold a bachelor\'s degree from a recognized university with specified minimum academic performance standards. Executive and specialized programs typically require relevant professional work experience to ensure meaningful peer learning and practical application of management concepts. Detailed program-specific requirements, including academic qualifications, work experience criteria, and any prerequisite competencies, are clearly articulated for each offering to help candidates identify programs aligned with their professional aspirations and current qualifications.'
+      answer: 'Candidates need a bachelor\'s degree with minimum academic standards. Executive programs require relevant work experience. Check specific program requirements.'
     },
     {
       question: 'Are there any financial aids provided at IIM Ranchi?',
-      answer: 'IIM Ranchi demonstrates unwavering commitment to making world-class management education accessible through comprehensive financial support mechanisms. We offer flexible payment structures including convenient EMI options spanning 6, 9, and 12 months, enabling professionals to manage educational investments alongside existing financial obligations. Qualified candidates can access no-cost EMI facilities and competitive education loan arrangements through our partner financial institutions. These thoughtfully designed financial aid options ensure that ambitious professionals are not constrained by immediate financial circumstances in pursuing transformative educational opportunities that significantly enhance long-term career prospects and earning potential.'
+      answer: 'Yes, IIM Ranchi offers flexible EMI options (6/9/12 months), no-cost EMI facilities, and education loans through partner financial institutions.'
     },
     {
       question: 'Who are the partner institutions of IIM Ranchi?',
-      answer: 'IIM Ranchi maintains strategic collaborations with distinguished global universities and prestigious professional organizations that significantly enhance the breadth and depth of our educational ecosystem. As a respected member of AACSB and EMFD Global—elite associations representing the highest standards of business education excellence—we provide students with access to international best practices and global management perspectives. Established under the distinguished mentorship of IIM Calcutta, we continue fostering partnerships with industry leaders across sectors for curriculum development, placement facilitation, and knowledge exchange, ensuring our programs remain contemporary, relevant, and aligned with evolving business requirements in both national and international markets.'
+      answer: 'IIM Ranchi partners with AACSB, EMFD Global, IIM Calcutta (mentor), and industry leaders for curriculum development and placement facilitation.'
     }
   ];
 
@@ -290,6 +290,22 @@ const IIMRanchi = () => {
                     <h3>Confirmation</h3>
                     <p>Download the confirmation document sent by the university & save your personalized login credentials for future reference.</p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>MBA/PGPM Programs:</strong> Bachelor's degree with minimum 50% aggregate. CAT/GMAT score required with competitive percentile</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Executive MBA:</strong> Graduation with 3-5 years professional work experience in managerial positions</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Online Certificate Programs:</strong> Bachelor's degree from UGC recognized university. Valid ABC ID and DEB ID required</span>
                 </div>
               </div>
 

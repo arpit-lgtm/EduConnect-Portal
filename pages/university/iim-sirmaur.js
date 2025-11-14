@@ -106,8 +106,12 @@ const IIMSirmaur = () => {
                   <span className={styles.infoValue}>📍 Paonta Sahib, Sirmaur, HP</span>
                 </div>
                 <div className={styles.infoRow}>
-                  <span className={styles.infoLabel}>Established:</span>
-                  <span className={styles.infoValue}>2015</span>
+                  <span className={styles.infoLabel}>Ratings:</span>
+                  <div className={styles.rating}>
+                    <span className={styles.stars}>⭐⭐⭐⭐</span>
+                    <span className={styles.ratingText}>4.2/5</span>
+                    <span className={styles.reviews}>(200+ Reviews)</span>
+                  </div>
                 </div>
                 <div className={styles.infoRow}>
                   <span className={styles.infoLabel}>Approvals:</span>

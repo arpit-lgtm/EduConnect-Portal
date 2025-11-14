@@ -171,7 +171,7 @@ const IGNOUIndiraGandhiNationalOpenUniversity = () => {
                 className={`${styles.tab} ${activeTab === tab ? styles.activeTab : ''}`}
                 onClick={() => setActiveTab(tab)}
               >
-                {tab === 'courses' ? 'Programs & Fees' : tab === 'faqs' ? 'FAQ' : tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {tab === 'courses' ? 'Programs' : tab === 'faqs' ? 'FAQ' : tab.charAt(0).toUpperCase() + tab.slice(1)}
               </button>
             ))}
           </div>
@@ -345,6 +345,22 @@ const IGNOUIndiraGandhiNationalOpenUniversity = () => {
                     <h3>Submit & Pay Fees</h3>
                     <p>Submit the application form and make the fee payment using the payment methods mentioned on the website - Credit Card/Debit Card/Net Banking.</p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Certificate/Diploma Programs:</strong> 10th/12th pass depending on program. Generally no maximum age limit for most programs</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>UG Programs (BA/B.Com/BSc):</strong> 10+2 from recognized board with minimum pass marks. Eligibility varies by program - check official prospectus</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>PG Programs (MA/MBA/M.Com/MSc):</strong> Bachelor's degree from recognized university. ABC ID and DEB ID required per UGC guidelines</span>
                 </div>
               </div>
 

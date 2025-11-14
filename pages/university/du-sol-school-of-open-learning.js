@@ -183,7 +183,7 @@ export default function DUSOLSchoolOfOpenLearning() {
                 className={`${styles.tab} ${activeTab === tab ? styles.activeTab : ''}`}
                 onClick={() => setActiveTab(tab)}
               >
-                {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {tab === 'courses' ? 'Programs' : tab === 'faqs' ? 'FAQ' : tab.charAt(0).toUpperCase() + tab.slice(1)}
               </button>
             ))}
           </div>
@@ -387,6 +387,22 @@ export default function DUSOLSchoolOfOpenLearning() {
                     <h3>Course Commencement</h3>
                     <p>Attend orientation session, collect study materials, and access online learning platform to begin your Delhi University journey.</p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>UG Programs (BA/B.Com/BA Honours):</strong> 12th pass from recognized board with minimum qualifying marks. Delhi University degree with global recognition</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>PG Programs (MA/M.Com):</strong> Bachelor's degree in relevant discipline with minimum 50% aggregate marks from recognized university</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Admission Process:</strong> Merit-based admission with no entrance examination. Most affordable fees among premier central universities in India</span>
                 </div>
               </div>
 

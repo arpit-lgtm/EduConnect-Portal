@@ -43,27 +43,27 @@ const IIMRohtak = () => {
   const faqs = [
     {
       question: 'Is an online course from IIM Rohtak considered by recruiters?',
-      answer: 'Absolutely. Online courses from IIM Rohtak command exceptional recognition and credibility among leading recruiters across global markets. The institute\'s distinguished NIRF 2024 ranking of 12th among India\'s management institutions, combined with prestigious WES approval, AACSB membership, and AMBA accreditation, ensures that certifications hold substantial professional weight. Employers across sectors—from multinational corporations to innovative startups—recognize IIM Rohtak credentials as indicators of rigorous academic training, advanced management competencies, and commitment to professional excellence. Our graduates consistently secure leadership positions with premier organizations, reflecting the market\'s confidence in the transformative quality of IIM Rohtak\'s educational offerings.'
+      answer: 'Yes, IIM Rohtak (ranked 12th NIRF 2024) with WES, AACSB, and AMBA accreditation commands exceptional recognition among global recruiters and employers.'
     },
     {
       question: 'Name some of the short-term certification courses offered by IIM Rohtak?',
-      answer: 'IIM Rohtak offers a sophisticated portfolio of short-term certification programs meticulously designed for ambitious professionals seeking targeted skill enhancement in specific management domains. Our distinguished offerings include specialized certifications in Strategic Human Resource Management, Advanced Operations Management, Business Data Analytics & Insights, and Executive Program in Contemporary Marketing Strategies. Each program spans approximately 5 to 6 months, featuring intensive curriculum delivered by accomplished faculty who blend cutting-edge management theory with practical industry applications. These programs are strategically structured to accommodate working professionals\' schedules while delivering comprehensive knowledge and immediately applicable skills that drive measurable career advancement and organizational impact.'
+      answer: 'IIM Rohtak offers 5-6 month certifications in Strategic HR Management, Advanced Operations Management, Business Data Analytics, and Contemporary Marketing Strategies.'
     },
     {
       question: 'Is an upskilling online certification course from IIM Rohtak credible at the global level?',
-      answer: 'IIM Rohtak\'s online certifications maintain impeccable global credibility, validated through prestigious international accreditations and strategic partnerships with distinguished universities worldwide. Our WES approval, AACSB membership, and AMBA accreditation position the institute among an elite cohort of business schools recognized for maintaining the highest standards of management education excellence globally. Furthermore, IIM Rohtak\'s international collaborations with renowned institutions including Singapore Management Institute, California State University, Indiana University\'s Kelley School of Business, and Ulster University provide students with invaluable exposure to diverse global perspectives, cross-cultural management practices, and international business trends. These partnerships and accreditations ensure that IIM Rohtak certifications are recognized and respected across international markets, opening doors to global career opportunities.'
+      answer: 'Yes, IIM Rohtak holds WES approval, AACSB membership, AMBA accreditation, and collaborations with Singapore, California, Indiana, and Ulster universities globally.'
     },
     {
       question: 'Do students enrolled in online programs get to attend classes at the campus of IIM Rohtak?',
-      answer: 'While IIM Rohtak\'s online programs are thoughtfully designed to provide comprehensive remote learning experiences with flexible scheduling that accommodates working professionals\' commitments, several programs incorporate optional campus immersion components that significantly enhance the educational journey. These strategically designed campus sessions offer invaluable opportunities for face-to-face interaction with distinguished faculty, intensive workshops on specialized topics, collaborative case study analyses with diverse peer cohorts, and enriching networking experiences that build lasting professional relationships. These immersive experiences, though optional, provide participants with holistic understanding of IIM Rohtak\'s vibrant academic culture while maintaining the flexibility that makes online education accessible to professionals across geographical boundaries.'
+      answer: 'Some programs offer optional campus immersion components for faculty interaction, workshops, case studies, and networking while maintaining online flexibility.'
     },
     {
       question: 'Name some of the top recruiters that hire IIM Rohtak passed outs?',
-      answer: 'IIM Rohtak graduates secure prestigious positions with India\'s most distinguished organizations across diverse industry sectors, reflecting the institute\'s exceptional reputation among leading recruiters. Our extensive network of 300+ hiring partners includes premier financial institutions like ICICI Bank, HDFC Bank, and Axis Bank; global technology and consulting giants such as Accenture, Deloitte, Cognizant, Capgemini, and Genpact; leading conglomerates including Reliance and Samsung; and numerous emerging startups and multinational corporations. Our graduates have secured exceptional domestic placement offers with compensation packages reaching approximately ₹36 lakhs per annum, demonstrating the market\'s recognition of the superior quality of management education and leadership capabilities that IIM Rohtak consistently delivers.'
+      answer: 'IIM Rohtak\'s 300+ hiring partners include ICICI, HDFC, Axis Bank, Accenture, Deloitte, Cognizant, Capgemini, Genpact, Reliance, Samsung, with packages up to ₹36L.'
     },
     {
       question: 'What are some best online executive programs in India?',
-      answer: 'IIM Rohtak offers an exceptional suite of online executive programs recognized among India\'s finest management education offerings for working professionals. Our distinguished portfolio includes the comprehensive Post Graduate Program in Management (PGPM), versatile Online MBA, specialized Executive MBA, and focused certification programs in Strategic Human Resource Management, Advanced Operations Management, Business Data Analytics, and Contemporary Marketing Management. Each program is meticulously designed with sophisticated curriculum that balances rigorous academic foundations with practical industry applications, delivered by accomplished faculty who bring extensive research expertise and consulting experience. These programs are strategically structured to accommodate demanding professional schedules while providing transformative learning experiences that accelerate career advancement, enhance leadership capabilities, and significantly expand professional networks and opportunities.'
+      answer: 'IIM Rohtak offers PGPM, Online MBA, Executive MBA, and certifications in HR, Operations, Data Analytics, and Marketing for working professionals.'
     }
   ];
 
@@ -300,6 +300,22 @@ const IIMRohtak = () => {
                     <h3>Review and Submit</h3>
                     <p>Review your application and submit it for final enrollment. Some programs may require entrance exams and personal interviews.</p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>MBA/PGP Programs:</strong> Bachelor's degree with minimum 50% marks (45% for SC/ST). CAT score with competitive percentile required</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Executive MBA:</strong> Graduation with minimum 5 years professional experience in leadership or technical roles</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>PhD Programs:</strong> Master's degree with minimum 55% marks (50% for reserved categories). Research aptitude and proposal required</span>
                 </div>
               </div>
 

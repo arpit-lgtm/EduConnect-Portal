@@ -292,6 +292,26 @@ const IIMKozhikode = () => {
                 </div>
               </div>
 
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>MBA/PGP Programs:</strong> Bachelor's degree with minimum 60% marks (55% for SC/ST/PwD). High CAT score required with minimum 85-90 percentile. Work experience valued but not mandatory for full-time programs</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Executive MBA Programs:</strong> Bachelor's degree from recognized university with minimum 5 years of relevant work experience. CAT/GMAT/EMAT scores required. Leadership roles and strategic responsibilities preferred for selection</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Online Programs:</strong> Bachelor's degree with relevant qualifications. Direct admission for online executive programs. ABC ID creation mandatory as per UGC regulations. Working professionals and experienced managers eligible</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Fellow Programs (FPM):</strong> Master's degree with excellent academic credentials and minimum 60% marks. Research aptitude and prior academic publications strongly recommended. Competitive written test and comprehensive interview process</span>
+                </div>
+              </div>
+
               <div className={styles.importantNote}>
                 <h3>Important Information</h3>
                 <ul>

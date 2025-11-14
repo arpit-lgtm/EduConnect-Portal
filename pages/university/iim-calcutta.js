@@ -91,8 +91,12 @@ const IIMCalcutta = () => {
                   <span className={styles.infoValue}>📍 Kolkata, West Bengal</span>
                 </div>
                 <div className={styles.infoRow}>
-                  <span className={styles.infoLabel}>Established:</span>
-                  <span className={styles.infoValue}>1961 (India's First IIM)</span>
+                  <span className={styles.infoLabel}>Ratings:</span>
+                  <div className={styles.rating}>
+                    <span className={styles.stars}>⭐⭐⭐⭐⭐</span>
+                    <span className={styles.ratingText}>4.7/5</span>
+                    <span className={styles.reviews}>(600+ Reviews)</span>
+                  </div>
                 </div>
                 <div className={styles.infoRow}>
                   <span className={styles.infoLabel}>Approvals:</span>
@@ -285,6 +289,26 @@ const IIMCalcutta = () => {
                     <h3>Personal Interview</h3>
                     <p>Shortlisted candidates participate in rigorous Personal Interview rounds. Final selection determined through holistic evaluation of entrance scores, interview performance, and comprehensive profile assessment.</p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>MBA/PGDM Programs:</strong> Bachelor's degree with minimum 50% aggregate (45% for SC/ST/PWD). Valid CAT/GMAT score required</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Executive MBA Programs:</strong> Graduation with minimum 5 years professional work experience in managerial/leadership roles</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Online Certificate Courses:</strong> Bachelor's degree from recognized university. Relevant work experience preferred</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Fellow Program (PhD):</strong> Master's degree or professional qualification like CA/ICWA/CS with strong academic credentials</span>
                 </div>
               </div>
 

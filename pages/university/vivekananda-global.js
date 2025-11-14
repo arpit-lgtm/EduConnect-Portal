@@ -135,7 +135,7 @@ const VivekanandaGlobal = () => {
                 className={`${styles.tab} ${activeTab === tab ? styles.activeTab : ''}`}
                 onClick={() => setActiveTab(tab)}
               >
-                {tab === 'faqs' ? 'FAQ' : tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {tab === 'faqs' ? 'FAQ' : tab === 'courses' ? 'Programs' : tab.charAt(0).toUpperCase() + tab.slice(1)}
               </button>
             ))}
           </div>
@@ -285,6 +285,22 @@ const VivekanandaGlobal = () => {
                     <h3>Confirmation & Access</h3>
                     <p>Receive admission confirmation with LMS login credentials enabling commencement of academic activities.</p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>UG Programs (BBA/BCA/B.Com):</strong> 10+2 from recognized board with minimum pass marks. No entrance examination required</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>PG Programs (MBA/MCA/M.Com):</strong> Bachelor's degree from recognized university with minimum 50% aggregate marks. Multiple admission cycles throughout year</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Financial Support:</strong> Scholarship opportunities for meritorious students. Education loan facilitation available. Flexible payment options</span>
                 </div>
               </div>
 

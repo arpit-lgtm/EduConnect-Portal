@@ -86,27 +86,31 @@ const IITBombay = () => {
                   <span className={styles.infoValue}>📍 Powai, Mumbai, Maharashtra</span>
                 </div>
                 <div className={styles.infoRow}>
-                  <span className={styles.infoLabel}>Established:</span>
-                  <span className={styles.infoValue}>1958</span>
-                </div>
-                <div className={styles.infoRow}>
-                  <span className={styles.infoLabel}>NIRF Ranking:</span>
-                  <span className={styles.infoValue}>3rd (Engineering 2024)</span>
-                </div>
-                <div className={styles.infoRow}>
-                  <span className={styles.infoLabel}>Rating:</span>
-                  <span className={styles.infoValue}>⭐ 4.6/5 (327 Reviews)</span>
+                  <span className={styles.infoLabel}>Ratings:</span>
+                  <div className={styles.rating}>
+                    <span className={styles.stars}>⭐⭐⭐⭐⭐</span>
+                    <span className={styles.ratingText}>4.6/5</span>
+                    <span className={styles.reviews}>(327 Reviews)</span>
+                  </div>
                 </div>
                 <div className={styles.infoRow}>
                   <span className={styles.infoLabel}>Approvals:</span>
                   <div className={styles.approvalBadges}>
-                    {['NIRF', 'UGC', 'AICTE'].map((approval, idx) => (
+                    {['UGC', 'AICTE', 'NAAC A'].map((approval, idx) => (
                       <div key={idx} className={styles.badge}>
                         <span className={styles.badgeIcon}>✓</span>
                         <span>{approval}</span>
                       </div>
                     ))}
                   </div>
+                </div>
+                <div className={styles.infoRow}>
+                  <span className={styles.infoLabel}>NIRF Ranking:</span>
+                  <span className={styles.infoValue}>Rank 3 (Engineering 2024)</span>
+                </div>
+                <div className={styles.infoRow}>
+                  <span className={styles.infoLabel}>Accreditation:</span>
+                  <span className={styles.infoValue}>NAAC A</span>
                 </div>
               </div>
             </div>
@@ -245,6 +249,22 @@ const IITBombay = () => {
                     <h3>Enrollment & Fee Payment</h3>
                     <p>Accept admission offer within specified timeframe and complete enrollment formalities including fee payment, document verification, hostel allocation (if required), ID card issuance, and orientation program participation commencing academic journey.</p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>M.Tech Programs:</strong> Bachelor's degree in Engineering/Technology with minimum 60% marks (55% for SC/ST/PwD). Valid GATE score required</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>PhD Programs:</strong> Master's degree with minimum 60% marks or Bachelor's with exceptional GATE/qualifying exam score. Research proposal and interview required</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Executive Programs:</strong> Bachelor's degree with minimum 2-3 years relevant professional experience in technical or managerial roles</span>
                 </div>
               </div>
             </div>

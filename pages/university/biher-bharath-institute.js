@@ -146,7 +146,7 @@ const BIHERBharathInstitute = () => {
                 className={`${styles.tab} ${activeTab === tab ? styles.activeTab : ''}`}
                 onClick={() => setActiveTab(tab)}
               >
-                {tab === 'faqs' ? 'FAQ' : tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {tab === 'faqs' ? 'FAQ' : tab === 'courses' ? 'Programs' : tab.charAt(0).toUpperCase() + tab.slice(1)}
               </button>
             ))}
           </div>
@@ -296,6 +296,22 @@ const BIHERBharathInstitute = () => {
                     <h3>Study Material Distribution & Orientation</h3>
                     <p>Receive comprehensive study materials and access to online learning platforms. Attend virtual orientation sessions introducing academic policies, examination procedures, and support services.</p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Undergraduate Programs:</strong> 10+2 qualification from recognized board with minimum 50% marks. Specific subject requirements apply for certain technical programs like B.Tech</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Postgraduate Programs:</strong> Bachelor's degree from a recognized university with minimum 50% marks. Relevant subject background required for specialized MBA and M.Sc programs</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Distance Education Programs:</strong> Direct admission without entrance examination for most programs. ABC ID creation mandatory as per UGC regulations. Working professionals and fresh graduates both eligible</span>
                 </div>
               </div>
 

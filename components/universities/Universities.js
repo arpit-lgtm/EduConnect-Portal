@@ -74,7 +74,8 @@ export default function Universities() {
           'Kuk Dde',
           'Jain University (Distance Education)', // Keep only Online version
           'Jgu (Online) Coursera', // Keep only O P Jindal Global University
-          'BITS Pilani (WILP)' // Keep only BITS Pilani
+          'BITS Pilani (WILP)', // Keep only BITS Pilani
+          'Bharath Institute of Higher Education and Research' // Remove duplicate, keep BIHER (Bharath Institute)
         ];
 
         // Filter out excluded universities
@@ -234,7 +235,7 @@ export default function Universities() {
             linkUrl = '/university/gitam-university-distance-education';
           } else if (uniName.includes('harvard') || uniId === 'harvard-university-online') {
             linkUrl = '/university/harvard-university-online';
-          } else if (uniName.includes('himachal pradesh university') || uniName.includes('hpu') || uniId === 'hpu-himachal-pradesh-university-distance-education') {
+          } else if (uniName.includes('himachal pradesh university') || (uniName.includes('hpu') && !uniName.includes('jodhpur')) || uniId === 'hpu-himachal-pradesh-university-distance-education') {
             linkUrl = '/university/hpu-himachal-pradesh-university-distance-education';
           } else if (uniName.includes('kerala university') || uniName.includes('ideku') || uniId === 'ideku-kerala-university-distance-education') {
             linkUrl = '/university/ideku-kerala-university-distance-education';
@@ -294,6 +295,44 @@ export default function Universities() {
             linkUrl = '/university/iit-delhi';
           } else if (uniName.includes('iit guwahati') || uniId === 'iit-guwahati') {
             linkUrl = '/university/iit-guwahati';
+          } else if (uniName.includes('iit hyderabad') || uniId === 'iit-hyderabad') {
+            linkUrl = '/university/iit-hyderabad';
+          } else if (uniName.includes('iit jodhpur') || uniId === 'iit-jodhpur') {
+            linkUrl = '/university/iit-jodhpur';
+          } else if (uniName.includes('iit kanpur') || uniId === 'iit-kanpur') {
+            linkUrl = '/university/iit-kanpur';
+          } else if (uniName.includes('iit kharagpur') || uniId === 'iit-kharagpur') {
+            linkUrl = '/university/iit-kharagpur';
+          } else if (uniName.includes('iit madras') || uniId === 'iit-madras') {
+            linkUrl = '/university/iit-madras';
+          } else if (uniName.includes('iit roorkee') || uniId === 'iit-roorkee') {
+            linkUrl = '/university/iit-roorkee';
+          } else if (uniName.includes('iit ropar') || uniId === 'iit-ropar') {
+            linkUrl = '/university/iit-ropar';
+          } else if (uniName.includes('iit varanasi') || uniName.includes('iit bhu') || uniId === 'iit-varanasi') {
+            linkUrl = '/university/iit-varanasi';
+          } else if (uniName.includes('imt cdl') || uniName.includes('imt distance learning') || uniName.includes('imt center for distance learning') || uniName.includes('imt centre for distance learning') || uniId === 'imt-cdl') {
+            linkUrl = '/university/imt-cdl';
+          } else if (uniName.includes('imt ghaziabad') || uniName.includes('institute of management technology') || uniId === 'imt-ghaziabad') {
+            linkUrl = '/university/imt-ghaziabad';
+          } else if (uniName.includes('indian management school') || uniName.includes('imsr') || uniId === 'imsr' || uniId === 'indian-management-school-and-research-centre') {
+            linkUrl = '/university/imsr';
+          } else if (uniName.includes('jain university online') || uniName.includes('jain online') || uniName.includes('jain deemed') || uniId === 'jain-university-online') {
+            linkUrl = '/university/jain-university-online';
+          } else if (uniName.includes('jamia hamdard') || uniName.includes('hamdard university') || uniId === 'jamia-hamdard-online' || uniId === 'jamia-hamdard-university-online') {
+            linkUrl = '/university/jamia-hamdard-online';
+          } else if (uniName.includes('jamia millia islamia') && uniName.includes('online') || uniId === 'jamia-millia-islamia-online') {
+            linkUrl = '/university/jamia-millia-islamia-online';
+          } else if (uniName.includes('jammu university') || uniName.includes('university of jammu') || uniName.includes('jammu distance') || uniId === 'jammu-university-distance-education' || uniId === 'university-of-jammu') {
+            linkUrl = '/university/jammu-university-distance-education';
+          } else if (uniName.includes('jnu') || uniName.includes('jawaharlal nehru university') || uniId === 'jnu-jawaharlal-nehru-university-delhi') {
+            linkUrl = '/university/jnu-jawaharlal-nehru-university';
+          } else if (uniName.includes('kakatiya university') || uniId === 'kakatiya-university-distance-education') {
+            linkUrl = '/university/kakatiya-university-distance-education';
+          } else if (uniName.includes('kalinga university') && uniName.includes('engineering') || uniId === 'kalinga-university-engineering') {
+            linkUrl = '/university/kalinga-university-engineering';
+          } else if (uniName.includes('kalyani university') || uniId === 'kalyani-university-distance-education') {
+            linkUrl = '/university/kalyani-university-distance-education';
           } else if (uniName.includes('chaudhary charan singh') || uniName.includes('ccsu meerut') || uniId === 'ccsu-meerut') {
             linkUrl = '/university/ccsu-meerut';
           }
@@ -412,6 +451,34 @@ export default function Universities() {
             'iit bombay': '3 Courses',
             'iit delhi': '4 Courses',
             'iit guwahati': '3 Courses',
+            'iit hyderabad': '3 Courses',
+            'iit jodhpur': '5 Courses',
+            'indian institute of technology jodhpur': '5 Courses',
+            'iit kanpur': '2 Courses',
+            'iit kharagpur': '2 Courses',
+            'iit madras': '5 Courses',
+            'iit roorkee': '5 Courses',
+            'iit ropar': '2 Courses',
+            'iit varanasi': '2 Courses',
+            'imt cdl': '3 Courses',
+            'imt center for distance learning': '3 Courses',
+            'imt centre for distance learning': '3 Courses',
+            'imt distance learning': '3 Courses',
+            'imt ghaziabad': '6 Courses',
+            'institute of management technology': '6 Courses',
+            'indian management school': '1 Course',
+            'imsr': '1 Course',
+            'jain university online': '9 Courses',
+            'jain online': '9 Courses',
+            'jain deemed': '9 Courses',
+            'jamia hamdard': '9 Courses',
+            'hamdard university': '9 Courses',
+            'jamia hamdard university': '9 Courses',
+            'jamia millia islamia': '7 Courses',
+            'jamia millia islamia online': '7 Courses',
+            'jammu university': '10 Courses',
+            'university of jammu': '10 Courses',
+            'jammu distance': '10 Courses',
             'chaudhary charan singh': '6 Courses',
             'ccsu': '6 Courses'
           };
@@ -419,10 +486,25 @@ export default function Universities() {
           // Get accurate course count - check custom counts first, then database
           let courseCount = '0 Courses';
           
-          // Check if this university has a custom course count
-          const customCount = Object.keys(customCourseCounts).find(key => 
-            uniName.includes(key.toLowerCase())
-          );
+          // Check if this university has a custom course count (case-insensitive)
+          // Try exact match first, then partial match
+          const uniNameLower = uniName.toLowerCase();
+          let customCount = null;
+          
+          // First try exact match
+          for (const key of Object.keys(customCourseCounts)) {
+            if (uniNameLower === key.toLowerCase()) {
+              customCount = key;
+              break;
+            }
+          }
+          
+          // If no exact match, try partial match
+          if (!customCount) {
+            customCount = Object.keys(customCourseCounts).find(key => 
+              uniNameLower.includes(key.toLowerCase())
+            );
+          }
           
           if (customCount) {
             courseCount = customCourseCounts[customCount];

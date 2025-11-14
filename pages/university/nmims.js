@@ -131,7 +131,7 @@ const NMIMSUniversity = () => {
                 className={`${styles.tab} ${activeTab === tab ? styles.activeTab : ''}`}
                 onClick={() => setActiveTab(tab)}
               >
-                {tab === 'faqs' ? 'FAQ' : tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {tab === 'faqs' ? 'FAQ' : tab === 'courses' ? 'Programs' : tab.charAt(0).toUpperCase() + tab.slice(1)}
               </button>
             ))}
           </div>
@@ -283,6 +283,22 @@ const NMIMSUniversity = () => {
                     <h3>Enrollment Confirmation</h3>
                     <p>Receive official admission letter with student credentials. Access orientation materials and Learning Management System to begin your academic journey.</p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>UG Online Programs (BBA/B.Com):</strong> 10+2 from recognized board with minimum 50% marks. Selection based on academic merit</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>MBA/PGDM Programs:</strong> Bachelor's degree with minimum 50% aggregate. Professional experience considered. Two admission cycles annually (Jan/Feb, July/Aug)</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Requirements:</strong> ABC ID creation mandatory per UGC directives. Documents: Academic transcripts, experience certificates, ID proof, photographs</span>
                 </div>
               </div>
 

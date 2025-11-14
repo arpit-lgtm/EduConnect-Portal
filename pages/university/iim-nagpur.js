@@ -40,27 +40,27 @@ const IIMNagpur = () => {
   const faqs = [
     {
       question: 'What comprehensive programs does IIM Nagpur offer for professionals?',
-      answer: 'IIM Nagpur offers distinguished programs including Executive MBA, Online MBA, PGCP in Advanced Healthcare Management, Leadership Program, IIM Online Courses, and Operations & Supply Chain Management. Each program is meticulously designed to provide global exposure and enhanced vision to senior executives, enabling them to monitor and lead organizations efficiently by upgrading their skills and acquiring cutting-edge knowledge through industry-integrated curriculum and experiential learning approaches.'
+      answer: 'IIM Nagpur offers Executive MBA, Online MBA, PGCP Healthcare Management, Leadership Programs, and Operations & Supply Chain Management for senior executives.'
     },
     {
       question: 'What global recognition does IIM Nagpur command?',
-      answer: 'IIM Nagpur holds prestigious AACSB (Association to Advance Collegiate Schools of Business) membership, ensuring connection with global networks and enhancing quality of management education worldwide. Ranked 31st nationally in the NIRF 2024 Management category, the institute was established in 2015 under the mentorship of IIM Ahmedabad, one of India\'s most prestigious business schools, reflecting its commitment to academic excellence and innovative pedagogy.'
+      answer: 'IIM Nagpur holds AACSB membership, ranks 31st in NIRF 2024, and was established in 2015 under IIM Ahmedabad mentorship.'
     },
     {
       question: 'How does IIM Nagpur support working professionals?',
-      answer: 'IIM Nagpur\'s executive programs are specifically architected for working professionals, featuring flexible schedules, weekend sessions, and online learning components. The Career Development Services (CDS) remains active throughout the year, assisting students with industry-oriented skill development, personality enhancement, and career guidance. The institute provides comprehensive support to help professionals balance demanding work responsibilities with rigorous academic pursuits while maintaining continuous career momentum.'
+      answer: 'Programs feature flexible schedules, weekend sessions, and online components. CDS provides year-round skill development and career guidance support.'
     },
     {
       question: 'What placement support does IIM Nagpur provide?',
-      answer: 'IIM Nagpur maintains robust Career Development Services (CDS) that assist students in developing industry-ready skills and enhancing abilities to compete with global competence. While placement support is primarily available for full-time MBA students, the prestigious IIM Nagpur brand on your resume attracts major firms and significantly enhances career prospects. Alumni experience substantial career progression including promotions, salary increments, and expanded leadership responsibilities across diverse industry sectors.'
+      answer: 'IIM Nagpur offers robust CDS support for industry skills. The prestigious IIM brand attracts major firms and enhances career prospects.'
     },
     {
       question: 'What makes IIM Nagpur\'s learning environment unique?',
-      answer: 'IIM Nagpur offers a unique learning environment characterized by cultural diversity, regular industry events, and innovative pedagogy. The institute regularly organizes guest lectures, workshops, seminars, and conferences to expose students to real-world business challenges and opportunities. The technologically advanced MIHAN campus provides cutting-edge facilities including modern classrooms, well-stocked library, computer laboratories, auditorium, sports facilities, and collaborative spaces that foster holistic development.'
+      answer: 'Cultural diversity, regular industry events, and MIHAN campus with modern facilities including library, labs, auditorium, and collaborative spaces.'
     },
     {
       question: 'Are IIM Nagpur\'s online programs professionally valuable?',
-      answer: 'Absolutely. IIM Nagpur\'s online programs deliver identical academic rigor and quality as on-campus offerings, featuring globally competent education systems and curriculum designed by distinguished faculty. The programs provide global exposure, industry-based learning, and well-maintained revised curriculum that creates value-driven leaders and entrepreneurs. Certifications carry the official IIM Nagpur seal and AACSB recognition, significantly enhancing professional credibility and career advancement prospects across diverse industries globally.'
+      answer: 'Yes, programs deliver identical academic rigor as on-campus offerings with AACSB recognition, enhancing credibility and career advancement globally.'
     }
   ];
 
@@ -295,6 +295,22 @@ const IIMNagpur = () => {
                     <h3>Final Selection</h3>
                     <p>Final selection determined through comprehensive evaluation of entrance scores, academic performance, interview assessment, and overall candidate potential. Selected candidates receive program access credentials via email and can commence their transformative learning journey.</p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>MBA/PGP Programs:</strong> Bachelor's degree with minimum 50% aggregate (45% for reserved categories). CAT/GMAT score mandatory</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Executive Programs:</strong> Graduation with minimum 5 years full-time professional work experience in executive roles</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Online Certificate Courses:</strong> Bachelor's degree from UGC recognized university. Working professionals preferred</span>
                 </div>
               </div>
 

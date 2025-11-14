@@ -37,23 +37,23 @@ const IITGuwahati = () => {
   const faqs = [
     {
       question: 'What makes IIT Guwahati unique among IITs?',
-      answer: 'IIT Guwahati distinguishes itself through several exceptional characteristics that set it apart within the prestigious IIT ecosystem. As the 6th IIT established in 1994, the institute occupies a breathtakingly scenic 285-hectare campus nestled between the mighty Brahmaputra River and picturesque hills approximately 20 kilometers from Guwahati city center, providing an inspiring natural environment conducive to learning, research, and personal growth. The campus\'s strategic location in Northeast India positions IIT Guwahati as a vital educational and research hub serving the region while maintaining strong connections with institutions across India and globally. The institute has earned recognition as among the top 100 universities in the world under 50 years old, demonstrating remarkable achievements within a relatively brief operational history. IIT Guwahati excels particularly in research impact, evidenced by its 32nd global ranking for Research Citations per Faculty in QS rankings, reflecting faculty members\' prolific scholarly contributions and international research collaborations. The institute pioneered sustainable practices earning 2nd rank in Swachhata Ranking by the Government of India and 6th position in SDG 7 focusing on Affordable and Clean Energy, showcasing commitment to environmental responsibility and sustainable development integrated throughout campus operations, curriculum, and research initiatives.'
+      answer: 'Scenic 285-hectare campus between Brahmaputra River and hills, top 100 universities under 50 years, 32nd globally for research citations, 2nd in Swachhata Ranking.'
     },
     {
       question: 'What is the B.Sc Honours in Data Science & AI program structure?',
-      answer: 'IIT Guwahati\'s innovative B.Sc (Honours) in Data Science & Artificial Intelligence program represents a forward-thinking educational approach designed to meet escalating industry demand for skilled professionals in these transformative domains. This comprehensive four-year program incorporates a progressive credentialing system enabling students to earn intermediate certifications at successive milestones: completion of first year awards a Certificate in Data Science & AI, second year completion grants a Diploma in Data Science & AI, third year yields a Bachelor of Science degree, and successful completion of all four years culminates in B.Sc (Honours) in Data Science & Artificial Intelligence. This structure provides flexibility for students while ensuring progressive skill development and credentialing. The curriculum integrates rigorous foundational coursework in mathematics, statistics, programming, algorithms, and data structures with specialized instruction in machine learning, deep learning, natural language processing, computer vision, big data analytics, cloud computing, and AI ethics. Students engage with cutting-edge technologies, industry-standard tools, hands-on projects utilizing real-world datasets, industry internships providing practical experience, and capstone projects addressing contemporary challenges in data science and AI domains. The program emphasizes both theoretical foundations and practical applications, preparing graduates for diverse career opportunities in technology companies, research organizations, consulting firms, financial institutions, healthcare, e-commerce, and emerging AI-driven industries.'
+      answer: 'Four-year program with progressive credentials: Year 1-Certificate, Year 2-Diploma, Year 3-B.Sc, Year 4-B.Sc Honours in Data Science & AI.'
     },
     {
       question: 'What research facilities are available at IIT Guwahati?',
-      answer: 'IIT Guwahati provides world-class research infrastructure spanning diverse scientific and engineering disciplines, enabling faculty and students to pursue cutting-edge investigations addressing fundamental questions and practical challenges. The institute houses 11 specialized academic departments including Biosciences and Bioengineering, Chemical Engineering, Chemistry, Civil Engineering, Computer Science and Engineering, Design, Electronics and Electrical Engineering, Humanities and Social Sciences, Mathematics, Mechanical Engineering, and Physics, each equipped with advanced laboratories featuring sophisticated instrumentation, computational facilities, and specialized equipment. Additionally, five interdisciplinary research centers focus on emerging themes including Nanotechnology, Environment, Energy, Rural Technology, and Advanced Materials, fostering collaborative research transcending traditional departmental boundaries. Research facilities encompass sophisticated characterization equipment for materials analysis, high-performance computing clusters supporting computational research, specialized laboratories for biotechnology research, earthquake engineering facilities, advanced machining centers, clean rooms for microelectronics fabrication, sophisticated analytical instruments for chemical analysis, environmental monitoring equipment, and numerous domain-specific facilities addressing unique research requirements across departments. The Central Instrument Facility provides shared access to expensive research equipment, promoting resource efficiency and interdisciplinary collaborations. IIT Guwahati actively supports research through generous funding mechanisms, sponsored project opportunities, collaborations with industry and government agencies, international research partnerships, and comprehensive support services including research administration, technical assistance, and intellectual property management, creating an ecosystem conducive to impactful research, innovation, and scholarly excellence.'
+      answer: '11 departments with advanced labs, 5 interdisciplinary centers (Nanotech, Energy, Environment), Central Instrument Facility, and high-performance computing clusters.'
     },
     {
       question: 'How does IIT Guwahati support entrepreneurship?',
-      answer: 'IIT Guwahati has cultivated a thriving entrepreneurial ecosystem through dedicated infrastructure, mentorship programs, funding opportunities, and institutional support mechanisms designed to nurture student and faculty entrepreneurial aspirations. The Technology Incubation Centre (TIC) at IIT Guwahati provides comprehensive incubation facilities including dedicated workspace, mentorship from experienced entrepreneurs and industry experts, access to prototyping facilities, networking opportunities with investors and industry partners, and guidance on business planning, market research, legal compliance, intellectual property protection, and fundraising strategies. The institute actively encourages innovation through various initiatives including innovation competitions, startup boot camps, entrepreneurship development programs, and workshops covering diverse aspects of building successful ventures. IIT Guwahati facilitates connections with venture capital firms, angel investor networks, government funding schemes including Startup India, and corporate partners seeking innovative solutions, helping startups secure necessary financial resources for growth. The supportive institutional culture encourages faculty and students to pursue entrepreneurial paths while providing sabbatical policies, flexible academic arrangements, and recognition mechanisms celebrating entrepreneurial achievements. Success stories from IIT Guwahati\'s entrepreneurial ecosystem span technology startups in software development, AI applications, healthcare innovations, sustainable technologies, educational platforms, and other domains, with several ventures achieving significant commercial success, attracting substantial funding, and creating meaningful employment opportunities while addressing important market needs and societal challenges through innovative products and services.'
+      answer: 'Technology Incubation Centre provides workspace, mentorship, funding access, prototyping facilities, and connections to VCs, angel investors, and Startup India.'
     },
     {
       question: 'What is campus life like at IIT Guwahati?',
-      answer: 'Campus life at IIT Guwahati offers a vibrant, enriching experience that extends far beyond academics, fostering holistic student development through diverse extracurricular opportunities, cultural activities, sports, and community engagement. The picturesque 285-hectare campus provides a serene natural setting with stunning views of the Brahmaputra River and surrounding hills, creating an inspiring environment for study, reflection, and recreation. Comfortable hostel facilities accommodate residential students with modern amenities, mess facilities serving diverse cuisines, common areas for socializing, and supportive residential communities fostering friendships and peer learning. The institute hosts numerous technical festivals including Techniche (Asia\'s largest annual technical festival), cultural festivals like Alcheringa showcasing performing arts and creative talents, sports competitions, hackathons, and conferences attracting participants from across India and internationally. Students actively participate in over 60 technical, cultural, literary, social service, and hobby clubs pursuing interests ranging from robotics, coding, astronomy, photography, music, dance, drama, debating, quiz competitions, environmental initiatives, and community outreach programs. Sports facilities include playgrounds for cricket, football, basketball, volleyball, tennis, badminton, athletics, swimming pool, gymnasium, and indoor sports complexes supporting physical fitness and competitive sports. IIT Guwahati\'s diverse student body representing various states, cultures, and backgrounds creates a multicultural environment promoting cross-cultural understanding, collaboration, and lifelong friendships while comprehensive support services including counseling, health facilities, career guidance, and mentorship programs ensure student wellbeing, academic success, and personal growth throughout their transformative journey at this distinguished institution.'
+      answer: 'Vibrant campus with Techniche festival, Alcheringa cultural fest, 60+ clubs, sports facilities, hostels, and diverse student community near Brahmaputra River.'
     }
   ];
 
@@ -85,27 +85,31 @@ const IITGuwahati = () => {
                   <span className={styles.infoValue}>📍 Near Brahmaputra, Guwahati, Assam</span>
                 </div>
                 <div className={styles.infoRow}>
-                  <span className={styles.infoLabel}>Established:</span>
-                  <span className={styles.infoValue}>1994 (6th IIT)</span>
-                </div>
-                <div className={styles.infoRow}>
-                  <span className={styles.infoLabel}>NIRF Ranking:</span>
-                  <span className={styles.infoValue}>7th Engineering 2024</span>
-                </div>
-                <div className={styles.infoRow}>
-                  <span className={styles.infoLabel}>Rating:</span>
-                  <span className={styles.infoValue}>⭐ 5.0/5 (368 Reviews)</span>
+                  <span className={styles.infoLabel}>Ratings:</span>
+                  <div className={styles.rating}>
+                    <span className={styles.stars}>⭐⭐⭐⭐⭐</span>
+                    <span className={styles.ratingText}>5.0/5</span>
+                    <span className={styles.reviews}>(368 Reviews)</span>
+                  </div>
                 </div>
                 <div className={styles.infoRow}>
                   <span className={styles.infoLabel}>Approvals:</span>
                   <div className={styles.approvalBadges}>
-                    {['NIRF', 'AICTE', 'UGC'].map((approval, idx) => (
+                    {['UGC', 'AICTE', 'NAAC A'].map((approval, idx) => (
                       <div key={idx} className={styles.badge}>
                         <span className={styles.badgeIcon}>✓</span>
                         <span>{approval}</span>
                       </div>
                     ))}
                   </div>
+                </div>
+                <div className={styles.infoRow}>
+                  <span className={styles.infoLabel}>NIRF Ranking:</span>
+                  <span className={styles.infoValue}>Rank 7 (Engineering 2024)</span>
+                </div>
+                <div className={styles.infoRow}>
+                  <span className={styles.infoLabel}>Accreditation:</span>
+                  <span className={styles.infoValue}>NAAC A</span>
                 </div>
               </div>
             </div>
@@ -236,6 +240,22 @@ const IITGuwahati = () => {
                       Successful candidates receive formal admission offers detailing program specifics, comprehensive fee structure, reporting dates, and enrollment procedures. Candidates must accept offers within stipulated timelines, pay required admission deposits to secure enrollment, complete medical examinations, submit original documents for verification during physical reporting to the scenic IIT Guwahati campus, and participate in orientation programs introducing academic policies, campus facilities, student support services, and vibrant campus culture before commencing transformative academic journeys.
                     </p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>M.Tech Programs:</strong> Bachelor's degree in Engineering/Technology with minimum 60% aggregate marks (55% for SC/ST/PwD categories). Valid GATE score required</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>PhD Programs:</strong> Master's degree with 60% marks or exceptional Bachelor's degree with GATE qualification. Research aptitude, proposal, and interview mandatory</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>BSc Data Science & Applications:</strong> 12th pass with Mathematics. Valid JEE Main score or institute's entrance test performance for admission</span>
                 </div>
               </div>
             </div>

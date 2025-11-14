@@ -134,7 +134,7 @@ const AnnaUniversity = () => {
                 className={`${styles.tab} ${activeTab === tab ? styles.activeTab : ''}`}
                 onClick={() => setActiveTab(tab)}
               >
-                {tab === 'faqs' ? 'FAQ' : tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {tab === 'faqs' ? 'FAQ' : tab === 'courses' ? 'Programs' : tab.charAt(0).toUpperCase() + tab.slice(1)}
               </button>
             ))}
           </div>
@@ -286,6 +286,22 @@ const AnnaUniversity = () => {
                     <h3>Confirmation & Access Credentials</h3>
                     <p>Receive application confirmation and payment receipt via registered email. Obtain Learning Management System access credentials upon successful enrollment verification completion.</p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>PhD Programs:</strong> Master's degree from a recognized university with minimum 55% marks (50% for SC/ST). Research aptitude demonstrated through NET/GATE/SLET or equivalent qualifications</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Research Requirements:</strong> Candidates must submit research proposal for selected area of specialization. Prior research publications and academic work experience preferred for certain departments</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>ABC ID Requirement:</strong> All candidates must create Academic Bank of Credits (ABC) ID as per UGC regulations. Distance education courses maintain complete equivalency with traditional degrees</span>
                 </div>
               </div>
 

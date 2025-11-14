@@ -144,7 +144,7 @@ const EdgewoodUniversity = () => {
                 className={`${styles.tab} ${activeTab === tab ? styles.activeTab : ''}`}
                 onClick={() => setActiveTab(tab)}
               >
-                {tab === 'faqs' ? 'FAQ' : tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {tab === 'faqs' ? 'FAQ' : tab === 'courses' ? 'Programs' : tab.charAt(0).toUpperCase() + tab.slice(1)}
               </button>
             ))}
           </div>
@@ -302,6 +302,22 @@ const EdgewoodUniversity = () => {
                     <h3>Program Commencement</h3>
                     <p>Access the online learning platform with your credentials. Explore course materials, digital resources, and interactive tools. Begin engaging with content, completing assignments, participating in discussions, and connecting with faculty and fellow students.</p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Bachelor's Programs:</strong> High school diploma or equivalent with minimum GPA requirements. English proficiency demonstrated through test scores or previous education</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Master's/MBA Programs:</strong> Bachelor's degree from accredited institution with good academic standing. Work experience preferred for executive programs</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>International Students:</strong> Valid passport, English proficiency scores, transcripts evaluation. Check email regularly for admissions communications</span>
                 </div>
               </div>
 

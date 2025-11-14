@@ -123,7 +123,7 @@ const AligarhMuslimUniversity = () => {
                 className={`${styles.tab} ${activeTab === tab ? styles.activeTab : ''}`}
                 onClick={() => setActiveTab(tab)}
               >
-                {tab === 'faqs' ? 'FAQ' : tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {tab === 'faqs' ? 'FAQ' : tab === 'courses' ? 'Programs' : tab.charAt(0).toUpperCase() + tab.slice(1)}
               </button>
             ))}
           </div>
@@ -278,6 +278,22 @@ const AligarhMuslimUniversity = () => {
                     <h3>Confirmation Documentation</h3>
                     <p>Generate payment receipt and preserve completed application form for future academic references. Commence your educational trajectory.</p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>UG Programs (BA/B.Com/BBA):</strong> 12th pass from recognized board with minimum 45-50% marks depending on program and category</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>PG Programs (MA/M.Com/MBA):</strong> Bachelor's degree in relevant discipline with minimum 50% marks (45% for reserved categories)</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Distance Education Programs:</strong> Same as regular programs. ODL credentials maintain equivalency with conventional degrees per UGC certification</span>
                 </div>
               </div>
 

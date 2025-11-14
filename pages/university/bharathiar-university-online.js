@@ -151,7 +151,7 @@ const BharathiarUniversity = () => {
                 className={`${styles.tab} ${activeTab === tab ? styles.activeTab : ''}`}
                 onClick={() => setActiveTab(tab)}
               >
-                {tab === 'faqs' ? 'FAQ' : tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {tab === 'faqs' ? 'FAQ' : tab === 'courses' ? 'Programs' : tab.charAt(0).toUpperCase() + tab.slice(1)}
               </button>
             ))}
           </div>
@@ -303,6 +303,22 @@ const BharathiarUniversity = () => {
                     <h3>Start Learning</h3>
                     <p>Access study materials and support through the nearest Learner Support Centre and begin your academic journey.</p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>UG Distance Programs (BA/B.Com/BBA/BCA):</strong> 10+2 from recognized board with minimum 50% marks. No age limit for distance education</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>PG Distance Programs (MBA/MCA/M.Com/MA):</strong> Bachelor's degree from UGC recognized university with 50% aggregate marks</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Diploma Programs:</strong> Graduation for PG diplomas, 12th pass for UG diplomas. Programs equivalent to regular degrees with same academic value</span>
                 </div>
               </div>
 

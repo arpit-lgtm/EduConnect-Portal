@@ -130,7 +130,7 @@ const DYPatilPune = () => {
                 className={`${styles.tab} ${activeTab === tab ? styles.activeTab : ''}`}
                 onClick={() => setActiveTab(tab)}
               >
-                {tab === 'faqs' ? 'FAQ' : tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {tab === 'faqs' ? 'FAQ' : tab === 'courses' ? 'Programs' : tab.charAt(0).toUpperCase() + tab.slice(1)}
               </button>
             ))}
           </div>
@@ -278,6 +278,22 @@ const DYPatilPune = () => {
                     <h3>Verification & Confirmation</h3>
                     <p>University verifies documents and sends admission confirmation via email/SMS with student login details.</p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>UG Programs (BBA/BCA/B.Com):</strong> 10+2 from recognized board with minimum qualifying marks. No entrance examination required</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>PG Programs (MBA/MCA/M.Com):</strong> Bachelor's degree in relevant discipline with minimum 50% marks from UGC recognized university</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Online/Distance Education:</strong> ABC ID and DEB ID mandatory per UGC guidelines. 100% fee refund available within specified period. Admissions twice yearly</span>
                 </div>
               </div>
 

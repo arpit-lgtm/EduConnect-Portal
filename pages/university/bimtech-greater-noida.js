@@ -152,7 +152,7 @@ const BIMTECHGreaterNoida = () => {
                 className={`${styles.tab} ${activeTab === tab ? styles.activeTab : ''}`}
                 onClick={() => setActiveTab(tab)}
               >
-                {tab === 'faqs' ? 'FAQ' : tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {tab === 'faqs' ? 'FAQ' : tab === 'courses' ? 'Programs' : tab.charAt(0).toUpperCase() + tab.slice(1)}
               </button>
             ))}
           </div>
@@ -300,6 +300,22 @@ const BIMTECHGreaterNoida = () => {
                     <h3>Enrollment Confirmation & Orientation</h3>
                     <p>Complete enrollment formalities including fee payment, document verification, and admission confirmation. Attend comprehensive orientation program introducing academic policies, campus facilities, and program expectations.</p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>PGDM/MBA Programs:</strong> Bachelor's degree with minimum 50% aggregate. Valid CAT/XAT/GMAT/CMAT/ATMA score required. Work experience advantageous but not mandatory</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Executive Programs:</strong> Graduation degree with minimum 2-3 years professional work experience in managerial or technical roles</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>International Students:</strong> Bachelor's degree from recognized university with English proficiency. Additional documentation and visa requirements apply</span>
                 </div>
               </div>
 

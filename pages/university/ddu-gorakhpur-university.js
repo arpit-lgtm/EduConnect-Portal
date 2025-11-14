@@ -169,7 +169,7 @@ export default function DDUGorakhpurUniversity() {
                 className={`${styles.tab} ${activeTab === tab ? styles.activeTab : ''}`}
                 onClick={() => setActiveTab(tab)}
               >
-                {tab === 'faqs' ? 'FAQ' : tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {tab === 'faqs' ? 'FAQ' : tab === 'courses' ? 'Programs' : tab.charAt(0).toUpperCase() + tab.slice(1)}
               </button>
             ))}
           </div>
@@ -324,6 +324,22 @@ export default function DDUGorakhpurUniversity() {
                     <h3>Start Learning</h3>
                     <p>Access online learning platform, download study materials, and begin your academic journey with faculty support.</p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>UG Programs (BA/B.Com/BSc):</strong> 12th pass from recognized board with minimum pass marks. Merit-based admission with no entrance exam for most programs</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>PG Programs (MA/M.Com/MBA):</strong> Bachelor's degree in relevant stream with minimum 50% aggregate from UGC recognized university</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Distance Education:</strong> Same eligibility criteria. NAAC A++ accredited with 12,000+ students. QS ranking 1001-1200 band (2024)</span>
                 </div>
               </div>
 

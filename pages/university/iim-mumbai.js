@@ -37,27 +37,27 @@ const IIMMumbai = () => {
   const faqs = [
     {
       question: 'What distinguished programs does IIM Mumbai offer for working professionals?',
-      answer: 'IIM Mumbai offers prestigious programs including Executive MBA, Online MBA, and Doctor of Philosophy designed specifically for accomplished professionals. Additionally, the institute provides specialized Management Development Programmes (MDPs) across Finance, Economics, Strategy, Analytics, Data Science, Operations & Supply Chain Management, Marketing, Sustainability Management, and Organizational Behaviour. Each program integrates industry insights with academic excellence, leveraging Mumbai\'s business ecosystem for transformative learning experiences.'
+      answer: 'IIM Mumbai offers Executive MBA, Online MBA, PhD, and specialized MDPs across Finance, Analytics, Strategy, Operations, Marketing, and more.'
     },
     {
       question: 'What global recognition does IIM Mumbai command?',
-      answer: 'IIM Mumbai holds prestigious AACSB (Association to Advance Collegiate Schools of Business) international accreditation, positioning it among the world\'s top 5% of business schools. Ranked 6th nationally in the NIRF 2024 Management category with a score of 74.73, the institute exemplifies academic excellence. Established in 1963 as NITIE, IIM Mumbai has cultivated six decades of management education excellence, creating global leaders and innovative business strategists.'
+      answer: 'IIM Mumbai holds AACSB accreditation (top 5% globally), ranks 6th in NIRF 2024, and has six decades of management excellence.'
     },
     {
       question: 'What placement success characterizes IIM Mumbai graduates?',
-      answer: 'IIM Mumbai maintains exceptional placement records through partnerships with distinguished organizations including 3M, Abbott, AB InBev, Cipla, John Deere, Aditya Birla Group, EY, and numerous other premier companies. The Career Development Services (CDS) actively supports students throughout their academic journey, facilitating industry connections, skill development, and career advancement opportunities. Alumni consistently secure leadership positions with significant compensation packages across diverse sectors.'
+      answer: 'IIM Mumbai maintains exceptional placements with partners like 3M, Abbott, Cipla, Aditya Birla, EY, and premier companies across sectors.'
     },
     {
       question: 'How does IIM Mumbai\'s location benefit students?',
-      answer: 'IIM Mumbai\'s strategic location in India\'s business capital provides unparalleled advantages, including direct access to major corporate headquarters, industry leaders, financial institutions, and multinational corporations. This proximity enables regular industry interactions, guest lectures from business pioneers, live project opportunities, and networking with Mumbai\'s vibrant business ecosystem, significantly enhancing practical learning and career prospects for students.'
+      answer: 'Located in India\'s business capital, students access corporate headquarters, industry leaders, live projects, and Mumbai\'s vibrant business ecosystem.'
     },
     {
       question: 'What makes IIM Mumbai\'s faculty exceptional?',
-      answer: 'IIM Mumbai\'s distinguished faculty comprises 59+ accomplished academicians who are renowned researchers, industry veterans, and thought leaders in their respective domains. The faculty brings extensive expertise across Finance, Analytics, Project Management, HR, Operations Management, Sustainability, and Information Technology. Many faculty members maintain active industry consulting practices and research collaborations, ensuring curriculum remains contemporary and industry-relevant while fostering innovation and critical thinking.'
+      answer: 'IIM Mumbai has 59+ accomplished faculty who are researchers, industry veterans, and consultants with expertise across all management domains.'
     },
     {
       question: 'Can working professionals pursue IIM Mumbai programs effectively?',
-      answer: 'Yes, IIM Mumbai\'s executive programs are specifically architected for ambitious working professionals, featuring flexible schedules, weekend sessions, and online learning components. The Management Development Programmes (MDPs) are delivered through sophisticated online platforms, enabling participants to balance demanding professional responsibilities with rigorous academic pursuits. This design ensures continuous career momentum while acquiring transformative management education from one of India\'s most prestigious business schools.'
+      answer: 'Yes, programs feature flexible schedules, weekend sessions, and online components to balance professional responsibilities with academic pursuits.'
     }
   ];
 
@@ -293,6 +293,22 @@ const IIMMumbai = () => {
                     <h3>Final Selection & Enrollment</h3>
                     <p>Final selection determined through holistic evaluation of academic performance, entrance scores, interview performance, and overall candidate potential. Selected candidates receive official offer letters and complete enrollment formalities to begin their transformative learning journey.</p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>MBA Programs:</strong> Bachelor's degree with minimum 50% marks (45% for SC/ST/PWD). Valid CAT/GMAT score required</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Executive MBA:</strong> Graduation with minimum 5 years professional work experience in managerial/leadership roles</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Online Programs:</strong> Bachelor's degree from recognized university. Working professionals and fresh graduates eligible</span>
                 </div>
               </div>
 

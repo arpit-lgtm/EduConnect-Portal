@@ -128,12 +128,12 @@ const HPUHimachalPradeshUniversityDistanceEducation = () => {
                   </div>
                 </div>
                 <div className={styles.infoRow}>
-                  <span className={styles.infoLabel}>Accreditation:</span>
-                  <span className={styles.infoValue}>{accreditation}</span>
+                  <span className={styles.infoLabel}>NIRF Ranking:</span>
+                  <span className={styles.infoValue}>Rank 128 (University)</span>
                 </div>
                 <div className={styles.infoRow}>
-                  <span className={styles.infoLabel}>Established:</span>
-                  <span className={styles.infoValue}>1971</span>
+                  <span className={styles.infoLabel}>Accreditation:</span>
+                  <span className={styles.infoValue}>{accreditation}</span>
                 </div>
               </div>
             </div>
@@ -149,7 +149,7 @@ const HPUHimachalPradeshUniversityDistanceEducation = () => {
                 className={`${styles.tab} ${activeTab === tab ? styles.activeTab : ''}`}
                 onClick={() => setActiveTab(tab)}
               >
-                {tab === 'courses' ? 'Programs & Fees' : tab === 'faqs' ? 'FAQ' : tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {tab === 'courses' ? 'Programs' : tab === 'faqs' ? 'FAQ' : tab.charAt(0).toUpperCase() + tab.slice(1)}
               </button>
             ))}
           </div>

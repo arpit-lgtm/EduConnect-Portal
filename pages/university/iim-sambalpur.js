@@ -39,27 +39,27 @@ const IIMSambalpur = () => {
   const faqs = [
     {
       question: 'What is the average salary of IIM Sambalpur?',
-      answer: 'IIM Sambalpur graduates achieve impressive career outcomes, with average annual compensation packages reaching ₹16 lakhs per annum (LPA), reflecting strong market recognition of the institute\'s educational quality and graduate capabilities. The institute has witnessed remarkable 30% growth in recruitment activity, with 130+ distinguished organizations actively participating in comprehensive placement drives. Premier recruiters including Ernst & Young (EY), Deloitte, Amul, and Bajaj Group demonstrate strong confidence in IIM Sambalpur talent, offering diverse roles spanning consulting, finance, marketing, operations, and strategic management. These robust placement outcomes validate the institute\'s commitment to producing industry-ready professionals equipped with sophisticated management competencies and leadership potential.'
+      answer: 'IIM Sambalpur graduates average ₹16 LPA with 30% recruitment growth. 130+ organizations including EY, Deloitte, Amul, Bajaj recruit across diverse roles.'
     },
     {
       question: 'Does IIM Sambalpur offer online or executive programs?',
-      answer: 'Yes, IIM Sambalpur offers a comprehensive suite of flexible learning programs designed specifically for accomplished professionals seeking advanced management education without interrupting their career trajectories. Our distinguished offerings include the prestigious Executive MBA program, versatile Online MBA, rigorous PhD (Doctor of Philosophy) for scholarly pursuits, and the innovative Online DBA (Doctor of Business Administration) Program. Each program features meticulously designed curriculum that balances theoretical rigor with practical application, delivered through sophisticated online learning platforms that facilitate interactive engagement with accomplished faculty and diverse peer cohorts. These programs are strategically architected to upskill senior executives, emerging leaders, and ambitious professionals with cutting-edge management knowledge, strategic thinking capabilities, and leadership competencies essential for driving organizational excellence in today\'s dynamic business landscape.'
+      answer: 'Yes, IIM Sambalpur offers Executive MBA, Online MBA, PhD, and Online DBA through flexible online platforms for working professionals.'
     },
     {
       question: 'What are the criteria for online programs at IIM Sambalpur?',
-      answer: 'IIM Sambalpur\'s admission criteria for online programs are thoughtfully designed to identify candidates possessing the academic foundations, professional experience, and intellectual capabilities necessary for advanced management education success. Generally, candidates must hold a bachelor\'s degree from a recognized university with specified minimum academic performance standards. Admission requires valid scores from prestigious entrance examinations including GMAT (Graduate Management Admission Test), GRE (Graduate Record Examination), CAT (Common Admission Test), CSIR (Council of Scientific & Industrial Research), or GATE (Graduate Aptitude Test in Engineering), depending on the specific program. Selected programs may require the IIM Sambalpur Aptitude Test (IIMSAT). Additionally, executive and specialized programs typically mandate relevant professional work experience to ensure meaningful peer learning and practical application of advanced management concepts. Detailed program-specific requirements ensure optimal matching between candidate capabilities and program expectations.'
+      answer: 'Bachelor\'s degree with GMAT/GRE/CAT/CSIR/GATE scores or IIMSAT. Executive programs require work experience. Check specific program requirements.'
     },
     {
       question: 'What are the contact details of IIM Sambalpur?',
-      answer: 'For comprehensive information regarding admission processes, program details, curriculum specifics, and application procedures, prospective students are encouraged to visit the official IIM Sambalpur website, which provides detailed resources covering all aspects of the institute\'s offerings. Alternatively, candidates can connect directly with the dedicated admissions office through the university\'s official communication channels for personalized guidance and query resolution. The institute\'s picturesque campus is strategically located in Goshala, Sambalpur, Odisha, embraced by the serene natural beauty of the Barapahad hills—an environment that inspires contemplative learning and holistic development. Our admissions team remains committed to providing comprehensive support throughout your application journey, ensuring you have all necessary information to make informed educational decisions aligned with your professional aspirations.'
+      answer: 'Visit official IIM Sambalpur website for details. Campus located in Goshala, Sambalpur, Odisha amid Barapahad hills.'
     },
     {
       question: 'What is the last date to apply for IIM Sambalpur?',
-      answer: 'Application deadlines for IIM Sambalpur programs vary based on specific program offerings, intake cycles, and admission schedules. To ensure you receive the most current and accurate information regarding application timelines, admission windows, entrance examination deadlines, and program-specific schedules, we strongly recommend consulting the official IIM Sambalpur website regularly. The admissions section provides comprehensive details on upcoming intake schedules, important dates, document submission requirements, and application process milestones. Early application is generally advisable, as it allows sufficient time for thorough application preparation, entrance examination scheduling, and thoughtful program selection. Our admissions team updates all deadline information regularly to ensure prospective students have access to timely, accurate guidance for their application planning.'
+      answer: 'Deadlines vary by program and intake cycle. Check official website regularly for current admission timelines and schedules.'
     },
     {
       question: 'Are there any financial aids provided at IIM Sambalpur?',
-      answer: 'IIM Sambalpur demonstrates strong commitment to making world-class management education accessible through comprehensive financial support mechanisms designed to assist deserving candidates. The institute offers convenient no-cost EMI (Equated Monthly Installment) options and education loan facilitation through partner financial institutions, enabling students to manage educational investments alongside existing financial commitments. Beyond these flexible payment structures, IIM Sambalpur provides multiple scholarship opportunities including the prestigious Vyasakabi Fakir Mohan Senapati Scholarship honoring academic excellence, Prof. Ghanshyam Dash Scholarship recognizing outstanding potential, merit-based scholarships rewarding exceptional academic achievement, and dedicated scholarships supporting minority community students. These thoughtfully designed financial aid programs ensure that talented, ambitious individuals are not constrained by immediate financial circumstances in pursuing transformative educational opportunities that significantly enhance long-term career prospects and professional fulfillment.'
+      answer: 'Yes, IIM Sambalpur offers no-cost EMI, education loans, Vyasakabi Fakir Mohan Scholarship, Prof. Ghanshyam Dash Scholarship, and merit-based support.'
     }
   ];
 
@@ -298,6 +298,22 @@ const IIMSambalpur = () => {
                     <h3>Review and Submit</h3>
                     <p>Before submitting the form, pay the fee and review your application thoroughly.</p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>MBA/PGP Programs:</strong> Bachelor's degree with 50% aggregate marks. CAT score required with minimum percentile as per program</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Executive MBA:</strong> Graduation degree with minimum 3-5 years work experience in managerial or professional roles</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Online Certificate Programs:</strong> Bachelor's degree from recognized university. Valid ABC ID and DEB ID as per UGC guidelines</span>
                 </div>
               </div>
 

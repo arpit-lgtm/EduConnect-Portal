@@ -132,7 +132,7 @@ const EFLUDistanceEducation = () => {
                 className={`${styles.tab} ${activeTab === tab ? styles.activeTab : ''}`}
                 onClick={() => setActiveTab(tab)}
               >
-                {tab === 'faqs' ? 'FAQ' : tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {tab === 'faqs' ? 'FAQ' : tab === 'courses' ? 'Programs' : tab.charAt(0).toUpperCase() + tab.slice(1)}
               </button>
             ))}
           </div>
@@ -294,6 +294,22 @@ const EFLUDistanceEducation = () => {
                     <h3>Fee Payment & Confirmation</h3>
                     <p>Complete the course fee payment through the secure online payment gateway of the university. Upon successful payment, the School of Distance Education will verify all details and confirm your admission.</p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>UG Programs (BA/BBA/B.Com):</strong> 10+2 or equivalent from recognized board. No entrance examination required - direct admission mode</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>PG Programs (MA/MBA/M.Com):</strong> Bachelor's degree from UGC recognized university with minimum 50% marks in relevant discipline</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>ODL Programs:</strong> ABC ID and DEB ID mandatory per UGC guidelines. 100% fee refund available within specified period. Admissions twice annually</span>
                 </div>
               </div>
 

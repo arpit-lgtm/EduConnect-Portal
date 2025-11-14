@@ -159,7 +159,7 @@ const IIMAhmedabad = () => {
                 className={`${styles.tab} ${activeTab === tab ? styles.activeTab : ''}`}
                 onClick={() => setActiveTab(tab)}
               >
-                {tab === 'courses' ? 'Programs & Fees' : tab === 'faqs' ? 'FAQ' : tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {tab === 'courses' ? 'Programs & Fees' : tab === 'faqs' ? 'FAQ' : tab === 'courses' ? 'Programs' : tab.charAt(0).toUpperCase() + tab.slice(1)}
               </button>
             ))}
           </div>
@@ -326,6 +326,26 @@ const IIMAhmedabad = () => {
                     <h3>Verification & Confirmation</h3>
                     <p>After verification of details by the university, admission will be confirmed. Download the confirmation letter sent through mail or message for future reference. Keep login credentials safe. According to latest UGC guidelines, create ABC ID and DEB ID for admission.</p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>MBA/PGPM Programs:</strong> Bachelor's degree from recognized university with minimum 50% aggregate. CAT/GMAT score required for full-time programs</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Executive MBA/PGPX:</strong> Bachelor's degree with minimum 4-5 years professional work experience in managerial roles</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Online Certificate Programs:</strong> Graduation required. Working professionals and fresh graduates both eligible</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Fellowship (PhD):</strong> Master's degree or equivalent with strong academic record and research aptitude</span>
                 </div>
               </div>
 

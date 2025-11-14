@@ -152,7 +152,7 @@ const AtlasSkillTechUniversity = () => {
                 className={`${styles.tab} ${activeTab === tab ? styles.activeTab : ''}`}
                 onClick={() => setActiveTab(tab)}
               >
-                {tab === 'faqs' ? 'FAQ' : tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {tab === 'faqs' ? 'FAQ' : tab === 'courses' ? 'Programs' : tab.charAt(0).toUpperCase() + tab.slice(1)}
               </button>
             ))}
           </div>
@@ -302,6 +302,22 @@ const AtlasSkillTechUniversity = () => {
                     <h3>Orientation & Academic Commencement</h3>
                     <p>Attend mandatory orientation sessions, receive student identification credentials, access learning management systems, and commence academic activities according to the university calendar.</p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>BBA/BCA Programs:</strong> 10+2 from recognized board with minimum 50% marks. Merit-based selection for undergraduate admissions</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>MBA/PGDM Programs:</strong> Bachelor's degree with minimum 50% aggregate. CAT/MAT/CMAT/XAT score required. Work experience preferred</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Diploma/Certificate Programs:</strong> Graduation for PG diplomas, 12th for UG certificates. Industry experience may add value for professional programs</span>
                 </div>
               </div>
 

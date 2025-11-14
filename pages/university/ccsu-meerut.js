@@ -92,27 +92,31 @@ const CCSUMeerut = () => {
                   <span className={styles.infoValue}>📍 Meerut, Uttar Pradesh</span>
                 </div>
                 <div className={styles.infoRow}>
-                  <span className={styles.infoLabel}>Established:</span>
-                  <span className={styles.infoValue}>1965</span>
-                </div>
-                <div className={styles.infoRow}>
-                  <span className={styles.infoLabel}>NIRF Ranking:</span>
-                  <span className={styles.infoValue}>99th (Overall)</span>
-                </div>
-                <div className={styles.infoRow}>
-                  <span className={styles.infoLabel}>Rating:</span>
-                  <span className={styles.infoValue}>⭐ 3.8/5 (269 Reviews)</span>
+                  <span className={styles.infoLabel}>Ratings:</span>
+                  <div className={styles.rating}>
+                    <span className={styles.stars}>⭐⭐⭐⭐</span>
+                    <span className={styles.ratingText}>3.8/5</span>
+                    <span className={styles.reviews}>(269 Reviews)</span>
+                  </div>
                 </div>
                 <div className={styles.infoRow}>
                   <span className={styles.infoLabel}>Approvals:</span>
                   <div className={styles.approvalBadges}>
-                    {['UGC', 'NIRF', 'NAAC A++', 'AIU'].map((approval, idx) => (
+                    {['UGC', 'NAAC A++', 'AIU'].map((approval, idx) => (
                       <div key={idx} className={styles.badge}>
                         <span className={styles.badgeIcon}>✓</span>
                         <span>{approval}</span>
                       </div>
                     ))}
                   </div>
+                </div>
+                <div className={styles.infoRow}>
+                  <span className={styles.infoLabel}>NIRF Ranking:</span>
+                  <span className={styles.infoValue}>Rank 99 (Overall)</span>
+                </div>
+                <div className={styles.infoRow}>
+                  <span className={styles.infoLabel}>Accreditation:</span>
+                  <span className={styles.infoValue}>NAAC A++</span>
                 </div>
               </div>
             </div>
@@ -243,6 +247,22 @@ const CCSUMeerut = () => {
                       Pay the program fees through the secure online payment gateway using available payment methods including credit/debit cards, net banking, or UPI. After successful payment, carefully review all entered information for accuracy, then submit your completed application. Save the confirmation receipt for future reference and admission processing.
                     </p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>UG Programs (BA/B.Com/BBA/BCA):</strong> 10+2 from recognized board with minimum 45-50% marks depending on program. Age limit as per university norms</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>PG Programs (MA/M.Com/MBA/MCA):</strong> Bachelor's degree in relevant discipline with minimum 50% aggregate from UGC recognized university</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Distance Education Programs:</strong> Same eligibility as regular mode. ABC ID and DEB ID creation mandatory as per UGC guidelines. Working professionals eligible</span>
                 </div>
               </div>
             </div>

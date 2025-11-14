@@ -159,7 +159,7 @@ export default function DeakinUniversityMelbourne() {
                 className={`${styles.tab} ${activeTab === tab ? styles.activeTab : ''}`}
                 onClick={() => setActiveTab(tab)}
               >
-                {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {tab === 'courses' ? 'Programs' : tab === 'faqs' ? 'FAQ' : tab.charAt(0).toUpperCase() + tab.slice(1)}
               </button>
             ))}
           </div>
@@ -314,6 +314,22 @@ export default function DeakinUniversityMelbourne() {
                     <h3>Program Commencement</h3>
                     <p>Access learning platform, attend virtual orientation, and begin your journey with dedicated student success manager support.</p>
                   </div>
+                </div>
+              </div>
+
+              <h3>Eligibility Criteria</h3>
+              <div className={styles.highlightsList}>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>MBA/Business Programs:</strong> Bachelor's degree from recognized university with minimum 50-60% marks. Work experience preferred. IELTS/TOEFL preferred but not mandatory</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>Master's Programs:</strong> Relevant undergraduate degree with good academic standing. English proficiency demonstration required for international students</span>
+                </div>
+                <div className={styles.highlightItem}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span><strong>International Recognition:</strong> Australian university degree with global recognition and UGC equivalence in India. Merit-based scholarships available</span>
                 </div>
               </div>
 
