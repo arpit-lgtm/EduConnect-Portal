@@ -11,6 +11,17 @@ const TalkToExperts = () => {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
+        
+        // Phone number validation: only allow numbers and limit to 10 digits
+        if (name === 'phone') {
+            const numericValue = value.replace(/[^0-9]/g, '').slice(0, 10);
+            setFormData(prev => ({
+                ...prev,
+                [name]: numericValue
+            }));
+            return;
+        }
+        
         setFormData(prev => ({
             ...prev,
             [name]: value
@@ -147,8 +158,11 @@ const TalkToExperts = () => {
                                         name="phone"
                                         value={formData.phone}
                                         onChange={handleInputChange}
-                                        placeholder="Phone Number"
+                                        placeholder="Phone Number (10 digits)"
                                         className={styles.formInput}
+                                        pattern="[0-9]{10}"
+                                        maxLength="10"
+                                        title="Please enter exactly 10 digits"
                                         required
                                     />
                                 </div>
