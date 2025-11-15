@@ -1,8 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './TalkToExperts.module.css';
+import LoginModal from '../login/LoginModal';
+import Toast from '../common/Toast';
+import { useAuth } from '../../contexts/AuthContext';
+import { trackUniversityContact } from '../../utils/activityTracker';
 
 export default function TalkToExperts() {
+  const { userData, isLoggedIn } = useAuth();
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showToast, setShowToast] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -10,19 +17,80 @@ export default function TalkToExperts() {
     course: ''
   });
 
+  // Auto-fill form when user is logged in
+  useEffect(() => {
+    if (isLoggedIn && userData) {
+      setFormData({
+        name: userData.fullName || '',
+        phone: userData.contactNumber || '',
+        email: userData.emailAddress || '',
+        course: ''
+      });
+    }
+  }, [isLoggedIn, userData]);
+
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    const { name, value } = e.target;
+    
+    // Restrict phone number to 10 digits only
+    if (name === 'phone') {
+      // Remove non-numeric characters
+      const numericValue = value.replace(/\D/g, '');
+      // Limit to 10 digits
+      if (numericValue.length <= 10) {
+        setFormData({
+          ...formData,
+          [name]: numericValue
+        });
+      }
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value
+      });
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Add form submission logic here
-    alert('Thank you! Our experts will contact you soon.');
-    setFormData({ name: '', phone: '', email: '', course: '' });
+    
+    // If user is not logged in, show login modal
+    if (!isLoggedIn) {
+      setShowLoginModal(true);
+      return;
+    }
+    
+    // User is logged in - save callback request
+    try {
+      const callbackData = {
+        ...formData,
+        source: 'Talk to Experts - Request Callback'
+      };
+      
+      await fetch('/api/save-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(callbackData)
+      });
+      
+      // Track activity
+      trackUniversityContact('Request Callback', { 
+        ...formData, 
+        source: 'Talk to Experts Module' 
+      });
+      
+      // Show success toast
+      setShowToast(true);
+      
+      // Reset only the course field
+      setFormData(prev => ({
+        ...prev,
+        course: ''
+      }));
+    } catch (error) {
+      console.error('Failed to save callback request:', error);
+      alert('Something went wrong. Please try again.');
+    }
   };
 
   return (
@@ -130,6 +198,8 @@ export default function TalkToExperts() {
                     className={styles.formControl}
                     placeholder="Your Name"
                     required
+                    readOnly={isLoggedIn}
+                    style={isLoggedIn ? { backgroundColor: '#f0f0f0', cursor: 'not-allowed' } : {}}
                   />
                 </div>
                 <div className={styles.formGroup}>
@@ -139,8 +209,13 @@ export default function TalkToExperts() {
                     value={formData.phone}
                     onChange={handleChange}
                     className={styles.formControl}
-                    placeholder="Phone Number"
+                    placeholder="Phone Number (10 digits)"
                     required
+                    readOnly={isLoggedIn}
+                    pattern="[0-9]{10}"
+                    maxLength="10"
+                    title="Please enter exactly 10 digits"
+                    style={isLoggedIn ? { backgroundColor: '#f0f0f0', cursor: 'not-allowed' } : {}}
                   />
                 </div>
                 <div className={styles.formGroup}>
@@ -152,6 +227,8 @@ export default function TalkToExperts() {
                     className={styles.formControl}
                     placeholder="Email Address"
                     required
+                    readOnly={isLoggedIn}
+                    style={isLoggedIn ? { backgroundColor: '#f0f0f0', cursor: 'not-allowed' } : {}}
                   />
                 </div>
                 <div className={styles.formGroup}>
@@ -180,6 +257,22 @@ export default function TalkToExperts() {
           </div>
         </div>
       </div>
+
+      {/* Login Modal */}
+      <LoginModal 
+        isOpen={showLoginModal} 
+        onClose={() => setShowLoginModal(false)} 
+      />
+
+      {/* Success Toast */}
+      {showToast && (
+        <Toast
+          message="Thank you! Our experts will contact you shortly."
+          type="success"
+          onClose={() => setShowToast(false)}
+          duration={4000}
+        />
+      )}
     </section>
   );
 }

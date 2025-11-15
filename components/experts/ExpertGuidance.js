@@ -1,25 +1,16 @@
 import { useState, useRef, useEffect } from 'react';
 import styles from './ExpertGuidance.module.css';
 import Toast from '../common/Toast';
+import LoginModal from '../login/LoginModal';
 import { useAuth } from '../../contexts/AuthContext';
 import { trackUniversityContact } from '../../utils/activityTracker';
 
 const ExpertGuidance = () => {
     const scrollContainerRef = useRef(null);
-    const [showModal, setShowModal] = useState(false);
+    const [showLoginModal, setShowLoginModal] = useState(false);
     const [selectedExpert, setSelectedExpert] = useState(null);
     const [showToast, setShowToast] = useState(false);
     const { userData, isLoggedIn } = useAuth();
-    const [formData, setFormData] = useState({
-        fullName: '',
-        contactNumber: '',
-        emailAddress: '',
-        gender: '',
-        dateOfBirth: '',
-        city: '',
-        state: '',
-        currentQualification: ''
-    });
 
     const experts = [
         { name: 'Imran Ansari', title: 'Manager, Sales', experience: '7+ Years', rating: '4.9', image: '/images/counsellors/Imran Ansari.jpeg' },
@@ -40,7 +31,7 @@ const ExpertGuidance = () => {
     useEffect(() => {
         const handleOpenModal = () => {
             setSelectedExpert(experts[0]); // Default to first expert
-            setShowModal(true);
+            setShowLoginModal(true);
         };
         
         window.addEventListener('openExpertModal', handleOpenModal);
@@ -89,32 +80,12 @@ const ExpertGuidance = () => {
                 console.error('Failed to save lead:', error);
             }
             
-            // Show toast
+            // Show thank you toast message
             setShowToast(true);
-            
-            // Refresh page after 4 seconds
-            setTimeout(() => {
-                window.location.reload();
-            }, 4000);
         } else {
-            // Not logged in, show the form modal
-            setShowModal(true);
+            // Not logged in, show the login modal
+            setShowLoginModal(true);
         }
-    };
-
-    const handleCloseModal = () => {
-        setShowModal(false);
-        setSelectedExpert(null);
-        setFormData({
-            fullName: '',
-            contactNumber: '',
-            emailAddress: '',
-            gender: '',
-            dateOfBirth: '',
-            city: '',
-            state: '',
-            currentQualification: ''
-        });
     };
 
     const handleInputChange = (e) => {
@@ -222,143 +193,11 @@ const ExpertGuidance = () => {
             </div>
             </div>
 
-            {/* Consultation Modal */}
-            {showModal && (
-                <div className={styles.modalOverlay} onClick={handleCloseModal}>
-                    <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-                        <button className={styles.closeButton} onClick={handleCloseModal}>
-                            ✕
-                        </button>
-                        
-                        <div className={styles.modalHeader}>
-                            <h3>Consult with our expert counsellors</h3>
-                            <p>Fill in your details and we'll get back to you shortly.</p>
-                        </div>
-
-                        <form onSubmit={handleSubmit} className={styles.consultForm}>
-                            <div className={styles.formRow}>
-                                <div className={styles.formGroup}>
-                                    <label htmlFor="fullName">Full Name *</label>
-                                    <input
-                                        type="text"
-                                        id="fullName"
-                                        name="fullName"
-                                        value={formData.fullName}
-                                        onChange={handleInputChange}
-                                        required
-                                        placeholder="Enter your full name"
-                                    />
-                                </div>
-
-                                <div className={styles.formGroup}>
-                                    <label htmlFor="contactNumber">Contact Number *</label>
-                                    <input
-                                        type="tel"
-                                        id="contactNumber"
-                                        name="contactNumber"
-                                        value={formData.contactNumber}
-                                        onChange={handleInputChange}
-                                        required
-                                        placeholder="Enter your contact number"
-                                        pattern="[0-9]{10}"
-                                    />
-                                </div>
-                            </div>
-
-                            <div className={styles.formRow}>
-                                <div className={styles.formGroup}>
-                                    <label htmlFor="emailAddress">Email Address *</label>
-                                    <input
-                                        type="email"
-                                        id="emailAddress"
-                                        name="emailAddress"
-                                        value={formData.emailAddress}
-                                        onChange={handleInputChange}
-                                        required
-                                        placeholder="Enter your email address"
-                                    />
-                                </div>
-
-                                <div className={styles.formGroup}>
-                                    <label htmlFor="gender">Gender</label>
-                                    <select
-                                        id="gender"
-                                        name="gender"
-                                        value={formData.gender}
-                                        onChange={handleInputChange}
-                                    >
-                                        <option value="">Select Gender</option>
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                        <option value="other">Other</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div className={styles.formRow}>
-                                <div className={styles.formGroup}>
-                                    <label htmlFor="dateOfBirth">Date of Birth</label>
-                                    <input
-                                        type="date"
-                                        id="dateOfBirth"
-                                        name="dateOfBirth"
-                                        value={formData.dateOfBirth}
-                                        onChange={handleInputChange}
-                                    />
-                                </div>
-
-                                <div className={styles.formGroup}>
-                                    <label htmlFor="city">City</label>
-                                    <input
-                                        type="text"
-                                        id="city"
-                                        name="city"
-                                        value={formData.city}
-                                        onChange={handleInputChange}
-                                        placeholder="Enter your city"
-                                    />
-                                </div>
-                            </div>
-
-                            <div className={styles.formRow}>
-                                <div className={styles.formGroup}>
-                                    <label htmlFor="state">State</label>
-                                    <input
-                                        type="text"
-                                        id="state"
-                                        name="state"
-                                        value={formData.state}
-                                        onChange={handleInputChange}
-                                        placeholder="Enter your state"
-                                    />
-                                </div>
-
-                                <div className={styles.formGroup}>
-                                    <label htmlFor="currentQualification">Current Qualification</label>
-                                    <select
-                                        id="currentQualification"
-                                        name="currentQualification"
-                                        value={formData.currentQualification}
-                                        onChange={handleInputChange}
-                                    >
-                                        <option value="">Select Qualification</option>
-                                        <option value="10th">10th</option>
-                                        <option value="12th">12th</option>
-                                        <option value="diploma">Diploma</option>
-                                        <option value="bachelors">Bachelor's Degree</option>
-                                        <option value="masters">Master's Degree</option>
-                                        <option value="phd">PhD</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <button type="submit" className={styles.submitButton}>
-                                Submit & Get Consultation
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            )}
+            {/* Login Modal */}
+            <LoginModal 
+                isOpen={showLoginModal} 
+                onClose={() => setShowLoginModal(false)} 
+            />
             
             {showToast && (
                 <Toast

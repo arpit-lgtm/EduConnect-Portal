@@ -335,6 +335,30 @@ export default function Universities() {
             linkUrl = '/university/kalyani-university-distance-education';
           } else if (uniName.includes('chaudhary charan singh') || uniName.includes('ccsu meerut') || uniId === 'ccsu-meerut') {
             linkUrl = '/university/ccsu-meerut';
+          } else if (uniName.includes('kiit') || uniName.includes('kalinga institute of industrial technology') || uniId === 'kiit-university-online') {
+            linkUrl = '/university/kiit-university-online';
+          } else if (uniName.includes('kl university') || uniName.includes('koneru lakshmaiah') || uniName.includes('klef') || uniId === 'kl-university-online') {
+            linkUrl = '/university/kl-university-online';
+          } else if (uniName.includes('kurukshetra university') || uniId === 'kurukshetra-university-online') {
+            linkUrl = '/university/kurukshetra-university-online';
+          } else if (uniName.includes('kuvempu university') || uniId === 'kuvempu-university-distance-education') {
+            linkUrl = '/university/kuvempu-university-distance-education';
+          } else if (uniName.includes('liberty') || uniName.includes('liberty university') || uniId === 'liberty-university-online') {
+            linkUrl = '/university/liberty-university-online';
+          } else if (uniName.includes('lingaya') || uniName.includes('lingayas vidyapeeth') || uniId === 'lingayas-vidyapeeth-online') {
+            linkUrl = '/university/lingayas-vidyapeeth-online';
+          } else if (uniName.includes('liverpool') || uniName.includes('liverpool john moores') || uniName.includes('ljmu') || uniId === 'liverpool-john-moores-university-online') {
+            linkUrl = '/university/liverpool-john-moores-university-online';
+          } else if (uniName.includes('lpu') || uniName.includes('lovely professional') || uniName.includes('lovely professional university') || uniId === 'lovely-professional-university-online') {
+            linkUrl = '/university/lovely-professional-university-online';
+          } else if (uniName.includes('liba') || uniName.includes('loyola institute of business') || uniName.includes('loyola business administration') || uniId === 'loyola-institute-business-administration-online') {
+            linkUrl = '/university/loyola-institute-business-administration-online';
+          } else if (uniName.includes('lucknow university') || uniName.includes('university of lucknow') || uniId === 'lucknow-university-online') {
+            linkUrl = '/university/lucknow-university-online';
+          } else if (uniName.includes('madras university') || uniName.includes('university of madras') || uniId === 'madras-university-online') {
+            linkUrl = '/university/madras-university-online';
+          } else if (uniName.includes('maharishi markandeshwar') || uniName.includes('mmu online') || uniName.includes('mm deemed') || uniId === 'maharishi-markandeshwar-university-online') {
+            linkUrl = '/university/maharishi-markandeshwar-university-online';
           }
           
           // Custom course counts for universities with detailed pages
@@ -480,7 +504,28 @@ export default function Universities() {
             'university of jammu': '10 Courses',
             'jammu distance': '10 Courses',
             'chaudhary charan singh': '6 Courses',
-            'ccsu': '6 Courses'
+            'ccsu': '6 Courses',
+            'liberty university': '6 Courses',
+            'liberty': '6 Courses',
+            'lingaya\'s vidyapeeth': '5 Courses',
+            'lingayas vidyapeeth': '5 Courses',
+            'lingaya': '5 Courses',
+            'liverpool john moores': '4 Courses',
+            'liverpool': '4 Courses',
+            'ljmu': '4 Courses',
+            'lovely professional university': '9 Courses',
+            'lpu': '9 Courses',
+            'lovely professional': '9 Courses',
+            'liba': '6 Courses',
+            'loyola institute of business administration': '6 Courses',
+            'loyola business administration': '6 Courses',
+            'lucknow university': '3 Courses',
+            'university of lucknow': '3 Courses',
+            'madras university': '8 Courses',
+            'university of madras': '8 Courses',
+            'maharishi markandeshwar': '7 Courses',
+            'mmu online': '7 Courses',
+            'mm deemed': '7 Courses'
           };
           
           // Get accurate course count - check custom counts first, then database
