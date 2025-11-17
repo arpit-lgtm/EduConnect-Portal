@@ -144,7 +144,18 @@ const HeroCarousel = () => {
                                                 empowering you to make a well-informed decision.
                                             </h2>
                                             <h2 className={styles.finalTagline}>Discover your perfect match with our</h2>
-                                            <h2 className={styles.finalTagline}>UNIVERSITY COMPASS</h2>
+                                            <h2 className={styles.finalTagline}>
+                                                <a 
+                                                    href="#universities" 
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        document.getElementById('universities')?.scrollIntoView({ behavior: 'smooth' });
+                                                    }}
+                                                    style={{ color: '#FFC107', textDecoration: 'underline', cursor: 'pointer' }}
+                                                >
+                                                    UNIVERSITY COMPASS
+                                                </a>
+                                            </h2>
                                         </div>
                                     </div>
                                 </div>
@@ -160,7 +171,18 @@ const HeroCarousel = () => {
                                                 that align perfectly with your career aspirations and academic goals.
                                             </h2>
                                             <h2 className={styles.finalTagline}>Please feel free to use our</h2>
-                                            <h2 className={styles.finalTagline}>COURSE CATALOG</h2>
+                                            <h2 className={styles.finalTagline}>
+                                                <a 
+                                                    href="#course-explorer" 
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        document.getElementById('course-explorer')?.scrollIntoView({ behavior: 'smooth' });
+                                                    }}
+                                                    style={{ color: '#FFC107', textDecoration: 'underline', cursor: 'pointer' }}
+                                                >
+                                                    COURSE CATALOG
+                                                </a>
+                                            </h2>
                                         </div>
                                     </div>
                                 </div>
@@ -175,7 +197,18 @@ const HeroCarousel = () => {
                                                 No question is too small.
                                             </h2>
                                             <h2 className={styles.finalTagline}>Connect with our</h2>
-                                            <h2 className={styles.finalTagline}>MBANINJA-AI CHATBOT TODAY!</h2>
+                                            <h2 className={styles.finalTagline}>
+                                                <a 
+                                                    href="#eduai" 
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        document.getElementById('eduai')?.scrollIntoView({ behavior: 'smooth' });
+                                                    }}
+                                                    style={{ color: '#FFC107', textDecoration: 'underline', cursor: 'pointer' }}
+                                                >
+                                                    MBANINJA-AI CHATBOT TODAY!
+                                                </a>
+                                            </h2>
                                         </div>
                                     </div>
                                 </div>
@@ -190,8 +223,26 @@ const HeroCarousel = () => {
                                                 that are the strongest match for your unique trajectory. 
                                                 Cut through the noise and get a tailored roadmap in minutes.
                                             </h2>
-                                            <h2 className={styles.finalTagline}>Click here to fill the questionnaire &</h2>
-                                            <h2 className={styles.finalTagline}>FIND THE RIGHT UNIVERSITY!</h2>
+                                            <h2 className={styles.finalTagline}>
+                                                <a 
+                                                    href="/university-matcher" 
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    style={{ color: '#FFC107', textDecoration: 'underline', cursor: 'pointer' }}
+                                                >
+                                                    Click here to fill the questionnaire
+                                                </a> &
+                                            </h2>
+                                            <h2 className={styles.finalTagline}>
+                                                <a 
+                                                    href="/university-matcher" 
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    style={{ color: '#FFC107', textDecoration: 'underline', cursor: 'pointer' }}
+                                                >
+                                                    FIND THE RIGHT UNIVERSITY!
+                                                </a>
+                                            </h2>
                                         </div>
                                     </div>
                                 </div>

@@ -209,7 +209,12 @@ const Header = ({ courseTitle = null, adminMode = false, onLogout = null, showLo
               {!adminMode && (
                 <div className={styles.headerActions}>
                 {/* University Finder Button */}
-                <Link href="/university-matcher" className={styles.universityFinderBtn}>
+                <a 
+                  href="/university-matcher" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className={styles.universityFinderBtn}
+                >
                   <span className={styles.finderIcon}>🤖</span>
                   <div className={styles.finderText}>
                     <small className={styles.flashMessage}>Find the right University within a MINUTE !!</small>
@@ -218,7 +223,7 @@ const Header = ({ courseTitle = null, adminMode = false, onLogout = null, showLo
                       <span>MBA NINJA-AI</span>
                     </strong>
                   </div>
-                </Link>
+                </a>
 
                 <div className={styles.socialLinks}>
                   <a href="https://www.facebook.com/people/Educativo-EdTech/pfbid02WuUfsLSV31zT6Wkpbt74ZUuAN1k2FgZuzeCWpJiJG5UjRBBX3bFwoCEUspx42R7Vl/" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="Facebook">
