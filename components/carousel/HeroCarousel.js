@@ -199,10 +199,12 @@ const HeroCarousel = () => {
                                             <h2 className={styles.finalTagline}>Connect with our</h2>
                                             <h2 className={styles.finalTagline}>
                                                 <a 
-                                                    href="#eduai" 
+                                                    href="#" 
                                                     onClick={(e) => {
                                                         e.preventDefault();
-                                                        document.getElementById('eduai')?.scrollIntoView({ behavior: 'smooth' });
+                                                        // Trigger the EduAI chatbot to open
+                                                        const event = new CustomEvent('openChatbot');
+                                                        window.dispatchEvent(event);
                                                     }}
                                                     style={{ color: '#FFC107', textDecoration: 'underline', cursor: 'pointer' }}
                                                 >

@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import styles from './BrowseCategories.module.css';
+import { useAuth } from '../../contexts/AuthContext';
 
-const BrowseCategories = () => {
+const BrowseCategories = ({ onLoginRequired }) => {
     const [activeTab, setActiveTab] = useState('PG Courses');
+    const { isLoggedIn } = useAuth();
 
     // Shuffle function to randomize array order
     const shuffleArray = (array) => {
@@ -310,6 +312,15 @@ const BrowseCategories = () => {
                                             e.preventDefault();
                                             e.stopPropagation();
                                             console.log('🎯 COMPARE BUTTON CLICKED!');
+                                            
+                                            // Check if user is logged in
+                                            if (!isLoggedIn) {
+                                                console.log('⚠️ User not logged in - showing login modal');
+                                                if (onLoginRequired) {
+                                                    onLoginRequired();
+                                                }
+                                                return;
+                                            }
                                             
                                             const courseId = courseNameToId[course.name] || 'Executive-MBA';
                                             const displayName = encodeURIComponent(course.name);

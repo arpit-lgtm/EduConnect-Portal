@@ -42,7 +42,7 @@ export default function Home() {
           </p>
         </div>
         <div id="browse-courses">
-          <BrowseCategories />
+          <BrowseCategories onLoginRequired={() => setShowLoginModal(true)} />
         </div>
         <VideoTestimonials />
         <div id="course-explorer">

@@ -30,25 +30,12 @@ function MyApp({ Component, pageProps }) {
     console.log('🚀 PAGE LOADED - SHOWING ANIMATION!');
     setShowLoading(true);
     
-    // Wait for page to be fully loaded and interactive
-    const hideLoadingWhenReady = () => {
-      if (document.readyState === 'complete') {
-        console.log('✅ Page fully loaded - hiding animation in 1 second');
-        loadingTimer = setTimeout(() => setShowLoading(false), 1000);
-      } else {
-        console.log('⏳ Page still loading...');
-        // Default timeout if page takes too long
-        loadingTimer = setTimeout(() => setShowLoading(false), 6000);
-      }
-    };
-
-    // Check if page is already loaded
-    if (document.readyState === 'complete') {
-      hideLoadingWhenReady();
-    } else {
-      // Wait for window load event
-      window.addEventListener('load', hideLoadingWhenReady);
-    }
+    // Simple reliable timer - show for 5 seconds regardless of load state
+    // This ensures the animation always completes (logo deblur takes 4s)
+    loadingTimer = setTimeout(() => {
+      console.log('✅ Hiding loading screen after 5 seconds');
+      setShowLoading(false);
+    }, 5000);
 
     // 🔒 PRODUCTION CODE PROTECTION
     if (process.env.NEXT_PUBLIC_DISABLE_DEVTOOLS === 'true') {
@@ -83,7 +70,6 @@ function MyApp({ Component, pageProps }) {
       // Cleanup
       window.removeEventListener('showLoading', handleShowLoading);
       window.removeEventListener('blur', handleBlur);
-      window.removeEventListener('load', hideLoadingWhenReady);
       if (loadingTimer) {
         clearTimeout(loadingTimer);
       }

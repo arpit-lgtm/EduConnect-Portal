@@ -109,6 +109,19 @@ const EduAI = () => {
     }
   }, [isDragging, dragOffset]);
 
+  // Listen for chatbot open event from carousel
+  useEffect(() => {
+    const handleOpenChatbot = () => {
+      console.log('🎯 Chatbot open event received!');
+      setIsOpen(true);
+    };
+    
+    window.addEventListener('openChatbot', handleOpenChatbot);
+    return () => {
+      window.removeEventListener('openChatbot', handleOpenChatbot);
+    };
+  }, []);
+
   // Touch events for mobile dragging
   const handleTouchStart = (e) => {
     if (e.target.closest('.close-button') || isOpen) return;
