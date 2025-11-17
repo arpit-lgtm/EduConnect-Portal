@@ -1,9 +1,9 @@
 // Import the OTP store from send-verification-otp
 // Since we can't directly import in Next.js API routes, we'll use a shared storage approach
-const otpStore = new Map();
-
-// This should match the store in send-verification-otp.js
-// In a production environment, use Redis or database for OTP storage
+// Initialize global OTP store if it doesn't exist
+if (!global.otpVerificationStore) {
+  global.otpVerificationStore = new Map();
+}
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
