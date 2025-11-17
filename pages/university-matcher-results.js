@@ -235,11 +235,28 @@ const UniversityMatcherResults = () => {
         
         setUniversities(filteredDatabase);
         
-        // Match universities based on form data (this respects location filter)
-        const matched = matchUniversities(filteredDatabase, data);
+        // 🔒 SERVER-SIDE MATCHING #1 - Algorithm completely hidden from browser!
+        console.log('🔐 Calling server-side matching API (location-filtered)...');
         
-        // Get universities with the course but WITHOUT location filter for state/country dropdown
-        const allWithCourse = matchUniversities(filteredDatabase, { ...data, preferredLocation: 'any' });
+        // Match universities via SERVER API (with location filter)
+        const matchResponse = await fetch('/api/match-universities', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ formData: data, filterByLocation: true })
+        });
+        const matchData = await matchResponse.json();
+        const matched = matchData.universities || [];
+        
+        // Get ALL universities with course (without location filter) for dropdown
+        const allResponse = await fetch('/api/match-universities', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ formData: { ...data, preferredLocation: 'any' }, filterByLocation: false })
+        });
+        const allData = await allResponse.json();
+        const allWithCourse = allData.universities || [];
+        
+        console.log(`✅ Server matched ${matched.length} universities (filtered), ${allWithCourse.length} total`);
         
         // Fetch College Vidya ratings for matched universities
         const matchedWithRatings = await fetchCollegeVidyaRatings(matched);
@@ -259,8 +276,8 @@ const UniversityMatcherResults = () => {
         return;
       }
 
-      // Load unified database from public folder
-      const universitiesResponse = await fetch('/assets/js/comprehensive-unified-database-COMPLETE.js');
+      // Load unified database from secure API endpoint
+      const universitiesResponse = await fetch('/api/comprehensive-database');
       const universitiesText = await universitiesResponse.text();
       
       // Replace const with var to avoid redeclaration errors
@@ -303,11 +320,28 @@ const UniversityMatcherResults = () => {
         
         setUniversities(filteredDatabase);
         
-        // Match universities based on form data (this respects location filter)
-        const matched = matchUniversities(filteredDatabase, data);
+        // 🔒 SERVER-SIDE MATCHING #2 - Algorithm completely hidden from browser!
+        console.log('🔐 Calling server-side matching API (second call)...');
         
-        // Get universities with the course but WITHOUT location filter for state/country dropdown
-        const allWithCourse = matchUniversities(filteredDatabase, { ...data, preferredLocation: 'any' });
+        // Match universities via SERVER API
+        const matchResponse2 = await fetch('/api/match-universities', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ formData: data, filterByLocation: true })
+        });
+        const matchData2 = await matchResponse2.json();
+        const matched = matchData2.universities || [];
+        
+        // Get ALL universities with course
+        const allResponse2 = await fetch('/api/match-universities', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ formData: { ...data, preferredLocation: 'any' }, filterByLocation: false })
+        });
+        const allData2 = await allResponse2.json();
+        const allWithCourse = allData2.universities || [];
+        
+        console.log(`✅ Server matched ${matched.length} universities`);
         
         // Fetch College Vidya ratings for matched universities
         const matchedWithRatings = await fetchCollegeVidyaRatings(matched);
@@ -338,8 +372,8 @@ const UniversityMatcherResults = () => {
 
   const fetchCollegeVidyaRatings = async (universities) => {
     try {
-      // Load ratings database from file
-      const ratingsResponse = await fetch('/assets/js/university-ratings-database.js');
+      // Load ratings database from secure API
+      const ratingsResponse = await fetch('/api/university-ratings');
       const ratingsText = await ratingsResponse.text();
       
       // Extract ratings object
@@ -379,268 +413,9 @@ const UniversityMatcherResults = () => {
     }
   };
 
-  const matchUniversities = (universitiesData, formData) => {
-    if (!universitiesData || universitiesData.length === 0) {
-      return [];
-    }
-
-    // Get the actual course name from coursesDatabase if we have course ID
-    let courseNameToMatch = formData.preferredCourse;
-    console.log('🔍 Initial course from formData:', formData.preferredCourse);
-    console.log('🔍 Full formData:', formData);
-    
-    // The preferredCourse is already the course name (like "MBA", "BCA", etc.)
-    // Just use it directly for matching
-    if (!courseNameToMatch) {
-      console.error('❌ No course specified in formData');
-      return [];
-    }
-    
-    console.log(`🔍 Matching course: ${courseNameToMatch}`);
-
-    // Filter universities based on the form criteria
-    console.log('🔍 Total universities to check:', universitiesData.length);
-    console.log('🔍 Looking for course:', courseNameToMatch);
-    console.log('🔍 Looking for specialization:', formData.specialization);
-    console.log('🔍 Looking for location:', formData.preferredLocation);
-    
-    let filtered = universitiesData.map(uni => {
-      let score = 0;
-
-      // Match selected course (CRITICAL - must have the course)
-      let hasCourse = false;
-      if (courseNameToMatch && uni.courses) {
-        // Handle both array format (old) and object format (new)
-        if (Array.isArray(uni.courses)) {
-          hasCourse = uni.courses.some(course => {
-            // Try exact match first
-            if (course.toLowerCase() === courseNameToMatch.toLowerCase()) return true;
-            // Try partial match (e.g., "MBA" matches "1-Year MBA Online")
-            if (courseNameToMatch.toLowerCase().includes(course.toLowerCase())) return true;
-            if (course.toLowerCase().includes(courseNameToMatch.toLowerCase())) return true;
-            return false;
-          });
-        } else if (typeof uni.courses === 'object') {
-          // Object format: { "MBA": { specializations: [...] }, "BCA": {...} }
-          hasCourse = Object.keys(uni.courses).some(courseKey => {
-            // Try exact match first
-            if (courseKey.toLowerCase() === courseNameToMatch.toLowerCase()) return true;
-            // Try partial match
-            if (courseNameToMatch.toLowerCase().includes(courseKey.toLowerCase())) return true;
-            if (courseKey.toLowerCase().includes(courseNameToMatch.toLowerCase())) return true;
-            return false;
-          });
-        }
-        
-        if (hasCourse) {
-          score += 40; // High weight for course match
-          console.log(`✅ ${uni.name} has course ${courseNameToMatch}`);
-          
-          // Check for specialization match - MORE FLEXIBLE APPROACH
-          if (formData.specialization && uni.courses && typeof uni.courses === 'object') {
-            const courseData = uni.courses[courseNameToMatch] || 
-                              Object.values(uni.courses).find(course => course && course.specializations);
-            
-            if (courseData && courseData.specializations) {
-              const targetSpec = formData.specialization.toLowerCase();
-              const hasSpecialization = courseData.specializations.some(spec => {
-                const specLower = spec.toLowerCase();
-                
-                // Flexible HR matching
-                if (targetSpec.includes('hr') || targetSpec.includes('human resources')) {
-                  return specLower.includes('hr') || 
-                         specLower.includes('human resource') ||
-                         specLower.includes('human resources') ||
-                         specLower.includes('personnel');
-                }
-                
-                // Flexible Finance matching
-                if (targetSpec.includes('finance')) {
-                  return specLower.includes('finance') || 
-                         specLower.includes('banking') ||
-                         specLower.includes('financial');
-                }
-                
-                // Flexible Marketing matching
-                if (targetSpec.includes('marketing')) {
-                  return specLower.includes('marketing') ||
-                         specLower.includes('sales') ||
-                         specLower.includes('digital marketing');
-                }
-                
-                // General flexible matching
-                return specLower.includes(targetSpec) || 
-                       targetSpec.includes(specLower) ||
-                       specLower === 'general'; // Accept "General" specializations
-              });
-              
-              if (hasSpecialization) {
-                score += 20; // Bonus for specialization match
-                console.log(`✅ ${uni.name} has specialization match`);
-              } else {
-                console.log(`⚠️ ${uni.name} specializations:`, courseData.specializations, 'looking for:', formData.specialization);
-              }
-            }
-          }
-        }
-      }
-
-      // If university doesn't have the selected course, skip it
-      if (courseNameToMatch && !hasCourse) {
-        return null; // Will be filtered out
-      }
-
-      // Filter by location if a specific state is selected (not "any" or "any-state")
-      if (formData.preferredLocation && 
-          formData.preferredLocation !== 'any' && 
-          formData.preferredLocation !== 'any-state') {
-        
-        // Normalize strings for comparison
-        const normalize = (s) => (s || '').toString().toLowerCase().replace(/[^a-z\s]/g, '').replace(/\s+/g, ' ').trim();
-        const targetLocation = normalize(formData.preferredLocation);
-        
-        // Extract state from "City, State" format
-        let uniState = '';
-        let uniLocation = normalize(uni.location || '');
-        
-        if (uni.location && uni.location.includes(',')) {
-          const parts = uni.location.split(',').map(p => normalize(p.trim()));
-          uniState = parts[1] || parts[0]; // Get state part (after comma)
-        } else {
-          uniState = normalize(uni.state || uni.location || '');
-        }
-        
-        // Check if location matches (check both full location and extracted state)
-        const locationMatch = uniState.includes(targetLocation) || 
-                             targetLocation.includes(uniState) ||
-                             uniLocation.includes(targetLocation) ||
-                             targetLocation.includes(uniLocation);
-        
-        if (!locationMatch) {
-          console.log(`❌ Location mismatch for ${uni.name}: ${uni.location} vs ${formData.preferredLocation}`);
-          return null; // Will be filtered out
-        }
-        score += 15; // Bonus for matching location
-        console.log(`✅ ${uni.name} matches location: ${uni.location}`);
-      } else {
-        // If no location preference, give small bonus to encourage diverse results
-        score += 5;
-      }
-
-      // Match study mode (check both uni.mode array and uni.programs)
-      if (formData.studyMode) {
-        let hasMatchingMode = false;
-        
-        // Normalize study mode for comparison (remove hyphens, extra spaces, etc.)
-        const normalizeMode = (str) => str.toLowerCase().trim().replace(/-/g, ' ').replace(/\s+/g, ' ');
-        const targetMode = normalizeMode(formData.studyMode);
-        
-        // Check direct mode property (most common in database)
-        if (uni.mode && Array.isArray(uni.mode)) {
-          hasMatchingMode = uni.mode.some(mode => {
-            const uniMode = normalizeMode(mode);
-            // Check if either contains the other (more flexible matching)
-            const modeMatch = uniMode.includes(targetMode) || 
-                             targetMode.includes(uniMode) ||
-                             uniMode.split(' ').some(word => targetMode.includes(word)) ||
-                             targetMode.split(' ').some(word => uniMode.includes(word));
-            return modeMatch;
-          });
-        }
-        
-        // Fallback: Check programs array if mode not found
-        if (!hasMatchingMode && uni.programs && Array.isArray(uni.programs)) {
-          hasMatchingMode = uni.programs.some(program => {
-            if (program.mode) {
-              const progMode = normalizeMode(program.mode);
-              return progMode.includes(targetMode) || 
-                     targetMode.includes(progMode) ||
-                     progMode.split(' ').some(word => targetMode.includes(word)) ||
-                     targetMode.split(' ').some(word => progMode.includes(word));
-            }
-            return false;
-          });
-        }
-        
-        if (hasMatchingMode) {
-          score += 20;
-        } else {
-          // Don't filter out - just give lower score if mode doesn't match
-          // This allows more universities to show up
-          console.log(`⚠️ ${uni.name} mode mismatch - target: ${targetMode}, available:`, uni.mode);
-          score -= 5; // Small penalty instead of elimination
-        }
-      }
-
-      // Match degree type
-      if (formData.degreeType && uni.programs && Array.isArray(uni.programs)) {
-        const degreeMap = {
-          'UG Courses': 'undergraduate',
-          'PG Courses': 'postgraduate',
-          'Doctorate/Ph.D.': 'doctorate',
-          'Executive Education': 'executive'
-        };
-        const targetLevel = degreeMap[formData.degreeType];
-        if (targetLevel) {
-          const hasMatchingLevel = uni.programs.some(program =>
-            program.level && program.level.toLowerCase().includes(targetLevel)
-          );
-          if (hasMatchingLevel) score += 25;
-        }
-      }
-
-      // Match budget range
-      if (formData.budgetRange && uni.fees) {
-        const budgetRanges = {
-          'Below ₹50,000': { min: 0, max: 50000 },
-          '₹50,000 - ₹1,00,000': { min: 50000, max: 100000 },
-          '₹1,00,000 - ₹2,00,000': { min: 100000, max: 200000 },
-          '₹2,00,000 - ₹5,00,000': { min: 200000, max: 500000 },
-          'Above ₹5,00,000': { min: 500000, max: 10000000 }
-        };
-        const range = budgetRanges[formData.budgetRange];
-        
-        // Get fee for the selected course
-        let courseFee = null;
-        if (typeof uni.fees === 'object' && !Array.isArray(uni.fees)) {
-          // fees is an object with course names as keys
-          // Try exact match first, then uppercase version (most courses are uppercase in fees object)
-          courseFee = uni.fees[courseNameToMatch] || 
-                     uni.fees[courseNameToMatch.toUpperCase()] ||
-                     uni.fees[courseNameToMatch.toLowerCase()];
-        } else {
-          // Old format: fees is a single number
-          courseFee = uni.fees;
-        }
-        
-        if (range && courseFee && courseFee >= range.min && courseFee <= range.max) {
-          score += 20;
-        }
-      }
-
-      // Give base score to all universities
-      if (score === 0) score = 10;
-
-      return {
-        ...uni,
-        matchScore: score
-      };
-    }).filter(uni => uni !== null); // Remove universities without the course
-
-    // Sort by match score
-    filtered.sort((a, b) => b.matchScore - a.matchScore);
-    
-    // Log results for debugging
-    console.log(`📊 Filtered ${filtered.length} universities after all filters`);
-    if (formData.preferredLocation === 'maharashtra') {
-      console.log('🏙️ Maharashtra universities found:', filtered.filter(uni => 
-        uni.location && uni.location.toLowerCase().includes('maharashtra')
-      ).map(uni => uni.name));
-    }
-
-    // Return top 100 results (increased from 50 to show more options)
-    return filtered.slice(0, 100);
-  };
+  // 🔒 REMOVED: matchUniversities function - Now handled server-side for security!
+  // Algorithm logic is completely hidden from browser and runs on server only.
+  // See: /pages/api/match-universities.js
 
   const extractAvailableLocations = (universities) => {
     const indianStates = new Set();

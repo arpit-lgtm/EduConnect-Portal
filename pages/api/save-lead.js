@@ -2,8 +2,9 @@ import connectDB from '../../lib/mongodb';
 import User from '../../models/User';
 import fs from 'fs';
 import path from 'path';
+import { rateLimit } from '../../middleware/auth';
 
-export default async function handler(req, res) {
+async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' });
   }
@@ -81,3 +82,10 @@ export default async function handler(req, res) {
     });
   }
 }
+
+// ✅ PROTECTED: Rate limited to 50 requests per 15 minutes per IP
+export default rateLimit({ 
+  windowMs: 15 * 60 * 1000, 
+  maxRequests: 50,
+  message: 'Too many form submissions. Please try again in 15 minutes.'
+})(handler);

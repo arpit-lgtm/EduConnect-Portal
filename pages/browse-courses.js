@@ -142,7 +142,7 @@ export default function BrowseCourses() {
           return;
         }
 
-        const response = await fetch('/assets/js/comprehensive-unified-database-COMPLETE.js');
+        const response = await fetch('/api/comprehensive-database');
         const text = await response.text();
         const modifiedText = text.replace(/const universityDatabase/g, 'var universityDatabase');
         const executeGlobal = new Function(modifiedText);

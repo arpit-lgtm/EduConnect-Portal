@@ -28,7 +28,6 @@ export default function Home() {
         <title>MBA NINJA - Compare Universities & Courses</title>
         <meta name="description" content="Compare universities, courses, and find the perfect educational path for you" />
         <link rel="icon" href="/favicon.ico" />
-        <script src="/assets/js/comprehensive-unified-database-COMPLETE.js" async />
       </Head>
 
       <Header showLoginModal={showLoginModal} setShowLoginModal={setShowLoginModal} />

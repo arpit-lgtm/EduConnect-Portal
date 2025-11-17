@@ -73,8 +73,8 @@
 .logo {
   display: block;
   position: relative;
-  height: 60px;
-  width: 220px;
+  height: 95px;
+  width: 360px;
   padding: 0;
   margin: 0;
   margin-left: 0 !important;
@@ -85,8 +85,8 @@
 .logoCenter {
   display: block;
   position: relative;
-  height: 60px;
-  width: 220px;
+  height: 95px;
+  width: 360px;
   padding: 10px 0;
   margin: 0;
   flex-shrink: 0;
@@ -157,6 +157,30 @@
   font-size: 14px;
   white-space: nowrap;
   transition: all 0.3s ease;
+}
+
+.twoLineLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.twoLineLabel span {
+  display: block;
+  font-size: 13px;
+}
+
+.loginText {
+  color: #0074d7 !important;
+  font-weight: 600 !important;
+  cursor: pointer;
+}
+
+.loginText:hover {
+  color: #005bb5 !important;
+  text-decoration: underline;
 }
 
 .navItem a:hover {

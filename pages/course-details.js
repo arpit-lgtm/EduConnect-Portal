@@ -69,8 +69,8 @@ export default function CourseDetails() {
           // Database already loaded globally
           uniDatabase = window.universityDatabase;
         } else {
-          // Load the database script
-          const response = await fetch('/assets/js/comprehensive-unified-database-COMPLETE.js');
+          // Load the database from secure API endpoint
+          const response = await fetch('/api/comprehensive-database');
           const scriptText = await response.text();
           
           // Execute the script to populate global variables
@@ -221,193 +221,38 @@ export default function CourseDetails() {
           else if (title.includes('Europe')) targetCountry = 'Europe';
         }
 
-        console.log('Is Study Abroad:', isStudyAbroad, 'Target Country:', targetCountry);
+        console.log('🔒 Using server-side ranking API for security...');
 
-        // Filter universities based on Study Abroad or Indian courses
-        const overseasKeywords = ['USA', 'UK', 'Canada', 'Australia', 'Singapore', 'England', 'California', 'Massachusetts', 'Florida', 'Wisconsin', 'Texas', 'Michigan', 'Minnesota', 'Boston', 'London', 'Melbourne', 'Toronto', 'Ontario', 'Victoria', 'Durham', 'Germany', 'Berlin', 'Munich', 'Dubai', 'UAE', 'France', 'Paris', 'Spain', 'Netherlands'];
-        
-        // Define premium institutes (IIMs, IITs, IISc) - should be excluded from UG and Online courses
-        const premiumInstitutes = ['IIM', 'IIT', 'IISC', 'INDIAN INSTITUTE OF MANAGEMENT', 'INDIAN INSTITUTE OF TECHNOLOGY', 'INDIAN INSTITUTE OF SCIENCE'];
-        
-        const isPremiumInstitute = (uniName) => {
-          const nameUpper = uniName.toUpperCase();
-          return premiumInstitutes.some(prefix => nameUpper.includes(prefix));
-        };
-
-        let matchingUniversities = uniDatabase
-          .filter(uni => {
-            const isOverseas = overseasKeywords.some(keyword => 
-              uni.location?.includes(keyword)
-            );
-
-            // RULE 1: For UG courses - EXCLUDE IIMs/IITs (they don't offer UG programs)
-            if (isUGCourse && isPremiumInstitute(uni.name)) {
-              console.log(`❌ FILTERING OUT: ${uni.name} from UG course ${courseType}`);
-              return false;
-            }
-
-            // RULE 2: For Online courses - EXCLUDE IIMs/IITs (show tier-2 universities instead)
-            if (isOnlineCourse && isPremiumInstitute(uni.name)) {
-              console.log(`❌ FILTERING OUT: ${uni.name} from Online course ${courseType}`);
-              return false;
-            }
-
-            // For Study Abroad courses: ONLY show overseas universities from target country
-            if (isStudyAbroad) {
-              if (!isOverseas) return false; // Must be overseas
-              
-              // Match specific country if specified
-              if (targetCountry) {
-                if (targetCountry === 'Europe') {
-                  // For Europe, accept UK, France, Spain, Netherlands, Germany
-                  return uni.location?.includes('UK') || 
-                         uni.location?.includes('England') ||
-                         uni.location?.includes('France') || 
-                         uni.location?.includes('Spain') || 
-                         uni.location?.includes('Netherlands') ||
-                         uni.location?.includes('Germany');
-                }
-                return uni.location?.includes(targetCountry);
-              }
-              
-              return true; // Any overseas university if no specific country
-            }
-            
-            // For regular courses: ONLY show Indian universities (exclude overseas)
-            if (isOverseas) return false;
-
-            // Match courses - improved matching with specialization awareness
-            // Support both coursesList (array) and courses (object) formats
-            let courseArray = [];
-            if (uni.coursesList && Array.isArray(uni.coursesList)) {
-              courseArray = uni.coursesList;
-            } else if (uni.courses) {
-              if (Array.isArray(uni.courses)) {
-                courseArray = uni.courses;
-              } else if (typeof uni.courses === 'object') {
-                courseArray = Object.keys(uni.courses);
-              }
-            }
-
-            const hasMatch = courseArray.some(course => {
-              const courseStr = typeof course === 'string' ? course : course.name;
-              const normalizedCourse = courseStr.toUpperCase().replace(/[.\s-]/g, '');
-              const normalizedType = courseType.replace(/[.\s-]/g, '');
-              
-              // Must match base course type
-              if (!normalizedCourse.includes(normalizedType)) return false;
-              
-              // If we have specialization keywords, prefer universities offering those
-              if (specializationKeywords.length > 0) {
-                // Give higher preference to courses with matching specializations
-                return specializationKeywords.some(keyword => 
-                  courseStr.toUpperCase().includes(keyword)
-                ) || normalizedCourse.includes(normalizedType);
-              }
-              
-              return true;
-            });
-            return hasMatch;
+        // 🔒 SERVER-SIDE RANKING - Algorithm is now hidden!
+        const rankingResponse = await fetch('/api/rank-universities', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            courseType: courseType,
+            courseTitle: title || courseType,
+            specialization: specialization,
+            limit: 100 // Get more for comparison modal
           })
-          .map(uni => ({
-            id: uni.id || uni.name.toLowerCase().replace(/ /g, '-'),
-            name: uni.name,
-            location: uni.location,
-            accreditation: uni.accreditation || 'NAAC',
-            rating: uni.rating || 4.0,
-            nirfRanking: uni.nirfRanking,
-            approvals: uni.approvals || [],
-            acceptanceRate: uni.acceptanceRate || '75%',
-            placementRate: uni.placementRate || '85%',
-            fees: uni.fees || {}, // Keep the complete fees object for comparison page
-            feesRange: typeof uni.fees === 'object' && uni.fees[courseType]
-              ? {
-                  min: uni.fees[courseType],
-                  max: Math.round(uni.fees[courseType] * 1.2)
-                }
-              : typeof uni.fees === 'object' && uni.fees[courseType.replace('M.', '').replace('B.', '')]
-              ? {
-                  min: uni.fees[courseType.replace('M.', '').replace('B.', '')],
-                  max: Math.round(uni.fees[courseType.replace('M.', '').replace('B.', '')] * 1.2)
-                }
-              : {
-                  min: 50000,
-                  max: 100000
-                },
-            logo: `/images/universities/${uni.name.replace(/ /g, '-')}.png`,
-            mode: uni.mode || ['Regular'],
-            establishedYear: uni.establishedYear,
-            // Add missing comparison fields
-            studentsRating: uni.studentsRating || 'N/A',
-            onlineClasses: uni.onlineClasses !== undefined ? uni.onlineClasses : false,
-            duration: uni.duration || 'N/A',
-            eligibility: uni.eligibility || 'Contact University',
-            courses: uni.courses || []
-          }));
-
-        console.log('Matching universities before sorting:', matchingUniversities.length, isStudyAbroad ? `(${targetCountry} universities)` : '(Indian universities)');
-
-        // TRUE RANDOM selection on each page load - different universities every time
-        // Use Math.random() for genuine randomization instead of deterministic seed
-        const randomSeed = Math.random() * 1000000; // Completely random each time
-        
-        // Add specialization scoring first
-        matchingUniversities = matchingUniversities.map((uni, index) => {
-          // Add specialization bonus if university offers matching specializations
-          let specializationBonus = 0;
-          if (specializationKeywords.length > 0 && uni.courses) {
-            // Get course array - support both formats
-            let courseArray = [];
-            if (uni.coursesList && Array.isArray(uni.coursesList)) {
-              courseArray = uni.coursesList;
-            } else if (Array.isArray(uni.courses)) {
-              courseArray = uni.courses;
-            } else if (typeof uni.courses === 'object') {
-              courseArray = Object.keys(uni.courses);
-            }
-            
-            const courseMatches = courseArray.filter(c => {
-              const cStr = typeof c === 'string' ? c : c.name;
-              return specializationKeywords.some(kw => cStr.toUpperCase().includes(kw));
-            });
-            specializationBonus = courseMatches.length * 500; // Boost universities with matching specializations
-          }
-          
-          return {
-            ...uni,
-            _specializationScore: specializationBonus,
-            _randomScore: Math.random() * 10000 // Pure random score for shuffling
-          };
         });
-        
-        // Sort all universities
-        const sortedUniversities = matchingUniversities
-          .sort((a, b) => {
-            // Primary sort: rating tier (group by 0.4 intervals for variety within quality tiers)
-            const aTier = Math.floor(a.rating / 0.4);
-            const bTier = Math.floor(b.rating / 0.4);
-            if (aTier !== bTier) return bTier - aTier;
-            
-            // Secondary sort: specialization match (universities with matching specializations get priority)
-            const specDiff = b._specializationScore - a._specializationScore;
-            if (Math.abs(specDiff) > 100) return specDiff;
-            
-            // Within same tier and specialization level: pure random
-            return b._randomScore - a._randomScore;
-          })
-          .map(({ _specializationScore, _randomScore, ...uni }) => uni); // Remove temp scores
+
+        if (!rankingResponse.ok) {
+          throw new Error('Failed to fetch ranked universities');
+        }
+
+        const { universities: sortedUniversities } = await rankingResponse.json();
 
         // Display top 7 on the course details page
         const top7Universities = sortedUniversities.slice(0, 7);
         
-        console.log('Total matching universities:', sortedUniversities.length);
+        console.log('✅ Got', sortedUniversities.length, 'ranked universities from server');
         console.log('Top 7 universities for display:', top7Universities.map(u => u.name));
 
         // Store top 7 for display
         setUniversities(top7Universities);
         
         // Store ALL matching universities in sessionStorage for the comparison modal
-        // This ensures the modal shows all universities, not just the top 7
         if (typeof window !== 'undefined') {
           sessionStorage.setItem('allUniversitiesForCourse', JSON.stringify(sortedUniversities));
         }

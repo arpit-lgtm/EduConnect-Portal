@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { otpStorage } from '../../utils/otpStorage.js';
+import { rateLimit } from '../../middleware/auth';
 
 // Generate 6-digit OTP
 function generateOTP() {
@@ -47,7 +48,7 @@ function findExistingUser(name, contact) {
     return null;
 }
 
-export default function handler(req, res) {
+function handler(req, res) {
     if (req.method !== 'POST') {
         return res.status(405).json({ success: false, message: 'Method not allowed' });
     }
@@ -109,3 +110,10 @@ export default function handler(req, res) {
         });
     }
 }
+
+// ✅ PROTECTED: Rate limited to 10 OTP requests per 15 minutes per IP
+export default rateLimit({ 
+  windowMs: 15 * 60 * 1000, 
+  maxRequests: 10,
+  message: 'Too many OTP requests. Please try again later.'
+})(handler);

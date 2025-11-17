@@ -6,15 +6,6 @@ export default function Loading({ show = true }) {
   return (
     <div className={styles.loadingOverlay}>
       <div className={styles.loaderContainer}>
-        {/* Top Logo */}
-        <div className={styles.topLogo}>
-          <img 
-            src="/images/loading.png" 
-            alt="MBA NINJA Loading" 
-            className={styles.logo}
-          />
-        </div>
-
         {/* MBA NINJA Logo that unveils from left to right */}
         <div className={styles.logoLoadingContainer}>
           <img 

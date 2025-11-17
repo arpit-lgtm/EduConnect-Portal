@@ -7,6 +7,15 @@ import { AuthProvider } from '../contexts/AuthContext';
 import EduAI from '../components/eduai/EduAI';
 import Loading from '../components/loading/Loading';
 
+// 🔒 DISABLE DEVTOOLS IN PRODUCTION
+if (typeof window !== 'undefined' && process.env.NEXT_PUBLIC_DISABLE_DEVTOOLS === 'true') {
+  if (typeof window.__REACT_DEVTOOLS_GLOBAL_HOOK__ === 'object') {
+    for (let [key] of Object.entries(window.__REACT_DEVTOOLS_GLOBAL_HOOK__)) {
+      window.__REACT_DEVTOOLS_GLOBAL_HOOK__[key] = () => {};
+    }
+  }
+}
+
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
   const [showLoading, setShowLoading] = useState(true); // Start with TRUE - show on initial load
@@ -21,6 +30,14 @@ function MyApp({ Component, pageProps }) {
     console.log('🚀 PAGE LOADED - SHOWING ANIMATION!');
     setShowLoading(true);
     loadingTimer = setTimeout(() => setShowLoading(false), 5000); // 5 seconds for initial load
+
+    // 🔒 PRODUCTION CODE PROTECTION
+    if (process.env.NEXT_PUBLIC_DISABLE_DEVTOOLS === 'true') {
+      // Import and initialize protection dynamically
+      import('../utils/codeProtection').then(({ initCodeProtection }) => {
+        initCodeProtection();
+      });
+    }
 
     // Listen for custom showLoading event (for button clicks)
     const handleShowLoading = () => {

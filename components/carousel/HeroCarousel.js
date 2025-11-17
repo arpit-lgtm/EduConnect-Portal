@@ -8,7 +8,7 @@ const slides = [
         id: 1,
         type: 'animated',
         isAnimated: true,
-        animationDuration: 12000, // 12 seconds for the full animation
+        animationDuration: 12000,
         cta: {
             text: "Start Your Journey",
             link: "/universities"
@@ -29,11 +29,8 @@ const slides = [
     },
     {
         id: 3,
-        type: 'image-with-text',
-        hasImage: true,
-        image: "/images/boy.png",
-        title: "Life mein aage badhna hai?",
-        subtitle: "Take advantage of our Free Career Counselling!!"
+        type: 'text-only',
+        isTextOnly: true
     },
     {
         id: 4,
@@ -46,6 +43,11 @@ const slides = [
     },
     {
         id: 5,
+        type: 'text-only-ai',
+        isTextOnly: true
+    },
+    {
+        id: 6,
         type: 'collage-5',
         hasCollage: true,
         images: [
@@ -55,6 +57,11 @@ const slides = [
             "/images/12.jpeg",
             "/images/13.jpeg"
         ]
+    },
+    {
+        id: 7,
+        type: 'text-only-questionnaire',
+        isTextOnly: true
     }
 ];
 
@@ -91,16 +98,8 @@ const HeroCarousel = () => {
     // Animation phase controller for the animated slide
     useEffect(() => {
         if (activeSlide === 0 && slides[0].isAnimated) {
-            // Phase 0: Show sad girl + "Stagnation Nahi" (0-3s)
-            const phase1Timer = setTimeout(() => setAnimationPhase(1), 3000);
-            // Phase 1: Show confident girl + "Promotion Chahiye?" (3-6s)
-            const phase2Timer = setTimeout(() => setAnimationPhase(2), 6000);
-            // Phase 2: Show final tagline (6-9s)
-            
-            return () => {
-                clearTimeout(phase1Timer);
-                clearTimeout(phase2Timer);
-            };
+            // Single phase - show University Compass message
+            setAnimationPhase(0);
         }
     }, [activeSlide]);
 
@@ -135,21 +134,64 @@ const HeroCarousel = () => {
                         <div key={slide.id} className={styles.carouselSlide}>
                             {slide.isAnimated ? (
                                 <div className={styles.animatedSlideContent}>
-                                    {/* Phase 0: "Stagnation Nahi" */}
-                                    <div className={`${styles.animationPhase} ${animationPhase === 0 && index === activeSlide ? styles.phaseActive : styles.phaseHidden}`}>
-                                        <h2 className={styles.animatedText}>Stagnation Nahi</h2>
-                                    </div>
-
-                                    {/* Phase 1: "Promotion Chahiye?" */}
-                                    <div className={`${styles.animationPhase} ${animationPhase === 1 && index === activeSlide ? styles.phaseActive : styles.phaseHidden}`}>
-                                        <h2 className={styles.animatedText}>Promotion Chahiye?</h2>
-                                    </div>
-
-                                    {/* Phase 2: Final Tagline */}
-                                    <div className={`${styles.animationPhase} ${animationPhase === 2 && index === activeSlide ? styles.phaseActive : styles.phaseHidden}`}>
+                                    <div className={`${styles.animationPhase} ${index === activeSlide ? styles.phaseActive : styles.phaseHidden}`}>
                                         <div className={styles.finalTaglineContainer}>
-                                            <h2 className={styles.finalTagline}>Unlock Your Potential</h2>
-                                            <p className={styles.finalSubtagline}>with our Online Learning Programs</p>
+                                            <h2 className={`${styles.finalTagline} ${styles.smallerText}`}>
+                                                Navigate your future with confidence by moving beyond generic rankings. 
+                                                Our intelligent platform analyzes your academic profile, career objectives, 
+                                                and personal preferences to provide a data-driven shortlist of ideal university programs. 
+                                                Transform an overwhelming search into a strategic and efficient journey, 
+                                                empowering you to make a well-informed decision.
+                                            </h2>
+                                            <h2 className={styles.finalTagline}>Discover your perfect match with our</h2>
+                                            <h2 className={styles.finalTagline}>UNIVERSITY COMPASS</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            ) : slide.isTextOnly && slide.type === 'text-only' ? (
+                                <div className={styles.animatedSlideContent}>
+                                    <div className={`${styles.animationPhase} ${index === activeSlide ? styles.phaseActive : styles.phaseHidden}`}>
+                                        <div className={styles.finalTaglineContainer}>
+                                            <h2 className={`${styles.finalTagline} ${styles.smallerText}`}>
+                                                Explore unlimited opportunities across diverse fields of study. 
+                                                From technology and business to healthcare and creative arts, 
+                                                access comprehensive program details tailored to your interests. 
+                                                Compare universities, review specializations, and find courses 
+                                                that align perfectly with your career aspirations and academic goals.
+                                            </h2>
+                                            <h2 className={styles.finalTagline}>Please feel free to use our</h2>
+                                            <h2 className={styles.finalTagline}>COURSE CATALOG</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            ) : slide.isTextOnly && slide.type === 'text-only-ai' ? (
+                                <div className={styles.animatedSlideContent}>
+                                    <div className={`${styles.animationPhase} ${index === activeSlide ? styles.phaseActive : styles.phaseHidden}`}>
+                                        <div className={styles.finalTaglineContainer}>
+                                            <h2 className={`${styles.finalTagline} ${styles.smallerText}`}>
+                                                Have any questions? Get instant, accurate answers anytime with your 24/7 AI admissions assistant. 
+                                                Our MBA Ninja-AI Chatbot is here to provide immediate guidance on program details, 
+                                                application requirements, deadlines, and more—all in a conversational, stress-free way. 
+                                                No question is too small.
+                                            </h2>
+                                            <h2 className={styles.finalTagline}>Connect with our</h2>
+                                            <h2 className={styles.finalTagline}>MBANINJA-AI CHATBOT TODAY!</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            ) : slide.isTextOnly && slide.type === 'text-only-questionnaire' ? (
+                                <div className={styles.animatedSlideContent}>
+                                    <div className={`${styles.animationPhase} ${index === activeSlide ? styles.phaseActive : styles.phaseHidden}`}>
+                                        <div className={styles.finalTaglineContainer}>
+                                            <h2 className={`${styles.finalTagline} ${styles.smallerText}`}>
+                                                Finding your ideal MBA program doesn't have to be a complex puzzle. 
+                                                With Ask MBA Ninja AI, simply answer a few quick questions about your academic history and career goals. 
+                                                Our intelligent system will instantly analyze your profile and provide a personalized shortlist of universities 
+                                                that are the strongest match for your unique trajectory. 
+                                                Cut through the noise and get a tailored roadmap in minutes.
+                                            </h2>
+                                            <h2 className={styles.finalTagline}>Click here to fill the questionnaire &</h2>
+                                            <h2 className={styles.finalTagline}>FIND THE RIGHT UNIVERSITY!</h2>
                                         </div>
                                     </div>
                                 </div>

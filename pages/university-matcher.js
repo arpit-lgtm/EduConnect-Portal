@@ -87,8 +87,8 @@ const UniversityMatcher = () => {
           return;
         }
 
-        // Load unified database from public folder
-        const unifiedResponse = await fetch('/assets/js/comprehensive-unified-database-COMPLETE.js');
+        // Load unified database from secure API endpoint
+        const unifiedResponse = await fetch('/api/comprehensive-database');
         const unifiedText = await unifiedResponse.text();
         
         // Replace const with var to avoid redeclaration errors

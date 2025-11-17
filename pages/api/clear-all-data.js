@@ -1,8 +1,9 @@
 import connectDB from '../../lib/mongodb';
 import User from '../../models/User';
 import Activity from '../../models/Activity';
+import { requireAdminAuth } from '../../middleware/auth';
 
-export default async function handler(req, res) {
+async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' });
   }
@@ -35,3 +36,6 @@ export default async function handler(req, res) {
     });
   }
 }
+
+// ✅ PROTECTED: Requires admin authentication
+export default requireAdminAuth(handler);

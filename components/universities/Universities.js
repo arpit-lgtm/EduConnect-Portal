@@ -37,19 +37,18 @@ export default function Universities() {
           uniDatabase = window.universityDatabase;
           console.log('✅ Loaded from window.universityDatabase (already available)');
         } else {
-          // Load the script dynamically if not already loaded
-          const existingScript = document.querySelector('script[src="/assets/js/comprehensive-unified-database-COMPLETE.js"]');
+          // Load from secure API endpoint
+          const response = await fetch('/api/comprehensive-database');
+          const scriptText = await response.text();
           
-          if (!existingScript) {
-            const script = document.createElement('script');
-            script.src = '/assets/js/comprehensive-unified-database-COMPLETE.js';
-            script.async = true;
-            document.head.appendChild(script);
-          }
+          // Execute to set global variables
+          const modifiedText = scriptText.replace(/const universityDatabase/g, 'var universityDatabase');
+          const executeGlobal = new Function(modifiedText);
+          executeGlobal.call(window);
           
-          // Wait for database to be available
-          console.log('⏳ Waiting for database to load...');
-          uniDatabase = await checkDatabase();
+          // Now access from window
+          uniDatabase = window.universityDatabase;
+          console.log('✅ Loaded from API endpoint');
         }
 
         if (!uniDatabase || !Array.isArray(uniDatabase)) {

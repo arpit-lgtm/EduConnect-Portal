@@ -18,29 +18,35 @@ const Header = ({ courseTitle = null, adminMode = false, onLogout = null, showLo
 
   const navigationLinks = [
     {
-      title: 'Courses',
+      title: 'COURSE CATALOG',
+      titleLine1: 'COURSE',
+      titleLine2: 'CATALOG',
       href: '/#course-explorer'
     },
     {
-      title: 'Universities',
+      title: 'UNIVERSITY POOL',
+      titleLine1: 'UNIVERSITY',
+      titleLine2: 'POOL',
       href: '/#universities'
     },
     {
-      title: 'Counselors',
+      title: 'EXPERT COUNSELORS',
+      titleLine1: 'EXPERT',
+      titleLine2: 'COUNSELORS',
       href: '/#expert-guidance'
     },
     {
-      title: 'Leadership',
+      title: 'OUR LEADERSHIP',
+      titleLine1: 'OUR',
+      titleLine2: 'LEADERSHIP',
       href: '/#leadership'
     },
     {
-      title: 'Contact Us',
-      href: '/#talk-to-experts'
-    },
-    {
-      title: 'Login',
-      href: '#',
-      isLoginButton: true
+      title: 'CONTACT US / LOGIN',
+      titleLine1: 'CONTACT US',
+      titleLine2: 'LOGIN',
+      href: '/#talk-to-experts',
+      hasLoginBelow: true
     }
   ];
 
@@ -88,8 +94,8 @@ const Header = ({ courseTitle = null, adminMode = false, onLogout = null, showLo
                 <Image
                   src="/images/MBA NINJA.png"
                   alt="MBA NINJA Logo"
-                  width={180}
-                  height={48}
+                  width={330}
+                  height={88}
                   priority
                   style={{
                     maxWidth: 'none'
@@ -115,8 +121,8 @@ const Header = ({ courseTitle = null, adminMode = false, onLogout = null, showLo
                 <Image
                   src="/images/MBA NINJA.png"
                   alt="MBA NINJA Logo"
-                  width={180}
-                  height={48}
+                  width={330}
+                  height={88}
                   priority
                   style={{
                     maxWidth: 'none'
@@ -169,7 +175,28 @@ const Header = ({ courseTitle = null, adminMode = false, onLogout = null, showLo
                             href={link.href}
                             onClick={(e) => handleNavClick(e, link.href, link.title)}
                           >
-                            {link.title}
+                            {link.hasLoginBelow ? (
+                              <span className={styles.twoLineLabel}>
+                                <span>{link.titleLine1}</span>
+                                <span 
+                                  className={styles.loginText}
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    setShowLoginModal(true);
+                                  }}
+                                >
+                                  {link.titleLine2}
+                                </span>
+                              </span>
+                            ) : link.titleLine1 && link.titleLine2 ? (
+                              <span className={styles.twoLineLabel}>
+                                <span>{link.titleLine1}</span>
+                                <span>{link.titleLine2}</span>
+                              </span>
+                            ) : (
+                              link.title
+                            )}
                           </Link>
                         )}
                       </li>
