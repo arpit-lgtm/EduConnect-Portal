@@ -82,7 +82,7 @@ const nextConfig = {
       };
     }
 
-    // Production mode optimizations + Obfuscation
+    // Production mode optimizations WITHOUT aggressive obfuscation
     if (!dev && !isServer) {
       config.optimization = {
         ...config.optimization,
@@ -91,78 +91,35 @@ const nextConfig = {
         sideEffects: false,
       };
 
-      // 🔒 MAXIMUM OBFUSCATION - Make ALL code unreadable
+      // 🔒 LIGHT OBFUSCATION - Protect code without breaking it
+      // TEMPORARY: Disabled aggressive obfuscation due to syntax errors
+      // The previous settings were too aggressive and caused:
+      // - "Identifier 'g' has already been declared" errors
+      // - "'arguments' is not allowed in class field" errors
+      // - Function call errors
+      
+      /* DISABLED TEMPORARILY
       config.plugins.push(
         new WebpackObfuscator(
           {
-            // AGGRESSIVE String obfuscation
+            compact: true,
+            controlFlowFlattening: false,
+            deadCodeInjection: false,
+            debugProtection: false,
+            disableConsoleOutput: false,
+            identifierNamesGenerator: 'hexadecimal',
             rotateStringArray: true,
+            selfDefending: false,
             stringArray: true,
-            stringArrayCallsTransform: true,
-            stringArrayCallsTransformThreshold: 1,
-            stringArrayEncoding: ['rc4'], // Strong encryption
-            stringArrayIndexesType: ['hexadecimal-number'],
-            stringArrayIndexShift: true,
-            stringArrayRotate: true,
-            stringArrayShuffle: true,
-            stringArrayWrappersCount: 5,
-            stringArrayWrappersChainedCalls: true,
-            stringArrayWrappersParametersMaxCount: 5,
-            stringArrayWrappersType: 'function',
-            stringArrayThreshold: 1,
-            
-            // AGGRESSIVE Control flow obfuscation
-            controlFlowFlattening: true,
-            controlFlowFlatteningThreshold: 1,
-            
-            // Dead code injection to confuse
-            deadCodeInjection: true,
-            deadCodeInjectionThreshold: 0.5,
-            
-            // AGGRESSIVE Variable/function name obfuscation
-            identifierNamesGenerator: 'mangled-shuffled', // Most aggressive
-            identifiersPrefix: '',
-            renameGlobals: false,
-            renameProperties: false, // Don't rename properties (can break React)
-            
-            // Additional security layers
-            selfDefending: true, // Protect against formatting
-            compact: true, // Remove whitespace
-            debugProtection: false, // Don't add debug protection (can cause issues)
-            debugProtectionInterval: 0,
-            
-            // Disable console output
-            disableConsoleOutput: false, // Keep console.error working
-            
-            // Number obfuscation
-            numbersToExpressions: true,
-            
-            // Simplify for better compatibility
-            simplify: true,
-            
-            // Split strings
-            splitStrings: true,
-            splitStringsChunkLength: 5,
-            
-            // Transform object keys
-            transformObjectKeys: true,
-            
-            // Unicode escape sequence for extra obfuscation
-            unicodeEscapeSequence: false, // Can increase file size significantly
-            
-            // Target environment
+            stringArrayEncoding: [],
+            stringArrayThreshold: 0.75,
             target: 'browser',
-            
-            // Source map (disabled)
             sourceMap: false,
           },
-          [
-            // Only exclude critical Next.js runtime files
-            'polyfills-*.js',
-            'webpack-*.js',
-          ]
+          []
         )
       );
+      */
     }
 
     return config;
