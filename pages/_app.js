@@ -45,7 +45,7 @@ function MyApp({ Component, pageProps }) {
       });
     }
 
-    // Listen for custom showLoading event (for button clicks)
+    // Listen for custom showLoading event (for button clicks like Compare)
     const handleShowLoading = () => {
       console.log('🎬 CUSTOM EVENT: Show Loading Animation!');
       if (loadingTimer) clearTimeout(loadingTimer);
@@ -53,23 +53,12 @@ function MyApp({ Component, pageProps }) {
       // Show for 18 SECONDS - keeps looping until page is fully loaded
       loadingTimer = setTimeout(() => setShowLoading(false), 18000);
     };
-
-    // Hide animation when window loses focus (prevents flash when closing child tab)
-    const handleBlur = () => {
-      console.log('⚠️ Window lost focus - hiding animation to prevent flash');
-      if (loadingTimer) {
-        clearTimeout(loadingTimer);
-      }
-      setShowLoading(false);
-    };
     
     window.addEventListener('showLoading', handleShowLoading);
-    window.addEventListener('blur', handleBlur);
     
     return () => {
       // Cleanup
       window.removeEventListener('showLoading', handleShowLoading);
-      window.removeEventListener('blur', handleBlur);
       if (loadingTimer) {
         clearTimeout(loadingTimer);
       }
