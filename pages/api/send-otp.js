@@ -3,6 +3,8 @@ import path from 'path';
 import { otpStorage } from '../../utils/otpStorage.js';
 import { rateLimit } from '../../middleware/auth';
 import msg91 from '../../lib/msg91.js';
+import VerifiedLead from '../../models/VerifiedLead';
+import dbConnect from '../../lib/mongodb';
 
 // Generate 6-digit OTP
 function generateOTP() {
@@ -41,10 +43,47 @@ async function sendOTPNotification(contact, otp) {
     }
 }
 
-// Check if user exists in our database
-function findExistingUser(name, contact) {
+// Check if user exists in our database (MongoDB + JSON file)
+async function findExistingUser(name, contact) {
     try {
-        // Check in leads.json
+        console.log(`🔍 Searching for user: name="${name}", contact="${contact}"`);
+        
+        // FIRST: Check MongoDB VerifiedLead collection (new registrations)
+        try {
+            await dbConnect();
+            
+            // Search by mobile or email
+            const query = {
+                $or: [
+                    { mobile: contact },
+                    { email: contact },
+                    { mobile: contact.replace(/^91/, '') }, // Handle +91 prefix
+                    { mobile: `91${contact}` } // Handle without +91 prefix
+                ]
+            };
+            
+            const verifiedLead = await VerifiedLead.findOne(query);
+            
+            if (verifiedLead) {
+                console.log(`✅ Found verified user in MongoDB: ${verifiedLead.name}`);
+                
+                // Return in expected format
+                return {
+                    fullName: verifiedLead.name,
+                    contactNumber: verifiedLead.mobile,
+                    emailAddress: verifiedLead.email || '',
+                    verified: true,
+                    source: 'mongodb'
+                };
+            } else {
+                console.log(`⚠️ No verified user found in MongoDB for contact: ${contact}`);
+            }
+        } catch (dbError) {
+            console.error('❌ Error checking MongoDB:', dbError);
+            // Continue to check JSON file
+        }
+        
+        // SECOND: Check in leads.json (legacy data)
         const leadsPath = path.join(process.cwd(), 'data', 'leads.json');
         if (fs.existsSync(leadsPath)) {
             const leads = JSON.parse(fs.readFileSync(leadsPath, 'utf8'));
@@ -53,19 +92,30 @@ function findExistingUser(name, contact) {
                 const userData = lead.userData;
                 if (!userData) return false;
                 
-                // Match by name and contact (mobile or email)
-                const nameMatch = userData.fullName?.toLowerCase().includes(name.toLowerCase());
+                // Match by contact (mobile or email)
                 const contactMatch = 
                     userData.contactNumber === contact || 
                     userData.emailAddress === contact ||
                     userData.contactNumber?.includes(contact) ||
-                    userData.emailAddress?.includes(contact);
+                    userData.emailAddress?.includes(contact) ||
+                    contact.includes(userData.contactNumber) ||
+                    contact.includes(userData.emailAddress);
                 
-                return nameMatch && contactMatch;
+                return contactMatch;
             });
             
-            return existingUser?.userData || null;
+            if (existingUser?.userData) {
+                console.log(`✅ Found user in leads.json: ${existingUser.userData.fullName}`);
+                return {
+                    ...existingUser.userData,
+                    source: 'leads-json'
+                };
+            } else {
+                console.log(`⚠️ No user found in leads.json for contact: ${contact}`);
+            }
         }
+        
+        console.log(`❌ User NOT found in any database`);
     } catch (error) {
         console.error('Error checking existing user:', error);
     }
@@ -88,7 +138,7 @@ async function handler(req, res) {
         }
 
         // Check if user exists
-        const existingUser = findExistingUser(name, contact);
+        const existingUser = await findExistingUser(name, contact);
         
         if (!existingUser) {
             return res.status(404).json({ 
@@ -96,12 +146,17 @@ async function handler(req, res) {
                 message: 'No account found with these details. Please use "New Student Registration" instead.' 
             });
         }
+        
+        console.log(`✅ Existing user found: ${existingUser.fullName} from ${existingUser.source}`);
 
         // Generate OTP
         const otp = generateOTP();
         
         // Store OTP with expiry (5 minutes)
-        const otpKey = `${name.toLowerCase()}_${contact}`;
+        // IMPORTANT: Use contact as key (not name+contact) to avoid mismatch issues
+        const otpKey = contact.toLowerCase().trim();
+        console.log(`🔑 Storing OTP with key: ${otpKey}`);
+        
         otpStorage.set(otpKey, {
             otp,
             userData: existingUser,

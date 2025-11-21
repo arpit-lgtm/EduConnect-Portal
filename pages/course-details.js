@@ -232,24 +232,42 @@ export default function CourseDetails() {
           body: JSON.stringify({
             courseType: courseType,
             courseTitle: title || courseType,
-            specialization: specialization,
+            specialization: specializationKeywords.length > 0 ? specializationKeywords[0] : null,
+            specializationKeywords: specializationKeywords,
             limit: 100 // Get more for comparison modal
           })
         });
 
         if (!rankingResponse.ok) {
+          console.log('❌ Ranking API response not OK:', rankingResponse.status);
           throw new Error('Failed to fetch ranked universities');
         }
 
-        const { universities: sortedUniversities } = await rankingResponse.json();
+        const responseData = await rankingResponse.json();
+        console.log('📦 API Response:', responseData);
+        
+        const { universities: sortedUniversities } = responseData;
+
+        console.log('🔍 sortedUniversities type:', typeof sortedUniversities);
+        console.log('🔍 sortedUniversities is array?', Array.isArray(sortedUniversities));
+        console.log('🔍 sortedUniversities length:', sortedUniversities?.length);
+
+        if (!sortedUniversities || sortedUniversities.length === 0) {
+          console.log('⚠️ No universities returned from API');
+          setUniversities([]);
+          setLoading(false);
+          return;
+        }
 
         // Display top 7 on the course details page
         const top7Universities = sortedUniversities.slice(0, 7);
         
         console.log('✅ Got', sortedUniversities.length, 'ranked universities from server');
-        console.log('Top 7 universities for display:', top7Universities.map(u => u.name));
+        console.log('📊 Top 7 universities for display:', top7Universities);
+        console.log('📋 Top 7 names:', top7Universities.map(u => u.name));
 
         // Store top 7 for display
+        console.log('💾 Setting universities state with', top7Universities.length, 'universities');
         setUniversities(top7Universities);
         
         // Store ALL matching universities in sessionStorage for the comparison modal

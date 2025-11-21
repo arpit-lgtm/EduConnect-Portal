@@ -260,13 +260,10 @@ const UniversityMatcher = () => {
         setCurrentStep(4);
       }, autoAdvanceDelay);
     } else if (field === 'currentEducation' && currentStep === 4) {
-      // Auto-advance after education status selection
-      setTimeout(() => {
-        console.log(`🚀 Auto-advancing to step 5 after education selection: ${value}`);
-        setCurrentStep(5);
-      }, autoAdvanceDelay);
+      // Don't auto-advance yet - wait for workExperience to be filled too
+      console.log(`✅ Education status selected: ${value} - waiting for work experience`);
     } else if (field === 'workExperience' && currentStep === 4) {
-      // Auto-advance after work experience selection
+      // Auto-advance ONLY after work experience is selected (both fields filled)
       setTimeout(() => {
         console.log(`🚀 Auto-advancing to step 5 after work experience selection: ${value}`);
         setCurrentStep(5);
@@ -445,6 +442,10 @@ const UniversityMatcher = () => {
     
     // Track questionnaire completion
     trackQuestionnaireComplete(formData);
+    
+    console.log('📋 SUBMITTING QUESTIONNAIRE');
+    console.log('   preferredLocation:', formData.preferredLocation);
+    console.log('   Full formData:', JSON.stringify(formData, null, 2));
     
     // Clear any existing data and store fresh form data
     localStorage.removeItem('universityMatcherData');
@@ -1149,33 +1150,33 @@ const UniversityMatcher = () => {
             <h3>🗺️ Select Your Preferred State or Region</h3>
             <div className={getGridClass(28, styles.compactGrid)}>
                 {[
-                  { value: 'delhi', label: 'Delhi NCR', icon: '🏛️' },
-                  { value: 'maharashtra', label: 'Maharashtra', icon: '🏙️' },
-                  { value: 'karnataka', label: 'Karnataka', icon: '🌆' },
-                  { value: 'tamil-nadu', label: 'Tamil Nadu', icon: '🕌' },
-                  { value: 'uttar-pradesh', label: 'Uttar Pradesh', icon: '🕉️' },
-                  { value: 'west-bengal', label: 'West Bengal', icon: '🎭' },
-                  { value: 'gujarat', label: 'Gujarat', icon: '🦁' },
-                  { value: 'rajasthan', label: 'Rajasthan', icon: '🏰' },
-                  { value: 'telangana', label: 'Telangana', icon: '💎' },
-                  { value: 'kerala', label: 'Kerala', icon: '🌴' },
-                  { value: 'punjab', label: 'Punjab', icon: '🌾' },
-                  { value: 'haryana', label: 'Haryana', icon: '🌾' },
-                  { value: 'bihar', label: 'Bihar', icon: '📿' },
-                  { value: 'odisha', label: 'Odisha', icon: '🏛️' },
-                  { value: 'jharkhand', label: 'Jharkhand', icon: '⛰️' },
-                  { value: 'chhattisgarh', label: 'Chhattisgarh', icon: '🌲' },
-                  { value: 'madhya-pradesh', label: 'Madhya Pradesh', icon: '🏞️' },
-                  { value: 'assam', label: 'Assam', icon: '🫖' },
-                  { value: 'himachal-pradesh', label: 'Himachal Pradesh', icon: '🏔️' },
-                  { value: 'uttarakhand', label: 'Uttarakhand', icon: '⛰️' },
-                  { value: 'goa', label: 'Goa', icon: '🏖️' },
-                  { value: 'jammu-kashmir', label: 'Jammu & Kashmir', icon: '🏔️' },
-                  { value: 'andhra-pradesh', label: 'Andhra Pradesh', icon: '🏺' },
-                  { value: 'tripura', label: 'Tripura', icon: '🌸' },
-                  { value: 'manipur', label: 'Manipur', icon: '💃' },
-                  { value: 'meghalaya', label: 'Meghalaya', icon: '☔' },
-                  { value: 'sikkim', label: 'Sikkim', icon: '🏔️' },
+                  { value: 'Delhi', label: 'Delhi NCR', icon: '🏛️' },
+                  { value: 'Maharashtra', label: 'Maharashtra', icon: '🏙️' },
+                  { value: 'Karnataka', label: 'Karnataka', icon: '🌆' },
+                  { value: 'Tamil Nadu', label: 'Tamil Nadu', icon: '🕌' },
+                  { value: 'Uttar Pradesh', label: 'Uttar Pradesh', icon: '🕉️' },
+                  { value: 'West Bengal', label: 'West Bengal', icon: '🎭' },
+                  { value: 'Gujarat', label: 'Gujarat', icon: '🦁' },
+                  { value: 'Rajasthan', label: 'Rajasthan', icon: '🏰' },
+                  { value: 'Telangana', label: 'Telangana', icon: '💎' },
+                  { value: 'Kerala', label: 'Kerala', icon: '🌴' },
+                  { value: 'Punjab', label: 'Punjab', icon: '🌾' },
+                  { value: 'Haryana', label: 'Haryana', icon: '🌾' },
+                  { value: 'Bihar', label: 'Bihar', icon: '📿' },
+                  { value: 'Odisha', label: 'Odisha', icon: '🏛️' },
+                  { value: 'Jharkhand', label: 'Jharkhand', icon: '⛰️' },
+                  { value: 'Chhattisgarh', label: 'Chhattisgarh', icon: '🌲' },
+                  { value: 'Madhya Pradesh', label: 'Madhya Pradesh', icon: '🏞️' },
+                  { value: 'Assam', label: 'Assam', icon: '🫖' },
+                  { value: 'Himachal Pradesh', label: 'Himachal Pradesh', icon: '🏔️' },
+                  { value: 'Uttarakhand', label: 'Uttarakhand', icon: '⛰️' },
+                  { value: 'Goa', label: 'Goa', icon: '🏖️' },
+                  { value: 'Jammu & Kashmir', label: 'Jammu & Kashmir', icon: '🏔️' },
+                  { value: 'Andhra Pradesh', label: 'Andhra Pradesh', icon: '🏺' },
+                  { value: 'Tripura', label: 'Tripura', icon: '🌸' },
+                  { value: 'Manipur', label: 'Manipur', icon: '💃' },
+                  { value: 'Meghalaya', label: 'Meghalaya', icon: '☔' },
+                  { value: 'Sikkim', label: 'Sikkim', icon: '🏔️' },
                   { value: 'any', label: 'Any State', icon: '🌍' }
                 ].map(option => (
                   <div 

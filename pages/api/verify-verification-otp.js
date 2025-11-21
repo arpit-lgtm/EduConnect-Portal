@@ -61,63 +61,71 @@ export default async function handler(req, res) {
     }
 
     // Verify OTP
+    console.log(`🔍 Verifying OTP for ${type}: ${value}`);
+    
     if (storedData.otp !== otp) {
       storedData.attempts += 1;
       global.otpVerificationStore.set(key, storedData);
       
       const attemptsLeft = 3 - storedData.attempts;
+      console.log(`❌ Invalid OTP. ${attemptsLeft} attempts remaining.`);
+      
       return res.status(400).json({ 
         success: false, 
         message: `Invalid OTP. ${attemptsLeft} attempt${attemptsLeft !== 1 ? 's' : ''} remaining.` 
       });
     }
 
-    // OTP is correct - Save lead data to MongoDB
-    try {
-      await dbConnect();
+    console.log(`✅ OTP verified successfully`);
+    
+    // OTP is correct - Remove used OTP FIRST
+    global.otpVerificationStore.delete(key);
+    
+    // Get metadata for tracking
+    const metadata = {
+      userAgent: req.headers['user-agent'] || '',
+      ipAddress: req.headers['x-forwarded-for'] || req.connection.remoteAddress || '',
+      referrer: req.headers['referer'] || ''
+    };
 
-      // Get metadata for tracking
-      const metadata = {
-        userAgent: req.headers['user-agent'] || '',
-        ipAddress: req.headers['x-forwarded-for'] || req.connection.remoteAddress || '',
-        referrer: req.headers['referer'] || ''
-      };
-
-      if (type === 'phone') {
-        // Save mobile verification
-        const leadData = {
-          name: name || 'Unknown',
-          mobile: mobile || value,
-          mobileVerified: true,
-          mobileVerifiedAt: new Date(),
-          metadata
-        };
-
-        await VerifiedLead.findOrCreateByMobile(leadData.mobile, leadData.name, metadata);
-        console.log(`✅ Saved verified lead: ${leadData.name} - ${leadData.mobile}`);
-
-      } else if (type === 'email') {
-        // Update email verification for existing mobile lead
-        if (mobile) {
-          await VerifiedLead.updateEmailVerification(mobile, email || value);
-          console.log(`✅ Updated lead with email: ${mobile} - ${email || value}`);
-        } else {
-          console.warn(`⚠️  Email verified but no mobile provided: ${email || value}`);
-        }
-      }
-    } catch (dbError) {
-      console.error('❌ Error saving lead to MongoDB:', dbError);
-      // Don't fail the verification if lead save fails
-    }
-
-    // OTP is correct
-    global.otpVerificationStore.delete(key); // Remove used OTP
-
+    // IMPORTANT: Respond to user IMMEDIATELY (don't wait for MongoDB)
     res.status(200).json({ 
       success: true, 
       message: `${type === 'phone' ? 'Phone number' : 'Email'} verified successfully`,
       verified: true
     });
+    
+    // Save to MongoDB in background (non-blocking)
+    // This won't delay the user's response
+    (async () => {
+      try {
+        console.log(`💾 Saving lead to MongoDB in background...`);
+        await dbConnect();
+
+        if (type === 'phone') {
+          const leadData = {
+            name: name || 'Unknown',
+            mobile: mobile || value,
+            mobileVerified: true,
+            mobileVerifiedAt: new Date(),
+            metadata
+          };
+
+          await VerifiedLead.findOrCreateByMobile(leadData.mobile, leadData.name, metadata);
+          console.log(`✅ Saved verified lead: ${leadData.name} - ${leadData.mobile}`);
+
+        } else if (type === 'email') {
+          if (mobile) {
+            await VerifiedLead.updateEmailVerification(mobile, email || value);
+            console.log(`✅ Updated lead with email: ${mobile} - ${email || value}`);
+          } else {
+            console.warn(`⚠️ Email verified but no mobile provided: ${email || value}`);
+          }
+        }
+      } catch (dbError) {
+        console.error('❌ Error saving lead to MongoDB:', dbError);
+      }
+    })();
 
   } catch (error) {
     console.error('Error verifying OTP:', error);

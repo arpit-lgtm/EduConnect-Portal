@@ -6,7 +6,7 @@ import Footer from '../components/layout/Footer';
 import LoginModal from '../components/login/LoginModal';
 import Toast from '../components/common/Toast';
 import { useAuth } from '../contexts/AuthContext';
-import { trackUniversityContact } from '../utils/activityTracker';
+import { trackUniversityContact, trackQuestionnaireComplete, trackCompareUniversities } from '../utils/activityTracker';
 import styles from '../styles/UniversityMatcherResults.module.css';
 import { getUniversityLogo } from '../utils/universityLogoMap';
 
@@ -58,12 +58,16 @@ const UniversityMatcherResults = () => {
     const storedData = localStorage.getItem('universityMatcherData');
     if (storedData) {
       const data = JSON.parse(storedData);
+      console.log('🔍 LOADED QUESTIONNAIRE DATA:', data);
+      console.log('   Course:', data.preferredCourse);
+      console.log('   Specialization:', data.specialization);
+      console.log('   Location:', data.preferredLocation);
       setFormData(data);
       
       // Set initial state filter based on questionnaire selection
       if (data.preferredLocation && data.preferredLocation !== 'any') {
-        // Convert lowercase-hyphenated format to proper case
-        // E.g., 'maharashtra' -> 'Maharashtra', 'tamil-nadu' -> 'Tamil Nadu'
+        // The questionnaire now stores proper case directly (e.g., 'Maharashtra')
+        // But keep mapping for backward compatibility with old data
         const stateMapping = {
           'delhi': 'Delhi',
           'maharashtra': 'Maharashtra',
@@ -94,16 +98,17 @@ const UniversityMatcherResults = () => {
           'sikkim': 'Sikkim'
         };
         
-        const mappedState = stateMapping[data.preferredLocation];
-        if (mappedState) {
-          console.log('🎯 Initial state filter set to:', mappedState);
-          setSelectedState(mappedState);
-        }
+        // Check if it needs mapping (lowercase/hyphenated) or use as-is (proper case)
+        const mappedState = stateMapping[data.preferredLocation.toLowerCase()] || data.preferredLocation;
+        console.log('🎯 Initial state filter set to:', mappedState);
+        setSelectedState(mappedState);
       }
       
+      console.log('🚀 Calling loadUniversities with data...');
       loadUniversities(data);
     } else {
       // No data found, redirect back to matcher
+      console.log('❌ No questionnaire data found in localStorage, redirecting...');
       router.push('/university-matcher');
     }
   }, [isLoggedIn, authLoading]);
@@ -202,10 +207,12 @@ const UniversityMatcherResults = () => {
   };
 
   const loadUniversities = async (data) => {
+    console.log('🔄 loadUniversities called with:', data);
+    
     try {
       // Check if data already loaded
       if (window.universityDatabase && Array.isArray(window.universityDatabase)) {
-        console.log('✅ Data already loaded in window scope');
+        console.log('✅ Data already loaded in window scope, count:', window.universityDatabase.length);
         
         // Universities to exclude from results (duplicates removed)
         const excludeUniversities = [
@@ -237,6 +244,8 @@ const UniversityMatcherResults = () => {
         
         // 🔒 SERVER-SIDE MATCHING #1 - Algorithm completely hidden from browser!
         console.log('🔐 Calling server-side matching API (location-filtered)...');
+        console.log('📍 DATA BEING SENT:', data);
+        console.log('📍 preferredLocation value:', data.preferredLocation);
         
         // Match universities via SERVER API (with location filter)
         const matchResponse = await fetch('/api/match-universities', {
@@ -270,6 +279,9 @@ const UniversityMatcherResults = () => {
         // Fetch ratings for ALL universities with the course as well
         const allWithCourseAndRatings = await fetchCollegeVidyaRatings(allWithCourse);
         
+        console.log('📊 Setting state - matchedWithRatings:', matchedWithRatings.length);
+        console.log('📊 Setting state - allWithCourseAndRatings:', allWithCourseAndRatings.length);
+        
         setMatchedUniversities(matchedWithRatings);
         setAllUniversitiesWithCourse(allWithCourseAndRatings); // Store all universities with course
         setFilteredUniversities(matchedWithRatings);
@@ -277,7 +289,22 @@ const UniversityMatcherResults = () => {
         // Extract available states and countries from ALL universities with the course
         extractAvailableLocations(allWithCourseAndRatings);
         
+        // 📊 TRACK: Questionnaire completed with results
+        trackQuestionnaireComplete({
+          preferredCourse: data.preferredCourse,
+          specialization: data.specialization,
+          degreeType: data.degreeType,
+          studyMode: data.studyMode,
+          preferredLocation: data.preferredLocation,
+          budgetRange: data.budgetRange,
+          careerGoals: data.careerGoals,
+          workExperience: data.workExperience,
+          matchedUniversitiesCount: matchedWithRatings.length,
+          totalUniversitiesWithCourse: allWithCourseAndRatings.length
+        });
+        
         console.log('✅ Matched', matchedWithRatings.length, 'universities');
+        console.log('✅ filteredUniversities should now be:', matchedWithRatings.length);
         setIsLoading(false);
         return;
       }
@@ -361,6 +388,9 @@ const UniversityMatcherResults = () => {
         // Fetch ratings for ALL universities with the course as well
         const allWithCourseAndRatings = await fetchCollegeVidyaRatings(allWithCourse);
         
+        console.log('📊 Setting state - matchedWithRatings:', matchedWithRatings.length);
+        console.log('📊 Setting state - allWithCourseAndRatings:', allWithCourseAndRatings.length);
+        
         setMatchedUniversities(matchedWithRatings);
         setAllUniversitiesWithCourse(allWithCourseAndRatings); // Store all universities with course
         setFilteredUniversities(matchedWithRatings);
@@ -369,6 +399,7 @@ const UniversityMatcherResults = () => {
         extractAvailableLocations(allWithCourseAndRatings);
         
         console.log('✅ Matched', matchedWithRatings.length, 'universities');
+        console.log('✅ filteredUniversities should now be:', matchedWithRatings.length);
       } else {
         console.error('❌ universityDatabase not found in window scope');
         setMatchedUniversities([]);
@@ -376,8 +407,13 @@ const UniversityMatcherResults = () => {
       }
       
     } catch (error) {
-      console.error('❌ Error loading universities:', error);
+      console.error('❌ CRITICAL ERROR in loadUniversities:', error);
+      console.error('   Error message:', error.message);
+      console.error('   Error stack:', error.stack);
+      setMatchedUniversities([]);
+      setFilteredUniversities([]);
     } finally {
+      console.log('🏁 loadUniversities finally block - setting isLoading to FALSE');
       setIsLoading(false);
     }
   };

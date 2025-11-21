@@ -57,10 +57,16 @@ export default async function handler(req, res) {
         }
 
         // Find OTP record
-        const otpKey = `${name.toLowerCase()}_${contact}`;
+        // IMPORTANT: Use contact as key (matches send-otp.js)
+        const otpKey = contact.toLowerCase().trim();
+        console.log(`🔑 Looking for OTP with key: ${otpKey}`);
+        
         const otpRecord = otpStorage.get(otpKey);
 
         if (!otpRecord) {
+            console.log(`❌ No OTP found for key: ${otpKey}`);
+            console.log(`📋 Available OTP keys:`, Array.from(otpStorage.keys()));
+            
             return res.status(400).json({ 
                 success: false, 
                 message: 'No OTP found. Please request a new OTP.' 
@@ -86,29 +92,39 @@ export default async function handler(req, res) {
         }
 
         // Verify OTP
+        console.log(`🔍 Verifying OTP for returning user: ${contact}`);
+        
         if (otpRecord.otp !== otp) {
             otpRecord.attempts += 1;
             otpStorage.set(otpKey, otpRecord);
             
+            const attemptsLeft = 3 - otpRecord.attempts;
+            console.log(`❌ Invalid OTP. ${attemptsLeft} attempts remaining.`);
+            
             return res.status(400).json({ 
                 success: false, 
-                message: `Invalid OTP. ${3 - otpRecord.attempts} attempts remaining.` 
+                message: `Invalid OTP. ${attemptsLeft} attempts remaining.` 
             });
         }
 
+        console.log(`✅ OTP verified successfully for returning user`);
+        
         // OTP verified successfully
         const userData = otpRecord.userData;
         
         // Clean up OTP
         otpStorage.delete(otpKey);
 
-        // Save login activity
-        await saveLoginActivity(userData);
-
+        // IMPORTANT: Respond to user IMMEDIATELY (don't wait for file write)
         res.status(200).json({ 
             success: true, 
             message: 'OTP verified successfully',
             userData: userData
+        });
+        
+        // Save login activity in background (non-blocking)
+        saveLoginActivity(userData).catch(err => {
+            console.error('❌ Background activity save failed:', err);
         });
 
     } catch (error) {

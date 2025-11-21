@@ -23,40 +23,82 @@ function checkRateLimit(ip) {
   return true;
 }
 
-// PROTECTED: University matching algorithm
+// PROTECTED: University matching algorithm - Updated with smart course extraction
 function matchUniversities(universitiesData, formData) {
   if (!universitiesData || universitiesData.length === 0) {
+    console.log('❌ No universities data provided');
     return [];
   }
 
   const courseNameToMatch = formData.preferredCourse;
   
-  console.log('🔍 Matching for course:', courseNameToMatch);
-  console.log('📊 Total universities to check:', universitiesData.length);
+  console.log('🔍 MATCHING FOR COURSE:', courseNameToMatch);
+  console.log('📊 TOTAL UNIVERSITIES TO CHECK:', universitiesData.length);
   
   if (!courseNameToMatch) {
-    console.log('❌ No course name provided');
+    console.log('❌ NO COURSE NAME PROVIDED');
     return [];
   }
 
   let filtered = universitiesData.map(uni => {
     let score = 0;
 
-    // CRITICAL LOGIC: Course matching
+    // CRITICAL LOGIC: Course matching with smart extraction
     let hasCourse = false;
+    let extractedBaseCourse = courseNameToMatch;
+    
+    // Extract base course from display name
+    // "1-Year MBA Online" -> "MBA", "Executive MBA" -> "MBA", "Distance MBA (45 specializations)" -> "MBA"
+    const coursePatterns = [
+      { regex: /\b(MBA|MCA|BBA|BCA|B\.Tech|M\.Tech|B\.Com|M\.Com|BA|MA|B\.Sc|M\.Sc|B\.Ed|M\.Ed|PhD|PGDM|LLB|LLM)\b/i, extract: 1 },
+    ];
+    
+    for (const pattern of coursePatterns) {
+      const match = courseNameToMatch.match(pattern.regex);
+      if (match) {
+        extractedBaseCourse = match[pattern.extract];
+        console.log(`🎯 Extracted base course: "${extractedBaseCourse}" from "${courseNameToMatch}"`);
+        break;
+      }
+    }
+    
     if (courseNameToMatch && uni.courses) {
       if (Array.isArray(uni.courses)) {
         hasCourse = uni.courses.some(course => {
-          if (course.toLowerCase() === courseNameToMatch.toLowerCase()) return true;
-          if (courseNameToMatch.toLowerCase().includes(course.toLowerCase())) return true;
-          if (course.toLowerCase().includes(courseNameToMatch.toLowerCase())) return true;
+          const courseLower = course.toLowerCase();
+          const searchLower = courseNameToMatch.toLowerCase();
+          const baseLower = extractedBaseCourse.toLowerCase();
+          
+          // Direct match
+          if (courseLower === searchLower) return true;
+          if (courseLower === baseLower) return true;
+          
+          // Contains match (both directions)
+          if (searchLower.includes(courseLower)) return true;
+          if (courseLower.includes(searchLower)) return true;
+          
+          // Base course match
+          if (courseLower.includes(baseLower)) return true;
+          
           return false;
         });
       } else if (typeof uni.courses === 'object') {
         hasCourse = Object.keys(uni.courses).some(courseKey => {
-          if (courseKey.toLowerCase() === courseNameToMatch.toLowerCase()) return true;
-          if (courseNameToMatch.toLowerCase().includes(courseKey.toLowerCase())) return true;
-          if (courseKey.toLowerCase().includes(courseNameToMatch.toLowerCase())) return true;
+          const courseLower = courseKey.toLowerCase();
+          const searchLower = courseNameToMatch.toLowerCase();
+          const baseLower = extractedBaseCourse.toLowerCase();
+          
+          // Direct match
+          if (courseLower === searchLower) return true;
+          if (courseLower === baseLower) return true;
+          
+          // Contains match (both directions)
+          if (searchLower.includes(courseLower)) return true;
+          if (courseLower.includes(searchLower)) return true;
+          
+          // Base course match
+          if (courseLower.includes(baseLower)) return true;
+          
           return false;
         });
       }
@@ -66,7 +108,9 @@ function matchUniversities(universitiesData, formData) {
         
         // CRITICAL LOGIC: Specialization matching with flexible rules
         if (formData.specialization && uni.courses && typeof uni.courses === 'object') {
+          // Try to find course data using both the original name and extracted base course
           const courseData = uni.courses[courseNameToMatch] || 
+                            uni.courses[extractedBaseCourse] ||
                             Object.values(uni.courses).find(course => course && course.specializations);
           
           if (courseData && courseData.specializations) {
@@ -128,16 +172,21 @@ function matchUniversities(universitiesData, formData) {
         uniState = normalize(uni.state || uni.location || '');
       }
       
+      console.log(`🗺️ Location Check: Target="${targetLocation}" | Uni="${uni.name}" | State="${uniState}" | Location="${uniLocation}"`);
+      
       const locationMatch = uniState.includes(targetLocation) || 
                            targetLocation.includes(uniState) ||
                            uniLocation.includes(targetLocation) ||
                            targetLocation.includes(uniLocation);
+      
+      console.log(`   ${locationMatch ? '✅ MATCH' : '❌ NO MATCH'}`);
       
       if (!locationMatch) {
         return null;
       }
       score += 15;
     } else {
+      console.log(`⚠️ Location filter SKIPPED: preferredLocation="${formData.preferredLocation}"`);
       score += 5;
     }
 
@@ -238,6 +287,9 @@ function matchUniversities(universitiesData, formData) {
 }
 
 export default async function handler(req, res) {
+  console.log('🚀 ===== MATCH UNIVERSITIES API CALLED =====');
+  console.log('🕒 Time:', new Date().toISOString());
+  
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
@@ -251,7 +303,11 @@ export default async function handler(req, res) {
   try {
     const { formData, filterByLocation } = req.body;
 
+    console.log('📥 REQUEST BODY:', JSON.stringify(req.body, null, 2));
+    console.log('📝 FORM DATA:', JSON.stringify(formData, null, 2));
+
     if (!formData || !formData.preferredCourse) {
+      console.log('❌ VALIDATION FAILED - Missing formData or preferredCourse');
       return res.status(400).json({ error: 'Invalid request: formData and preferredCourse required' });
     }
 
@@ -264,12 +320,36 @@ export default async function handler(req, res) {
 
     const fileContent = fs.readFileSync(filePath, 'utf8');
     
-    // Extract university database
-    const dbMatch = fileContent.match(/const\s+universityDatabase\s*=\s*(\[[\s\S]*?\]);/);
+    // Extract university database - support both const and var declarations
+    const dbMatch = fileContent.match(/(const|var)\s+universityDatabase\s*=\s*(\[[\s\S]*?\]);/);
     let universityDatabase = [];
     
     if (dbMatch) {
-      universityDatabase = eval(dbMatch[1]);
+      try {
+        // Use capture group [2] for the array content (since [1] is const|var)
+        universityDatabase = eval(dbMatch[2]);
+        console.log(`✅ LOADED ${universityDatabase.length} UNIVERSITIES FROM DATABASE`);
+      } catch (error) {
+        console.log('❌ EVAL FAILED, trying fallback method:', error.message);
+        // Fallback: execute the entire file content and extract the variable
+        try {
+          const executeDb = new Function(fileContent + '; return universityDatabase;');
+          universityDatabase = executeDb();
+          console.log(`✅ LOADED ${universityDatabase.length} UNIVERSITIES (fallback method)`);
+        } catch (fallbackError) {
+          console.log('❌ FALLBACK ALSO FAILED:', fallbackError.message);
+        }
+      }
+    } else {
+      console.log('❌ REGEX MATCH FAILED - trying fallback method');
+      // Try fallback method even if regex didn't match
+      try {
+        const executeDb = new Function(fileContent + '; return universityDatabase;');
+        universityDatabase = executeDb();
+        console.log(`✅ LOADED ${universityDatabase.length} UNIVERSITIES (fallback method)`);
+      } catch (fallbackError) {
+        console.log('❌ FALLBACK ALSO FAILED:', fallbackError.message);
+      }
     }
 
     // Exclude duplicates

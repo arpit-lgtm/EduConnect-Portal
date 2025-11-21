@@ -32,6 +32,12 @@ function isPremiumInstitute(uniName) {
 
 // PROTECTED: University ranking and filtering algorithm
 function rankAndFilterUniversities(universities, courseType, courseTitle, specialization) {
+  console.log('🎯 RANKING FUNCTION CALLED');
+  console.log('   - Input universities:', universities.length);
+  console.log('   - courseType:', courseType);
+  console.log('   - courseTitle:', courseTitle);
+  console.log('   - specialization:', specialization);
+  
   // Determine course characteristics
   const isUGCourse = ['BBA', 'BCA', 'B.COM', 'BA', 'B.SC', 'B.TECH', 'BTECH'].some(ug => 
     courseType.toUpperCase().includes(ug)
@@ -44,6 +50,10 @@ function rankAndFilterUniversities(universities, courseType, courseTitle, specia
                         courseTitle.toLowerCase().includes('uk') ||
                         courseTitle.toLowerCase().includes('canada') ||
                         courseTitle.toLowerCase().includes('australia');
+
+  console.log('   - isUGCourse:', isUGCourse);
+  console.log('   - isOnlineCourse:', isOnlineCourse);
+  console.log('   - isStudyAbroad:', isStudyAbroad);
   
   let targetCountry = null;
   if (isStudyAbroad) {
@@ -99,6 +109,9 @@ function rankAndFilterUniversities(universities, courseType, courseTitle, specia
     return true;
   });
 
+  console.log(`📊 After filtering: ${filtered.length} universities remain`);
+  console.log('   Sample filtered universities:', filtered.slice(0, 3).map(u => u.name));
+
   // Calculate specialization scores
   const specializationKeywords = specialization ? specialization.toUpperCase().split(/[\s,&]+/).filter(w => w.length > 2) : [];
   
@@ -141,6 +154,9 @@ function rankAndFilterUniversities(universities, courseType, courseTitle, specia
 }
 
 export default async function handler(req, res) {
+  console.log('🏆 ===== RANK UNIVERSITIES API CALLED =====');
+  console.log('🕒 Time:', new Date().toISOString());
+  
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
@@ -152,9 +168,17 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { courseType, courseTitle, specialization, limit = 7 } = req.body;
+    const { courseType, courseTitle, specialization, specializationKeywords, limit = 7 } = req.body;
+
+    console.log('📥 REQUEST PARAMS:');
+    console.log('   - courseType:', courseType);
+    console.log('   - courseTitle:', courseTitle);
+    console.log('   - specialization:', specialization);
+    console.log('   - specializationKeywords:', specializationKeywords);
+    console.log('   - limit:', limit);
 
     if (!courseType) {
+      console.log('❌ ERROR: courseType is required');
       return res.status(400).json({ error: 'courseType is required' });
     }
 
@@ -162,17 +186,33 @@ export default async function handler(req, res) {
     const filePath = path.join(process.cwd(), 'data', 'private', 'comprehensive-unified-database-COMPLETE.js');
     
     if (!fs.existsSync(filePath)) {
+      console.log('❌ DATABASE FILE NOT FOUND:', filePath);
       return res.status(404).json({ error: 'Database not found' });
     }
 
     const fileContent = fs.readFileSync(filePath, 'utf8');
-    const dbMatch = fileContent.match(/const\s+universityDatabase\s*=\s*(\[[\s\S]*?\]);/);
     
+    // Try to extract university database using eval in a safer way
     let universityDatabase = [];
-    if (dbMatch) {
-      universityDatabase = eval(dbMatch[1]);
+    try {
+      // Execute the database file content to get the arrays
+      const dbMatch = fileContent.match(/(const|var)\s+universityDatabase\s*=\s*(\[[\s\S]*?\]);/);
+      
+      if (dbMatch) {
+        universityDatabase = eval(dbMatch[2]);
+        console.log(`✅ LOADED ${universityDatabase.length} UNIVERSITIES FROM DATABASE`);
+      } else {
+        // Fallback: try to execute the whole file in a function scope
+        const executeDb = new Function(fileContent + '; return universityDatabase;');
+        universityDatabase = executeDb();
+        console.log(`✅ LOADED ${universityDatabase.length} UNIVERSITIES FROM DATABASE (fallback method)`);
+      }
+    } catch (parseError) {
+      console.log('❌ FAILED TO PARSE DATABASE FILE:', parseError.message);
+      return res.status(500).json({ error: 'Database parsing failed' });
     }
 
+    console.log('🔍 Starting ranking and filtering...');
     // Apply ranking and filtering (SERVER-SIDE PROTECTED ALGORITHM)
     const rankedUniversities = rankAndFilterUniversities(
       universityDatabase,
@@ -181,8 +221,13 @@ export default async function handler(req, res) {
       specialization
     );
 
+    console.log(`✅ Ranked ${rankedUniversities.length} universities`);
+    
     // Return top N universities
     const topUniversities = rankedUniversities.slice(0, limit);
+
+    console.log(`📤 Returning ${topUniversities.length} universities (limit: ${limit})`);
+    console.log('   Top 3:', topUniversities.slice(0, 3).map(u => u.name));
 
     return res.status(200).json({
       universities: topUniversities,

@@ -591,6 +591,43 @@ export default function AdminLeads() {
                               </div>
                             )}
                             
+                            {/* University Matcher Results (from trackQuestionnaireComplete) */}
+                            {activity.responses && Object.keys(activity.responses).length > 0 && (
+                              <div className={styles.detailSection}>
+                                <strong>📊 University Matcher - Questionnaire Results:</strong>
+                                <div className={styles.questionnaireBox}>
+                                  {Object.entries(activity.responses).map(([key, value]) => {
+                                    if (!value || value === '') return null;
+                                    
+                                    // Format the key nicely
+                                    const formattedKey = key
+                                      .replace(/([A-Z])/g, ' $1')
+                                      .trim()
+                                      .split(' ')
+                                      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                                      .join(' ');
+                                    
+                                    // Special formatting for counts
+                                    let displayValue = value;
+                                    if (key === 'matchedUniversitiesCount') {
+                                      displayValue = `${value} universities matched`;
+                                    } else if (key === 'totalUniversitiesWithCourse') {
+                                      displayValue = `${value} universities offer this course`;
+                                    }
+                                    
+                                    return (
+                                      <div key={key} className={styles.questionnaireItem}>
+                                        <span className={styles.qLabel}>{formattedKey}:</span>
+                                        <span className={styles.qValue}>
+                                          {typeof displayValue === 'object' ? JSON.stringify(displayValue, null, 2) : displayValue}
+                                        </span>
+                                      </div>
+                                    );
+                                  })}
+                                </div>
+                              </div>
+                            )}
+                            
                             {/* University */}
                             {activity.university && (
                               <div className={styles.detailSection}>

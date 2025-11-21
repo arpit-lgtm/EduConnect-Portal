@@ -506,7 +506,7 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
                 
                 if (data.success) {
                     setOtpSent(true);
-                    alert(`OTP sent to ${otpFormData.contact}`);
+                    // Alert removed - user can see OTP sent message in UI
                 } else {
                     alert(data.message || 'Failed to send OTP');
                 }
@@ -557,7 +557,8 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
                     // Track login activity
                     await trackLogin(userData);
 
-                    alert('Welcome back! You have been successfully logged in.');
+                    // Alert removed - user can see they're logged in from header
+                    console.log('✅ User logged in successfully:', userData.fullName);
                     
                     // Reset OTP form and close modal
                     setOtpFormData({ name: '', contact: '', otp: '' });
@@ -595,9 +596,10 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
             const data = await response.json();
             
             if (data.success) {
-                alert(`OTP resent to ${otpFormData.contact}`);
+                // Alert removed - OTP resent silently
+                console.log(`✅ OTP resent to ${otpFormData.contact}`);
             } else {
-                alert('Failed to resend OTP');
+                alert(data.message || 'Failed to resend OTP');
             }
         } catch (error) {
             console.error('Error resending OTP:', error);
