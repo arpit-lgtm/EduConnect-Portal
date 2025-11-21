@@ -133,6 +133,34 @@ export default function Universities() {
             courses: ['MBA', 'Executive MBA', 'Masters'],
             fees: { 'MBA': 400000, 'Executive MBA': 380000, 'Masters': 350000 },
             website: 'https://www.mbs.edu'
+          },
+          {
+            id: 'manav-rachna-university-online',
+            name: 'Manav Rachna University Online',
+            courses: ['MBA', 'BBA', 'BCA', 'BCom', 'BA', 'MCA', 'MCom', 'MA', 'BA Honours'],
+            fees: { 'MBA': 128000, 'BBA': 162000, 'BCA': 162000, 'BCom': 102000, 'BA': 102000, 'MCA': 108000, 'MCom': 108000, 'MA': 108000, 'BA Honours': 102000 },
+            website: 'https://www.mru.edu.in'
+          },
+          {
+            id: 'manonmaniam-sundaranar-university-distance-education',
+            name: 'Manonmaniam Sundaranar University Distance Education',
+            courses: ['MA Tamil', 'MA English', 'MA History', 'MA Economics', 'MA Mass Communication', 'MCom Tamil Medium', 'MCom English Medium', 'MLISc', 'MSc Mathematics', 'MSc Physics', 'MSc Chemistry', 'BA Tamil', 'BA English', 'BA History', 'BA Economics', 'BBA', 'BCom Tamil Medium', 'BCom English Medium', 'BLISc', 'BSc Mathematics', 'BSc Physics', 'BSc Chemistry', 'Certificate in Yoga', 'Certificate in Human Rights'],
+            fees: { 'MA': 15000, 'MCom': 15000, 'MSc': 18000, 'BA': 12000, 'BBA': 14000, 'BCom': 12000, 'BSc': 14000 },
+            website: 'https://www.msuniv.ac.in'
+          },
+          {
+            id: 'manuu-maulana-azad-national-urdu-university-distance',
+            name: 'Maulana Azad National Urdu University Distance Education',
+            courses: ['MA Urdu', 'MA English', 'MA Arabic', 'MA Islamic Studies', 'MA History', 'MA Hindi', 'BA', 'BCom', 'BSc Physical Sciences', 'BSc Life Sciences', 'BEd', 'Diploma in Teaching of English', 'Diploma in Early Childhood Care', 'Diploma in Journalism', 'Diploma in School Leadership', 'Certificate in Functional English', 'Certificate in Urdu Proficiency'],
+            fees: { 'MA': 18000, 'BA': 15000, 'BCom': 15000, 'BSc': 16000, 'BEd': 20000, 'Diploma': 12000, 'Certificate': 8000 },
+            website: 'https://www.manuu.edu.in'
+          },
+          {
+            id: 'mizoram-university-online',
+            name: 'Mizoram University Online',
+            courses: ['MBA General Management', 'MBA Finance', 'MBA HR', 'MBA Marketing', 'MBA Operations', 'MBA IT', 'MBA Retail', 'BCom General', 'BCom Honours', 'BBA General', 'BBA Honours', 'MCom', 'MA English', 'MA Economics', 'BCA', 'Master of Social Work', 'Executive Programs', 'Online Diplomas', 'Certificate Programs'],
+            fees: { 'MBA': 50700, 'BCom': 36000, 'BBA': 45000, 'MCom': 43400, 'MA': 29200, 'BCA': 64700, 'MSW': 25200 },
+            website: 'https://www.mzu.edu.in'
           }
         ];
 
@@ -358,6 +386,14 @@ export default function Universities() {
             linkUrl = '/university/madras-university-online';
           } else if (uniName.includes('maharishi markandeshwar') || uniName.includes('mmu online') || uniName.includes('mm deemed') || uniId === 'maharishi-markandeshwar-university-online') {
             linkUrl = '/university/maharishi-markandeshwar-university-online';
+          } else if (uniName.includes('manav rachna') || uniId === 'manav-rachna-university-online') {
+            linkUrl = '/university/manav-rachna-university-online';
+          } else if (uniName.includes('manonmaniam sundaranar') || uniId === 'manonmaniam-sundaranar-university-distance-education') {
+            linkUrl = '/university/manonmaniam-sundaranar-university-distance-education';
+          } else if (uniName.includes('manuu') || uniName.includes('maulana azad') || uniId === 'manuu-maulana-azad-national-urdu-university-distance') {
+            linkUrl = '/university/manuu-maulana-azad-national-urdu-university';
+          } else if (uniName.includes('mizoram') || uniId === 'mizoram-university-online') {
+            linkUrl = '/university/mizoram-university-online';
           }
           
           // Custom course counts for universities with detailed pages
@@ -378,6 +414,15 @@ export default function Universities() {
             'andhra': '5 Courses',
             'annamalai university': '6 Courses',
             'annamalai': '6 Courses',
+            'manav rachna': '9 Courses',
+            'manav rachna university': '9 Courses',
+            'manonmaniam sundaranar': '24 Courses',
+            'manonmaniam sundaranar university': '24 Courses',
+            'manuu': '17 Courses',
+            'maulana azad': '17 Courses',
+            'maulana azad national urdu university': '17 Courses',
+            'mizoram': '19 Courses',
+            'mizoram university': '19 Courses',
             'anna university': '2 Courses',
             'anucde': '6 Courses',
             'acharya nagarjuna': '6 Courses',
