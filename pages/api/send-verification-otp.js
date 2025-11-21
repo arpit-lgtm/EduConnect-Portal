@@ -58,8 +58,14 @@ export default async function handler(req, res) {
     // Send OTP via MSG91 for phone type
     if (type === 'phone') {
       try {
+        console.log(`🔍 Environment Check for SMS:`);
+        console.log(`   MSG91_AUTH_KEY exists: ${!!process.env.MSG91_AUTH_KEY}`);
+        console.log(`   MSG91_AUTH_KEY length: ${process.env.MSG91_AUTH_KEY?.length || 0}`);
+        console.log(`   MSG91_OTP_TEMPLATE_ID: ${process.env.MSG91_OTP_TEMPLATE_ID || 'NOT SET'}`);
+        console.log(`   MSG91_SENDER: ${process.env.MSG91_SENDER || 'NOT SET'}`);
+        
         const msg91 = (await import('../../lib/msg91.js')).default;
-        console.log(`🔄 Sending OTP via MSG91...`);
+        console.log(`🔄 Sending OTP via MSG91 to ${value}...`);
         if (process.env.MSG91_OTP_TEMPLATE_ID) {
           console.log(`📧 Using template: ${process.env.MSG91_OTP_TEMPLATE_ID}`);
           await msg91.sendOtpViaTemplate(value, otp);
@@ -69,8 +75,11 @@ export default async function handler(req, res) {
         }
         console.log(`✅ OTP sent successfully via MSG91`);
       } catch (error) {
-        console.error('❌ Error sending verification OTP via MSG91:', error?.response?.data || error.message || error);
-        return res.status(500).json({ success: false, message: 'Error sending OTP' });
+        console.error('❌ Error sending verification OTP via MSG91:');
+        console.error('   Error response:', error?.response?.data);
+        console.error('   Error message:', error.message);
+        console.error('   Full error:', error);
+        return res.status(500).json({ success: false, message: 'Error sending OTP', error: error.message });
       }
     } else if (type === 'email') {
       try {
