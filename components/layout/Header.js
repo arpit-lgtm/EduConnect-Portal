@@ -46,7 +46,8 @@ const Header = ({ courseTitle = null, adminMode = false, onLogout = null, showLo
       titleLine1: 'CONTACT US',
       titleLine2: 'LOGIN',
       href: '/#talk-to-experts',
-      hasLoginBelow: true
+      hasLoginBelow: true,
+      isLoginButton: true
     }
   ];
 

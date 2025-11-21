@@ -258,8 +258,14 @@ const UniversityMatcherResults = () => {
         
         console.log(`✅ Server matched ${matched.length} universities (filtered), ${allWithCourse.length} total`);
         
+        // If no matches with location filter, use all universities with the course
+        const finalMatched = matched.length > 0 ? matched : allWithCourse;
+        if (matched.length === 0 && allWithCourse.length > 0) {
+          console.log('⚠️ No universities in selected location, showing all universities with this course');
+        }
+        
         // Fetch College Vidya ratings for matched universities
-        const matchedWithRatings = await fetchCollegeVidyaRatings(matched);
+        const matchedWithRatings = await fetchCollegeVidyaRatings(finalMatched);
         
         // Fetch ratings for ALL universities with the course as well
         const allWithCourseAndRatings = await fetchCollegeVidyaRatings(allWithCourse);
@@ -343,8 +349,14 @@ const UniversityMatcherResults = () => {
         
         console.log(`✅ Server matched ${matched.length} universities`);
         
+        // If no matches with location filter, use all universities with the course
+        const finalMatched = matched.length > 0 ? matched : allWithCourse;
+        if (matched.length === 0 && allWithCourse.length > 0) {
+          console.log('⚠️ No universities in selected location, showing all universities with this course');
+        }
+        
         // Fetch College Vidya ratings for matched universities
-        const matchedWithRatings = await fetchCollegeVidyaRatings(matched);
+        const matchedWithRatings = await fetchCollegeVidyaRatings(finalMatched);
         
         // Fetch ratings for ALL universities with the course as well
         const allWithCourseAndRatings = await fetchCollegeVidyaRatings(allWithCourse);

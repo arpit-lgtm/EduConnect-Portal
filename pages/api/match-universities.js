@@ -31,7 +31,11 @@ function matchUniversities(universitiesData, formData) {
 
   const courseNameToMatch = formData.preferredCourse;
   
+  console.log('🔍 Matching for course:', courseNameToMatch);
+  console.log('📊 Total universities to check:', universitiesData.length);
+  
   if (!courseNameToMatch) {
+    console.log('❌ No course name provided');
     return [];
   }
 
@@ -224,6 +228,9 @@ function matchUniversities(universitiesData, formData) {
       matchScore: score
     };
   }).filter(uni => uni !== null);
+
+  console.log('✅ Filtered universities with course:', filtered.length);
+  console.log('📝 Sample matches:', filtered.slice(0, 3).map(u => ({ name: u.name, score: u.matchScore })));
 
   filtered.sort((a, b) => b.matchScore - a.matchScore);
   
