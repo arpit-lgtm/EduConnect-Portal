@@ -20,16 +20,18 @@ async function sendOTPNotification(contact, otp) {
             console.log(`🔄 Detected phone number, sending via MSG91...`);
             // Prefer template-based OTP if configured
             if (process.env.MSG91_OTP_TEMPLATE_ID) {
-                console.log(`📧 Using template: ${process.env.MSG91_OTP_TEMPLATE_ID}`);
+                console.log(`🎯 TRANSACTIONAL ROUTE - Using template: ${process.env.MSG91_OTP_TEMPLATE_ID}`);
+                console.log(`   ✅ This will send via Transactional route (immediate delivery, bypasses DND)`);
                 const res = await msg91.sendOtpViaTemplate(contact, otp);
-                console.log(`✅ Template OTP sent:`, res);
+                console.log(`✅ Template OTP sent via TRANSACTIONAL route:`, res);
                 return !!res;
             } else {
-                console.log(`📲 Using plain SMS (no template)`);
+                console.log(`⚠️  PROMOTIONAL ROUTE - Using plain SMS (no template)`);
+                console.log(`   ⚠️  This will be slower and may be blocked by DND`);
                 // Fallback to plain SMS
                 const text = `Your EDUCATIVO login OTP is ${otp}. Valid for 10 minutes. Do not share it with anyone.`;
                 const res = await msg91.sendSms(contact, text);
-                console.log(`✅ Plain SMS sent:`, res);
+                console.log(`✅ Plain SMS sent via PROMOTIONAL route:`, res);
                 return !!res;
             }
         }
