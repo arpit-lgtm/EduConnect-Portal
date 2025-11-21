@@ -53,24 +53,46 @@ export default async function handler(req, res) {
     const key = `${type}_${value.toLowerCase()}`;
     global.otpVerificationStore.set(key, { otp, expiryTime, attempts: 0 });
 
-    // In production, send OTP via SMS/Email service
-    console.log(`📱 ${type.toUpperCase()} OTP for ${value}: ${otp} (expires in 5 minutes)`);
-    
-    // Simulate sending OTP
+    console.log(`📱 OTP Generated: ${otp} for ${type}: ${value}`);
+
+    // Send OTP via MSG91 for phone type
     if (type === 'phone') {
-      // TODO: Integrate SMS service (Twilio, AWS SNS, Fast2SMS, etc.)
-      console.log(`📲 SMS: Your MBA Ninja verification code is ${otp}. Valid for 5 minutes.`);
+      try {
+        const msg91 = (await import('../../lib/msg91.js')).default;
+        console.log(`🔄 Sending OTP via MSG91...`);
+        if (process.env.MSG91_OTP_TEMPLATE_ID) {
+          console.log(`📧 Using template: ${process.env.MSG91_OTP_TEMPLATE_ID}`);
+          await msg91.sendOtpViaTemplate(value, otp);
+        } else {
+          console.log(`📲 Using plain SMS (no template)`);
+          await msg91.sendSms(value, `Your EDUCATIVO login OTP is ${otp}. Valid for 10 minutes. Do not share it with anyone.`);
+        }
+        console.log(`✅ OTP sent successfully via MSG91`);
+      } catch (error) {
+        console.error('❌ Error sending verification OTP via MSG91:', error?.response?.data || error.message || error);
+        return res.status(500).json({ success: false, message: 'Error sending OTP' });
+      }
     } else if (type === 'email') {
-      // TODO: Integrate Email service (SendGrid, AWS SES, Nodemailer, etc.)
-      console.log(`📧 Email to ${value}: Your MBA Ninja verification code is ${otp}. Valid for 5 minutes.`);
+      try {
+        const msg91Email = (await import('../../lib/msg91-email.js')).default;
+        console.log(`🔄 Sending OTP via MSG91 SMTP...`);
+        if (process.env.MSG91_SMTP_USER && process.env.MSG91_SMTP_PASS) {
+          await msg91Email.sendOtpViaEmail(value, otp);
+          console.log(`✅ OTP sent successfully via MSG91 SMTP`);
+        } else {
+          console.log(`⚠️  MSG91 SMTP credentials not configured. Email OTP skipped.`);
+          return res.status(500).json({ success: false, message: 'Email service not configured' });
+        }
+      } catch (error) {
+        console.error('❌ Error sending verification OTP via MSG91 SMTP:', error?.message || error);
+        return res.status(500).json({ success: false, message: 'Error sending email OTP', error: error.message });
+      }
     }
 
     res.status(200).json({ 
       success: true, 
       message: `OTP sent successfully to your ${type}`,
-      expirySeconds: 300, // 5 minutes in seconds
-      // In development, send OTP in response for easy testing
-      ...(process.env.NODE_ENV === 'development' && { devOTP: otp })
+      expirySeconds: 300 // 5 minutes in seconds
     });
 
   } catch (error) {

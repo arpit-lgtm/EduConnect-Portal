@@ -8,9 +8,40 @@ export default async function handler(req, res) {
   }
 
   try {
-    await connectDB();
-
     const { emailAddress, contactNumber, fullName, ipAddress, userAgent } = req.body;
+
+    // Connect to database with better error handling
+    let dbConnected = false;
+    try {
+      const connection = await connectDB();
+      if (connection) {
+        dbConnected = true;
+        console.log('✅ Database connected for user verification');
+      } else {
+        console.warn('⚠️ Database connection returned null');
+      }
+    } catch (dbError) {
+      console.error('❌ MongoDB connection failed:', dbError.message);
+      // GRACEFUL DEGRADATION: Allow login even if DB fails
+      console.log('✅ Allowing login without database verification (graceful degradation)');
+      return res.status(200).json({
+        status: 'new_user',
+        allowed: true,
+        message: 'Welcome! (Database verification skipped)',
+        dbWarning: true
+      });
+    }
+
+    // If DB connection failed, allow login anyway
+    if (!dbConnected) {
+      console.log('✅ Allowing login without database verification (no connection)');
+      return res.status(200).json({
+        status: 'new_user',
+        allowed: true,
+        message: 'Welcome! (Database verification skipped)',
+        dbWarning: true
+      });
+    }
 
     // Check for existing users with same email OR phone
     const existingUsers = await User.find({
@@ -177,10 +208,16 @@ export default async function handler(req, res) {
 
   } catch (error) {
     console.error('❌ User verification error:', error);
+    console.error('Error details:', {
+      name: error.name,
+      message: error.message,
+      stack: error.stack
+    });
     return res.status(500).json({
       status: 'error',
       allowed: false,
-      message: 'Server error during verification'
+      message: 'Server error during verification',
+      errorDetails: process.env.NODE_ENV === 'development' ? error.message : undefined
     });
   }
 }

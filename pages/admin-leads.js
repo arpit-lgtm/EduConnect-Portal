@@ -7,6 +7,7 @@ import styles from '../styles/AdminLeads.module.css';
 export default function AdminLeads() {
   const router = useRouter();
   const [leads, setLeads] = useState([]);
+  const [verifiedLeads, setVerifiedLeads] = useState([]); // NEW: Verified OTP leads
   const [activities, setActivities] = useState([]);
   const [fraudAlerts, setFraudAlerts] = useState([]);
   const [userVisits, setUserVisits] = useState({}); // Store visit counts by email
@@ -21,6 +22,7 @@ export default function AdminLeads() {
   const [showVisitHistory, setShowVisitHistory] = useState(false);
   const [selectedUserVisits, setSelectedUserVisits] = useState([]);
   const [selectedVisitUserName, setSelectedVisitUserName] = useState('');
+  const [activeTab, setActiveTab] = useState('registered'); // NEW: Tab state
 
   const handleLogout = () => {
     localStorage.removeItem('mba_ninja_admin');
@@ -52,19 +54,22 @@ export default function AdminLeads() {
 
   const fetchLeads = async () => {
     try {
-      const [leadsResponse, activitiesResponse, fraudResponse] = await Promise.all([
+      const [leadsResponse, activitiesResponse, fraudResponse, verifiedLeadsResponse] = await Promise.all([
         fetch('/api/get-leads'),
         fetch('/api/get-activities'),
-        fetch('/api/get-fraud-alerts')
+        fetch('/api/get-fraud-alerts'),
+        fetch('/api/get-verified-leads') // NEW: Fetch verified OTP leads
       ]);
       
       const leadsData = await leadsResponse.json();
       const activitiesData = await activitiesResponse.json();
       const fraudData = await fraudResponse.json();
+      const verifiedLeadsData = await verifiedLeadsResponse.json(); // NEW
       
       setLeads(leadsData.leads || []);
       setActivities(activitiesData.activities || []);
       setFraudAlerts(fraudData.alerts || []);
+      setVerifiedLeads(verifiedLeadsData.leads || []); // NEW
 
       // Fetch visit counts for all unique user emails
       const uniqueEmails = [...new Set((leadsData.leads || []).map(lead => lead.email).filter(Boolean))];
@@ -259,6 +264,25 @@ export default function AdminLeads() {
       <Header adminMode={true} onLogout={handleLogout} />
 
       <div className={styles.container}>
+        {/* Tab Navigation */}
+        <div className={styles.tabNavigation}>
+          <button 
+            className={activeTab === 'registered' ? styles.activeTabButton : styles.tabButton}
+            onClick={() => setActiveTab('registered')}
+          >
+            📋 Registered Leads ({leads.length})
+          </button>
+          <button 
+            className={activeTab === 'verified' ? styles.activeTabButton : styles.tabButton}
+            onClick={() => setActiveTab('verified')}
+          >
+            ✅ Verified OTP Leads ({verifiedLeads.length})
+          </button>
+        </div>
+
+        {/* Registered Leads Tab */}
+        {activeTab === 'registered' && (
+          <>
         <div className={styles.controls}>
           <div className={styles.filters}>
             <button 
@@ -387,6 +411,81 @@ export default function AdminLeads() {
             </table>
           )}
         </div>
+        </>
+        )}
+
+        {/* Verified OTP Leads Tab */}
+        {activeTab === 'verified' && (
+          <div className={styles.verifiedLeadsSection}>
+            <h2 className={styles.sectionTitle}>✅ Verified OTP Leads</h2>
+            <p className={styles.sectionDescription}>
+              Users who verified their phone/email via OTP but haven't completed registration yet.
+            </p>
+
+            {verifiedLeads.length === 0 ? (
+              <div className={styles.emptyState}>
+                <p>No verified OTP leads yet. Leads will appear here when users verify their contact information.</p>
+              </div>
+            ) : (
+              <div className={styles.tableWrapper}>
+                <table className={styles.leadsTable}>
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Mobile</th>
+                      <th>Email</th>
+                      <th>Mobile Verified</th>
+                      <th>Email Verified</th>
+                      <th>Mobile Verified Date</th>
+                      <th>Email Verified Date</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {verifiedLeads.map((lead) => (
+                      <tr key={lead.id}>
+                        <td>{lead.name || '-'}</td>
+                        <td>{lead.mobile || '-'}</td>
+                        <td>{lead.email || '-'}</td>
+                        <td>
+                          <span className={lead.mobileVerified ? styles.statusVerified : styles.statusNotVerified}>
+                            {lead.mobileVerified ? '✓ Yes' : '✗ No'}
+                          </span>
+                        </td>
+                        <td>
+                          <span className={lead.emailVerified ? styles.statusVerified : styles.statusNotVerified}>
+                            {lead.emailVerified ? '✓ Yes' : '✗ No'}
+                          </span>
+                        </td>
+                        <td>
+                          {lead.mobileVerifiedAt 
+                            ? new Date(lead.mobileVerifiedAt).toLocaleString('en-IN', {
+                                dateStyle: 'medium',
+                                timeStyle: 'short'
+                              })
+                            : '-'}
+                        </td>
+                        <td>
+                          {lead.emailVerifiedAt 
+                            ? new Date(lead.emailVerifiedAt).toLocaleString('en-IN', {
+                                dateStyle: 'medium',
+                                timeStyle: 'short'
+                              })
+                            : '-'}
+                        </td>
+                        <td>
+                          <span className={styles.statusBadge}>
+                            {lead.status || 'pending'}
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Activity Modal - SHOWS ALL DETAILS */}
         {showActivityModal && (

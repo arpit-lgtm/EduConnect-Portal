@@ -5,13 +5,16 @@ if (!global.otpVerificationStore) {
   global.otpVerificationStore = new Map();
 }
 
+import VerifiedLead from '../../models/VerifiedLead';
+import dbConnect from '../../lib/mongodb';
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' });
   }
 
   try {
-    const { type, value, otp } = req.body;
+    const { type, value, otp, name, mobile, email } = req.body;
 
     if (!type || !value || !otp) {
       return res.status(400).json({ 
@@ -67,6 +70,44 @@ export default async function handler(req, res) {
         success: false, 
         message: `Invalid OTP. ${attemptsLeft} attempt${attemptsLeft !== 1 ? 's' : ''} remaining.` 
       });
+    }
+
+    // OTP is correct - Save lead data to MongoDB
+    try {
+      await dbConnect();
+
+      // Get metadata for tracking
+      const metadata = {
+        userAgent: req.headers['user-agent'] || '',
+        ipAddress: req.headers['x-forwarded-for'] || req.connection.remoteAddress || '',
+        referrer: req.headers['referer'] || ''
+      };
+
+      if (type === 'phone') {
+        // Save mobile verification
+        const leadData = {
+          name: name || 'Unknown',
+          mobile: mobile || value,
+          mobileVerified: true,
+          mobileVerifiedAt: new Date(),
+          metadata
+        };
+
+        await VerifiedLead.findOrCreateByMobile(leadData.mobile, leadData.name, metadata);
+        console.log(`✅ Saved verified lead: ${leadData.name} - ${leadData.mobile}`);
+
+      } else if (type === 'email') {
+        // Update email verification for existing mobile lead
+        if (mobile) {
+          await VerifiedLead.updateEmailVerification(mobile, email || value);
+          console.log(`✅ Updated lead with email: ${mobile} - ${email || value}`);
+        } else {
+          console.warn(`⚠️  Email verified but no mobile provided: ${email || value}`);
+        }
+      }
+    } catch (dbError) {
+      console.error('❌ Error saving lead to MongoDB:', dbError);
+      // Don't fail the verification if lead save fails
     }
 
     // OTP is correct

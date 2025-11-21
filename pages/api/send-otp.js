@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { otpStorage } from '../../utils/otpStorage.js';
 import { rateLimit } from '../../middleware/auth';
+import msg91 from '../../lib/msg91.js';
 
 // Generate 6-digit OTP
 function generateOTP() {
@@ -9,12 +10,35 @@ function generateOTP() {
 }
 
 // Simulate sending OTP (in production, integrate with SMS/Email service)
-function sendOTPNotification(contact, otp) {
-    console.log(`🔐 OTP for ${contact}: ${otp}`);
-    // In production, integrate with:
-    // - Twilio for SMS
-    // - SendGrid/Nodemailer for Email
-    return true;
+async function sendOTPNotification(contact, otp) {
+    try {
+        console.log(`📱 OTP Generated: ${otp} for ${contact}`);
+        // If contact looks like phone number, use MSG91
+        if (/^\d{10}$/.test(contact) || /^91\d{10}$/.test(contact)) {
+            console.log(`🔄 Detected phone number, sending via MSG91...`);
+            // Prefer template-based OTP if configured
+            if (process.env.MSG91_OTP_TEMPLATE_ID) {
+                console.log(`📧 Using template: ${process.env.MSG91_OTP_TEMPLATE_ID}`);
+                const res = await msg91.sendOtpViaTemplate(contact, otp);
+                console.log(`✅ Template OTP sent:`, res);
+                return !!res;
+            } else {
+                console.log(`📲 Using plain SMS (no template)`);
+                // Fallback to plain SMS
+                const text = `Your EDUCATIVO login OTP is ${otp}. Valid for 10 minutes. Do not share it with anyone.`;
+                const res = await msg91.sendSms(contact, text);
+                console.log(`✅ Plain SMS sent:`, res);
+                return !!res;
+            }
+        }
+
+        // If not a phone, log for email path (email handling is skipped for now)
+        console.log(`🔐 OTP for ${contact}: ${otp}`);
+        return true;
+    } catch (error) {
+        console.error('❌ Error sending OTP via MSG91:', error?.response?.data || error.message || error);
+        return false;
+    }
 }
 
 // Check if user exists in our database
@@ -48,7 +72,7 @@ function findExistingUser(name, contact) {
     return null;
 }
 
-function handler(req, res) {
+async function handler(req, res) {
     if (req.method !== 'POST') {
         return res.status(405).json({ success: false, message: 'Method not allowed' });
     }
@@ -85,15 +109,13 @@ function handler(req, res) {
             attempts: 0
         });
 
-        // Send OTP notification
-        const sent = sendOTPNotification(contact, otp);
+        // Send OTP notification (await for async MSG91 call)
+        const sent = await sendOTPNotification(contact, otp);
         
         if (sent) {
             res.status(200).json({ 
                 success: true, 
-                message: 'OTP sent successfully',
-                // For development, include OTP in response (remove in production)
-                devOTP: process.env.NODE_ENV === 'development' ? otp : undefined
+                message: 'OTP sent successfully to your phone'
             });
         } else {
             res.status(500).json({ 

@@ -278,7 +278,9 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
                 body: JSON.stringify({
                     type: 'phone',
                     value: formData.contactNumber,
-                    otp: phoneOtp
+                    otp: phoneOtp,
+                    name: formData.fullName,
+                    mobile: formData.contactNumber
                 })
             });
 
@@ -315,7 +317,9 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
                 body: JSON.stringify({
                     type: 'email',
                     value: formData.emailAddress,
-                    otp: emailOtp
+                    otp: emailOtp,
+                    mobile: formData.contactNumber,
+                    email: formData.emailAddress
                 })
             });
 
